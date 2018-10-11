@@ -20,20 +20,20 @@ public class OrdersLwq {
 		this.account = account;
 	}
 
-	public Integer getBusiName() {
+	public String getBusiName() {
 		return busiName;
 	}
 
-	public void setBusiName(Integer busiName) {
+	public void setBusiName(String busiName) {
 		this.busiName = busiName;
 	}
 
-	public Date getOrddate() {
-		return orddate;
+	public String getOrdDate() {
+		return ordDate;
 	}
 
-	public void setOrddate(Date orddate) {
-		this.orddate = orddate;
+	public void setOrdDate(String ordDate) {
+		this.ordDate = ordDate;
 	}
 
 	public Double getMoney() {
@@ -72,13 +72,13 @@ public class OrdersLwq {
 		super();
 	}
 
-	public OrdersLwq(Integer id, String account, Integer busiName, Date orddate, Double money, String foodName, int num,
+	public OrdersLwq(Integer id, String account, String busiName, String ordDate, Double money, String foodName, int num,
 			Integer state) {
 		super();
 		this.id = id;
 		this.account = account;
 		this.busiName = busiName;
-		this.orddate = orddate;
+		this.ordDate = ordDate;
 		this.money = money;
 		this.foodName = foodName;
 		this.num = num;
@@ -87,7 +87,7 @@ public class OrdersLwq {
 
 	@Override
 	public String toString() {
-		return "OrdersLwq [id=" + id + ", account=" + account + ", busiName=" + busiName + ", orddate=" + orddate
+		return "OrdersLwq [id=" + id + ", account=" + account + ", busiName=" + busiName + ", orddate=" + ordDate
 				+ ", money=" + money + ", foodName=" + foodName + ", num=" + num + ", state=" + state + "]";
 	}
 
@@ -95,9 +95,9 @@ public class OrdersLwq {
 
     private String account;
 
-    private Integer busiName;
+    private String busiName;
 
-    private Date orddate;
+    private String ordDate;
 
     private Double money;
     

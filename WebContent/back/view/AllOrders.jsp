@@ -23,7 +23,7 @@
     <!--操作栏-->
     <div class="operates clearfix" style="overflow: auto;white-space: nowrap; font-size: 0;">
         <div class="pull-left left-inp defualt">
-            <input type="text" class="pull-left" style="margin-left: 10px;" placeholder="账号名、手机号">
+            <input type="text" class="pull-left" style="margin-left: 10px;" name="keywords" placeholder="账号名">
             <button class="btn delete pramary">搜索</button>
             <button class="btn delete pramary">筛选</button>
         </div>
@@ -78,134 +78,27 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>
-                        <input type="checkbox" name="pkId" id="ph1"> <label for="ph1">1</label></td>
-                    <td>
-                        <p>000 001</p>
-                    </td>
-                    <td>
-                        <p>苏浙汇(南京西路店)</p>
-                    </td>
-                    <td>
-                        <p>zhangxiaoer</p>
-                    </td>
-                    <td>
-                        <p>zhang</p>
-                    </td>
-                    <td>
-                        <p>139****5736</p>
-                    </td>
-                    <td>
-                        <p>abc@163.com</p>
-                    </td>
-                    <td>
-                        <p>2018-06-15 <i class="hui">18:25</i></p>
-                    </td>
-                    <td>
-                        <p>管理员</p>
-                    </td>
-                   
-                    <td>
-                        <p></p>
-                    </td>
-                </tr>
-                <tr class="info">
-                    <td>
-                        <input type="checkbox" name="pkId" id="ph2"> <label for="ph2">2</label></td>
-                    <td>
-                        <p>000 001</p>
-                    </td>
-                    <td>
-                        <p>苏浙汇(南京西路店)</p>
-                    </td>
-                    <td>
-                        <p>zhangxiaoer</p>
-                    </td>
-                    <td>
-                        <p>zhang</p>
-                    </td>
-                    <td>
-                        <p>139****5736</p>
-                    </td>
-                    <td>
-                        <p>abc@163.com</p>
-                    </td>
-                    <td>
-                        <p>2018-06-15 <i class="hui">18:25</i></p>
-                    </td>
-                    <td>
-                        <p>管理员</p>
-                    </td>
-                    
-                    <td>
-                        <p></p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="checkbox" name="pkId" id="ph3"> <label for="ph3">3</label></td>
-                    <td>
-                        <p>000 001</p>
-                    </td>
-                    <td>
-                        <p>苏浙汇(南京西路店)</p>
-                    </td>
-                    <td>
-                        <p>zhangxiaoer</p>
-                    </td>
-                    <td>
-                        <p>zhang</p>
-                    </td>
-                    <td>
-                        <p>139****5736</p>
-                    </td>
-                    <td>
-                        <p>abc@163.com</p>
-                    </td>
-                    <td>
-                        <p>2018-06-15 <i class="hui">18:25</i></p>
-                    </td>
-                    <td>
-                        <p>管理员</p>
-                    </td>
-                    
-                    <td>
-                        <p></p>
-                    </td>
-                </tr>
-                <tr class="info">
-                    <td>
-                        <input type="checkbox" name="pkId" id="ph4"> <label for="ph4">4</label></td>
-                    <td>
-                        <p>000 001</p>
-                    </td>
-                    <td>
-                        <p>苏浙汇(南京西路店)</p>
-                    </td>
-                    <td>
-                        <p>zhangxiaoer</p>
-                    </td>
-                    <td>
-                        <p>zhang</p>
-                    </td>
-                    <td>
-                        <p>139****5736</p>
-                    </td>
-                    <td>
-                        <p>abc@163.com</p>
-                    </td>
-                    <td>
-                        <p>2018-06-15 <i class="hui">18:25</i></p>
-                    </td>
-                    <td>
-                        <p>管理员</p>
-                    </td>
-                    
-                    <td>
-                        <p></p>
-                    </td>
-                </tr>
+               <c:if test="${requestScope.pd == null}">
+								<jsp:forward page="/back/view/OrdersLServlet?op=queryansByPage"></jsp:forward>
+							</c:if>
+
+							<c:forEach items="${requestScope.pd.data}" var="a">
+
+
+								<tr>
+									<td>${a.id}</td>
+									<td>${a.account}</td>
+									<td>${a.busiName}</td>
+									<td>${a.ordDate}</td>
+									<td>${a.money}</td>
+									<td>${a.foodName}</td>
+									<td>${a.num}</td>
+									<td>${a.state}</td>
+								</tr>
+
+							</c:forEach>
+
+
             </tbody>
         </table>
     </div>

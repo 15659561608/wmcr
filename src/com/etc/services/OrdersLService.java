@@ -3,6 +3,7 @@ package com.etc.services;
 import java.util.List;
 
 import com.etc.entity.OrdersLwq;
+import com.etc.util.PageData;
 
 /**
 * @author 作者 LinWQ:
@@ -12,4 +13,5 @@ import com.etc.entity.OrdersLwq;
 
 public interface OrdersLService {
 	List<OrdersLwq> getOrders();
+	PageData<OrdersLwq> getOrdersByPage(int page, int pageSize, String keywords);
 }
