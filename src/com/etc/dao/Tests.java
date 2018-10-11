@@ -1,11 +1,11 @@
 package com.etc.dao;
 import com.etc.entity.OrdersLwq;
-=======
+
 import java.util.List;
 
 import com.etc.entity.OrdersLwq;
 import com.etc.entity.Users;
->>>>>>> branch 'master' of https://github.com/15659561608/wmcr.git
+
 import com.etc.service.impl.OrdersLServiceImpl;
 import com.etc.util.PageData;
 
@@ -26,22 +26,22 @@ public class Tests {
 		// System.out.println("数据为空");
 		// }else {
 		// list.forEach(System.out::println);
-<<<<<<< HEAD
-		// }
-=======
+
 		// }
 
->>>>>>> branch 'master' of https://github.com/15659561608/wmcr.git
+		// }
+
+
 		OrdersLServiceImpl osi = new OrdersLServiceImpl();
 		PageData<OrdersLwq> pd = osi.getOrdersByPage(1, 10, "");
 		System.out.println(pd);
-<<<<<<< HEAD
+
 		System.out.println(pd.getTotalPage());
-=======
+
 		System.out.println(pd.getTotalPage());
 
 
->>>>>>> branch 'master' of https://github.com/15659561608/wmcr.git
+
 	}
 
 }
