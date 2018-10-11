@@ -1,10 +1,8 @@
 package com.etc.dao;
 
-import java.util.List;
-
-import com.etc.entity.Users;
-import com.etc.service.impl.UsersServiceImpl;
-import com.etc.services.UsersService;
+import com.etc.entity.OrdersLwq;
+import com.etc.service.impl.OrdersLServiceImpl;
+import com.etc.util.PageData;
 
 
 /**
@@ -24,18 +22,10 @@ public class Tests {
 		// }else {
 		// list.forEach(System.out::println);
 		// }
-<<<<<<< HEAD
-//		OrdersLServiceImpl osi = new OrdersLServiceImpl();
-//		PageData<OrdersLwq> pd = osi.getOrdersByPage(1, 10, "li");
-//		System.out.println(pd);
-		
-=======
 		OrdersLServiceImpl osi = new OrdersLServiceImpl();
 		PageData<OrdersLwq> pd = osi.getOrdersByPage(1, 10, "");
 		System.out.println(pd);
 		System.out.println(pd.getTotalPage());
-
->>>>>>> branch 'master' of https://github.com/15659561608/wmcr.git
 	}
 
 }

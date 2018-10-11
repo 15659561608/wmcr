@@ -63,9 +63,9 @@
                 </div>
                 <div class="form-error-message"></div>
                 <div class="form-group checkbox clearfix">
-                    <label class="fl fs12">
+                    
                         <input id="lRemember" type="checkbox" value="true"> 记住我
-                    </label>
+                   
                     <span class="fr fs12"><a class="yo" target="_black" href="/account/password/reset_via_mobile/">忘记密码</a></span>
                 </div>
                 <div>
