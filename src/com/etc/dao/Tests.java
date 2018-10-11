@@ -25,8 +25,9 @@ public class Tests {
 		// list.forEach(System.out::println);
 		// }
 		OrdersLServiceImpl osi = new OrdersLServiceImpl();
-		PageData<OrdersLwq> pd = osi.getOrdersByPage(1, 10, "li");
+		PageData<OrdersLwq> pd = osi.getOrdersByPage(1, 10, "");
 		System.out.println(pd);
+		System.out.println(pd.getTotalPage());
 
 	}
 

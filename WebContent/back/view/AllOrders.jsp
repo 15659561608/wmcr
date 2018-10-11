@@ -23,53 +23,54 @@
     <!--操作栏-->
     <div class="operates clearfix" style="overflow: auto;white-space: nowrap; font-size: 0;">
         <div class="pull-left left-inp defualt">
-            <input type="text" class="pull-left" style="margin-left: 10px;" name="keywords" placeholder="账号名">
-            <button class="btn delete pramary">搜索</button>
-            <button class="btn delete pramary">筛选</button>
+           <!--  <input type="text" class="pull-left" style="margin-left: 10px;" name="keywords" placeholder="账号名">
+            <button class="btn delete pramary">搜索</button> -->
+            	<form class="navbar-form navbar-right" method="post"
+					action="OrdersLServlet">
+					<input type="hidden" name="op" value="queryansByPage"> <input
+						type="text" class="form-control" placeholder="账号名"
+						name="keywords" id="keywords" value="${keywords}">
+					<button class="btn btn-default">搜索</button>
+				</form>
         </div>
-        <div class="right-btns" style="font-size: 0">
-            <button class="btn delete pramary">增加</button>
-            <button class="btn delete pramary">编辑</button>
-            <button class="btn delete pramary">审核</button>
-            <button class="btn delete pramary">删除</button>
-        </div>
+    
     </div>
     <!--表格-->
-    <div class="table-wrapper pl27 " style="min-width: 3000px;">
+    <div class="table-wrapper pl27 " style="min-width: 300px;">
         <table class="table text-center">
             <thead>
                 <tr>
-                    <th style="width: 4%;" class="yt">
+                    <th style="width: 1%;" class="yt">
                        <input type="checkbox" class="allCheck" id="all"><label for="all">&nbsp;&nbsp;&nbsp;</label></th>
-                    <th style="width: 6%;" class="sort cur">订单ID
+                    <th style="width: 2%;" class="sort cur">订单ID
                         <img class="bottom" src="../img/jt-bottom.png" alt="">
                         <img class="top" style="display: none" src="../img/jt-right-co.png" alt="">
                     </th>
-                    <th class="sort cur" style="width:8%">用户名
+                    <th class="sort cur" style="width: 2%">用户名
                         <img class="bottom" src="../img/jt-bottom.png" alt="">
                         <img class="top" style="display: none" src="../img/jt-right-co.png" alt="">
                     </th>
-                    <th class="sort cur" style="width: 6%;">店面
+                    <th class="sort cur" style="width: 2%;">店面
                         <img class="bottom" src="../img/jt-bottom.png" alt="">
                         <img class="top" style="display: none" src="../img/jt-right-co.png" alt="">
                     </th>
-                    <th class="sort cur" style="width: 8%;">时间
+                    <th class="sort cur" style="width: 2%;">时间
                         <img class="bottom" src="../img/jt-bottom.png" alt="">
                         <img class="top" style="display: none" src="../img/jt-right-co.png" alt="">
                     </th>
-                    <th class="no-nowrap sort cur" style="width: 6%;">订单金额
+                    <th class="no-nowrap sort cur" style="width: 2%;">订单金额
                         <img class="bottom" src="../img/jt-bottom.png" alt="">
                         <img class="top" style="display: none" src="../img/jt-right-co.png" alt="">
                     </th>
-                    <th class="no-nowrap sort cur" style="width: 8%;">菜单名
+                    <th class="no-nowrap sort cur" style="width: 2%;">菜单名
                         <img class="bottom" src="../img/jt-bottom.png" alt="">
                         <img class="top" style="display: none" src="../img/jt-right-co.png" alt="">
                     </th>
-                    <th class="no-nowrap sort cur" style="width: 8%;">数量
+                    <th class="no-nowrap sort cur" style="width:3%;">数量
                         <img class="bottom" src="../img/jt-bottom.png" alt="">
                         <img class="top" style="display: none" src="../img/jt-right-co.png" alt="">
                     </th>
-                    <th class="sort cur" style="width: 8%;">状态
+                    <th class="sort cur" style="width:3%;">状态
                         <img class="bottom" src="../img/jt-bottom.png" alt="">
                         <img class="top" style="display: none" src="../img/jt-right-co.png" alt="">
                     </th>
@@ -78,14 +79,15 @@
                 </tr>
             </thead>
             <tbody>
-               <c:if test="${requestScope.pd == null}">
-								<jsp:forward page="/back/view/OrdersLServlet?op=queryansByPage"></jsp:forward>
+             <c:if test="${requestScope.pd == null}">
+								<jsp:forward page="/OrdersLServlet?op=queryansByPage"></jsp:forward>
 							</c:if>
-
+ 
 							<c:forEach items="${requestScope.pd.data}" var="a">
 
 
 								<tr>
+								<td> </td>
 									<td>${a.id}</td>
 									<td>${a.account}</td>
 									<td>${a.busiName}</td>
@@ -102,34 +104,70 @@
             </tbody>
         </table>
     </div>
-      <div class="table-tel clearfix">
-        <div style="border-bottom: 1px solid #fff; overflow: hidden;" class="no-hover">
-            <div class="fl tb1" style="text-align: center;  ">
-                <input type="checkbox" class="allCheck" id="all"><label for="all">&nbsp;&nbsp;&nbsp;</label>
-            </div>
-            <div class="fl tb2" style="text-align:left; width: 190px;display: table">&emsp;<span class="cur">短信</span>&emsp;<span class="cur">邮件</span>&emsp;<span class="cur">微信</span>&emsp;<span class="cur">审核</span>&emsp;
-            </div>
-            <div class="tab-margin clearfix " style="width: 400px; position: absolute; left: 50%; margin-left: -120px;"">
-                <div class="fl tb3" style="width: 225px;float: left;">
-                    <div class="page-wrapper text-left">
-                        <button class="btn-s"><img src="../img/left-icon.png" alt=""></button>
-                        <a href="#" class="active">1</a>
-                        <a href="#" class="">2</a>
-                        <a href="#" class="">3</a>
-                        <button class="btn-s"><img src="../img/right-icon.png" alt=""></button>
-                    </div>
-                </div>
+      <!-- 分页 开始 -->
 
-              
-            </div>
-           
-            <div class="fr tb5" style="text-align: left;padding-right: 30px;position: absolute; right: 0; top: 0;">
-                <input type="text" style="width: 40px;height: 26px;" class="text-center" onkeyup="value=value.replace(/[^\d]/g,'')"> 行/页
-            </div>
-        </div>
-    </div>
+				<div class="row clearfix text-center">
+					<div class="col-md-12 column">
+						<ul class="pagination">
+							<li><a href="javascript:prePage()">上一页</a></li>
+
+							<!-- pd.totalPage -->
+							<c:forEach begin="1" end="${pd.totalPage}" var="index">
+
+								<c:if test="${index == pd.page}">
+									<li class="active"><a href="#">${index}</a></li>
+								</c:if>
+								<c:if test="${index!=pd.page}">
+									<li><a href="javascript:jumpPage(${index})">${index}</a></li>
+								</c:if>
+							</c:forEach>
+							<li><a href="javascript:nextPage()">下一页</a></li>
+						</ul>
+					</div>
+				</div>
+
+				<!-- 分页 结束 -->
 </body>
 <script src="../plugin/jquery/jquery.js"></script>
 <script src="../js/frame-base.js"></script>
+
+<script>
+	   //使用javascript代码来实现上一页
+	   function prePage()
+	   {
+		   //${pd.page}当前是第几页
+		   //什么情况下才有上一页
+		   var page = 1;
+		   if(${pd.page}>1)
+			   {
+			      page=${pd.page}-1;
+			   }
+		   
+		   location.href="/OrdersLServlet?op=queryansByPage&page="+page+"&keywords="+document.getElementById("keywords").value;
+	   }
+	 //使用javascript代码来实现"下一页"
+	   function nextPage()
+	   {
+		   //${pd.page}当前是第几页
+		   //什么情况下才有下一页?
+		   var page = ${pd.totalPage};
+		   if(${pd.page}<${pd.totalPage})
+			   {
+			      page=${pd.page}+1;
+			   }
+		   
+		   location.href="/OrdersLServlet?op=queryansByPage&page="+page+"&keywords="+document.getElementById("keywords").value;
+	   }
+	   
+	   //翻页[跳转到指定的页]
+	   function jumpPage(page)
+	   {
+	      location.href="/OrdersLServlet?op=queryansByPage&page="+page+"&keywords="+document.getElementById("keywords").value;
+	   }
+	   
+	   
+	</script>
+
+
 
 </html>
