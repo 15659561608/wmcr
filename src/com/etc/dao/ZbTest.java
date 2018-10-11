@@ -2,7 +2,6 @@ package com.etc.dao;
 
 import java.util.List;
 
-import com.etc.dao.impl.UsersDaoImpl;
 import com.etc.entity.Users;
 import com.etc.service.impl.UsersServiceImpl;
 import com.etc.services.UsersService;
