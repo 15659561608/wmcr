@@ -13,7 +13,7 @@ public class UsersServiceImpl implements UsersService {
 	@Override
 	public List<Users> getUsersLogin(String account, String pwd) {
 		// TODO Auto-generated method stub
-		return ud.usersLogin(account, pwd);
+		return   ud.usersLogin(account, pwd);   
 	}
 
 }

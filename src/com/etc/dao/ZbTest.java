@@ -12,7 +12,7 @@ public class ZbTest {
 		// TODO Auto-generated method stub
 		UsersService us = new UsersServiceImpl();
 		List<Users> users = us.getUsersLogin("15863259456", "123456");
-		users.forEach(System.out::println);
+		System.out.println(users);
 	}
 
 }
