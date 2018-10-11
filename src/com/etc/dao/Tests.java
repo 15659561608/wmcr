@@ -2,9 +2,9 @@ package com.etc.dao;
 
 import java.util.List;
 
-import com.etc.entity.OrdersLwq;
-import com.etc.service.impl.OrdersLServiceImpl;
-import com.etc.util.PageData;
+import com.etc.entity.Users;
+import com.etc.service.impl.UsersServiceImpl;
+import com.etc.services.UsersService;
 
 
 /**
@@ -24,10 +24,10 @@ public class Tests {
 		// }else {
 		// list.forEach(System.out::println);
 		// }
-		OrdersLServiceImpl osi = new OrdersLServiceImpl();
-		PageData<OrdersLwq> pd = osi.getOrdersByPage(1, 10, "li");
-		System.out.println(pd);
-
+//		OrdersLServiceImpl osi = new OrdersLServiceImpl();
+//		PageData<OrdersLwq> pd = osi.getOrdersByPage(1, 10, "li");
+//		System.out.println(pd);
+		
 	}
 
 }
