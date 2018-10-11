@@ -1,4 +1,6 @@
-<!doctype html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -18,11 +20,11 @@
     <![endif]-->
 </head>
 <body>
-    <a href="login.html"><img class="login-logo" src="img/logo.png"></a>
-    <a class="login-change" href="login.html">PC客户端 <span>&nbsp; | &nbsp;</span> 手机客户端</a>
+    <a href="login.jsp"><img class="login-logo" src="img/logo.png"></a>
     <div class="login-title default"></div>
    <div class="login-name">管理员登录</div>
-   <form action="Lg.do">
+   <form action="Lg.do" method="post">
+   <input type="hidden" name="op" value="loginhou">
     <div class="login-form-area">
          
         <div class="login-input">
@@ -51,10 +53,10 @@
             _this.removeClass('active');
         },100);
     });
-    $(".login-btn").click(function(event) {
-        /* Act on the event */
+   /* $(".login-btn").click(function(event) {
+       
         location.href="index.html";
-    });
+    }); */
      $(".ybs").click(function(event) {
         /* Act on the event */
         location.href="login.html";
