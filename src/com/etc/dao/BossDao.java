@@ -12,7 +12,7 @@ public interface BossDao {
 	 * 获取商户账号信息
 	 * @return
 	 */
-	public Boss getBoss();
+	public Boss getBoss(int bossId);
 	
 	/**
 	 * 修改密码
