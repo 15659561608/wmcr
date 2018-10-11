@@ -24,10 +24,18 @@ public class Tests {
 		// }else {
 		// list.forEach(System.out::println);
 		// }
+<<<<<<< HEAD
 //		OrdersLServiceImpl osi = new OrdersLServiceImpl();
 //		PageData<OrdersLwq> pd = osi.getOrdersByPage(1, 10, "li");
 //		System.out.println(pd);
 		
+=======
+		OrdersLServiceImpl osi = new OrdersLServiceImpl();
+		PageData<OrdersLwq> pd = osi.getOrdersByPage(1, 10, "");
+		System.out.println(pd);
+		System.out.println(pd.getTotalPage());
+
+>>>>>>> branch 'master' of https://github.com/15659561608/wmcr.git
 	}
 
 }
