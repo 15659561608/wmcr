@@ -62,12 +62,23 @@
                     <span><img id="captchaImg" _src="/captcha/" src="/captcha/" alt="验证码"/></span>
                 </div>
                 <div class="form-error-message"></div>
+<<<<<<< HEAD
                 
                     <label class="fl fs12">
+=======
+                <div class="form-group checkbox clearfix">
+                    
+>>>>>>> branch 'master' of https://github.com/15659561608/wmcr.git
                         <input id="lRemember" type="checkbox" value="true"> 记住我
+<<<<<<< HEAD
                     </label>
                     <span class="fr fs12"><a class="yo" target="_black" href="pwd_forget.jsp">忘记密码</a></span>
                
+=======
+                   
+                    <span class="fr fs12"><a class="yo" target="_black" href="/account/password/reset_via_mobile/">忘记密码</a></span>
+                </div>
+>>>>>>> branch 'master' of https://github.com/15659561608/wmcr.git
                 <div>
                     <button class="form-btn" id="loginPageBtn">登录</button>
                 </div>
