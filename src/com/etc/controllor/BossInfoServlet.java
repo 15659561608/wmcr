@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.etc.entity.Boss;
 import com.etc.service.impl.BossServiceImpl;
@@ -36,12 +37,17 @@ public class BossInfoServlet extends HttpServlet {
 			op=request.getParameter("op");
 		}
 		
+		HttpSession session=request.getSession();
+		Boss boss=(Boss)session.getAttribute("boss");
+		
 		if("null".equals(op)) {
-			BossService bs=new BossServiceImpl();
-			Boss boss=bs.getBoss(1);
-			request.setAttribute("boss", boss);
-			System.out.println(boss);
+			
 			request.getRequestDispatcher("/bossManage/bossInfo.jsp").forward(request, response);;
+		}
+		
+		if("updatePwd".equals(op)) {
+			String pwd=request.getParameter("pwd");
+			
 		}
 		
 	}
