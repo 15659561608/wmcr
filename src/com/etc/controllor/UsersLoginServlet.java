@@ -45,6 +45,7 @@ public class UsersLoginServlet extends HttpServlet {
 		List<Users> users = us.getUsersLogin(account, pwd);
 		if(users!=null) {
 			System.out.println("ok");
+			
 		}
 		else {
 			System.out.println("NO");
