@@ -147,10 +147,13 @@
 $(function(){
 	
 	$("#getCaptcha").click(function(){
-		
-
-		location.href="Rp.do?op=yzm&account="+document.getElementById("phone").value;
-	})
+		 $.get("Rp.do","op=yzm&account="+document.getElementById("phone").value,function(data,status){
+			console.log(data+","+status);
+			$("#phone").html(data);
+		}); 
+        
+		/* location.href="Rp.do?op=yzm&account="+document.getElementById("phone").value;  */
+	});
 	
 	
 	

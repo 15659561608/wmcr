@@ -60,12 +60,14 @@ public class ResetPwdServlet extends HttpServlet {
 				request.getSession().setAttribute("code", code);
 			    Message m=new Message();
 			    m.getRequest2(phone, String.valueOf(code));
-			//request.getRequestDispatcher("pwd_forget.jsp").forward(request, response);
+			request.getRequestDispatcher("pwd_forget.jsp").forward(request, response);
+		out.print(phone);
+		out.close();
 		}
 		/**
 		 * 验证账户和验证码
 		 */
-		if (op.equals("first")) {
+		else if (op.equals("first")) {
 			
 		String account=	request.getParameter("phone");
 	
@@ -93,7 +95,7 @@ public class ResetPwdServlet extends HttpServlet {
 		/**
 		 * 重置密码页面
 		 */
-		if (op.equals("second")) {
+		else if (op.equals("second")) {
 			Users us=(Users) request.getSession().getAttribute("users");
 			String account=us.getAccount();
 			
