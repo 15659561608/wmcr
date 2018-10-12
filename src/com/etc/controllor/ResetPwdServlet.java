@@ -46,8 +46,7 @@ public class ResetPwdServlet extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		String op = request.getParameter("op");
-		/*String num=request.getParameter("phone");
-		System.out.println(num);*/
+		
 	
 		/**
 		 * 获取验证码
