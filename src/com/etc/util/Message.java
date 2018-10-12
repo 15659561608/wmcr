@@ -59,7 +59,7 @@ public class Message {
 		String url = "http://v.juhe.cn/sms/send";// 请求接口地址
 		Map params = new HashMap();// 请求参数
 		params.put("mobile", phone);// 接收短信的手机号码
-		int tpl_id=105943;
+		int tpl_id=106692;
 		params.put("tpl_id", tpl_id);// 短信模板ID，请参考个人中心短信模板设置
 		
 		params.put("tpl_value", URLEncoder.encode("#code#="+code));// 变量名和变量值对。如果你的变量名或者变量值中带有#&=中的任意一个特殊符号，请先分别进行urlencode编码后再传递，<a
@@ -144,7 +144,12 @@ public class Message {
 		return rs;
 	}
 
-	
+	public static void main(String[] args) {
+		
+		Random random=new Random();
+		int code=random.nextInt(1000000);
+		Message.getRequest2("18259190627", String.valueOf(code));
+	}
 	// 将map型转为请求参数型
 	public static String urlencode(Map<String, Object> data) {
 		StringBuilder sb = new StringBuilder();
