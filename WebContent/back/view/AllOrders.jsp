@@ -8,9 +8,9 @@
     <meta charset="UTF-8">
     <title>登陆帐号</title>
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/frame.css">
-    <link rel="stylesheet" href="../css/addClass.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/back/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/back/css/frame.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/back/css/addClass.css">
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -26,7 +26,7 @@
            <!--  <input type="text" class="pull-left" style="margin-left: 10px;" name="keywords" placeholder="账号名">
             <button class="btn delete pramary">搜索</button> -->
             	<form class="navbar-form navbar-right" method="post"
-					action="OrdersLServlet">
+					action="${pageContext.request.contextPath}/OrdersLServlet">
 					<input type="hidden" name="op" value="queryansByPage"> <input
 						type="text" class="form-control" placeholder="账号名"
 						name="keywords" id="keywords" value="${keywords}">
@@ -43,8 +43,8 @@
                     <th style="width: 1%;" class="yt">
                        <input type="checkbox" class="allCheck" id="all"><label for="all">&nbsp;&nbsp;&nbsp;</label></th>
                     <th style="width: 2%;" class="sort cur">订单ID
-                        <img class="bottom" src="../img/jt-bottom.png" alt="">
-                        <img class="top" style="display: none" src="../img/jt-right-co.png" alt="">
+                        <img class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt="">
+                        <img class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png" alt="">
                     </th>
                     <th class="sort cur" style="width: 2%">用户名
                         <img class="bottom" src="../img/jt-bottom.png" alt="">
