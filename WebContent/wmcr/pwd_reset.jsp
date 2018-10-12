@@ -82,9 +82,9 @@
                 <input type="password" maxlength="10" id="pass" name="pass" class="form-text" placeholder="请输入6-10位的新密码"/>
             </div>
             <div class="form-error-message"></div>
-            <div class="form-group w275">
+            <!-- <div class="form-group w275">
                 <input type="password" maxlength="10" id="pass2" name="pass2"  class="form-text" placeholder="请再次输入新密码"/>
-            </div>
+            </div> -->
             <div class="form-error-message"></div>
             <div>
                 <button class="form-btn"  type="submit">确认</button>
@@ -135,6 +135,7 @@
             ajax_password_reset_via_mobile_start = '/ajax/password_reset_via_mobile_start/',
             common_sms_code = '/ajax/common_sms_code/'
     </script>
+    <!-- 修改 -->
     <script src="js/forget_passwd.js"></script>
 
     <!-- Baidu Analytics -->
