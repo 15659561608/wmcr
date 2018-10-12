@@ -57,11 +57,12 @@ public class OrdersLServlet extends HttpServlet {
 				keywords = request.getParameter("keywords");
 			}
 			PageData<OrdersLwq> pd=osi.getOrdersByPage(page, pageSize, keywords);
+			  //System.out.println(pd);
 			request.setAttribute("pd", pd);
 			//需要将每次模糊查询的关键字传递回来给jsp
 			request.setAttribute("keywords", keywords);
 			// 从当前控制器跳转到jsp页面,跳转的方法叫做转发
-			request.getRequestDispatcher("AllOrders.jsp").forward(request, response);
+			request.getRequestDispatcher("back/view/AllOrders.jsp").forward(request, response);
 		}
 	}
 

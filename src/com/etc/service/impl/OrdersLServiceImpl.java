@@ -25,5 +25,4 @@ public class OrdersLServiceImpl implements OrdersLService{
 		// TODO Auto-generated method stub
 		return odi.queryOrdersByPage(page, pageSize, keywords);
 	}
-
 }

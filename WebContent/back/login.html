@@ -22,25 +22,37 @@
     <a class="login-change" href="login.html">PC客户端 <span>&nbsp; | &nbsp;</span> 手机客户端</a>
     <div class="login-title default"></div>
    <div class="login-name">管理员登录</div>
-   <form action="Lg.do">
     <div class="login-form-area">
          
         <div class="login-input">
    
             <label for="">账&nbsp;&nbsp;&nbsp;号：</label>
-            <input class="ob-form login-form-user" type="text" name="adAccount">
+            <input class="ob-form login-form-user" type="text">
         </div>
         <div class="login-input">
             <label for="">密&nbsp;&nbsp;&nbsp;码：</label>
-            <input class="ob-form login-form-user" type="password" name="adPwd">
+            <input class="ob-form login-form-user" type="password">
         </div>
-        
-        <button class="btn order-food-menu-btn login-btn " type="submit">登录</button>
+         <div class="login-input">
+            <label for="">手&nbsp;&nbsp;&nbsp;机：</label>
+            <input class="ob-form login-form-vc" type="text">
+          
+            <div class="ob-form login-vc code-input btn-s" >发送验证码</div>
+        </div>
+        <div class="login-input">
+            <label for="">验证码：</label>
+            <input class="ob-form login-form-tx" type="text" placeholder="手机码">
+            <input class="ob-form login-form-tx" type="text" placeholder="图形码">
+            <input value="xa99" class="ob-form login-vc yzm" type="text" disabled>
+        </div>
+        <div class="login-input">
+            <span class="errorInfo">账号或密码不正确</span>
+        </div>
+        <button class="btn order-food-menu-btn login-btn " >登录</button>
      
 
     </div>
-    </form>
-    <div class="login-footer clearfix">Copyright © 2018 点菜宝贝 Diancai Baobei.com  All Rights Reserved. <img class="ybs" style="cursor: pointer;" src="img/login_jj.jpg" width="57" height="42" alt=""></div>
+    <div class="login-footer clearfix">Copyright © 2017 点菜宝贝 Diancai Baobei.com  All Rights Reserved. <img class="ybs" style="cursor: pointer;" src="img/login_jj.jpg" width="57" height="42" alt=""></div>
 </body>
 <script src="plugin/jquery/jquery.js"></script>
 <script>
