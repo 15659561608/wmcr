@@ -218,8 +218,6 @@ app.controller("merchantCtrl", ["$scope", "formVaildate", "$http","commonApi", f
                 shopkeeper_name: scope.merchants.username,
                 shopkeeper_phone: scope.merchants.phone
             }
-            
-            //修改servlet
             http({method: 'GET',url: '/ajax/merchants/',params : data}).
                 success(function (d) {
                     if (d != 'failed') {

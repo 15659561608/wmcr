@@ -6,14 +6,6 @@ public class Users {
     public Users() {
 		super();
 	}
-   
-    
-	public Users(String account, String pwd) {
-		super();
-		this.account = account;
-		this.pwd = pwd;
-	}
-
 
 	public Users(Integer id, String account, String pwd, Date regdate, Integer state) {
 		super();
@@ -22,6 +14,12 @@ public class Users {
 		this.pwd = pwd;
 		this.regdate = regdate;
 		this.state = state;
+	}
+
+	public Users(String account, String pwd) {
+		super();
+		this.account = account;
+		this.pwd = pwd;
 	}
 
 	@Override
