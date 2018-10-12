@@ -47,7 +47,7 @@ public class UsersLoginServlet extends HttpServlet {
 			System.out.println("ok");
 		}
 		else {
-			System.out.println("ehhehehe");
+			System.out.println("NO");
 		}
 	}
 
