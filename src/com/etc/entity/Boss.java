@@ -11,7 +11,7 @@ public class Boss {
 
     @Override
 	public String toString() {
-		return "Boss [id=" + id + ", account=" + account + ", pwd=" + pwd + ", regdate=" + regdate + ", state=" + state
+		return "Boss [id=" + id + ", account=" + account + ", pwd=" + pwd + ", regdate=" + regDate + ", state=" + state
 				+ "]";
 	}
 
@@ -19,16 +19,16 @@ public class Boss {
 		super();
 	}
 
-	public Boss(Integer id, String account, String pwd, Date regdate, Integer state) {
+	public Boss(Integer id, String account, String pwd, String regDate, Integer state) {
 		super();
 		this.id = id;
 		this.account = account;
 		this.pwd = pwd;
-		this.regdate = regdate;
+		this.regDate = regDate;
 		this.state = state;
 	}
 
-	private Date regdate;
+	private String regDate;
 
     private Integer state;
 
@@ -56,12 +56,12 @@ public class Boss {
         this.pwd = pwd == null ? null : pwd.trim();
     }
 
-    public Date getRegdate() {
-        return regdate;
+    public String getRegDate() {
+        return regDate;
     }
 
-    public void setRegdate(Date regdate) {
-        this.regdate = regdate;
+    public void setRegDate(String regDate) {
+        this.regDate = regDate;
     }
 
     public Integer getState() {

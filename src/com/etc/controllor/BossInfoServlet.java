@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.etc.entity.Boss;
 import com.etc.service.impl.BossServiceImpl;
 import com.etc.services.BossService;
 
@@ -30,8 +31,19 @@ public class BossInfoServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		BossService bs=new BossServiceImpl();
-		System.out.println(bs.getBoss(2));
+		String op="null";
+		if(request.getParameter("op")!=null) {
+			op=request.getParameter("op");
+		}
+		
+		if("null".equals(op)) {
+			BossService bs=new BossServiceImpl();
+			Boss boss=bs.getBoss(1);
+			request.setAttribute("boss", boss);
+			System.out.println(boss);
+			request.getRequestDispatcher("/bossManage/bossInfo.jsp").forward(request, response);;
+		}
+		
 	}
 
 	/**
