@@ -27,8 +27,9 @@ public class Message {
 	public static final int DEF_READ_TIMEOUT = 30000;
 	public static String userAgent = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.66 Safari/537.36";
 
+	// 43f450ccb88480d19d81d0d338434875
 	// 配置您申请的KEY
-	public static final String APPKEY = "43f450ccb88480d19d81d0d338434875";
+	public static final String APPKEY = "464968c774ce59a1e0c0f9cb07970c22";
 
 	// 1.屏蔽词检查测
 	public static void getRequest1() {
@@ -143,6 +144,12 @@ public class Message {
 		return rs;
 	}
 
+	public static void main(String[] args) {
+		
+		Random random=new Random();
+		int code=random.nextInt(1000000);
+		Message.getRequest2("18259190627", String.valueOf(code));
+	}
 	// 将map型转为请求参数型
 	public static String urlencode(Map<String, Object> data) {
 		StringBuilder sb = new StringBuilder();

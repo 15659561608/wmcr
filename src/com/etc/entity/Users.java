@@ -16,6 +16,12 @@ public class Users {
 		this.state = state;
 	}
 
+	public Users(String account, String pwd) {
+		super();
+		this.account = account;
+		this.pwd = pwd;
+	}
+
 	@Override
 	public String toString() {
 		return "Users [id=" + id + ", account=" + account + ", pwd=" + pwd + ", regdate=" + regdate + ", state=" + state

@@ -298,7 +298,7 @@
         <div class="footer-last">
             <a target="_blank" class="foot-logo-1 base-logo" href="index.html"></a>
             <div class="tc fs14 light-gray mb10">
-              ©2014 waimaichaoren.com All Rights Reserved - 沪ICP备11019908号
+              ©2018 waimaichaoren.com All Rights Reserved - 沪ICP备11019908号
             </div>
         </div>
     </footer>
@@ -419,6 +419,7 @@
             </div>
         </div>
     </dh-dialog>
+<!-- 商家入驻结束 -->
 
     <dh-dialog class="disnone" type="alert" index="1001" header="" show="requestSuccess">
         <div class="alert-box fs14">
