@@ -1,11 +1,8 @@
 package com.etc.dao;
-import com.etc.entity.OrdersLwq;
 
 import java.util.List;
 
 import com.etc.entity.OrdersLwq;
-import com.etc.entity.Users;
-
 import com.etc.service.impl.OrdersLServiceImpl;
 import com.etc.util.PageData;
 
@@ -26,21 +23,10 @@ public class Tests {
 		// System.out.println("数据为空");
 		// }else {
 		// list.forEach(System.out::println);
-
 		// }
-
-		// }
-
-
 		OrdersLServiceImpl osi = new OrdersLServiceImpl();
-		PageData<OrdersLwq> pd = osi.getOrdersByPage(1, 10, "");
+		PageData<OrdersLwq> pd = osi.getOrdersByPage(1, 10, "li");
 		System.out.println(pd);
-
-		System.out.println(pd.getTotalPage());
-
-		System.out.println(pd.getTotalPage());
-
-
 
 	}
 
