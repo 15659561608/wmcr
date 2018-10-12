@@ -68,7 +68,7 @@
 			<dd>
 				<ul>
 					<li><a data-href="bossInfo.jsp" data-title="查看个人信息" href="javascript:void(0)">查看个人信息</a></li>
-					<li><a data-href="article-list.html" data-title="修改密码" href="javascript:void(0)">修改密码</a></li>
+					<li><a data-href="updatePwd.jsp" data-title="修改密码" href="javascript:void(0)">修改密码</a></li>
 			</ul>
 		</dd>
 	</dl>
@@ -84,7 +84,7 @@
 			<dt><i class="Hui-iconfont">&#xe620;</i> 菜品管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="product-brand.html" data-title="查看菜品" href="javascript:void(0)">品牌管理</a></li>
+					<li><a data-href="product-brand.html" data-title="查看菜品" href="javascript:void(0)">查看菜品管理</a></li>
 			</ul>
 		</dd>
 	</dl>
