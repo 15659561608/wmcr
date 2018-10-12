@@ -35,7 +35,7 @@
 <c:if test="${requestScope.boss ==null }">
 	<jsp:forward page="../bis.do"></jsp:forward>
 </c:if>
-
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 个人信息管理 <span class="c-gray en">&gt;</span> 查看个人信息 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
 	<div class="panel-body">
 				

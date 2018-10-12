@@ -5,7 +5,7 @@ import java.util.Date;
 public class Distributor {
     private Integer id;
 
-    private String disname;
+    private String disName;
 
     private String phone;
 
@@ -13,32 +13,7 @@ public class Distributor {
 
     private String nativeplace;
 
-    public Distributor() {
-		super();
-	}
-
-	public Distributor(Integer id, String disname, String phone, Date birthday, String nativeplace, Double lat,
-			Double lon, Integer num, Integer state) {
-		super();
-		this.id = id;
-		this.disname = disname;
-		this.phone = phone;
-		this.birthday = birthday;
-		this.nativeplace = nativeplace;
-		this.lat = lat;
-		this.lon = lon;
-		this.num = num;
-		this.state = state;
-	}
-
-	@Override
-	public String toString() {
-		return "Distributor [id=" + id + ", disname=" + disname + ", phone=" + phone + ", birthday=" + birthday
-				+ ", nativeplace=" + nativeplace + ", lat=" + lat + ", lon=" + lon + ", num=" + num + ", state=" + state
-				+ "]";
-	}
-
-	private Double lat;
+    private Double lat;
 
     private Double lon;
 
@@ -54,12 +29,12 @@ public class Distributor {
         this.id = id;
     }
 
-    public String getDisname() {
-        return disname;
+    public String getDisName() {
+        return disName;
     }
 
-    public void setDisname(String disname) {
-        this.disname = disname == null ? null : disname.trim();
+    public void setDisName(String disName) {
+        this.disName = disName == null ? null : disName.trim();
     }
 
     public String getPhone() {

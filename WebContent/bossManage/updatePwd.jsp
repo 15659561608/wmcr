@@ -31,25 +31,26 @@
 </style>
 </head>
 <body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 个人信息管理 <span class="c-gray en">&gt;</span> 修改密码 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
 <div class="panel-body">
 					<form action="" method="post" class="form form-horizontal responsive" id="demoform" novalidate="novalidate">
 						<div class="row cl">
 							<label class="form-label col-xs-3">请输入旧密码：</label>
 							<div class="formControls col-xs-8">
-								<input name="oldPwd" lay-verify="pass"  type="password" class="layui-input" autocomplete="off" placeholder="密码" id="oldPwd">
+								<input name="oldPwd" lay-verify="pass"  type="password" class="layui-input" autocomplete="off" placeholder="请输入旧密码" id="oldPwd">
 							</div>
 						</div>
 						<div class="row cl">
 							<label class="form-label col-xs-3">请输入新密码：</label>
 							<div class="formControls col-xs-8">
-								<input name="pwd" lay-verify="pass"  type="password" class="layui-input" autocomplete="off" placeholder="密码" id="pwd">
+								<input name="pwd" lay-verify="pass"  type="password" class="layui-input" autocomplete="off" placeholder="请输入新密码" id="pwd">
 							</div>
 						</div>
 						<div class="row cl">
 							<label class="form-label col-xs-3">密码验证：</label>
 							<div class="formControls col-xs-8">
-								<input name="confPwd" lay-verify="pass"  type="password" class="layui-input" autocomplete="off" placeholder="密码" id="confPwd">
+								<input name="confPwd" lay-verify="pass"  type="password" class="layui-input" autocomplete="off" placeholder="确认密码" id="confPwd">
 							</div>
 						</div>
 						<div class="row cl">

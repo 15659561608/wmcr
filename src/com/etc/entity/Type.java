@@ -1,27 +1,11 @@
 package com.etc.entity;
 
 public class Type {
-    public Type() {
-		super();
-	}
-
-	public Type(Integer id, String title, Integer pid) {
-		super();
-		this.id = id;
-		this.title = title;
-		this.pid = pid;
-	}
-
-	@Override
-	public String toString() {
-		return "Type [id=" + id + ", title=" + title + ", pid=" + pid + "]";
-	}
-
-	private Integer id;
+    private Integer id;
 
     private String title;
 
-    private Integer pid;
+    private Integer pId;
 
     public Integer getId() {
         return id;
@@ -39,11 +23,11 @@ public class Type {
         this.title = title == null ? null : title.trim();
     }
 
-    public Integer getPid() {
-        return pid;
+    public Integer getpId() {
+        return pId;
     }
 
-    public void setPid(Integer pid) {
-        this.pid = pid;
+    public void setpId(Integer pId) {
+        this.pId = pId;
     }
 }

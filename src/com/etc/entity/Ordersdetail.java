@@ -3,30 +3,11 @@ package com.etc.entity;
 public class Ordersdetail {
     private Integer id;
 
-    private Integer orderid;
+    private Integer orderId;
 
-    private Integer foodid;
+    private Integer foodId;
+
     private Integer num;
-
-    
-    @Override
-	public String toString() {
-		return "Ordersdetail [id=" + id + ", orderid=" + orderid + ", foodid=" + foodid + ", num=" + num + "]";
-	}
-
-	public Ordersdetail() {
-		super();
-	}
-
-	public Ordersdetail(Integer id, Integer orderid, Integer foodid, Integer num) {
-		super();
-		this.id = id;
-		this.orderid = orderid;
-		this.foodid = foodid;
-		this.num = num;
-	}
-
-	
 
     public Integer getId() {
         return id;
@@ -36,20 +17,20 @@ public class Ordersdetail {
         this.id = id;
     }
 
-    public Integer getOrderid() {
-        return orderid;
+    public Integer getOrderId() {
+        return orderId;
     }
 
-    public void setOrderid(Integer orderid) {
-        this.orderid = orderid;
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
     }
 
-    public Integer getFoodid() {
-        return foodid;
+    public Integer getFoodId() {
+        return foodId;
     }
 
-    public void setFoodid(Integer foodid) {
-        this.foodid = foodid;
+    public void setFoodId(Integer foodId) {
+        this.foodId = foodId;
     }
 
     public Integer getNum() {

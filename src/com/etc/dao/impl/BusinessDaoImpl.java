@@ -19,7 +19,7 @@ public class BusinessDaoImpl implements BusinessDao {
 	public boolean addBusinesses(Businesses b) {
 		// TODO Auto-generated method stub
 		String sql="INSERT INTO businesses (busiName, phone, address, avgCost, licence, lat, lon,  des, typeId, bossId, cityId) VALUES ( ?,?,?,?,?,?,?,?,?,?,?)";
-		return BaseDao.execute(sql,b.getBusiname(),b.getPhone(),b.getAddress(),b.getLicence(),b.getLat(),b.getLon(),b.getDes(),b.getTypeid(),b.getBossid(),b.getCityid())>0;
+		return BaseDao.execute(sql,b.getBusiName(),b.getPhone(),b.getAddress(),b.getLicence(),b.getLat(),b.getLon(),b.getDes(),b.getId(),b.getBossId(),b.getCityId())>0;
 	}
 
 	@Override
@@ -27,8 +27,8 @@ public class BusinessDaoImpl implements BusinessDao {
 		// TODO Auto-generated method stub
 		String sql="update businesses set busiName=?,phone=?,address=?,avgCost=?,licence=?,salNum=?,lat=?,lon=?,starPrice=?,disFee=?,onlinePay=?,isReserve=?,isBusiness=?,des=?,"
 				+ "typeId=?,bossId=?,cityId=?,praise=?,nag=?,state=? where id=?";
-		return BaseDao.execute(sql,b.getBusiname(),b.getAddress(),b.getAvgcost(),b.getLicence(),b.getSalnum(),b.getLat(),b.getLon(),b.getStarprice(),b.getDisfee(),b.getOnlinepay(),b.getIsreserve(),b.getIsbusiness(),b.getDes(),b.getTypeid(),
-				b.getBossid(),b.getCityid(),b.getPraise(),b.getNag(),b.getState(),b.getId())>0;
+		return BaseDao.execute(sql,b.getBusiName(),b.getAddress(),b.getAvgCost(),b.getLicence(),b.getSalNum(),b.getLat(),b.getLon(),b.getStarPrice(),b.getDisFee(),b.getOnlinePay(),b.getIsReserve(),b.getIsBusiness(),b.getDes(),b.getId(),
+				b.getBossId(),b.getCityId(),b.getPraise(),b.getNag(),b.getState(),b.getId())>0;
 	}
 
 }

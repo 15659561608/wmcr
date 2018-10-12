@@ -7,23 +7,7 @@ public class Sales {
 
     private Double discount;
 
-    public Sales() {
-		super();
-	}
-
-	public Sales(Integer id, String title, Double discount) {
-		super();
-		this.id = id;
-		this.title = title;
-		this.discount = discount;
-	}
-
-	@Override
-	public String toString() {
-		return "Sales [id=" + id + ", title=" + title + ", discount=" + discount + "]";
-	}
-
-	public Integer getId() {
+    public Integer getId() {
         return id;
     }
 

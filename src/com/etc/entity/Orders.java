@@ -3,33 +3,13 @@ package com.etc.entity;
 import java.util.Date;
 
 public class Orders {
-    public Orders() {
-		super();
-	}
+    private Integer id;
 
-	public Orders(Integer id, Integer userid, Integer busid, Date orddate, Double money, Integer state) {
-		super();
-		this.id = id;
-		this.userid = userid;
-		this.busid = busid;
-		this.orddate = orddate;
-		this.money = money;
-		this.state = state;
-	}
+    private Integer userId;
 
-	@Override
-	public String toString() {
-		return "Orders [id=" + id + ", userid=" + userid + ", busid=" + busid + ", orddate=" + orddate + ", money="
-				+ money + ", state=" + state + "]";
-	}
+    private Integer busId;
 
-	private Integer id;
-
-    private Integer userid;
-
-    private Integer busid;
-
-    private Date orddate;
+    private Date ordDate;
 
     private Double money;
 
@@ -43,28 +23,28 @@ public class Orders {
         this.id = id;
     }
 
-    public Integer getUserid() {
-        return userid;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUserid(Integer userid) {
-        this.userid = userid;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public Integer getBusid() {
-        return busid;
+    public Integer getBusId() {
+        return busId;
     }
 
-    public void setBusid(Integer busid) {
-        this.busid = busid;
+    public void setBusId(Integer busId) {
+        this.busId = busId;
     }
 
-    public Date getOrddate() {
-        return orddate;
+    public Date getOrdDate() {
+        return ordDate;
     }
 
-    public void setOrddate(Date orddate) {
-        this.orddate = orddate;
+    public void setOrdDate(Date ordDate) {
+        this.ordDate = ordDate;
     }
 
     public Double getMoney() {

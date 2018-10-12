@@ -3,38 +3,13 @@ package com.etc.entity;
 import java.util.Date;
 
 public class Users {
-    public Users() {
-		super();
-	}
-
-	public Users(Integer id, String account, String pwd, Date regdate, Integer state) {
-		super();
-		this.id = id;
-		this.account = account;
-		this.pwd = pwd;
-		this.regdate = regdate;
-		this.state = state;
-	}
-
-	public Users(String account, String pwd) {
-		super();
-		this.account = account;
-		this.pwd = pwd;
-	}
-
-	@Override
-	public String toString() {
-		return "Users [id=" + id + ", account=" + account + ", pwd=" + pwd + ", regdate=" + regdate + ", state=" + state
-				+ "]";
-	}
-
-	private Integer id;
+    private Integer id;
 
     private String account;
 
     private String pwd;
 
-    private Date regdate;
+    private Date regDate;
 
     private Integer state;
 
@@ -62,12 +37,12 @@ public class Users {
         this.pwd = pwd == null ? null : pwd.trim();
     }
 
-    public Date getRegdate() {
-        return regdate;
+    public Date getRegDate() {
+        return regDate;
     }
 
-    public void setRegdate(Date regdate) {
-        this.regdate = regdate;
+    public void setRegDate(Date regDate) {
+        this.regDate = regDate;
     }
 
     public Integer getState() {

@@ -3,37 +3,17 @@ package com.etc.entity;
 import java.util.Date;
 
 public class Comment {
-    @Override
-	public String toString() {
-		return "Comment [id=" + id + ", content=" + content + ", comdate=" + comdate + ", praise=" + praise
-				+ ", userid=" + userid + ", busid=" + busid + "]";
-	}
-
-	public Comment() {
-		super();
-	}
-
-	public Comment(Integer id, String content, Date comdate, Integer praise, Integer userid, Integer busid) {
-		super();
-		this.id = id;
-		this.content = content;
-		this.comdate = comdate;
-		this.praise = praise;
-		this.userid = userid;
-		this.busid = busid;
-	}
-
-	private Integer id;
+    private Integer id;
 
     private String content;
 
-    private Date comdate;
+    private Date comDate;
 
     private Integer praise;
 
-    private Integer userid;
+    private Integer userId;
 
-    private Integer busid;
+    private Integer busId;
 
     public Integer getId() {
         return id;
@@ -51,12 +31,12 @@ public class Comment {
         this.content = content == null ? null : content.trim();
     }
 
-    public Date getComdate() {
-        return comdate;
+    public Date getComDate() {
+        return comDate;
     }
 
-    public void setComdate(Date comdate) {
-        this.comdate = comdate;
+    public void setComDate(Date comDate) {
+        this.comDate = comDate;
     }
 
     public Integer getPraise() {
@@ -67,19 +47,19 @@ public class Comment {
         this.praise = praise;
     }
 
-    public Integer getUserid() {
-        return userid;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUserid(Integer userid) {
-        this.userid = userid;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public Integer getBusid() {
-        return busid;
+    public Integer getBusId() {
+        return busId;
     }
 
-    public void setBusid(Integer busid) {
-        this.busid = busid;
+    public void setBusId(Integer busId) {
+        this.busId = busId;
     }
 }

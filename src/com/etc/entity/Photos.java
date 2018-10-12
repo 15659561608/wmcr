@@ -1,27 +1,11 @@
 package com.etc.entity;
 
 public class Photos {
-    public Photos() {
-		super();
-	}
-
-	public Photos(Integer id, String src, Integer busid) {
-		super();
-		this.id = id;
-		this.src = src;
-		this.busid = busid;
-	}
-
-	@Override
-	public String toString() {
-		return "Photos [id=" + id + ", src=" + src + ", busid=" + busid + "]";
-	}
-
-	private Integer id;
+    private Integer id;
 
     private String src;
 
-    private Integer busid;
+    private Integer busId;
 
     public Integer getId() {
         return id;
@@ -39,11 +23,11 @@ public class Photos {
         this.src = src == null ? null : src.trim();
     }
 
-    public Integer getBusid() {
-        return busid;
+    public Integer getBusId() {
+        return busId;
     }
 
-    public void setBusid(Integer busid) {
-        this.busid = busid;
+    public void setBusId(Integer busId) {
+        this.busId = busId;
     }
 }

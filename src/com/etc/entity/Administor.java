@@ -11,12 +11,7 @@ public class Administor {
         return id;
     }
 
-    @Override
-	public String toString() {
-		return "Administor [id=" + id + ", account=" + account + ", pwd=" + pwd + "]";
-	}
-
-	public void setId(Integer id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -32,18 +27,7 @@ public class Administor {
         return pwd;
     }
 
-    public Administor() {
-		super();
-	}
-
-	public Administor(Integer id, String account, String pwd) {
-		super();
-		this.id = id;
-		this.account = account;
-		this.pwd = pwd;
-	}
-
-	public void setPwd(String pwd) {
+    public void setPwd(String pwd) {
         this.pwd = pwd == null ? null : pwd.trim();
     }
 }

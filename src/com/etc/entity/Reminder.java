@@ -3,30 +3,11 @@ package com.etc.entity;
 import java.util.Date;
 
 public class Reminder {
-    public Reminder() {
-		super();
-	}
+    private Integer id;
 
-	public Reminder(Integer id, Integer userid, Integer busid, Date remdate) {
-		super();
-		this.id = id;
-		this.userid = userid;
-		this.busid = busid;
-		this.remdate = remdate;
-	}
+    private Date remDate;
 
-	@Override
-	public String toString() {
-		return "Reminder [id=" + id + ", userid=" + userid + ", busid=" + busid + ", remdate=" + remdate + "]";
-	}
-
-	private Integer id;
-
-    private Integer userid;
-
-    private Integer busid;
-
-    private Date remdate;
+    private Integer ordersId;
 
     public Integer getId() {
         return id;
@@ -36,27 +17,19 @@ public class Reminder {
         this.id = id;
     }
 
-    public Integer getUserid() {
-        return userid;
+    public Date getRemDate() {
+        return remDate;
     }
 
-    public void setUserid(Integer userid) {
-        this.userid = userid;
+    public void setRemDate(Date remDate) {
+        this.remDate = remDate;
     }
 
-    public Integer getBusid() {
-        return busid;
+    public Integer getOrdersId() {
+        return ordersId;
     }
 
-    public void setBusid(Integer busid) {
-        this.busid = busid;
-    }
-
-    public Date getRemdate() {
-        return remdate;
-    }
-
-    public void setRemdate(Date remdate) {
-        this.remdate = remdate;
+    public void setOrdersId(Integer ordersId) {
+        this.ordersId = ordersId;
     }
 }

@@ -1,35 +1,9 @@
 package com.etc.entity;
 
 public class Food {
-    public Food() {
-		super();
-	}
+    private Integer id;
 
-	public Food(Integer id, String foodname, Double price, Double discount, Integer num, Integer salnum, String des,
-			String logo, Integer busid, Integer state) {
-		super();
-		this.id = id;
-		this.foodname = foodname;
-		this.price = price;
-		this.discount = discount;
-		this.num = num;
-		this.salnum = salnum;
-		this.des = des;
-		this.logo = logo;
-		this.busid = busid;
-		this.state = state;
-	}
-
-	@Override
-	public String toString() {
-		return "Food [id=" + id + ", foodname=" + foodname + ", price=" + price + ", discount=" + discount + ", num="
-				+ num + ", salnum=" + salnum + ", des=" + des + ", logo=" + logo + ", busid=" + busid + ", state="
-				+ state + "]";
-	}
-
-	private Integer id;
-
-    private String foodname;
+    private String foodName;
 
     private Double price;
 
@@ -37,13 +11,13 @@ public class Food {
 
     private Integer num;
 
-    private Integer salnum;
+    private Integer salNum;
 
     private String des;
 
     private String logo;
 
-    private Integer busid;
+    private Integer busId;
 
     private Integer state;
 
@@ -55,12 +29,12 @@ public class Food {
         this.id = id;
     }
 
-    public String getFoodname() {
-        return foodname;
+    public String getFoodName() {
+        return foodName;
     }
 
-    public void setFoodname(String foodname) {
-        this.foodname = foodname == null ? null : foodname.trim();
+    public void setFoodName(String foodName) {
+        this.foodName = foodName == null ? null : foodName.trim();
     }
 
     public Double getPrice() {
@@ -87,12 +61,12 @@ public class Food {
         this.num = num;
     }
 
-    public Integer getSalnum() {
-        return salnum;
+    public Integer getSalNum() {
+        return salNum;
     }
 
-    public void setSalnum(Integer salnum) {
-        this.salnum = salnum;
+    public void setSalNum(Integer salNum) {
+        this.salNum = salNum;
     }
 
     public String getDes() {
@@ -111,12 +85,12 @@ public class Food {
         this.logo = logo == null ? null : logo.trim();
     }
 
-    public Integer getBusid() {
-        return busid;
+    public Integer getBusId() {
+        return busId;
     }
 
-    public void setBusid(Integer busid) {
-        this.busid = busid;
+    public void setBusId(Integer busId) {
+        this.busId = busId;
     }
 
     public Integer getState() {

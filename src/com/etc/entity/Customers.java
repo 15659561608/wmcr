@@ -3,48 +3,21 @@ package com.etc.entity;
 import java.util.Date;
 
 public class Customers {
-    public Customers() {
-		super();
-	}
+    private Integer id;
 
-	public Customers(Integer id, String custname, String phone, Date regdate, String address, Integer userid,
-			Double lat, Double lon, Integer state) {
-		super();
-		this.id = id;
-		this.custname = custname;
-		this.phone = phone;
-		this.regdate = regdate;
-		this.address = address;
-		this.userid = userid;
-		this.lat = lat;
-		this.lon = lon;
-		this.state = state;
-	}
-
-	@Override
-	public String toString() {
-		return "Customers [id=" + id + ", custname=" + custname + ", phone=" + phone + ", regdate=" + regdate
-				+ ", address=" + address + ", userid=" + userid + ", lat=" + lat + ", lon=" + lon + ", state=" + state
-				+ "]";
-	}
-
-	private Integer id;
-
-    private String custname;
+    private String custName;
 
     private String phone;
 
-    private Date regdate;
+    private Date regDate;
 
     private String address;
 
-    private Integer userid;
+    private Integer userId;
 
     private Double lat;
 
     private Double lon;
-
-    private Integer state;
 
     public Integer getId() {
         return id;
@@ -54,12 +27,12 @@ public class Customers {
         this.id = id;
     }
 
-    public String getCustname() {
-        return custname;
+    public String getCustName() {
+        return custName;
     }
 
-    public void setCustname(String custname) {
-        this.custname = custname == null ? null : custname.trim();
+    public void setCustName(String custName) {
+        this.custName = custName == null ? null : custName.trim();
     }
 
     public String getPhone() {
@@ -70,12 +43,12 @@ public class Customers {
         this.phone = phone == null ? null : phone.trim();
     }
 
-    public Date getRegdate() {
-        return regdate;
+    public Date getRegDate() {
+        return regDate;
     }
 
-    public void setRegdate(Date regdate) {
-        this.regdate = regdate;
+    public void setRegDate(Date regDate) {
+        this.regDate = regDate;
     }
 
     public String getAddress() {
@@ -86,12 +59,12 @@ public class Customers {
         this.address = address == null ? null : address.trim();
     }
 
-    public Integer getUserid() {
-        return userid;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUserid(Integer userid) {
-        this.userid = userid;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public Double getLat() {
@@ -108,13 +81,5 @@ public class Customers {
 
     public void setLon(Double lon) {
         this.lon = lon;
-    }
-
-    public Integer getState() {
-        return state;
-    }
-
-    public void setState(Integer state) {
-        this.state = state;
     }
 }
