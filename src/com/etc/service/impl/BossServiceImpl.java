@@ -20,4 +20,16 @@ public class BossServiceImpl implements BossService {
 		return bd.updatePwd(newPwd, bossId);
 	}
 
+	@Override
+	public Boss checkLogin(String account, String pwd) {
+		// TODO Auto-generated method stub
+		return bd.getBoss(account, pwd);
+	}
+
+	@Override
+	public Boss checkAccount(String account) {
+		// TODO Auto-generated method stub
+		return bd.getBoss(account);
+	}
+
 }

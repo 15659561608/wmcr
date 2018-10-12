@@ -16,4 +16,19 @@ public interface BossService {
 	 * @return
 	 */
 	public boolean updatePwd(String newPwd,int bossId);
+	
+	/**
+	 * 判断登录
+	 * @param account
+	 * @param pwd
+	 * @return
+	 */
+	public Boss checkLogin(String account,String pwd);
+	
+	/**
+	 * 验证用户名
+	 * @param account
+	 * @return
+	 */
+	public Boss checkAccount(String account);
 }

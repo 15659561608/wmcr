@@ -41,14 +41,10 @@ public class BossInfoServlet extends HttpServlet {
 		Boss boss=(Boss)session.getAttribute("boss");
 		
 		if("null".equals(op)) {
-			
+			request.setAttribute("boss", boss);
 			request.getRequestDispatcher("/bossManage/bossInfo.jsp").forward(request, response);;
 		}
 		
-		if("updatePwd".equals(op)) {
-			String pwd=request.getParameter("pwd");
-			
-		}
 		
 	}
 

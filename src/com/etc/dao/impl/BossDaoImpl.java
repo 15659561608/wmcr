@@ -26,4 +26,26 @@ public class BossDaoImpl implements BossDao {
 		return BaseDao.execute(sql,newPwd,bossId)>0;
 	}
 
+	@Override
+	public Boss getBoss(String account, String pwd) {
+		// TODO Auto-generated method stub
+		String sql="select * from boss where account=? and pwd=?";
+		List<Boss> list=(List<Boss>)BaseDao.select(sql, Boss.class, account,pwd);
+		if(list.size()>0) {
+			return list.get(0);
+		}
+		return null;
+	}
+
+	@Override
+	public Boss getBoss(String account) {
+		// TODO Auto-generated method stub
+		String sql="select * from boss where account=?";
+		List<Boss> list=(List<Boss>)BaseDao.select(sql,Boss.class,account);
+		if(list.size()>0) {
+			return list.get(0);
+		}
+		return null;
+	}
+
 }
