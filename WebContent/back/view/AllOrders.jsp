@@ -143,7 +143,7 @@
 			      page=${pd.page}-1;
 			   }
 		   
-		   location.href="/OrdersLServlet?op=queryansByPage&page="+page+"&keywords="+document.getElementById("keywords").value;
+		   location.href="${pageContext.request.contextPath}/OrdersLServlet?op=queryansByPage&page="+page+"&keywords="+document.getElementById("keywords").value;
 	   }
 	 //使用javascript代码来实现"下一页"
 	   function nextPage()
@@ -156,13 +156,13 @@
 			      page=${pd.page}+1;
 			   }
 		   
-		   location.href="/OrdersLServlet?op=queryansByPage&page="+page+"&keywords="+document.getElementById("keywords").value;
+		   location.href="${pageContext.request.contextPath}/OrdersLServlet?op=queryansByPage&page="+page+"&keywords="+document.getElementById("keywords").value;
 	   }
 	   
 	   //翻页[跳转到指定的页]
 	   function jumpPage(page)
 	   {
-	      location.href="/OrdersLServlet?op=queryansByPage&page="+page+"&keywords="+document.getElementById("keywords").value;
+	      location.href="${pageContext.request.contextPath}/OrdersLServlet?op=queryansByPage&page="+page+"&keywords="+document.getElementById("keywords").value;
 	   }
 	   
 	   
