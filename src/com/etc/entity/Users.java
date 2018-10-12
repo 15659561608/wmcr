@@ -29,7 +29,13 @@ public class Users {
         this.account = account == null ? null : account.trim();
     }
 
-    public String getPwd() {
+    public Users(String account, String pwd) {
+		super();
+		this.account = account;
+		this.pwd = pwd;
+	}
+
+	public String getPwd() {
         return pwd;
     }
 

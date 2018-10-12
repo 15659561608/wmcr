@@ -42,6 +42,7 @@ public class Businesses {
     private Integer nag;
 
     private Integer state;
+    private String logo;
 
     public Integer getId() {
         return id;
@@ -75,7 +76,15 @@ public class Businesses {
         this.address = address == null ? null : address.trim();
     }
 
-    public Double getAvgCost() {
+    public String getLogo() {
+		return logo;
+	}
+
+	public void setLogo(String logo) {
+		this.logo = logo;
+	}
+
+	public Double getAvgCost() {
         return avgCost;
     }
 

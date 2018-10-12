@@ -28,4 +28,10 @@ public class BusinessServiceImpl implements BusinessService {
 		return false;
 	}
 
+	@Override
+	public List<Businesses> getBusinesses(int bossId) {
+		// TODO Auto-generated method stub
+		return bd.getBusinesses(bossId);
+	}
+
 }

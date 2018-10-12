@@ -8,7 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.etc.entity.Boss;
 import com.etc.entity.BusinessesData;
 import com.etc.service.impl.BusinessServiceImpl;
 import com.etc.services.BusinessService;
@@ -41,12 +43,15 @@ public class BusinessServlet extends HttpServlet {
 		
 		BusinessService bs=new BusinessServiceImpl();
 		
+		HttpSession session=request.getSession();
+		Boss boss=(Boss)session.getAttribute("boss");
 		//显示门店列表
 		if("null".equals(op)) {
 			Gson gson=new Gson();
 			BusinessesData bd=new BusinessesData();
-			bd.setData(bs.getBusinesses());
+			bd.setData(bs.getBusinesses(boss.getId()));
 			String jsonData=gson.toJson(bd);
+			System.out.println(jsonData);
 			response.setContentType("text/json");
 			PrintWriter out=response.getWriter();
 			out.println(jsonData);

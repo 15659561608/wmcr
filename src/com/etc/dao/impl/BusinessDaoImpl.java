@@ -31,4 +31,11 @@ public class BusinessDaoImpl implements BusinessDao {
 				b.getBossId(),b.getCityId(),b.getPraise(),b.getNag(),b.getState(),b.getId())>0;
 	}
 
+	@Override
+	public List<Businesses> getBusinesses(int bossId) {
+		// TODO Auto-generated method stub
+		String sql="select * from businesses where bossId=? and state<>2";
+		return (List<Businesses>)BaseDao.select(sql, Businesses.class,bossId);
+	}
+
 }

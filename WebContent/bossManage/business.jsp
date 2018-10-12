@@ -99,6 +99,7 @@ layui.use('table', function(){
     
     ,cols: [[
       {type: 'checkbox', fixed: 'left'}
+      ,{field:'logo', title:'缩略图', width:150, fixed: 'left',}
       ,{field:'busiName', title:'门店名', width:150, fixed: 'left', unresize: true, sort: true, totalRowText: '合计'}
     ,{field:'phone', title:'联系电话', width:150, edit: 'text'}
       ,{field:'address', title:'地址', width:150, edit: 'text', 

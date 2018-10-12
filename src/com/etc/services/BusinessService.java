@@ -10,6 +10,11 @@ public interface BusinessService {
 	 * @return
 	 */
 	public List<Businesses> getBusinesses();
+	/**
+	 * 获取门店列表
+	 * @return
+	 */
+	public List<Businesses> getBusinesses(int bossId);
 	
 	/**
 	 * 添加门店

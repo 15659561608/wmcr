@@ -18,6 +18,11 @@ public interface BusinessDao {
 	public List<Businesses> getBusinesses();
 	
 	/**
+	 * 获取门店列表
+	 * @return
+	 */
+	public List<Businesses> getBusinesses(int bossId);
+	/**
 	 * 添加门店
 	 * @param b
 	 * @return
