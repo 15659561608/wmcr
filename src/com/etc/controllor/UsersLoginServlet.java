@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -39,16 +40,22 @@ public class UsersLoginServlet extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		String account = request.getParameter("account");
-		System.out.println(account);
 		String pwd = request.getParameter("pwd");
-		System.out.println(pwd);
+		
 		List<Users> users = us.getUsersLogin(account, pwd);
-		if(users!=null) {
-			System.out.println("ok");
-			
-		}
-		else {
-			System.out.println("NO");
+		if(!(users.size()>0)) {
+			//用户名或密码错误
+			out.print("<script>alert('登录失败');location.href='wmcr/index.jsp'</script>");
+		} else {
+			request.getSession().setAttribute("users", users.get(0));
+			//将用户登录的信息存储在cookie
+//			Cookie  cookie =new Cookie("account",users.);
+//			Cookie  cookie1 =new Cookie("pwd",userPwd);
+//			//使用response.addCookie
+//			response.addCookie(cookie);
+//			response.addCookie(cookie1);
+			out.print("<script>alert('登录成功');location.href='wmcr/mainPage.jsp'</script>");
+
 		}
 	}
 

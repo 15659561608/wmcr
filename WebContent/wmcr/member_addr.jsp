@@ -35,7 +35,7 @@
                         <ul class="member logging" ng-init="loginInfo=true">
                             <li><a href="index.jsp" class="index">首页</a></li>
                             <li class="userName">
-                                <a href="member_index.jsp" rel="nofollow" draw-user>18005151538<em></em></a>
+                                <a href="member_index.jsp" rel="nofollow" draw-user>${sessionScope.users.account}<em></em></a>
                                 <div>
                                     <p><a href="member_index.jsp"  rel="nofollow">账号管理</a></p>
                                     <p><a href="member_addr.jsp"  rel="nofollow">地址管理</a></p>

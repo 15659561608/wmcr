@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -343,11 +343,12 @@
     <a href="javascript:void(0)" animate-top="-65" class="merchants-icon" ng-click="merchantsShow=true;merchants={};merchants.checkbox=true;"></a>
     
     <dh-dialog class="disnone" type='login' height="500" header="登录" show="loginShow" >
-    <form class="login-form" novalidate name="loginForm" ng-controller="loginCtrl">
+    <!-- /wmcr/uls.do   ${pageContext.request.contextPath}/-->
+    <form class="login-form" action="${pageContext.request.contextPath}/uls.do"  method="post" novalidate name="loginForm" ng-controller="loginCtrl">
         <div class="form-group">
             <label for="">手机号码</label>
             <div>
-                <input type="text" ng-model="user.username" ng-class="{error:user.usernameMessage}" ng-focus="user.usernameMessage=''" maxlength="11" placeholder="请输入你的手机号码" />
+                <input  id  = "account"  name = "account" maxlength="11" type="text" class="form-text" placeholder="输入您的手机号码"/></label>
                 <span class="vaildate-error" ng-if="user.usernameMessage">
                     <span ng-bind="user.usernameMessage"></span>
                 </span>
@@ -359,17 +360,18 @@
         <div class="form-group mb10">
             <label for="">登录密码</label>
             <div>
-                <input type="password" onpaste="return false" ng-model="user.password" ng-focus="user.passwordMessage=''"  ng-class="{error:user.passwordMessage}" maxlength="10" placeholder="请输入登录密码" />
+                <input type="password" id = "pwd" name = "pwd" maxlength="10" type="password" class="form-text" onpaste="return false" placeholder="请输入登录密码"/></label>
                 <span class="vaildate-error" ng-if="user.passwordMessage">
                     <span ng-bind="user.passwordMessage"></span>
                 </span>
             </div>
         </div>
         <div class="clearfix mb10">
-            <dh-checkbox model="user.rememberme" title="记住我" class="fl"></dh-checkbox>
-            <a href="/account/password/reset_via_mobile/" target="_blank" class="fs12 fr link">忘记密码</a>
+            <input id="lRemember" type="checkbox" value="true"> 记住我
+                   
+                    <span class="fr fs12"><a class="yo" target="_black" href="/account/password/reset_via_mobile/">忘记密码</a></span>
         </div>
-        <button class="big-btn btn-green btn mb10" ng-click="loginVaildate()" ng-disabled="loginBtnDisabled" ng-bind="loginBtn"></button>
+         <button class="form-btn" id="loginPageBtn" onclick="check()">登录</button>
         <div class="clearfix">
             <span class="fr fs12">
                 没有账号?
@@ -554,7 +556,27 @@
 
     
     <script>angular.bootstrap(document, ["app"]);</script>
+    
+    
+   <script language="javascript">
+   function check(){
+	var account=loginForm.account.value;
+	var pwd=loginForm.pwd.value;
+	if((account=="")||(account==null)){
+		alert("请输入用户名");
+		loginForm.account.focus();
+		return;	
+	}else if((pwd=="")||(pwd==null)){
+		alert("请输入密码！");
+		loginForm.pwd.focus();
+		return;
+	}else{
+		loginForm.submit();
+	}
+		}
+  </script>
 
+    
 
 
 

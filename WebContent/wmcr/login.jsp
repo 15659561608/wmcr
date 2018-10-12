@@ -54,33 +54,13 @@
                     <label  for="lPass" >登录密码</label>
                     <input id="lPass" maxlength="10" type="password" class="form-text" onpaste="return false" placeholder="请输入登录密码"/></label>
                 </div>
-                <div class="form-error-message"></div>
-                
-                    <div class="form-group captcha clearfix">
-                
-                    <input id="lCaptcha" type="text" class="form-text" placeholder="请输入验证码"/>
-                    <span><img id="captchaImg" _src="/captcha/" src="/captcha/" alt="验证码"/></span>
-                </div>
-                <div class="form-error-message"></div>
-                <div class="form-group checkbox clearfix">
-                    
                         <input id="lRemember" type="checkbox" value="true"> 记住我
                    
                     <span class="fr fs12"><a class="yo" target="_black" href="/account/password/reset_via_mobile/">忘记密码</a></span>
-                </div>
+            
                 <div>
                     <button class="form-btn" id="loginPageBtn">登录</button>
                 </div>
-                <div class="code-box clearfix">
-                    <img src="images/mobile_url_qr.png" />
-                    <div class="font-box">
-                        <div class="font">
-                            打开手机wap页<span>扫一扫，美味随身订！</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
     </div>
 
         </div>
