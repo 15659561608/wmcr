@@ -1,7 +1,6 @@
 package com.etc.controllor;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,21 +8,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.etc.entity.Administor;
-import com.etc.service.impl.AdminServiceImpl;
-import com.etc.services.AdminService;
+import com.etc.entity.Boss;
+import com.etc.service.impl.BossServicecglImpl;
+import com.etc.services.BossServicecgl;
+import com.etc.util.PageData;
 
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class BossServlet
  */
-@WebServlet("/back/Lg.do")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/Bsc.do")
+public class BossServletcgl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-     AdminService as=new AdminServiceImpl();  
+       BossServicecgl bs=new BossServicecglImpl();
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public BossServletcgl() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,25 +36,27 @@ public class LoginServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
-		PrintWriter out = response.getWriter();
-		String op = request.getParameter("op");
-		/**
-		 * 后台登录
-		 */
-		if (("loginhou").equals(op)) {
-		
-
-			String account = request.getParameter("adAccount");
-			String pwd = request.getParameter("adPwd");
-
-			Administor a = as.loginad(account, pwd);
-			if (a == null) {
-				out.println("<script>alert('登陆失败');location.href='login.jsp'</script>");
-			} else {
-				request.getSession().setAttribute("administor", a);
-				out.println("<script>location.href='index.jsp'</script>");
+		String op=request.getParameter("op");
+		if (op.equals("queryBoss")) {
+			
+			int page = 1;
+			int pageSize = 5;
+			String keywords = "";
+			if (null != request.getParameter("page")) {
+				page = Integer.parseInt(request.getParameter("page"));
+			}
+			if (null != request.getParameter("pageSize")) {
+				pageSize = Integer.parseInt(request.getParameter("pageSize"));
+			}
+			if (null != request.getParameter("keywords")) {
+				keywords = request.getParameter("keywords");
 			}
 
+			PageData<Boss> boss = (PageData<Boss>) bs.queryBoss(page, pageSize, keywords);
+			
+			request.setAttribute("b", boss);
+			request.setAttribute("keywords", keywords);
+			request.getRequestDispatcher("back/view/shopList.jsp").forward(request, response);
 		}
 		
 		
