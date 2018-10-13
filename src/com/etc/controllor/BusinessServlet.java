@@ -14,6 +14,7 @@ import com.etc.entity.Boss;
 import com.etc.entity.BusinessesData;
 import com.etc.service.impl.BusinessServiceImpl;
 import com.etc.services.BusinessService;
+import com.etc.util.BaiduMap;
 import com.google.gson.Gson;
 
 /**
@@ -40,7 +41,8 @@ public class BusinessServlet extends HttpServlet {
 		if(request.getParameter("op")!=null) {
 			op=request.getParameter("op");
 		}
-		
+		response.setContentType("text/json");
+		PrintWriter out=response.getWriter();
 		BusinessService bs=new BusinessServiceImpl();
 		
 		HttpSession session=request.getSession();
@@ -51,16 +53,23 @@ public class BusinessServlet extends HttpServlet {
 			BusinessesData bd=new BusinessesData();
 			bd.setData(bs.getBusinesses(boss.getId()));
 			String jsonData=gson.toJson(bd);
-			response.setContentType("text/json");
-			PrintWriter out=response.getWriter();
 			System.out.println(jsonData);
 			out.println(jsonData);
+			out.close();
 		}
 		if("add".equals(op)) {
 			doAdd(request, response);
 		}
 		if("update".equals(op)) {
 			doUpdate(request, response);
+		}
+		if("ajaxCheckAddress".equals(op)) {
+			String address=request.getParameter("address");
+			if(BaiduMap.getLatLon(address)==null) {
+				out.print("false");
+			}else {
+				out.print("true");
+			}
 		}
 	}
 
@@ -74,7 +83,8 @@ public class BusinessServlet extends HttpServlet {
 	protected void doAdd(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		System.out.println(request.getParameter("des"));
+		String busiName=request.getParameter("busiName");
+		String phone=request.getParameter("phone");
 	}
 	protected void doUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
