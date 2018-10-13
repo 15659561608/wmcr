@@ -51,9 +51,9 @@ public class BusinessServlet extends HttpServlet {
 			BusinessesData bd=new BusinessesData();
 			bd.setData(bs.getBusinesses(boss.getId()));
 			String jsonData=gson.toJson(bd);
-			System.out.println(jsonData);
 			response.setContentType("text/json");
 			PrintWriter out=response.getWriter();
+			System.out.println(jsonData);
 			out.println(jsonData);
 		}
 		if("add".equals(op)) {
@@ -73,7 +73,8 @@ public class BusinessServlet extends HttpServlet {
 	}
 	protected void doAdd(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		System.out.println(request.getParameter("des"));
 	}
 	protected void doUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub

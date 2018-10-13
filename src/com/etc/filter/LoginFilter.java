@@ -43,6 +43,7 @@ public class LoginFilter implements Filter {
 		HttpServletResponse res=(HttpServletResponse)response;
 		
 		String uri=req.getRequestURI();
+		System.out.println(uri);
 		if(uri.endsWith("login.jsp") || uri.endsWith("css")|| uri.endsWith("js")|| uri.endsWith("jpg")|| uri.endsWith("png")) {
 			chain.doFilter(request, response);
 		}else {

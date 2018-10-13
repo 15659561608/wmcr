@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.etc.dao.BusinessDao;
 import com.etc.entity.Businesses;
+import com.etc.entity.BusinessesCity;
 import com.etc.util.BaseDao;
 
 public class BusinessDaoImpl implements BusinessDao {
@@ -18,8 +19,8 @@ public class BusinessDaoImpl implements BusinessDao {
 	@Override
 	public boolean addBusinesses(Businesses b) {
 		// TODO Auto-generated method stub
-		String sql="INSERT INTO businesses (busiName, phone, address, avgCost, licence, lat, lon,  des, typeId, bossId, cityId) VALUES ( ?,?,?,?,?,?,?,?,?,?,?)";
-		return BaseDao.execute(sql,b.getBusiName(),b.getPhone(),b.getAddress(),b.getLicence(),b.getLat(),b.getLon(),b.getDes(),b.getId(),b.getBossId(),b.getCityId())>0;
+		String sql="INSERT INTO businesses (busiName, phone, address, licence, lat, lon, typeId, bossId, cityId) VALUES ( ?,?,?,?,?,?,?,?,?)";
+		return BaseDao.execute(sql,b.getBusiName(),b.getPhone(),b.getAddress(),b.getLicence(),b.getLat(),b.getLon(),b.getId(),b.getBossId(),b.getCityId())>0;
 	}
 
 	@Override
@@ -32,10 +33,10 @@ public class BusinessDaoImpl implements BusinessDao {
 	}
 
 	@Override
-	public List<Businesses> getBusinesses(int bossId) {
+	public List<BusinessesCity> getBusinesses(int bossId) {
 		// TODO Auto-generated method stub
-		String sql="select * from businesses where bossId=? and state<>2";
-		return (List<Businesses>)BaseDao.select(sql, Businesses.class,bossId);
+		String sql="select * from businesses,city where businesses.cityId=city.id and bossId=? and state<>2";
+		return (List<BusinessesCity>)BaseDao.select(sql, BusinessesCity.class,bossId);
 	}
 
 }

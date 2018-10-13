@@ -3,6 +3,7 @@ package com.etc.dao;
 import java.util.List;
 
 import com.etc.entity.Businesses;
+import com.etc.entity.BusinessesCity;
 
 /**
  * 
@@ -21,7 +22,7 @@ public interface BusinessDao {
 	 * 获取门店列表
 	 * @return
 	 */
-	public List<Businesses> getBusinesses(int bossId);
+	public List<BusinessesCity> getBusinesses(int bossId);
 	/**
 	 * 添加门店
 	 * @param b

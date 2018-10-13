@@ -5,6 +5,7 @@ import java.util.List;
 import com.etc.dao.BusinessDao;
 import com.etc.dao.impl.BusinessDaoImpl;
 import com.etc.entity.Businesses;
+import com.etc.entity.BusinessesCity;
 import com.etc.services.BusinessService;
 
 public class BusinessServiceImpl implements BusinessService {
@@ -29,7 +30,7 @@ public class BusinessServiceImpl implements BusinessService {
 	}
 
 	@Override
-	public List<Businesses> getBusinesses(int bossId) {
+	public List<BusinessesCity> getBusinesses(int bossId) {
 		// TODO Auto-generated method stub
 		return bd.getBusinesses(bossId);
 	}

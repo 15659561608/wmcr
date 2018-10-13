@@ -43,8 +43,17 @@ public class Businesses {
 
     private Integer state;
     private String logo;
+    private String regDate;
 
-    public Integer getId() {
+    public String getRegDate() {
+		return regDate;
+	}
+
+	public void setRegDate(String regDate) {
+		this.regDate = regDate;
+	}
+
+	public Integer getId() {
         return id;
     }
 

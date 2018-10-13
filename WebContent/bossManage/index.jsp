@@ -102,8 +102,8 @@
 			<dd>
 				<ul>
 					<li><a data-href="business.jsp" data-title="门店列表" href="javascript:void(0)">门店列表</a></li>
-					<li><a data-href="admin-permission.html" data-title="权限管理" href="javascript:void(0)">权限管理</a></li>
-					<li><a data-href="admin-list.html" data-title="管理员列表" href="javascript:void(0)">管理员列表</a></li>
+					<li><a data-href="addbusi.jsp" data-title="添加门店" href="javascript:void(0)">添加门店</a></li>
+					<li><a data-href="admin-list.html" data-title="管理员列表" href="javascript:void(0)">门店信息完善</a></li>
 			</ul>
 		</dd>
 	</dl>
