@@ -26,10 +26,10 @@ public class BusinessDaoImpl implements BusinessDao {
 	@Override
 	public boolean updateBusinesses(Businesses b) {
 		// TODO Auto-generated method stub
-		String sql="update businesses set busiName=?,phone=?,address=?,avgCost=?,licence=?,salNum=?,lat=?,lon=?,starPrice=?,disFee=?,onlinePay=?,isReserve=?,isBusiness=?,des=?,"
-				+ "typeId=?,bossId=?,cityId=?,praise=?,nag=?,state=? where id=?";
-		return BaseDao.execute(sql,b.getBusiName(),b.getAddress(),b.getAvgCost(),b.getLicence(),b.getSalNum(),b.getLat(),b.getLon(),b.getStarPrice(),b.getDisFee(),b.getOnlinePay(),b.getIsReserve(),b.getIsBusiness(),b.getDes(),b.getId(),
-				b.getBossId(),b.getCityId(),b.getPraise(),b.getNag(),b.getState(),b.getId())>0;
+		String sql="update businesses set busiName=?,phone=?,address=?,avgCost=?,licence=?,lat=?,lon=?,starPrice=?,disFee=?,onlinePay=?,isReserve=?,isBusiness=?,des=?,"
+				+ "typeId=?,cityId=?,state=? where id=?";
+		return BaseDao.execute(sql,b.getBusiName(),b.getAddress(),b.getAvgCost(),b.getLicence(),b.getLat(),b.getLon(),b.getStarPrice(),b.getDisFee(),b.getOnlinePay(),b.getIsReserve(),b.getIsBusiness(),b.getDes(),b.getId(),
+				b.getCityId(),b.getState(),b.getId())>0;
 	}
 
 	@Override
