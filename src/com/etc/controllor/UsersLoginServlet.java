@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -41,8 +40,8 @@ public class UsersLoginServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String account = request.getParameter("account");
 		String pwd = request.getParameter("pwd");
-		
 		List<Users> users = us.getUsersLogin(account, pwd);
+		System.out.println(users.get(0));
 		if(!(users.size()>0)) {
 			//用户名或密码错误
 			out.print("<script>alert('登录失败');location.href='wmcr/index.jsp'</script>");

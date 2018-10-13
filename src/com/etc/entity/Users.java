@@ -58,4 +58,24 @@ public class Users {
     public void setState(Integer state) {
         this.state = state;
     }
+
+	@Override
+	public String toString() {
+		return "Users [id=" + id + ", account=" + account + ", pwd=" + pwd + ", regDate=" + regDate + ", state=" + state
+				+ "]";
+	}
+  
+	public Users() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Users(Integer id, String account, String pwd, Date regDate, Integer state) {
+		super();
+		this.id = id;
+		this.account = account;
+		this.pwd = pwd;
+		this.regDate = regDate;
+		this.state = state;
+	}
+    
 }
