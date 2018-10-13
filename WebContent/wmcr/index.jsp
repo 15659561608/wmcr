@@ -369,7 +369,7 @@
         <div class="clearfix mb10">
             <input id="lRemember" type="checkbox" value="true"> 记住我
                    
-                    <span class="fr fs12"><a class="yo" target="_black" href="/account/password/reset_via_mobile/">忘记密码</a></span>
+                    <span class="fr fs12"><a class="yo" target="_black" href="pwd_forget.jsp">忘记密码</a></span>
         </div>
          <button class="form-btn" id="loginPageBtn" onclick="check()">登录</button>
         <div class="clearfix">
@@ -385,7 +385,7 @@
         <div class="form-group mb10">
             <label for="">手机号码</label>
             <div>
-                <input type="text" ng-class="{error:user.usernameMessage}" maxlength="11" placeholder="请输入您的手机号码" ng-model="user.username"/>
+                <input type="text" maxlength="11" id="phone" name="phone" value="" class="form-text" placeholder="输入您常用的手机号码"/>
                 <span class="vaildate-error" ng-if="user.usernameMessage">
                     <span ng-bind="user.usernameMessage"></span>
                 </span>
@@ -393,6 +393,7 @@
                     该手机号码已经注册！<a href="javascript:;" ng-click="locationLogin()" class="link">立即登录</a>
                 </span>
             </div>
+            
         </div>
 
 
@@ -409,17 +410,15 @@
                     <button class="fs12 fr w40p btn btn-pink" ng-click="getCaptcha()" ng-disabled="captchaDisabled" ng-bind="captchaVal"></button>
                 </div>
                 <div class="fl form-group captcha-item">
-                    <div class="fl w50p">
-                        <input type="text" ng-model="user.imgCaptcha" maxlength="4" ng-disabled="imgCaptchaIsDisabled" ng-class="{error:user.imgCaptchaMessage}" placeholder="请输入验证码">
-                        <span class="vaildate-error" ng-if="user.imgCaptchaMessage">
-                            <span ng-bind="user.imgCaptchaMessage"></span>
-                        </span>
+                     <div class="captcha-item">
+                        <div class="form-group captcha clearfix">
+                             <input type="text" id="captcha2" name="captcha2"  class="form-text" placeholder="短信验证码"/>
+                             <input type="button" id="getCaptcha"  value="获取短信验证码"/>
+                        </div>
+                        <div class="form-error-message"></div>
                     </div>
-                    <label class="fr">
-                        <dh-captcha style="width:119px;height:34px;" change="captchaImgChange" src="images/yzm.gif"></dh-captcha>
                     </label>
-                </div>
-            </div>
+                 </div>   
         </div>
         <div class="form-group mb10">
             <label for="">登录密码</label>
@@ -576,7 +575,25 @@
 		}
   </script>
 
-    
+     <!-- Baidu Analytics -->
+<script type="text/javascript">
+$(function(){
+	
+	$("#getCaptcha").click(function(){
+		 $.get("Rp.do","op=yzm&account="+document.getElementById("phone").value,function(data,status){
+			console.log(data+","+status);
+			$("#phone").html(data);
+		}); 
+        
+		/* location.href="Rp.do?op=yzm&account="+document.getElementById("phone").value;  */
+	});
+	
+	
+	
+	
+})
+
+</script>  
 
 
 
