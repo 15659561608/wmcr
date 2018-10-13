@@ -56,7 +56,7 @@
             <dl>
                 <dt style="border-top: none;">用户管理 <img class="b" src="img/jt-right-co.png" alt=""><img class="r" src="img/jt-bottom.png" alt=""></dt>
                 <dd>
-                    <a href="#view/userList.html">用户列表 </a>
+                    <a href="#view/userList.jsp">用户列表 </a>
                 </dd>
             </dl>
             <dl>
@@ -76,7 +76,7 @@
             <dl>
                 <dt >订单管理 <img class="b" src="img/jt-right-co.png" alt=""><img class="r" src="img/jt-bottom.png" alt=""></dt>
                 <dd>
-                    <a href="#view/AllOrder.jsp">订单列表 </a>
+                    <a href="#view/AllOrders.jsp">订单列表 </a>
                     <a href="#">统计分析 </a>
                 </dd>
             </dl>
