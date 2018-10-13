@@ -13,5 +13,8 @@ public interface foodsDaof {
 	
 	PageData<Food> queryFoods(int page,int pageSize,String keyWords);
 	
+	boolean delFoods(int id);
+	boolean updateFoods(Food food);
+	
 
 }

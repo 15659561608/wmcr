@@ -16,15 +16,17 @@
 <![endif]-->
 <link rel="stylesheet" type="text/css"
 	href="static/h-ui/css/H-ui.min.css" />
-<link rel="stylesheet" type="text/css"
-	href="static/h-ui.admin/css/H-ui.admin.css" />
+<!-- <link rel="stylesheet" type="text/css"
+	href="static/h-ui.admin/css/H-ui.admin.css" /> -->
 <link rel="stylesheet" type="text/css"
 	href="lib/Hui-iconfont/1.0.8/iconfont.css" />
 <link rel="stylesheet" type="text/css"
 	href="static/h-ui.admin/skin/default/skin.css" id="skin" />
 <link rel="stylesheet" type="text/css"
 	href="static/h-ui.admin/css/style.css" />
-
+	
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.1/js/affix.js"></script>
+<link href="css/dashboard.css" rel="stylesheet">
 <!-- layui开始 -->
 <link rel="stylesheet" href="../layui/css/layui.css" media="all">
 <!-- layui结束 -->
@@ -32,6 +34,7 @@
 <script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]-->
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 <title>品牌管理</title>
 </head>
 <body>
@@ -71,13 +74,13 @@
 					批量删除</a></span> <span class="r">共有数据：<strong>54</strong> 条
 			</span>
 		</div>
-		 <form class="navbar-form navbar-right" method="post"
-					action="${pageContext.request.contextPath}/fsf.do">
-					<input type="hidden" name="op" value="queryFoods"> <input
-						type="text" class="form-control" placeholder="搜搜..."
-						name="keywords" id="keywords" value="${keywords}">
-					<button class="btn btn-default">搜索</button>
-				</form> 
+		<form class="navbar-form navbar-right" method="post"
+			action="${pageContext.request.contextPath}/fsf.do">
+			<input type="hidden" name="op" value="queryFoods"> <input
+				type="text" class="form-control" placeholder="搜搜..." name="keywords"
+				id="keywords" value="${keywords}">
+			<button class="btn btn-default">搜索</button>
+		</form>
 		<div class="mt-20">
 			<table class="table table-border table-bordered table-bg ">
 				<thead>
@@ -112,13 +115,14 @@
 							<td>${food.num}</td>
 							<td>${food.salNum}</td>
 							<td>${food.des}</td>
-							
-							 <%-- <td><img src="/img/<%=virtualPath%>"/></td>  --%>
+
+							<%-- <td><img src="/img/<%=virtualPath%>"/></td>  --%>
 							<%-- <td><img src="${food.logo}" alt="${food.logo}" /></td> --%>
-							 <td>${food.logo}</td> 
+							<td>${food.logo}</td>
 							<td>${food.state}</td>
-							<td class="col-md-2"><button class="btn btn-link">修改</button>
-								<button class="btn btn-link">删除</button></td>
+							<td><button class="btn btn-link update" data-toggle="modal"
+									data-target="#myModal">修改</button>
+								<button class="btn btn-link del">删除</button></td>
 						</tr>
 
 					</c:forEach>
@@ -130,11 +134,90 @@
 			<!-- layui分页结束 -->
 		</div>
 
+		<!-- 模态开始 -->
+				<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog " >
+				<div class="modal-content" style="height:550px">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">修改回复信息</h4>
+					</div>
+					<br>
+					
+					<form method="POST" enctype="multipart/form-data"
+						action="${pageContext.request.contextPath}/fsf.do">
+						<div class="form-group" >
+
+							<label for="foodName" class="col-sm-2 control-label" style="height:30px;width:90px">菜名</label>
+							<div class="col-sm-10" >
+								<input type="hidden" class="form-control" id="id" name="id" />
+								 <input type="text"
+									class="form-control" id="foodName" name="foodName" style="height:30px;width:450px"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="price" class="col-sm-2 control-label">价格</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="price" name="price" style="height:30px;width:450px" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="discount" class="col-sm-2 control-label">折扣</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="discount"
+									name="discount" style="height:30px;width:450px"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="num" class="col-sm-2 control-label">数量</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="num" name="num" style="height:30px;width:450px"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="salNum" class="col-sm-2 control-label" style="height:30px;width:90px">销售数量</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="salNum"
+									name="salNum" style="height:30px;width:450px"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="des" class="col-sm-2 control-label" style="height:30px;width:90px">详细描述</label>
+							<div class="col-sm-10">
+								<textarea rows="10" cols="62" id="des" name="des" ></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="logo" class="col-sm-2 control-label">图片</label>
+							<div class="col-sm-10">
+								<input type="file" class="form-control" id="logo" name="logo" style="height:30px;width:450px"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="state" class="col-sm-2 control-label">状态</label>
+							<div class="col-sm-10">
+							<input type="hidden" class="form-control" id="busid"
+									name="busid" value="2" />
+								<input type="text" class="form-control" id="state" name="state" style="height:30px;width:450px"s/>
+							</div>
+						</div>
 
 
-
-
-
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10" style="margin-left:400px;margin-top:25px">
+								<button type="submit" class="btn btn-default">确认</button>
+							</div>
+						</div>
+					</form>
+						
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal -->
+		</div>
+		</div>
+		<!-- 模态结束 -->
 	</div>
 	<!--_footer 作为公共模版分离出去-->
 	<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
@@ -159,6 +242,47 @@ $('.table-sort').dataTable({
 	]
 });
 </script>
+
+	<script type="text/javascript">
+		$(function() {
+			$(".del").click(function del() {
+				var flag = confirm("是否删除该用户");
+				if (flag == true) {
+					//$(this).parents("tr"),当前行
+					//$(this).parents("tr").find("td") 当前行的每一列值
+					//$(this).parents("tr").find("td").eq(0).html()当前行的第一列值
+					var id = $(this).parents("tr").find("td").eq(0).html();
+					//var qId=$(this).parents("tr").find("td").eq(0).html();
+					location.href = "${pageContext.request.contextPath}/fsf.do?op=delFoods&id=" + id;
+				}
+			})
+			
+			$(".update").click(
+					function update() {
+						var id = $(this).parents("tr").find("td").eq(0).html();
+						console.log(id);
+						var foodName = $(this).parents("tr").find("td").eq(1).html();
+						var price = $(this).parents("tr").find("td").eq(2).html();
+						var discount = $(this).parents("tr").find("td").eq(3).html();
+						var num = $(this).parents("tr").find("td").eq(4).html();
+						var salNum = $(this).parents("tr").find("td").eq(5).html();
+						var des = $(this).parents("tr").find("td").eq(6).html();
+						var logo = $(this).parents("tr").find("td").eq(7).html();
+						var state = $(this).parents("tr").find("td").eq(8).html();
+						$("#id").val(id);
+						$("#foodName").val(foodName);
+						$("#price").val(price);
+						$("#discount").val(discount);	
+						$("#num").val(num);
+						$("#salNum").val(salNum);
+						$("#des").val(des);
+						$("#logo").val(logo);
+						$("#state").val(state);
+
+					
+					})
+		})
+	</script>
 
 	<script src="../layui/layui.js" charset="utf-8"></script>
 	<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
@@ -187,5 +311,7 @@ layui.use(['laypage', 'layer'], function(){
 
 });
 </script>
+
+
 </body>
 </html>

@@ -26,6 +26,18 @@ public class FoodsServiceImplf implements FoodServicesf{
 		return fdf.queryFoods(page, pageSize, keyWords);
 	}
 
+	@Override
+	public boolean delFoods(int id) {
+		// TODO Auto-generated method stub
+		return fdf.delFoods(id);
+	}
+
+	@Override
+	public boolean update(Food food) {
+		// TODO Auto-generated method stub
+		return fdf.updateFoods(food);
+	}
+
 
 
 }

@@ -11,5 +11,7 @@ import com.etc.util.PageData;
 public interface FoodServicesf {
 	boolean addFoods(Food food);
 	PageData<Food> getFoods(int page,int pageSize,String keyWords); 
+	boolean delFoods(int id);
+	boolean update(Food food);
 
 }

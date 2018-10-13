@@ -27,4 +27,18 @@ public class FoodsDaoImplf implements foodsDaof{
 		return pd;
 	}
 
+	@Override
+	public boolean delFoods(int id) {
+		// TODO Auto-generated method stub
+		String sql="delete from food where id=?";
+		return BaseDao.execute(sql, id)>0;
+	}
+
+	@Override
+	public boolean updateFoods(Food food) {
+		// TODO Auto-generated method stub
+		String sql="update food set foodName=?, price=?, discount=?, num=?, salNum=?, des=?, logo=?, state=? where id=?";
+		return BaseDao.execute(sql, food.getFoodName(),food.getPrice(),food.getDiscount(),food.getNum(),food.getSalNum(),food.getDes(),food.getLogo(),food.getState(),food.getId())>0;
+	}
+
 }

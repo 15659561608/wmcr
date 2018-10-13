@@ -93,12 +93,35 @@ public class FoodsServletf extends HttpServlet {
 			PageData<Food> pd = fsf.getFoods(page, pageSize, keywords);
 //			pd.getData().forEach(System.out::println);
 			
-
 			request.setAttribute("pd", pd);
 			// 需要将每次模糊查询的关键字传递回来给jsp
 			request.setAttribute("keywords", keywords);
 			// 从当前控制器跳转到jsp页面[问题列表]，跳转的方法叫做转发
 			request.getRequestDispatcher("bossManage/foodsManager.jsp").forward(request, response);
+		}else if("delFoods".equals(op)) {
+			String id=request.getParameter("id");
+			//System.out.println(id);
+			boolean flag=fsf.delFoods(Integer.valueOf(id));
+			if(flag) {
+				request.getRequestDispatcher("bossManage/foodsManager.jsp").forward(request, response);
+			}
+		}else if("updateFoods".equals(op)) {
+			String id=request.getParameter("id");
+			String foodName = request.getParameter("foodName");
+			System.out.println(foodName);
+			String price = request.getParameter("price");
+			String discount = request.getParameter("discount");
+			String num = request.getParameter("num");
+			String salNum = request.getParameter("salNum");
+			String des = request.getParameter("des");
+			String logo = request.getParameter("logo");	
+			String state = request.getParameter("state");
+			Food food=new Food(Integer.valueOf(id),foodName,Double.valueOf(price),Double.valueOf(discount),Integer.valueOf(num),Integer.valueOf(salNum),des,logo,Integer.valueOf(state)); 
+			boolean flag=fsf.update(food);
+			if(flag) {
+				request.getRequestDispatcher("bossManage/foodsManager.jsp").forward(request, response);
+			}
+			
 		}
 
 		

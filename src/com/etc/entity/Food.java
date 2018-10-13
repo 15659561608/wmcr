@@ -100,4 +100,61 @@ public class Food {
     public void setState(Integer state) {
         this.state = state;
     }
+
+	public Food(Integer id, String foodName, Double price, Double discount, Integer num, Integer salNum, String des,
+			String logo, Integer busId, Integer state) {
+		super();
+		this.id = id;
+		this.foodName = foodName;
+		this.price = price;
+		this.discount = discount;
+		this.num = num;
+		this.salNum = salNum;
+		this.des = des;
+		this.logo = logo;
+		this.busId = busId;
+		this.state = state;
+	}
+
+	public Food() {
+		super();
+	}
+
+	public Food(String foodName, Double price, Double discount, Integer num, Integer salNum, String des, String logo,
+			Integer busId, Integer state) {
+		super();
+		this.foodName = foodName;
+		this.price = price;
+		this.discount = discount;
+		this.num = num;
+		this.salNum = salNum;
+		this.des = des;
+		this.logo = logo;
+		this.busId = busId;
+		this.state = state;
+	}
+	
+
+	public Food(Integer id, String foodName, Double price, Double discount, Integer num, Integer salNum, String des,
+			String logo, Integer state) {
+		super();
+		this.id = id;
+		this.foodName = foodName;
+		this.price = price;
+		this.discount = discount;
+		this.num = num;
+		this.salNum = salNum;
+		this.des = des;
+		this.logo = logo;
+		this.state = state;
+	}
+
+	@Override
+	public String toString() {
+		return "Food [id=" + id + ", foodName=" + foodName + ", price=" + price + ", discount=" + discount + ", num="
+				+ num + ", salNum=" + salNum + ", des=" + des + ", logo=" + logo + ", busId=" + busId + ", state="
+				+ state + "]";
+	}
+    
+    
 }
