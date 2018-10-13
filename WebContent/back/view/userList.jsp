@@ -37,13 +37,13 @@
         <table class="table text-center">
             <thead>
                 <tr>
-                    <th class="yt" style="width: 9%;">用户Id
+                    <th class="yt" style="width: 5%;">用户Id
                         <input type="checkbox" class="allCheck" id="all"><label for="all" style="width: 40px">&nbsp;&nbsp;&nbsp;</label></th>
                     <th style="width: 16%;" class="sort cur">用户名
                         <img class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt="">
                         <img class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png" alt="">
                     </th>
-                    <th class="sort cur" style="width:9%">姓名
+                    <th class="sort cur" style="width:5%">姓名
                         <img class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt="">
                         <img class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png" alt="">
                     </th>
@@ -51,11 +51,11 @@
                         <img class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt="">
                         <img class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png" alt="">
                     </th>
-                    <th class="sort cur" style="width: 9%;">注册时间
+                    <th class="sort cur" style="width: 15%;">注册时间
                         <img class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt="">
                         <img class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png" alt="">
                     </th>
-                    <th class="sort cur" style="width: 9%;">收货地址
+                    <th class="sort cur" style="width: 15%;">收货地址
                         <img class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt="">
                         <img class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png" alt="">
                     </th>
