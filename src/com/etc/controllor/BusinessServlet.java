@@ -94,7 +94,6 @@ public class BusinessServlet extends HttpServlet {
 		String address=request.getParameter("address");
 		String avgCost=request.getParameter("avgCost");
 		String licence=request.getParameter("licence");
-		String salNum=request.getParameter("salNum");
 		double lat=0.0;
 		double lon=0.0;
 		HashMap<String,Double> hashmap=(HashMap<String, Double>) BaiduMap.getLatLon(address);
