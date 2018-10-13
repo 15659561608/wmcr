@@ -19,7 +19,7 @@
 </head>
 
 <body>
-    <div class="frame-header"><span class="page-reload cur">登录帐号</span></div>
+    <div class="frame-header"><span class="page-reload cur">订单列表</span></div>
     <!--操作栏-->
     <div class="operates clearfix" style="overflow: auto;white-space: nowrap; font-size: 0;">
         <div class="pull-left left-inp defualt">
@@ -40,8 +40,7 @@
         <table class="table text-center">
             <thead>
                 <tr>
-                    <th style="width: 1%;" class="yt">
-                       <input type="checkbox" class="allCheck" id="all"><label for="all">&nbsp;&nbsp;&nbsp;</label></th>
+                   
                     <th style="width: 2%;" class="sort cur">订单ID
                         <img class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt="">
                         <img class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png" alt="">
@@ -87,7 +86,7 @@
 
 
 								<tr>
-								<td> </td>
+								
 									<td>${a.id}</td>
 									<td>${a.account}</td>
 									<td>${a.busiName}</td>

@@ -37,8 +37,8 @@
         <table class="table text-center">
             <thead>
                 <tr>
-                    <th class="yt" style="width: 5%;">用户Id
-                        <input type="checkbox" class="allCheck" id="all"><label for="all" style="width: 40px">&nbsp;&nbsp;&nbsp;</label></th>
+                    <th class="yt" style="width: 10%;"><input type="checkbox" class="allCheck" id="all">用户Id
+                        <label for="all" style="width: 40px">&nbsp;&nbsp;&nbsp;</label></th>
                     <th style="width: 16%;" class="sort cur">用户名
                         <img class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt="">
                         <img class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png" alt="">
@@ -115,11 +115,7 @@
     </div>
     <div class="table-tel clearfix">
         <div style="border-bottom: 1px solid #fff; overflow: hidden;" class="no-hover">
-            <div class="fl tb1 tb1s" style="text-align: left;   ">
-                <input type="checkbox" class="allCheck" id="all" ><label for="all" style="width: 45px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></th>
-            </div>
-            <div class="fl tb2" style="text-align:left; width: 190px;display: table">&emsp;<span class="cur">短信</span>&emsp;<span class="cur">邮件</span>&emsp;<span class="cur">微信</span>&emsp;<span class="cur">审核</span>&emsp;
-            </div>
+           
             
             
   <!--分頁的開始  -->
