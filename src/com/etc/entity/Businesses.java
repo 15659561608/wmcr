@@ -17,7 +17,21 @@ public class Businesses {
 
     private Double lat;
 
-    private Double lon;
+    public Businesses(String busiName, String phone, String address, String licence, Double lat, Double lon,
+			Integer typeId, Integer bossId, Integer cityId) {
+		super();
+		this.busiName = busiName;
+		this.phone = phone;
+		this.address = address;
+		this.licence = licence;
+		this.lat = lat;
+		this.lon = lon;
+		this.typeId = typeId;
+		this.bossId = bossId;
+		this.cityId = cityId;
+	}
+
+	private Double lon;
 
     private Double starPrice;
 
