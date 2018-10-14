@@ -84,7 +84,8 @@
 			<dt><i class="Hui-iconfont">&#xe620;</i> 菜品管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="product-brand.html" data-title="查看菜品" href="javascript:void(0)">查看菜品管理</a></li>
+					<li><a data-href="foodsManager.jsp" data-title="查看菜品" href="javascript:void(0)">查看菜品管理</a></li>
+					<li><a data-href="addFoodsf.jsp" data-title="添加菜品" href="javascript:void(0)">添加菜品管理</a></li>
 			</ul>
 		</dd>
 	</dl>

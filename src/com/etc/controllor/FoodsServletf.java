@@ -108,6 +108,7 @@ public class FoodsServletf extends HttpServlet {
 			String discount = request.getParameter("discount");
 			String num = request.getParameter("num");
 			String salNum = request.getParameter("salNum");
+			String   busid= request.getParameter("busid");
 			String des = request.getParameter("des");
 			String logo = request.getParameter("logo");
 			
