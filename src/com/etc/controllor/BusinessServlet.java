@@ -42,8 +42,7 @@ public class BusinessServlet extends HttpServlet {
 		if(request.getParameter("op")!=null) {
 			op=request.getParameter("op");
 		}
-		response.setContentType("text/json");
-		PrintWriter out=response.getWriter();
+		
 		BusinessService bs=new BusinessServiceImpl();
 		
 		HttpSession session=request.getSession();
@@ -55,6 +54,8 @@ public class BusinessServlet extends HttpServlet {
 			bd.setData(bs.getBusinesses(boss.getId()));
 			String jsonData=gson.toJson(bd);
 			System.out.println(jsonData);
+			response.setContentType("text/json");
+			PrintWriter out=response.getWriter();
 			out.println(jsonData);
 			out.close();
 		}
@@ -65,6 +66,7 @@ public class BusinessServlet extends HttpServlet {
 			doUpdate(request, response);
 		}
 		if("ajaxCheckAddress".equals(op)) {
+			PrintWriter out=response.getWriter();
 			String address=request.getParameter("address");
 			if(BaiduMap.getLatLon(address)==null) {
 				out.print("false");
@@ -72,7 +74,19 @@ public class BusinessServlet extends HttpServlet {
 				out.print("true");
 			}
 		}
+		if("ajaxUpdateIB".equals(op)) {
+			bs.updateBusiForString(request, response, op);
+		}
+		if("ajaxUpdateIR".equals(op)) {
+			bs.updateBusiForString(request, response, op);
+		}
+		if("ajaxUpdateOP".equals(op)) {
+			bs.updateBusiForString(request, response, op);
+		}
 	}
+	
+	
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

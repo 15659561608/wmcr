@@ -1,6 +1,11 @@
 package com.etc.service.impl;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import com.etc.dao.BusinessDao;
 import com.etc.dao.impl.BusinessDaoImpl;
@@ -36,9 +41,26 @@ public class BusinessServiceImpl implements BusinessService {
 	}
 
 	@Override
-	public boolean updateBusiForString(String op, int value, int id) {
+	public void updateBusiForString(HttpServletRequest request, HttpServletResponse response,String op) {
 		// TODO Auto-generated method stub
-		return bd.updateBusiForString(op, value, id);
+		PrintWriter out=null;
+		try {
+			out = response.getWriter();
+			int id=Integer.valueOf(request.getParameter("id"));
+			int value=Integer.valueOf(request.getParameter("value"));
+			boolean result=bd.updateBusiForString("onlinePay", value, id);
+			if(result) {
+				out.print("true");
+			}else {
+				out.print("false");
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			out.close();
+		}
+		
 	}
 
 }

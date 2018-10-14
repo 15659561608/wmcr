@@ -2,6 +2,9 @@ package com.etc.services;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import com.etc.entity.Businesses;
 import com.etc.entity.BusinessesCity;
 
@@ -35,5 +38,5 @@ public interface BusinessService {
 	 * @param op
 	 * @return
 	 */
-	public boolean updateBusiForString(String op,int value,int id);
+	public void updateBusiForString(HttpServletRequest request, HttpServletResponse response,String op);
 }
