@@ -58,7 +58,14 @@ public class BossServletcgl extends HttpServlet {
 			request.setAttribute("keywords", keywords);
 			request.getRequestDispatcher("back/view/shopList.jsp").forward(request, response);
 		}
-		
+		if (op.equals("update")) {
+			String id=request.getParameter("id");
+			String state=request.getParameter("bossstate");
+			boolean flag=bs.updateBoss(Integer.valueOf(id), state);
+			if (flag) {
+				request.getRequestDispatcher("back/view/shopList.jsp").forward(request, response);
+			} 
+		}
 		
 	}
 

@@ -16,4 +16,12 @@ public class BossDaocglImpl implements BossDaocgl {
 		return boss;
 	}
 
+	@Override
+	public boolean updateBoss(int id, String state) {
+		// TODO Auto-generated method stub
+		String sql="update boss SET state=? WHERE id=?";
+
+		return BaseDao.execute(sql, state,id)>0;
+	}
+
 }
