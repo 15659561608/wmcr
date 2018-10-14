@@ -3,6 +3,7 @@ package com.etc.controllor;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import com.etc.dao.BusinessDao;
 import com.etc.dao.impl.BusinessDaoImpl;
 import com.etc.entity.Boss;
+import com.etc.entity.BusinessesCity;
 import com.etc.entity.BusinessesData;
 import com.etc.service.impl.BusinessServiceImpl;
 import com.etc.services.BusinessService;
@@ -75,25 +77,22 @@ public class BusinessServlet extends HttpServlet {
 				out.print("true");
 			}
 		}
+		
 		if("ajaxUpdateIB".equals(op)) {
-			bs.updateBusiForString(request, response, op);
+			bs.updateBusiForString(request, response, "isBusiness");
 		}
 		if("ajaxUpdateIR".equals(op)) {
-			PrintWriter out=response.getWriter();
-			out = response.getWriter();
-			int id=Integer.valueOf(request.getParameter("id"));
-			int value=Integer.valueOf(request.getParameter("value"));
-			value=(value==1)?0:1;
-			BusinessDao bd=new BusinessDaoImpl();
-			boolean result=bd.updateBusiForString("isReserve", value, id);
-			if(result) {
-				out.print("true");
-			}else {
-				out.print("false");
-			}
+			bs.updateBusiForString(request, response, "isReserve");
 		}
 		if("ajaxUpdateOP".equals(op)) {
-			bs.updateBusiForString(request, response, op);
+			bs.updateBusiForString(request, response, "onlinePay");
+		}
+		
+		if("updateInfo".equals(op)) {
+			int id=Integer.valueOf(request.getParameter("id"));
+			List<BusinessesCity> list=bs.getBusinessesById(id);
+			request.setAttribute("busiInfo", list.get(0));
+			request.getRequestDispatcher("bossManage/updateBusi.jsp").forward(request, response);
 		}
 	}
 	

@@ -50,7 +50,7 @@ public class BusinessServiceImpl implements BusinessService {
 			int value=Integer.valueOf(request.getParameter("value"));
 			value=(value==1)?0:1;
 			System.out.println(value);
-			boolean result=bd.updateBusiForString("onlinePay", value, id);
+			boolean result=bd.updateBusiForString(op, value, id);
 			if(result) {
 				out.print("true");
 			}else {
@@ -63,6 +63,14 @@ public class BusinessServiceImpl implements BusinessService {
 			out.close();
 		}
 		
+	}
+
+	@Override
+	public List<BusinessesCity> getBusinessesById(int id) {
+		// TODO Auto-generated method stub
+		List<BusinessesCity> list=bd.getBusinessesById(id);
+		
+		return list;
 	}
 
 }

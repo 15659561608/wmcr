@@ -56,4 +56,13 @@ public class BusinessDaoImpl implements BusinessDao {
 		return BaseDao.execute(sql, value,id)>0;
 	}
 
+	@Override
+	public List<BusinessesCity> getBusinessesById(int id) {
+		// TODO Auto-generated method stub
+		String sql="select b.id,b.busiName,b.phone,b.address,b.avgCost,b.licence,b.salNum,b.lat,b.lon,b.starPrice,"
+				+ "b.disFee,b.onlinePay,b.isReserve,b.isBusiness,b.des,b.typeId,b.bossId,b.cityId,b.praise,b.nag,b.state,b.logo,b.regDate,c.cityName from businesses b,city c where b.cityId=c.id and b.id=?";
+		
+		return (List<BusinessesCity>)BaseDao.select(sql, BusinessesCity.class,id);
+	}
+
 }
