@@ -35,7 +35,7 @@
 <body>
     <!-- common-head -->
     <div class="common-head clearfix">
-        <a class="logo" href="index.html">
+        <a class="logo" href="index.jsp">
             <img src="img/logo.png" alt="">
         </a>
         
@@ -56,33 +56,42 @@
             <dl>
                 <dt style="border-top: none;">用户管理 <img class="b" src="img/jt-right-co.png" alt=""><img class="r" src="img/jt-bottom.png" alt=""></dt>
                 <dd>
-                    <a href="#view/userList.html">用户列表  <i class="lo">12</i> </a>
-                    <a href="#view/communication.html">通讯信息 </a>
-                    <a href="#view/loginInfo.html">登录信息 </a>
+                    <a href="#view/userList.jsp">用户列表 </a>
                 </dd>
             </dl>
             <dl>
                 <dt >商户管理 <img class="b" src="img/jt-right-co.png" alt=""><img class="r" src="img/jt-bottom.png" alt=""></dt>
                 <dd>
                     <a href="#view/shopList.jsp">商户列表 </a>
-                    <a href="#view/loginUser.html">登录账号 </a>
-                    <a href="#view/loginCode.html">登录记录 </a>
-                    <a href="#view/aptitudeInfo.html">资质信息 </a>
-                    <a href="#">商户设置 </a>
                 </dd>
             </dl>
+            
+             <dl>
+                <dt >配送员管理 <img class="b" src="img/jt-right-co.png" alt=""><img class="r" src="img/jt-bottom.png" alt=""></dt>
+                <dd>
+                    <a href="#view/shopList.jsp">配送员列表 </a>
+                </dd>
+            </dl>
+            
             <dl>
                 <dt >订单管理 <img class="b" src="img/jt-right-co.png" alt=""><img class="r" src="img/jt-bottom.png" alt=""></dt>
                 <dd>
-                    <a href="#">订单列表 </a>
+                    <a href="#view/AllOrders.jsp">订单列表 </a>
                     <a href="#">统计分析 </a>
                 </dd>
             </dl>
             <dl>
-                <dt>收支管理 <img class="b" src="img/jt-right-co.png" alt=""><img class="r" src="img/jt-bottom.png" alt=""></dt>
+                <dt>评论管理 <img class="b" src="img/jt-right-co.png" alt=""><img class="r" src="img/jt-bottom.png" alt=""></dt>
                 <dd>
-                    <a href="#">收支列表 </a>
-                    <a href="#">收支分析 </a>
+                    <a href="#">评论详情 </a>
+                   
+                </dd>
+            </dl>
+            <dl>
+                <dt>城市管理 <img class="b" src="img/jt-right-co.png" alt=""><img class="r" src="img/jt-bottom.png" alt=""></dt>
+                <dd>
+                    <a href="#">城市详情 </a>
+                   
                 </dd>
             </dl>
             <dl>
@@ -94,13 +103,7 @@
                     <a href="#">基本设置 </a>
                 </dd>
             </dl>
-            <dl>
-                <dt>安全管理 <img class="b" src="img/jt-right-co.png" alt=""><img class="r" src="img/jt-bottom.png" alt=""></dt>
-                <dd>
-                    <a href="#">基本信息 </a>
-                    <a href="#">密码设置 </a>
-                </dd>
-            </dl>
+            
         </div>
     </div>
     <!--内容部分-->

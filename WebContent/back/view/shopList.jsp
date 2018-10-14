@@ -30,57 +30,55 @@
 	<div class="operates clearfix"
 		style="overflow: auto; white-space: nowrap; font-size: 0;">
 		<div class="pull-left left-inp defualt">
-		<form class="navbar-form navbar-right" method="post"
-					action="${pageContext.request.contextPath}/Bsc.do">
-		<input type="hidden" name="op" value="queryBoss">
-			<input type="text" class="pull-left" style="margin-left: 10px;"
-				placeholder="商户账号 " name="keywords" id="keywords"
-				value="${keywords}">
-			<button class="btn delete pramary" type="submit">搜索</button>
-        </form>
+			<form class="navbar-form navbar-right" method="post"
+				action="${pageContext.request.contextPath}/Bsc.do">
+				<input type="hidden" name="op" value="queryBoss"> <input
+					type="text" class="pull-left" style="margin-left: 10px;"
+					placeholder="商户账号 " name="keywords" id="keywords"
+					value="${keywords}">
+				<button class="btn delete pramary" type="submit">搜索</button>
+			</form>
 		</div>
-		<div class="right-btns" style="font-size: 0">
-			<button class="btn delete pramary">增加</button>
-			<button class="btn delete pramary">编辑</button>
+		<!-- <div class="right-btns" style="font-size: 0">
+			
 			<button class="btn delete pramary">审核</button>
-			<button class="btn delete pramary">删除</button>
-		</div>
+			
+		</div> -->
 	</div>
 	<!--表格-->
-	<div class="table-wrapper pl27 " style="min-width: 1500px;">
+	<div class="table-wrapper pl27 " style="min-width: 1300px;">
 		<table class="table text-center">
 			<thead>
 				<tr>
-					<th style="width: 2%; text-align: left;" class="yt"><input
-						type="checkbox" class="allCheck" id="all"><label for="all">&nbsp;&nbsp;&nbsp;</label></th>
-					<th style="width: 2%;" class="sort cur">商户ID <img
-						class="bottom" src="../img/jt-bottom.png" alt=""> <img
-						class="top" style="display: none" src="../img/jt-right-co.png"
+					<th style="width: 5%;" class="sort cur">商户ID <img
+						class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt=""> <img
+						class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png"
 						alt="">
 					</th>
-					<th class="sort cur" style="width: 3%">商户账号 <img
-						class="bottom" src="../img/jt-bottom.png" alt=""> <img
-						class="top" style="display: none" src="../img/jt-right-co.png"
+					<th class="sort cur" style="width: 10%">商户账号 <img
+						class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt=""> <img
+						class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png"
 						alt="">
 					</th>
-					<th class="sort cur" style="width: 2%;">商户密码 <img
-						class="bottom" src="../img/jt-bottom.png" alt=""> <img
-						class="top" style="display: none" src="../img/jt-right-co.png"
+					<th class="sort cur" style="width: 20%;">商户密码 <img
+						class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt=""> <img
+						class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png"
 						alt="">
 					</th>
-					<th class="sort cur" style="width: 3%;">注册时间 <img
-						class="bottom" src="../img/jt-bottom.png" alt=""> <img
-						class="top" style="display: none" src="../img/jt-right-co.png"
+					<th class="sort cur" style="width: 15%;">注册时间 <img
+						class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt=""> <img
+						class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png"
 						alt="">
 					</th>
-					<th class="no-nowrap sort cur" style="width: 2%;">商户状态 <img
-						class="bottom" src="../img/jt-bottom.png" alt=""> <img
-						class="top" style="display: none" src="../img/jt-right-co.png"
+					<th class="no-nowrap sort cur" style="width: 10%;">商户状态 <img
+						class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt=""> <img
+						class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png"
 						alt="">
 					</th>
-					<th class="no-nowrap sort cur" style="width: 2%;">操作 <img
-						class="bottom" src="../img/jt-bottom.png" alt=""> <img
-						class="top" style="display: none" src="../img/jt-right-co.png"
+					<th class="no-nowrap sort cur" style="width: 10%;">操作 <img
+						class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt=""> <img
+						class="top" style="display: none"
+						src="${pageContext.request.contextPath}/back/img/jt-right-co.png"
 						alt="">
 					</th>
 				</tr>
@@ -91,52 +89,122 @@
 				</c:if>
 				<c:forEach var="boss" items="${requestScope.b.data}">
 					<tr>
-						<td style="text-align: left;"><input type="checkbox"
-							name="pkId" id="ph1"> <label for="ph1"></label></td>
+
 						<td>${boss.id}</td>
 						<td>${boss.account}</td>
 						<td>${boss.pwd}</td>
 						<td>${boss.regDate}</td>
-						<td>${boss.state==0?"未审核":(boss.state==1?"正常":"删除")}</td>
-						<td class="col-md-2"><button class="btn btn-link">修改</button>
-							<button class="btn btn-link del">删除</button></td>
+						<td>${boss.state==0?"未审核":(boss.state==1?"正常":"销毁")}</td>
+						<td class="col-md-2"><button class="btn btn-link update"
+								href="#modal-container-671859" data-toggle="modal">修改</button></td>
 					</tr>
 				</c:forEach>
 
 			</tbody>
 		</table>
 	</div>
-		<div class="row clearfix text-center">
+
+<!-- 分页开始 -->
+	<div class="row clearfix text-center">
 		<div class="col-md-12 column">
 			<ul class="pagination">
-				<li>
-					 <a href="javascript:prePage()">&laquo;</a>
-				</li>
-				
-				
+				<li><a href="javascript:prePage()">上一页</a></li>
+
+
 				<c:forEach begin="1" end="${b.totalPage}" var="index">
-				
-				<c:if test="${index == b.page}">
-				<li class="active"><a href="#">${index}</a></li>
-				</c:if>
-				
-				<c:if test="${index != b.page}">
-				<li><a href="${pageContext.request.contextPath}/Bsc.do?op=queryBoss&page=${index}&keywords=${keywords}">${index}</a></li>
-				</c:if>
+
+					<c:if test="${index == b.page}">
+						<li class="active"><a href="#">${index}</a></li>
+					</c:if>
+
+					<c:if test="${index != b.page}">
+						<li><a
+							href="${pageContext.request.contextPath}/Bsc.do?op=queryBoss&page=${index}&keywords=${keywords}">${index}</a></li>
+					</c:if>
 				</c:forEach>
-				
-				
-				<li>
-					 <a href="javascript:nextPage()">&raquo;</a>
-				</li>
+
+
+				<li><a href="javascript:nextPage()">下一页</a></li>
 			</ul>
 		</div>
+
 	</div>
-</body>
-<script src="../plugin/jquery/jquery.js"></script>
-<script src="../js/frame-base.js"></script>
+	
+	<!-- 分页结束 -->
+	
+			
+	<!-- 遮罩开始 -->
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+
+			<div class="modal fade" id="modal-container-671859" role="dialog"
+				aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">×</button>
+							<h4 class="modal-title" id="myModalLabel">
+								<br> &nbsp;&nbsp;&nbsp;修改商户状态
+							</h4>
+						</div>
+						<!-- 表单开始 -->
+						<form class="form-horizontal" action="Bsc.do" method="post">
+							<div class="modal-body">
+
+								<div class="form-group">
+									<label for="" class="col-sm-2 control-label">商户账号</label>
+									<div class="col-sm-4">
+										<input type="hidden" name="op" value="update" /> 
+										<input
+											type="hidden" name="id" id="id" />
+											<input type="text"
+											required="required" class="form-control" name="account"
+											id="account" readonly="false" />
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="" class="col-sm-2 control-label">商户状态</label>
+									<div class="col-sm-3">
+										<select class="form-control" name="bossstate" id="bossstate">
+											<option value="0">未审核 </option>
+											<option value="1">正常 </option>
+											<option value="2">销毁 </option>
+										</select>
+									</div>
+								</div>
+
+							</div>
+
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default"
+									data-dismiss="modal">关闭</button>
+								<button type="submit" class="btn btn-warning">保存</button>
+								&nbsp;&nbsp;&nbsp;
+
+							</div>
+						</form>
+
+						<!-- 表单结束 -->
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+	
+
+	<!-- 遮罩结束 -->
+	
+
+<%-- <script src="${pageContext.request.contextPath}/back/plugin/jquery/jquery.js"></script>
+<script src="${pageContext.request.contextPath}/back/js/frame-base.js"></script> --%>
 <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/back/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	//上一页
 	function prePage(){
@@ -161,15 +229,25 @@
 		
 	}
 	
-		$(function() {
-			$(".del").click(function() {
-				var userId = $(this).parents("tr").find("td").eq(1).text();
-
-				if (confirm("是否删除？ ")) {
-
-					location.href = "Bsc.do?op=del&id=" + id;
-				}
-			});
-		});
 	</script>
+		<script "text/javascript">
+	
+	$(function() {
+	    $(".update").click(
+			function() {
+			    var id=$(this).parents("tr").find("td").eq(0)
+			             .text();
+			
+				var account = $(this).parents("tr").find("td").eq(1)
+						.text();
+				
+				var state = $(this).parents("tr").find("td").eq(4)
+						.text();
+                $("#id").val(id);
+				$("#account").val(account);
+				$("#bossstate").val(state == "未审核" ? 0 :(state=="正常"? 1 : 2 ));
+			});
+	});
+	</script>
+	</body>
 </html>

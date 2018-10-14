@@ -35,15 +35,15 @@
     <!--表格-->
     <div class="table-wrapper pl27 " style="min-width:1000px;">
         <table class="table text-center">
-            <thead>
+           <thead>
                 <tr>
-                    <th class="yt" style="width: 9%;">用户Id
-                        <input type="checkbox" class="allCheck" id="all"><label for="all" style="width: 40px">&nbsp;&nbsp;&nbsp;</label></th>
-                    <th style="width: 16%;" class="sort cur">用户名
+                    <th class="yt" style="width: 7%;"><input type="checkbox" class="allCheck" id="all">用户Id
+                       </th>
+                    <th style="width: 5%;" class="sort cur">用户名
                         <img class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt="">
                         <img class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png" alt="">
                     </th>
-                    <th class="sort cur" style="width:9%">姓名
+                    <th class="sort cur" style="width:7%">姓名
                         <img class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt="">
                         <img class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png" alt="">
                     </th>
@@ -51,19 +51,19 @@
                         <img class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt="">
                         <img class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png" alt="">
                     </th>
-                    <th class="sort cur" style="width: 9%;">注册时间
+                    <th class="sort cur" style="width: 20%;">注册时间
                         <img class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt="">
                         <img class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png" alt="">
                     </th>
-                    <th class="sort cur" style="width: 9%;">收货地址
+                    <th class="sort cur" style="width: 20%;">收货地址
                         <img class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt="">
                         <img class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png" alt="">
                     </th>
-                    <th class="sort cur" style="width: 3%;">纬度
+                    <th class="sort cur" style="width: 5%;">纬度
                         <img class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt="">
                         <img class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png" alt="">
                     </th>
-                    <th class="sort cur" style="width: 3%;">经度
+                    <th class="sort cur" style="width: 5%;">经度
                         <img class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt="">
                         <img class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png" alt="">
                     </th>
@@ -115,11 +115,7 @@
     </div>
     <div class="table-tel clearfix">
         <div style="border-bottom: 1px solid #fff; overflow: hidden;" class="no-hover">
-            <div class="fl tb1 tb1s" style="text-align: left;   ">
-                <input type="checkbox" class="allCheck" id="all" ><label for="all" style="width: 45px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></th>
-            </div>
-            <div class="fl tb2" style="text-align:left; width: 190px;display: table">&emsp;<span class="cur">短信</span>&emsp;<span class="cur">邮件</span>&emsp;<span class="cur">微信</span>&emsp;<span class="cur">审核</span>&emsp;
-            </div>
+           
             
             
   <!--分頁的開始  -->
