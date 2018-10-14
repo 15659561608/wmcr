@@ -48,6 +48,8 @@ public class BusinessServiceImpl implements BusinessService {
 			out = response.getWriter();
 			int id=Integer.valueOf(request.getParameter("id"));
 			int value=Integer.valueOf(request.getParameter("value"));
+			value=(value==1)?0:1;
+			System.out.println(value);
 			boolean result=bd.updateBusiForString("onlinePay", value, id);
 			if(result) {
 				out.print("true");

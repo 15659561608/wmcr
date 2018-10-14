@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -349,29 +350,39 @@ function member_del(obj,id){
         {"data": "avgCost"},
         {"data": "licence"},
         {"data": "salNum"},
-        {"data": "startPrice"},
+        {"data": "starPrice"},
       {"data": "disFee"},
-        {"data": "onlinePay"},
+        {"data": "onlinePay","createdCell":function(nTd,sData, oData, iRow, iCol)
+        	{
+    		//表格最后一个列增加很多超链接 启用禁用。 编辑   删除 修改密码
+    		$(nTd).html(oData.isReserve==0?"<button value='"+oData.onlinePay+"' attrId='"+oData.id+"' onclick='update(this)' class='layui-btn layui-btn-warm layui-btn-sm'>不支持</button>":"<button value='"+oData.onlinePay+"' attrId='"+oData.id+"' onclick='update(this)' class='layui-btn layui-btn-sm'>支持</button>");
+    	}},
         
         {"data": "isReserve","createdCell":function(nTd,sData, oData, iRow, iCol)
         	{
     		//表格最后一个列增加很多超链接 启用禁用。 编辑   删除 修改密码
-    		$(nTd).html("<button class='layui-btn layui-btn-primary layui-btn-sm'>"+(oData.isReserve==0)?'支持':'不支持'+"</button>");
+    		$(nTd).html(oData.isReserve==0?"<button value='"+oData.isReserve+"' attrId='"+oData.id+"' onclick='update(this)' class='layui-btn layui-btn-warm layui-btn-sm'>不支持</button>":"<button value='"+oData.isReserve+"' attrId='"+oData.id+"' onclick='update(this)' class='layui-btn layui-btn-sm'>支持</button>");
     	}},
         {"data": "isBusiness","createdCell":function(nTd,sData, oData, iRow, iCol)
         	{
     		//表格最后一个列增加很多超链接 启用禁用。 编辑   删除 修改密码
-    		$(nTd).html("<img style='width:50px;height:50px;' src='"+oData.logo+"' />");
+    		$(nTd).html(oData.isBusiness==0?"<button class='layui-btn layui-btn-warm layui-btn-sm' value='"+oData.isBusiness+"' attrId='"+oData.id+"'  onclick='updateIB(this)'>停业</button>":"<button class='layui-btn layui-btn-sm' value='"+oData.isBusiness+"' attrId='"+oData.id+"'  onclick='updateIB(this)'>营业中</button>");
     	}},
        
         {"data": "cityName"},
-        {"data": "prise"},
+        {"data": "praise"},
        
         {"data": "nag"},
         {"data": "state","createdCell":function(nTd,sData, oData, iRow, iCol)
         	{
-    		//表格最后一个列增加很多超链接 启用禁用。 编辑   删除 修改密码
-    		$(nTd).html("<img style='width:50px;height:50px;' src='"+oData.logo+"' />");
+        	if(oData.state==0){
+        		$(nTd).html("<button class='layui-btn layui-btn-warm layui-btn-sm'>未审核</button>");
+        	}else if(oData.state==1){
+        		$(nTd).html("<button class='layui-btn layui-btn-sm'>审核通过</button>");
+        	}else{
+        		$(nTd).html("<button class='layui-btn layui-btn-danger layui-btn-sm'>审核不通过</button>");
+        	}
+    		
     	}},
         {"data": "regDate"},
         {    //创建操作那个列
@@ -379,7 +390,7 @@ function member_del(obj,id){
         	"createdCell":function(nTd)
         	{
         		//表格最后一个列增加很多超链接 启用禁用。 编辑   删除 修改密码
-        		$(nTd).html('<a style="text-decoration:none" onClick="member_stop(this,\'10001\')" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a> <a title="编辑" href="javascript:;" class="empedit ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="changepwd ml-5"  href="javascript:;" title="修改密码"><i class="Hui-iconfont">&#xe63f;</i></a> <a title="删除" href="javascript:;" onclick="member_del(this,\'1\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>');
+        		$(nTd).html(' <a title="编辑" href="updateBusi.jsp" class="empedit ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> ');
         		//$(nTd).html('<a onClick="member_stop(this,\'10001\')">xx<a>');
         		//$(nTd).html('<a style="text-decoration:none" onClick="member_stop(this,\'10001\')" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a> <a title="编辑" href="javascript:;" onclick="member_edit(\'编辑\',\'member-add.html\',\'4\',\'\',\'510\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onClick="change_password(\'修改密码\',\'change-password.html\',\'10001\',\'600\',\'270\')" href="javascript:;" title="修改密码"><i class="Hui-iconfont">&#xe63f;</i></a> <a title="删除" href="javascript:;" onclick="member_del(this,\'1\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>');
         		//$(nTd).html("<td class='td-manage'><a style='text-decoration:none' onClick='member_stop(this,'10001')' href='javascript:;' title='停用'><i class='Hui-iconfont'>&#xe631;</i></a> <a title='编辑' href='javascript:;' onclick='member_edit('编辑','member-add.html','4','','510')' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6df;</i></a> <a style='text-decoration:none' class='ml-5' onClick='change_password('修改密码','change-password.html','10001','600','270')' href='javascript:;' title='修改密码'><i class='Hui-iconfont'>&#xe63f;</i></a> <a title='删除' href='javascript:;' onclick='member_del(this,'1')' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6e2;</i></a></td>");
@@ -658,6 +669,46 @@ function member_del(obj,id){
     $(document).ready(function(){
         dataTablesInit(employee);
     });
+    
+    
+   
+</script>
+<script>
+function update(obj){
+	$.get("../Business","op=ajaxUpdateIR&id="+$(obj).attr("attrId")+"&value="+$(obj).val(),function(data,status){
+		if(data=="true"){
+			if($(obj).val()==0){
+				$(obj).text("支持");
+				$(obj).attr("class","layui-btn layui-btn-sm");
+				$(obj).attr("value","1");
+			}else{
+				$(obj).text("不支持");
+				$(obj).attr("class","layui-btn layui-btn-warm layui-btn-sm");
+				$(obj).attr("value","0");
+			}
+			
+		}
+		
+	});
+} 
+function updateIB(obj){
+	$.get("../Business","op=ajaxUpdateIR&id="+$(obj).attr("attrId")+"&value="+$(obj).val(),function(data,status){
+		if(data=="true"){
+			if($(obj).val()==0){
+				$(obj).text("营业中");
+				$(obj).attr("class","layui-btn layui-btn-sm");
+				$(obj).attr("value","1");
+			}else{
+				$(obj).text("停业");
+				$(obj).attr("class","layui-btn layui-btn-warm layui-btn-sm");
+				$(obj).attr("value","0");
+			}
+			
+		}
+		
+	});
+} 
+
 </script>
 </body>
 </html>
