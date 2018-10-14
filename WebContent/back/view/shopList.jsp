@@ -46,7 +46,7 @@
 		</div> -->
 	</div>
 	<!--表格-->
-	<div class="table-wrapper pl27 " style="min-width: 1300px;">
+	<div class="table-wrapper pl27 " style="min-width: 1200px;">
 		<table class="table text-center">
 			<thead>
 				<tr>
@@ -149,7 +149,7 @@
 							</h4>
 						</div>
 						<!-- 表单开始 -->
-						<form class="form-horizontal" action="Bsc.do" method="post">
+						<form class="form-horizontal" action="${pageContext.request.contextPath}/Bsc.do" method="post">
 							<div class="modal-body">
 
 								<div class="form-group">
@@ -230,7 +230,7 @@
 	}
 	
 	</script>
-		<script "text/javascript">
+		<script>
 	
 	$(function() {
 	    $(".update").click(
