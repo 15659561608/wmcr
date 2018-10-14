@@ -6,4 +6,6 @@ import com.etc.util.PageData;
 public interface BossDaocgl {
 
 	PageData<Boss> queryBoss(int page,int pageSize,String keywords);
+	
+	boolean updateBoss(int id,String state);
 }
