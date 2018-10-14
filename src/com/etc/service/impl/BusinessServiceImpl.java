@@ -35,4 +35,10 @@ public class BusinessServiceImpl implements BusinessService {
 		return bd.getBusinesses(bossId);
 	}
 
+	@Override
+	public boolean updateBusiForString(String op, int value, int id) {
+		// TODO Auto-generated method stub
+		return bd.updateBusiForString(op, value, id);
+	}
+
 }

@@ -36,4 +36,10 @@ public interface BusinessDao {
 	 * @return
 	 */
 	public boolean updateBusinesses(Businesses b);
+	/**
+	 * 修改状态
+	 * @param op
+	 * @return
+	 */
+	public boolean updateBusiForString(String op,int value,int id);
 }

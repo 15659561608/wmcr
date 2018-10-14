@@ -39,4 +39,20 @@ public class BusinessDaoImpl implements BusinessDao {
 		return (List<BusinessesCity>)BaseDao.select(sql, BusinessesCity.class,bossId);
 	}
 
+	@Override
+	public boolean updateBusiForString(String op,int value,int id) {
+		// TODO Auto-generated method stub
+		String sql="";
+		if(op.equals("isReserve")) {
+			sql="update businesses set isReserve=? where id=?";
+		}else if(op.equals("isBusiness")) {
+			sql="update businesses set isBusiness=? where id=?";
+		}else if(op.equals("onlinePay")) {
+			sql="update businesses set onlinePay=? where id=?";
+		}else {
+			return false;
+		}
+		return BaseDao.execute(sql, value,id)>0;
+	}
+
 }
