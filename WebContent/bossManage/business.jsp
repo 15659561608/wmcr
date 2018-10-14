@@ -64,6 +64,7 @@
            				    <th>差评</th>
            				   <th>状态</th>
            				   <th>注册时间</th>
+           				   <th>类别</th>
            				   <th>操作</th>
            				   
 						</tr>
@@ -386,6 +387,7 @@ function member_del(obj,id){
     		
     	}},
         {"data": "regDate"},
+        {"data": "title"},
         {    //创建操作那个列
         	"data":"extn",
         	"createdCell":function(nTd)
@@ -741,8 +743,8 @@ function showUpdate(obj){
              var iframeWin = window[layero.find('iframe')[0]['name']];
 
              var _ename = body.find('#ename');
-             console.log(_ename+","+arr[1]);
-             $(_ename).html(arr[1]);
+            // console.log(_ename+","+arr[1]);
+             //$(_ename).html(arr[1]);
             
          }
  	});

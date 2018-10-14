@@ -31,7 +31,7 @@ public class BusinessServiceImpl implements BusinessService {
 	@Override
 	public boolean updateBusinesses(Businesses b) {
 		// TODO Auto-generated method stub
-		return false;
+		return bd.updateBusinesses(b);
 	}
 
 	@Override
