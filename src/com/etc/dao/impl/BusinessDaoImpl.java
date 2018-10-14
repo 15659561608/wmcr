@@ -12,7 +12,7 @@ public class BusinessDaoImpl implements BusinessDao {
 	@Override
 	public List<Businesses> getBusinesses() {
 		// TODO Auto-generated method stub
-		String sql="select * from businesses where state<>2";
+		String sql="select * from businesses";
 		return (List<Businesses>)BaseDao.select(sql, Businesses.class);
 	}
 
@@ -35,7 +35,7 @@ public class BusinessDaoImpl implements BusinessDao {
 	@Override
 	public List<BusinessesCity> getBusinesses(int bossId) {
 		// TODO Auto-generated method stub
-		String sql="select * from businesses,city where businesses.cityId=city.id and bossId=? and state<>2";
+		String sql="select * from businesses,city where businesses.cityId=city.id and bossId=?";
 		return (List<BusinessesCity>)BaseDao.select(sql, BusinessesCity.class,bossId);
 	}
 
