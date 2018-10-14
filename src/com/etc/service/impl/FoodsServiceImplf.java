@@ -1,5 +1,7 @@
 package com.etc.service.impl;
 
+import java.util.List;
+
 import com.etc.dao.foodsDaof;
 import com.etc.dao.impl.FoodsDaoImplf;
 import com.etc.entity.Food;
@@ -36,6 +38,12 @@ public class FoodsServiceImplf implements FoodServicesf{
 	public boolean update(Food food) {
 		// TODO Auto-generated method stub
 		return fdf.updateFoods(food);
+	}
+
+	@Override
+	public List<Food> allFoods() {
+		// TODO Auto-generated method stub
+		return fdf.getFoods();
 	}
 
 

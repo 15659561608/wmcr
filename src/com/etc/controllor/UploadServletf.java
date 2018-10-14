@@ -3,6 +3,7 @@ package com.etc.controllor;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.channels.FileChannel;
 import java.util.Iterator;
 import java.util.List;
 
@@ -19,7 +20,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import com.etc.entity.Food;
-
+import com.etc.service.impl.Copyfile;
 import com.etc.service.impl.FoodsServiceImplf;
 import com.etc.services.FoodServicesf;
 /**
@@ -28,6 +29,14 @@ import com.etc.services.FoodServicesf;
 @WebServlet("/usf.do")
 public class UploadServletf extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	
+	
+	 // 上传配置
+    private static final int MEMORY_THRESHOLD   = 1024 * 1024 * 3;  // 3MB
+    private static final int MAX_FILE_SIZE      = 1024 * 1024 * 40; // 40MB
+    private static final int MAX_REQUEST_SIZE   = 1024 * 1024 * 50; // 50MB
+    
 	private FoodServicesf fsf = new FoodsServiceImplf();
 
 	/**
@@ -60,6 +69,7 @@ public class UploadServletf extends HttpServlet {
 			int busId = 0;
 			int state = 0;
 			String path="";
+			String s="";
 			
 			
 			DiskFileItemFactory factory = new DiskFileItemFactory();
@@ -71,6 +81,15 @@ public class UploadServletf extends HttpServlet {
 
 			// Create a new file upload handler
 			ServletFileUpload upload = new ServletFileUpload(factory);
+			
+			 // 设置最大文件上传值
+	        upload.setFileSizeMax(MAX_FILE_SIZE);
+	         
+	        // 设置最大请求值 (包含文件和表单数据)
+	        upload.setSizeMax(MAX_REQUEST_SIZE);
+	     // 中文处理
+	        upload.setHeaderEncoding("UTF-8"); 
+
 
 			// Parse the request
 			try {
@@ -111,18 +130,25 @@ public class UploadServletf extends HttpServlet {
 				    	    boolean isInMemory = item.isInMemory();
 				    	    long sizeInBytes = item.getSize();
 				    	    
-				    	    System.out.println(fieldName+","+fileName);
-				    	    
-				    	     path=request.getRealPath("/imgs/"+fileName);
-				    	    System.out.println("path"+path);
-				    	    File uploadedFile = new File(path);
+				    	    System.out.println(fieldName+","+fileName);	
+				    	    //项目地址
+				    	     path=request.getSession().getServletContext().getRealPath("/bossManage/imgs/"+fileName);
+				    	 
+				    	  /* String p=path.substring(0,path.lastIndexOf("\\")+1)+fileName;
+				    	   System.out.println("项目的路径:"+p);
+				    	
+				    	    s="\\bossManage\\imgs\\"+path.substring(path.lastIndexOf("\\")+1);
+				    	    System.out.println("图片路径"+s);*/
+				    	    String po="H:\\space\\wmcr\\WebContent\\bossManage\\imgs\\"+fileName;
+				    	     Copyfile.copyFile(path,po);
+			    	    File uploadedFile = new File(path);
 				    	    item.write(uploadedFile);
-				    	    System.out.println("上传成功~");
+				    	    
 				    	   
 				    }
 				}
 				// System.out.println("结果"+foodName+price+discount+num+salNum+des+logo+busId+state+path);
-				 Food food=new Food(foodName, price, discount, num, salNum, des, path, busId, state);
+				 Food food=new Food(foodName, price, discount, num, salNum, des, s, busId, state);
 				boolean flag=fsf.addFoods(food);
 				System.out.println("flag"+flag);
 				

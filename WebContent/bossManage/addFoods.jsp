@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8" />
 <title></title>
-  <link href="css/bootstrap.min.css" rel="stylesheet">
+ 
 
   <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.1/css/bootstrap-theme.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.1/css/bootstrap.css" rel="stylesheet">
@@ -68,14 +68,14 @@
 						<input type="file" class="form-control" id="logo" name="logo" />
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group" >
 					 <label for="state" class="col-sm-2 control-label">状态</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" id="state" name="state"/>
-					</div>
+					<select name="state" style="height:30px;width:80px;margin-left:16px;">
+						 <option value="0">有货</option>
+						<option value="1">售罄</option>
+					</select>
 				</div>
-			
-				
+						
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
 						 <button type="submit" class="btn btn-default">确认</button>
@@ -85,6 +85,10 @@
 		</div>
 	</div>
 </div>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	
+
+	
 
 </body>
 

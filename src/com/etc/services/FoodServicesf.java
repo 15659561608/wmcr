@@ -1,7 +1,8 @@
 package com.etc.services;
 
-import com.etc.entity.Food;
+import java.util.List;
 
+import com.etc.entity.Food;
 import com.etc.util.PageData;
 
 /**
@@ -13,5 +14,6 @@ public interface FoodServicesf {
 	PageData<Food> getFoods(int page,int pageSize,String keyWords); 
 	boolean delFoods(int id);
 	boolean update(Food food);
+	List<Food> allFoods();
 
 }

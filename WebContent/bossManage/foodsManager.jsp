@@ -118,8 +118,8 @@
 
 							<%-- <td><img src="/img/<%=virtualPath%>"/></td>  --%>
 							<%-- <td><img src="${food.logo}" alt="${food.logo}" /></td> --%>
-							<td>${food.logo}</td>
-							<td>${food.state}</td>
+							<td><Img src="${food.logo}" width="100px" height="100px"/></td>
+							<td>${food.state==0?"售罄":"有货"}</td>
 							<td><button class="btn btn-link update" data-toggle="modal"
 									data-target="#myModal">修改</button>
 								<button class="btn btn-link del">删除</button></td>
@@ -192,7 +192,7 @@
 						<div class="form-group">
 							<label for="logo" class="col-sm-2 control-label">图片</label>
 							<div class="col-sm-10">
-								<input type="file" class="form-control" id="logo" name="logo" style="height:30px;width:450px"/>
+								<input type="file" class="form-control" id="logo" name="logo" value="" style="height:30px;width:450px"/>
 							</div>
 						</div>
 						<div class="form-group">
@@ -200,7 +200,11 @@
 							<div class="col-sm-10">
 							<input type="hidden" class="form-control" id="busid"
 									name="busid" value="2" />
-								<input type="text" class="form-control" id="state" name="state" style="height:30px;width:450px"s/>
+								<!-- <input type="text" class="form-control" id="state" name="state" /> -->
+								<select name="state" style="height:30px;width:450px">
+						<option value="0">有货</option>
+						<option value="1">售罄</option>
+					</select>
 							</div>
 						</div>
 
@@ -246,7 +250,8 @@ $('.table-sort').dataTable({
 	<script type="text/javascript">
 		$(function() {
 			$(".del").click(function del() {
-				var flag = confirm("是否删除该用户");
+				var foodName = $(this).parents("tr").find("td").eq(1).html();
+				var flag = confirm("是否删除:"+foodName);
 				if (flag == true) {
 					//$(this).parents("tr"),当前行
 					//$(this).parents("tr").find("td") 当前行的每一列值
@@ -276,7 +281,7 @@ $('.table-sort').dataTable({
 						$("#num").val(num);
 						$("#salNum").val(salNum);
 						$("#des").val(des);
-						$("#logo").val(logo);
+						$("#logo").val(${food.logo});
 						$("#state").val(state);
 
 					
@@ -310,6 +315,16 @@ layui.use(['laypage', 'layer'], function(){
     	  });
 
 });
+</script>
+<script type="text/javascript">
+
+	$(function(){
+		var salNum = $(this).parents("tr").find("td").eq(5).html();
+		if(salNum==0){
+			$("#state").val(0);
+		}
+	})
+
 </script>
 
 

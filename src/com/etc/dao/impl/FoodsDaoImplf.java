@@ -1,5 +1,7 @@
 package com.etc.dao.impl;
 
+import java.util.List;
+
 import com.etc.dao.foodsDaof;
 import com.etc.entity.Food;
 import com.etc.util.BaseDao;
@@ -39,6 +41,14 @@ public class FoodsDaoImplf implements foodsDaof{
 		// TODO Auto-generated method stub
 		String sql="update food set foodName=?, price=?, discount=?, num=?, salNum=?, des=?, logo=?, state=? where id=?";
 		return BaseDao.execute(sql, food.getFoodName(),food.getPrice(),food.getDiscount(),food.getNum(),food.getSalNum(),food.getDes(),food.getLogo(),food.getState(),food.getId())>0;
+	}
+
+	@Override
+	public List<Food> getFoods() {
+		// TODO Auto-generated method stub
+		String sql="select state from food group by state";
+		List<Food> s=(List<Food>) BaseDao.select(sql, Food.class);
+		return s;
 	}
 
 }

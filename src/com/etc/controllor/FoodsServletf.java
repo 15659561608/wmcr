@@ -1,26 +1,21 @@
 package com.etc.controllor;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.Iterator;
+import java.io.PrintWriter;
+import java.sql.Array;
 import java.util.List;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
-
 import com.etc.entity.Food;
-
 import com.etc.service.impl.FoodsServiceImplf;
 import com.etc.services.FoodServicesf;
 import com.etc.util.PageData;
+import com.google.gson.Gson;
 
 /**
  * Servlet implementation class FoodsServletf
@@ -114,7 +109,8 @@ public class FoodsServletf extends HttpServlet {
 			String num = request.getParameter("num");
 			String salNum = request.getParameter("salNum");
 			String des = request.getParameter("des");
-			String logo = request.getParameter("logo");	
+			String logo = request.getParameter("logo");
+			
 			String state = request.getParameter("state");
 			Food food=new Food(Integer.valueOf(id),foodName,Double.valueOf(price),Double.valueOf(discount),Integer.valueOf(num),Integer.valueOf(salNum),des,logo,Integer.valueOf(state)); 
 			boolean flag=fsf.update(food);
