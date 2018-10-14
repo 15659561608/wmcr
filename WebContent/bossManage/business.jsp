@@ -353,14 +353,26 @@ function member_del(obj,id){
       {"data": "disFee"},
         {"data": "onlinePay"},
         
-        {"data": "isReserve"},
-        {"data": "isBusiness"},
+        {"data": "isReserve","createdCell":function(nTd,sData, oData, iRow, iCol)
+        	{
+    		//表格最后一个列增加很多超链接 启用禁用。 编辑   删除 修改密码
+    		$(nTd).html("<button class='layui-btn layui-btn-primary layui-btn-sm'>"+(oData.isReserve==0)?'支持':'不支持'+"</button>");
+    	}},
+        {"data": "isBusiness","createdCell":function(nTd,sData, oData, iRow, iCol)
+        	{
+    		//表格最后一个列增加很多超链接 启用禁用。 编辑   删除 修改密码
+    		$(nTd).html("<img style='width:50px;height:50px;' src='"+oData.logo+"' />");
+    	}},
        
         {"data": "cityName"},
         {"data": "prise"},
        
         {"data": "nag"},
-        {"data": "state"},
+        {"data": "state","createdCell":function(nTd,sData, oData, iRow, iCol)
+        	{
+    		//表格最后一个列增加很多超链接 启用禁用。 编辑   删除 修改密码
+    		$(nTd).html("<img style='width:50px;height:50px;' src='"+oData.logo+"' />");
+    	}},
         {"data": "regDate"},
         {    //创建操作那个列
         	"data":"extn",
