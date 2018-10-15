@@ -2,6 +2,8 @@ package com.etc.controllor;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.etc.entity.Boss;
+import com.etc.entity.Sales;
 import com.etc.entity.SalesBusi;
 import com.etc.entity.SalesData;
 import com.etc.service.impl.SalesServiceImpl;
@@ -86,8 +89,21 @@ public class SalesServlet extends HttpServlet {
 		if("update".equals(op)) {
 			int salId=Integer.valueOf(request.getParameter("salId"));
 			String title=request.getParameter("title");
-			double discount=double
+			double discount=Double.valueOf(request.getParameter("discount"));
 			String content=request.getParameter("content");
+			int state=0;
+			SimpleDateFormat simple=new SimpleDateFormat("yyy-MM-dd HH:mm:ss");
+			String pubDate=simple.format(new Date());
+			Sales s=new Sales(salId, title, discount, content, state, pubDate);
+			boolean result=ss.updateSales(s, salId);
+			response.setCharacterEncoding("utf-8");
+			response.setContentType("text/html");
+			PrintWriter out=response.getWriter();
+			if(result) {
+				out.print("<script>alert('修改成功!');location.href='bossManage/updateSales.jsp';</script>");
+			}else {
+				out.print("<script>alert('修改失败!');location.href='bossManage/updateSales.jsp';</script>");
+			}
 		}
 	}
 	

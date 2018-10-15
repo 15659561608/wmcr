@@ -173,7 +173,6 @@ public class BaiduMap {
 		result = result.substring(result.indexOf("{"), result.lastIndexOf("}") + 1);
 		Gson gson = new Gson();
 		JsonRootBean rr = gson.fromJson(result, JsonRootBean.class);
-		System.out.println(rr.getStatus());
 		if(rr.getStatus()!=0) {
 			return null;
 		}

@@ -15,7 +15,13 @@ public class BusinessDaoImpl implements BusinessDao {
 		String sql="select * from businesses";
 		return (List<Businesses>)BaseDao.select(sql, Businesses.class);
 	}
-
+	@Override
+	public List<BusinessesCity> getAllBusinesses() {
+		// TODO Auto-generated method stub
+		String sql="select b.id,b.busiName,b.phone,b.address,b.avgCost,b.licence,b.salNum,b.lat,b.lon,b.starPrice,b.disFee,b.onlinePay,b.isReserve,b.isBusiness,b.des,b.typeId,b.bossId,b.cityId,b.praise,b.nag,b.state,b.logo,b.regDate,c.cityName,t.title from businesses"
+				+ " b,city c,type t where b.cityId=c.id and b.typeId=t.id";
+		return (List<BusinessesCity>)BaseDao.select(sql, BusinessesCity.class);
+	}
 	@Override
 	public boolean addBusinesses(Businesses b) {
 		// TODO Auto-generated method stub

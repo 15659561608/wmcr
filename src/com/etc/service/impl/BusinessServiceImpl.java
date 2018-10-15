@@ -73,4 +73,10 @@ public class BusinessServiceImpl implements BusinessService {
 		return list;
 	}
 
+	@Override
+	public List<BusinessesCity> getAllBusinesses() {
+		// TODO Auto-generated method stub
+		return bd.getAllBusinesses();
+	}
+
 }

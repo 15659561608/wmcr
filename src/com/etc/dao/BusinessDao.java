@@ -23,7 +23,11 @@ public interface BusinessDao {
 	 * @return
 	 */
 	public List<BusinessesCity> getBusinesses(int bossId);
-	
+	/**
+	 * 获取门店列表
+	 * @return
+	 */
+	public List<BusinessesCity> getAllBusinesses();
 	/**
 	 * 获取门店信息
 	 * @return

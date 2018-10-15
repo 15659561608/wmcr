@@ -444,7 +444,7 @@
     <!-- 搜索附近餐厅弹窗 -->
     <dh-dialog class="disnone" height="500" type="street" header="请选择最靠近你的地址" show="addressShow">
         <ul class="select-street">
-            <li ng-repeat="item in shreets" ng-click="resultClick(item)">
+            <li ng-repeat="item in shreets" onclick="resultClick(this)">
                 <i class="icon address-yellow"></i>
                 <div class="shreets-item">
                     <h4 ng-bind="item.name"></h4>
@@ -618,7 +618,21 @@ function checkPwd(){
       }
       return true;
     }
+    
+    
+    //地点列表项点击事件
+    
+    function resultClick(item){
+    	  var objList=$(list).find("h5").text();
+    		alert(objList);
+    }
+    
+  
 </script>
+
+
+
+
 </body>
 </html>
     
