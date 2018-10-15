@@ -16,7 +16,7 @@
 	href="${pageContext.request.contextPath}/back/css/addClass.css">
 </head>
 <body>
-	<div class="col-md-7 column"  >
+	<div class="col-md-7 column">
 		<div>
 			<div class="modal-header">
 
@@ -25,15 +25,15 @@
 				</h4>
 			</div>
 			<!-- 表单开始 -->
-			
+
 			<form class="form-horizontal"
 				action="${pageContext.request.contextPath}/Ds.do" method="post">
-				<div class="modal-body" >
+				<div class="modal-body">
 
 					<div class="form-group">
 						<label for="" class="col-sm-2 control-label">配送员姓名</label>
 						<div class="col-sm-4">
-							<input type="hidden" name="op" value="update" /> <input
+							<input type="hidden" name="op" value="addDis" /> <input
 								type="hidden" name="id" id="id" /> <input type="text"
 								required="required" class="form-control" name="disName"
 								id="disName" />
@@ -58,17 +58,6 @@
 						</div>
 
 					</div>
-					<div class="form-group">
-						<label for="" class="col-sm-2 control-label">配送员籍贯</label>
-						<div class="col-sm-4">
-
-							<input type="text" required="required" class="form-control"
-								name="phone" id="phone" />
-						</div>
-
-					</div>
-
-
 
 				</div>
 
