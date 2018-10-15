@@ -9,4 +9,7 @@ public interface UsersDao {
    public  List<Users> usersLogin(String account,String pwd);
    //注册用户
    boolean usersRegister(Users u);
+   //根据用户的密码来查询用户（用与AJAX验证）
+   public  List<Users> usersLoginByPwd(String pwd);
+   
 }

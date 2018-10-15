@@ -344,7 +344,7 @@
     
     <dh-dialog class="disnone" type='login' height="500" header="登录" show="loginShow" >
     <!-- /wmcr/uls.do   ${pageContext.request.contextPath}/-->
-    <form class="login-form" action="${pageContext.request.contextPath}/uls.do?op=chaxun"  method="post" novalidate name="loginForm" ng-controller="loginCtrl">
+    <form class="login-form" action="${pageContext.request.contextPath}/uls.do?op=login"  method="post" novalidate name="loginForm" ng-controller="loginCtrl">
         <div class="form-group">
             <label for="">手机号码</label>
             <div>
@@ -417,9 +417,7 @@
         <div class="form-group mb10">
             <label for="">登录密码</label>
             <div><input type="password" id = "pwd1" name = "pwd1" ng-class="{error:user.passwordMessage}" ng-focus="user.passwordMessage=''"  maxlength="10" onpaste="return false" placeholder="输入登录密码 6-10个字符" ng-model="user.password" />
-                <span class="vaildate-error" ng-if="user.passwordMessage">
-                    <span ng-bind="user.passwordMessage"></span>
-                </span>
+                <div id = "pwd_prompt">密码由英文字母和数字组成的4-10位字符</div>
             </div>
         </div>
         <div class="form-group mb10">
@@ -550,7 +548,7 @@
     
     <script>angular.bootstrap(document, ["app"]);</script>
     
-   
+   <!-- 登陆AJAX异步传输 -->
    <script language="javascript">
    $(document).ready(function(){
 	   $("#account").blur(function(event) {
@@ -569,7 +567,7 @@
 	       type:"post",
 	       url:"/wmcr/uls.do?op=chaxun",
 	       dataTypes:"text",
-	       data:"account="+$("#account").val()+"&pwd="+$("#pwd").val(),
+	       data:"pwd="+$("#pwd").val(),
 	       success:function(msg){
 	         $("#pwdStatus").html(msg);
 	       }
@@ -577,7 +575,7 @@
 	   });
 	 }); 
   </script>
-  
+<!-- 验证码倒计时 ，AJAX请求验证码-->  
 <script type="text/javascript"> 
 var countdown=60; 
 function settime(obj) { 
@@ -606,6 +604,20 @@ $(function () {
 		/* location.href="Rp.do?op=yzm&account="+document.getElementById("phone").value;  */
 	});
 })
+</script>
+<script type="text/javascript">
+/*密码验证*/    
+function checkPwd(){
+  var pwd=$("pwd1");
+  var pwdId=divId("pwd_prompt");
+   pwdId.innerHTML="";    
+  var reg=/^[a-zA-Z0-9]{4,10}$/;    
+    if(reg.test(pwd)==false){
+       pwdId.innerHTML="密码不能含有非法字符，长度在4-10之间";
+    return false;
+      }
+      return true;
+    }
 </script>
 </body>
 </html>

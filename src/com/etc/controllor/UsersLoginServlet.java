@@ -55,6 +55,7 @@ public class UsersLoginServlet extends HttpServlet {
 
 			if (account.isEmpty()) {
 				msg = "账号不能为空";
+				out.print(msg);
 			} else {
 				Users u = rps.queryUsers(account);
 				if (!account.equals(null) && u == null) {
@@ -65,21 +66,35 @@ public class UsersLoginServlet extends HttpServlet {
 				}
 
 				out.print(msg);
-				out.close();
 			}
 		} else if (op.equals("chaxun")) {
 			String msg = "";
+			String pwd = request.getParameter("pwd");
+			// MD5算法加密
+			String pwd1 = MD5Util.getEncodeByMd5(pwd);
+			if (pwd.isEmpty()) {
+				msg = "密码不为空";
+				// out.print(msg);
+			} else {
+
+				List<Users> u1 = us.getUsersLoginByPwd(pwd1);
+				System.out.println(pwd1);
+				if (u1 == null || u1.size() == 0) {
+					msg = "密码不正确";
+				}
+				if (u1.size() > 0 && !pwd1.equals(null)) {
+					msg = "密码正确";
+				}
+			}
+			out.print(msg);
+			out.close();
+		} else if (op.equals("login")) {
 			String account = request.getParameter("account");
 			String pwd = request.getParameter("pwd");
 			// MD5算法加密
 			String pwd1 = MD5Util.getEncodeByMd5(pwd);
 			List<Users> users = us.getUsersLogin(account, pwd1);
-
-			if (users.size() == 0) {
-				msg = "密码不正确,请重新输入";
-				out.print("<script>alert('登录失败');location.href='wmcr/index.jsp'</script>");
-			} else if (users.size() > 0) {
-				msg = "密码正确";
+			if (users.size() > 0) {
 				request.getSession().setAttribute("users", users.get(0));
 				// 将用户登录的信息存储在cookie
 				// Cookie cookie =new Cookie("account",users.);
@@ -87,10 +102,10 @@ public class UsersLoginServlet extends HttpServlet {
 				// //使用response.addCookie
 				// response.addCookie(cookie);
 				// response.addCookie(cookie1);
-				out.print("<script>alert('登录成功');location.href='mainPage.jsp'</script>");
+				out.print("<script>alert('登录成功');location.href='wmcr/mainPage.jsp'</script>");
+			} else {
+				out.print("<script>alert('登录失败');location.href='wmcr/index.jsp'</script>");
 			}
-			out.print(msg);
-			out.close();
 		}
 	}
 
