@@ -46,37 +46,37 @@
 		</div> -->
 	</div>
 	<!--表格-->
-	<div class="table-wrapper pl27 " style="min-width: 1300px;">
+	<div class="table-wrapper pl27 " style="min-width: 1200px;">
 		<table class="table text-center">
 			<thead>
 				<tr>
 					<th style="width: 5%;" class="sort cur">商户ID <img
-						class="bottom" src="../img/jt-bottom.png" alt=""> <img
-						class="top" style="display: none" src="../img/jt-right-co.png"
+						class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt=""> <img
+						class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png"
 						alt="">
 					</th>
 					<th class="sort cur" style="width: 10%">商户账号 <img
-						class="bottom" src="../img/jt-bottom.png" alt=""> <img
-						class="top" style="display: none" src="../img/jt-right-co.png"
+						class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt=""> <img
+						class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png"
 						alt="">
 					</th>
 					<th class="sort cur" style="width: 20%;">商户密码 <img
-						class="bottom" src="../img/jt-bottom.png" alt=""> <img
-						class="top" style="display: none" src="../img/jt-right-co.png"
+						class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt=""> <img
+						class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png"
 						alt="">
 					</th>
 					<th class="sort cur" style="width: 15%;">注册时间 <img
-						class="bottom" src="../img/jt-bottom.png" alt=""> <img
-						class="top" style="display: none" src="../img/jt-right-co.png"
+						class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt=""> <img
+						class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png"
 						alt="">
 					</th>
 					<th class="no-nowrap sort cur" style="width: 10%;">商户状态 <img
-						class="bottom" src="../img/jt-bottom.png" alt=""> <img
-						class="top" style="display: none" src="../img/jt-right-co.png"
+						class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt=""> <img
+						class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png"
 						alt="">
 					</th>
 					<th class="no-nowrap sort cur" style="width: 10%;">操作 <img
-						class="bottom" src="../img/jt-bottom.png" alt=""> <img
+						class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt=""> <img
 						class="top" style="display: none"
 						src="${pageContext.request.contextPath}/back/img/jt-right-co.png"
 						alt="">
@@ -104,11 +104,11 @@
 		</table>
 	</div>
 
-
+<!-- 分页开始 -->
 	<div class="row clearfix text-center">
 		<div class="col-md-12 column">
 			<ul class="pagination">
-				<li><a href="javascript:prePage()">&laquo;</a></li>
+				<li><a href="javascript:prePage()">上一页</a></li>
 
 
 				<c:forEach begin="1" end="${b.totalPage}" var="index">
@@ -124,11 +124,15 @@
 				</c:forEach>
 
 
-				<li><a href="javascript:nextPage()">&raquo;</a></li>
+				<li><a href="javascript:nextPage()">下一页</a></li>
 			</ul>
 		</div>
 
 	</div>
+	
+	<!-- 分页结束 -->
+	
+			
 	<!-- 遮罩开始 -->
 	<div class="row clearfix">
 		<div class="col-md-12 column">
@@ -145,14 +149,16 @@
 							</h4>
 						</div>
 						<!-- 表单开始 -->
-						<form class="form-horizontal" action="Bsc.do" method="post">
+						<form class="form-horizontal" action="${pageContext.request.contextPath}/Bsc.do" method="post">
 							<div class="modal-body">
 
 								<div class="form-group">
 									<label for="" class="col-sm-2 control-label">商户账号</label>
 									<div class="col-sm-4">
-										<input type="hidden" name="op" value="update" /> <input
-											type="hidden" name="id" id="id" /><input type="text"
+										<input type="hidden" name="op" value="update" /> 
+										<input
+											type="hidden" name="id" id="id" />
+											<input type="text"
 											required="required" class="form-control" name="account"
 											id="account" readonly="false" />
 									</div>
@@ -160,11 +166,11 @@
 
 								<div class="form-group">
 									<label for="" class="col-sm-2 control-label">商户状态</label>
-									<div class="col-sm-4">
-										<select class="form-control" name="state" id="state">
-											<option value="0">未审核</option>
-											<option value="1">正常</option>
-											<option value="2">销毁</option>
+									<div class="col-sm-3">
+										<select class="form-control" name="bossstate" id="bossstate">
+											<option value="0">未审核 </option>
+											<option value="1">正常 </option>
+											<option value="2">销毁 </option>
 										</select>
 									</div>
 								</div>
@@ -190,12 +196,15 @@
 
 		</div>
 	</div>
+	
+
 	<!-- 遮罩结束 -->
-</body>
-<script src="../plugin/jquery/jquery.js"></script>
-<script src="../js/frame-base.js"></script>
+	
+
+<%-- <script src="${pageContext.request.contextPath}/back/plugin/jquery/jquery.js"></script>
+<script src="${pageContext.request.contextPath}/back/js/frame-base.js"></script> --%>
 <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
-<script src="../bootstrap/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/back/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	//上一页
 	function prePage(){
@@ -219,6 +228,10 @@
 		location.href="${pageContext.request.contextPath}/Bsc.do?op=queryBoss&page="+page+"&keywords="+document.getElementById("keywords").value;
 		
 	}
+	
+	</script>
+		<script>
+	
 	$(function() {
 	    $(".update").click(
 			function() {
@@ -232,8 +245,9 @@
 						.text();
                 $("#id").val(id);
 				$("#account").val(account);
-				$("#state").val(state == "未审核" ? 0 :(state=="正常"? 1 : 2 ));
-			})
+				$("#bossstate").val(state == "未审核" ? 0 :(state=="正常"? 1 : 2 ));
+			});
 	});
 	</script>
+	</body>
 </html>

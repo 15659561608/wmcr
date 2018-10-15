@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -63,6 +64,7 @@
            				    <th>差评</th>
            				   <th>状态</th>
            				   <th>注册时间</th>
+           				   <th>类别</th>
            				   <th>操作</th>
            				   
 						</tr>
@@ -212,10 +214,11 @@ function member_del(obj,id){
 	  
 	  
 	 //修改员工信息的超链接单击事件
-	 $(document).on("click",'.empedit',function()
+	/*  $(document).on("click",'.empedit',function()
 	 {
 		 var _this = $(this); //当前对象 编辑的超链接
 	      data =_this.parent().siblings(); //_this.parent() 得到td   siblings(); 当前行的其他td
+	      console.log(data);
 	      var arr = [];
 	     for(var i = 1; i< data.length; i++){ //1 从1开始 从姓名开始
 	        arr.push($(data[i]).text());//每一个td中的内容() 放到一个数组里
@@ -230,21 +233,21 @@ function member_del(obj,id){
 	 		fix: false, //不固定
 	 		maxmin: true,
 	 		shade:0.4,
-	 		title: '编辑员工信息', //显示的标题
-	 		content: 'emp-add.html', //很多种写法 其中之一直接写目标窗口(要弹出来窗口)
+	 		title: '编辑门店信息', //显示的标题
+	 		content: 'updateBusi.jsp', //很多种写法 其中之一直接写目标窗口(要弹出来窗口)
 	 		success: function(layero, index){ //success可以不写
 	             var body = layer.getChildFrame('body',index);//建立父子联系
 	             var iframeWin = window[layero.find('iframe')[0]['name']];
 	             
-	             var inputList = body.find('input'); //找所有的input
+	             var inputList =$("input[type='text']") //body.find('input'); //找所有的input
 	             for(var j = 0; j< arr.length; j++){
 	                 $(inputList[j]).val(arr[j]); //arr[j] 数组中的值 赋值给  $(inputList[j])
 	             }
 	         }
-	 	});
+	 	}); */
 		 
 		 
-	 });
+	 //});
 	  
 	  
   });
@@ -333,7 +336,7 @@ function member_del(obj,id){
         {   //第一个列
         	"data": "extn",
             "createdCell": function (nTd, sData, oData, iRow, iCol) {
-                $(nTd).html("<input type='checkbox' name='checkList' value='" + sData + "'>");
+                $(nTd).html("<input type='checkbox' value='"+oData.id+"' name='checkList' value='" + sData + "'>");
             }
         }, //这里是返回的json对象中的 属性值   {data : }
         {"data": "logo",
@@ -349,25 +352,48 @@ function member_del(obj,id){
         {"data": "avgCost"},
         {"data": "licence"},
         {"data": "salNum"},
-        {"data": "startPrice"},
+        {"data": "starPrice"},
       {"data": "disFee"},
-        {"data": "onlinePay"},
+        {"data": "onlinePay","createdCell":function(nTd,sData, oData, iRow, iCol)
+        	{
+    		//表格最后一个列增加很多超链接 启用禁用。 编辑   删除 修改密码
+    		$(nTd).html(oData.isReserve==0?"<button value='"+oData.onlinePay+"' attrId='"+oData.id+"' onclick='updateOP(this)' class='layui-btn layui-btn-warm layui-btn-sm'>不支持</button>":"<button value='"+oData.onlinePay+"' attrId='"+oData.id+"' onclick='updateOP(this)' class='layui-btn layui-btn-sm'>支持</button>");
+    	}},
         
-        {"data": "isReserve"},
-        {"data": "isBusiness"},
+        {"data": "isReserve","createdCell":function(nTd,sData, oData, iRow, iCol)
+        	{
+    		//表格最后一个列增加很多超链接 启用禁用。 编辑   删除 修改密码
+    		$(nTd).html(oData.isReserve==0?"<button value='"+oData.isReserve+"' attrId='"+oData.id+"' onclick='update(this)' class='layui-btn layui-btn-warm layui-btn-sm'>不支持</button>":"<button value='"+oData.isReserve+"' attrId='"+oData.id+"' onclick='update(this)' class='layui-btn layui-btn-sm'>支持</button>");
+    	}},
+        {"data": "isBusiness","createdCell":function(nTd,sData, oData, iRow, iCol)
+        	{
+    		//表格最后一个列增加很多超链接 启用禁用。 编辑   删除 修改密码
+    		$(nTd).html(oData.isBusiness==0?"<button class='layui-btn layui-btn-warm layui-btn-sm' value='"+oData.isBusiness+"' attrId='"+oData.id+"'  onclick='updateIB(this)'>停业</button>":"<button class='layui-btn layui-btn-sm' value='"+oData.isBusiness+"' attrId='"+oData.id+"'  onclick='updateIB(this)'>营业中</button>");
+    	}},
        
         {"data": "cityName"},
-        {"data": "prise"},
+        {"data": "praise"},
        
         {"data": "nag"},
-        {"data": "state"},
+        {"data": "state","createdCell":function(nTd,sData, oData, iRow, iCol)
+        	{
+        	if(oData.state==0){
+        		$(nTd).html("<button class='layui-btn layui-btn-warm layui-btn-sm'>未审核</button>");
+        	}else if(oData.state==1){
+        		$(nTd).html("<button class='layui-btn layui-btn-sm'>审核通过</button>");
+        	}else{
+        		$(nTd).html("<button class='layui-btn layui-btn-danger layui-btn-sm'>审核不通过</button>");
+        	}
+    		
+    	}},
         {"data": "regDate"},
+        {"data": "title"},
         {    //创建操作那个列
         	"data":"extn",
         	"createdCell":function(nTd)
         	{
         		//表格最后一个列增加很多超链接 启用禁用。 编辑   删除 修改密码
-        		$(nTd).html('<a style="text-decoration:none" onClick="member_stop(this,\'10001\')" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a> <a title="编辑" href="javascript:;" class="empedit ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="changepwd ml-5"  href="javascript:;" title="修改密码"><i class="Hui-iconfont">&#xe63f;</i></a> <a title="删除" href="javascript:;" onclick="member_del(this,\'1\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>');
+        		$(nTd).html(' <a title="编辑" onclick="showUpdate(this)" href="javascript:;" class="empedit ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> ');
         		//$(nTd).html('<a onClick="member_stop(this,\'10001\')">xx<a>');
         		//$(nTd).html('<a style="text-decoration:none" onClick="member_stop(this,\'10001\')" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a> <a title="编辑" href="javascript:;" onclick="member_edit(\'编辑\',\'member-add.html\',\'4\',\'\',\'510\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onClick="change_password(\'修改密码\',\'change-password.html\',\'10001\',\'600\',\'270\')" href="javascript:;" title="修改密码"><i class="Hui-iconfont">&#xe63f;</i></a> <a title="删除" href="javascript:;" onclick="member_del(this,\'1\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>');
         		//$(nTd).html("<td class='td-manage'><a style='text-decoration:none' onClick='member_stop(this,'10001')' href='javascript:;' title='停用'><i class='Hui-iconfont'>&#xe631;</i></a> <a title='编辑' href='javascript:;' onclick='member_edit('编辑','member-add.html','4','','510')' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6df;</i></a> <a style='text-decoration:none' class='ml-5' onClick='change_password('修改密码','change-password.html','10001','600','270')' href='javascript:;' title='修改密码'><i class='Hui-iconfont'>&#xe63f;</i></a> <a title='删除' href='javascript:;' onclick='member_del(this,'1')' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6e2;</i></a></td>");
@@ -646,6 +672,83 @@ function member_del(obj,id){
     $(document).ready(function(){
         dataTablesInit(employee);
     });
+    
+    
+   
+</script>
+<script>
+function update(obj){
+	$.get("../Business","op=ajaxUpdateIR&id="+$(obj).attr("attrId")+"&value="+$(obj).val(),function(data,status){
+		if(data=="true"){
+			if($(obj).val()==0){
+				$(obj).text("支持");
+				$(obj).attr("class","layui-btn layui-btn-sm");
+				$(obj).attr("value","1");
+			}else{
+				$(obj).text("不支持");
+				$(obj).attr("class","layui-btn layui-btn-warm layui-btn-sm");
+				$(obj).attr("value","0");
+			}
+			
+		}
+		
+	});
+} 
+function updateOP(obj){
+	$.get("../Business","op=ajaxUpdateOP&id="+$(obj).attr("attrId")+"&value="+$(obj).val(),function(data,status){
+		if(data=="true"){
+			if($(obj).val()==0){
+				$(obj).text("支持");
+				$(obj).attr("class","layui-btn layui-btn-sm");
+				$(obj).attr("value","1");
+			}else{
+				$(obj).text("不支持");
+				$(obj).attr("class","layui-btn layui-btn-warm layui-btn-sm");
+				$(obj).attr("value","0");
+			}
+			
+		}
+		
+	});
+} 
+function updateIB(obj){
+	$.get("../Business","op=ajaxUpdateIB&id="+$(obj).attr("attrId")+"&value="+$(obj).val(),function(data,status){
+		if(data=="true"){
+			if($(obj).val()==0){
+				$(obj).text("营业中");
+				$(obj).attr("class","layui-btn layui-btn-sm");
+				$(obj).attr("value","1");
+			}else{
+				$(obj).text("停业");
+				$(obj).attr("class","layui-btn layui-btn-warm layui-btn-sm");
+				$(obj).attr("value","0");
+			}
+			
+		}
+		
+	});
+} 
+function showUpdate(obj){
+	var id=$(obj).parent().parent().find("input").val();
+	layer.open({
+ 		type: 2,
+ 		area: ['600px', '600px'],
+ 		fix: false, //不固定
+ 		maxmin: true,
+ 		shade:0.4,
+ 		title: '修改门店信息',
+ 		content: '../Business?op=updateInfo&id='+id,
+ 		success: function(layero, index){
+             var body = layer.getChildFrame('body',index);//建立父子联系
+             var iframeWin = window[layero.find('iframe')[0]['name']];
+
+             var _ename = body.find('#ename');
+            // console.log(_ename+","+arr[1]);
+             //$(_ename).html(arr[1]);
+            
+         }
+ 	});
+}
 </script>
 </body>
 </html>

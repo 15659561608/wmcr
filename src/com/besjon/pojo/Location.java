@@ -4,7 +4,7 @@
 package com.besjon.pojo;
 
 /**
- * Auto-generated: 2018-10-13 16:32:14
+ * Auto-generated: 2018-10-14 17:56:44
  *
  * @author bejson.com (i@bejson.com)
  * @website http://www.bejson.com/java2pojo/

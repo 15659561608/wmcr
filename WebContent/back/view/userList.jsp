@@ -35,15 +35,15 @@
     <!--表格-->
     <div class="table-wrapper pl27 " style="min-width:1000px;">
         <table class="table text-center">
-            <thead>
+           <thead>
                 <tr>
-                    <th class="yt" style="width: 10%;"><input type="checkbox" class="allCheck" id="all">用户Id
-                        <label for="all" style="width: 40px">&nbsp;&nbsp;&nbsp;</label></th>
-                    <th style="width: 16%;" class="sort cur">用户名
+                    <th class="yt" style="width: 7%;"><input type="checkbox" class="allCheck" id="all">用户Id
+                       </th>
+                    <th style="width: 5%;" class="sort cur">用户名
                         <img class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt="">
                         <img class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png" alt="">
                     </th>
-                    <th class="sort cur" style="width:5%">姓名
+                    <th class="sort cur" style="width:7%">姓名
                         <img class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt="">
                         <img class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png" alt="">
                     </th>
@@ -51,19 +51,19 @@
                         <img class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt="">
                         <img class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png" alt="">
                     </th>
-                    <th class="sort cur" style="width: 15%;">注册时间
+                    <th class="sort cur" style="width: 20%;">注册时间
                         <img class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt="">
                         <img class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png" alt="">
                     </th>
-                    <th class="sort cur" style="width: 15%;">收货地址
+                    <th class="sort cur" style="width: 20%;">收货地址
                         <img class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt="">
                         <img class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png" alt="">
                     </th>
-                    <th class="sort cur" style="width: 3%;">纬度
+                    <th class="sort cur" style="width: 5%;">纬度
                         <img class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt="">
                         <img class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png" alt="">
                     </th>
-                    <th class="sort cur" style="width: 3%;">经度
+                    <th class="sort cur" style="width: 5%;">经度
                         <img class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt="">
                         <img class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png" alt="">
                     </th>

@@ -344,11 +344,11 @@
     
     <dh-dialog class="disnone" type='login' height="500" header="登录" show="loginShow" >
     <!-- /wmcr/uls.do   ${pageContext.request.contextPath}/-->
-    <form class="login-form" action="${pageContext.request.contextPath}/uls.do"  method="post" novalidate name="loginForm" ng-controller="loginCtrl">
+    <form class="login-form" action="${pageContext.request.contextPath}/uls.do?op=chaxun"  method="post" novalidate name="loginForm" ng-controller="loginCtrl">
         <div class="form-group">
             <label for="">手机号码</label>
             <div>
-                <input  id  = "account"  name = "account" maxlength="11" type="text" class="form-text" placeholder="输入您的手机号码"/></label>
+                <input  id  = "account"  name = "account" maxlength="11" type="text" class="form-text" placeholder="输入您的手机号码"/><div id="accountStatus" style="color:#F00"></div></label>
                 <span class="vaildate-error" ng-if="user.usernameMessage">
                     <span ng-bind="user.usernameMessage"></span>
                 </span>
@@ -360,7 +360,7 @@
         <div class="form-group mb10">
             <label for="">登录密码</label>
             <div>
-                <input type="password" id = "pwd" name = "pwd" maxlength="10" type="password" class="form-text" onpaste="return false" placeholder="请输入登录密码"/></label>
+                <input type="password" id = "pwd" name = "pwd" maxlength="10" type="password" class="form-text" onpaste="return false" placeholder="请输入登录密码"/><div id="pwdStatus" style="color:#F00"></div></label>
                 <span class="vaildate-error" ng-if="user.passwordMessage">
                     <span ng-bind="user.passwordMessage"></span>
                 </span>
@@ -371,7 +371,7 @@
                    
                     <span class="fr fs12"><a class="yo" target="_black" href="pwd_forget.jsp">忘记密码</a></span>
         </div>
-         <button class="form-btn" id="loginPageBtn" onclick="check()">登录</button>
+         <button class="form-btn" id="loginPageBtn">登录</button>
         <div class="clearfix">
             <span class="fr fs12">
                 没有账号?
@@ -381,28 +381,23 @@
     </form>
 </dh-dialog>
 <dh-dialog class="disnone" type='register' height="500" header="注册" show="registerShow" >
-    <form ng-controller="registerCtrl" class="register-form" name="registerForm">
+      <form ng-controller="registerCtrl" class="register-form" action="/wmcr/urs.do?op=register" method="post" acname="registerForm">
         <div class="form-group mb10">
             <label for="">手机号码</label>
             <div>
-                <input type="text" maxlength="11" id="phone" name="phone" value="" class="form-text" placeholder="输入您常用的手机号码"/>
+                <input type="text"  id = "account1"  name = "account1" value="" ng-class="{error:user.usernameMessage}" maxlength="11" placeholder="请输入您的手机号码" ng-model="user.username"/>
                 <span class="vaildate-error" ng-if="user.usernameMessage">
                     <span ng-bind="user.usernameMessage"></span>
                 </span>
                 <span class="vaildate-error" ng-if="user.isRegistered">
                     该手机号码已经注册！<a href="javascript:;" ng-click="locationLogin()" class="link">立即登录</a>
-                </span>
             </div>
-            
         </div>
-
-
-
         <div class="form-group captcha-wrap">
             <div class="clearfix captcha-box">
                 <div class="fl form-group captcha-item">
                     <div class="fl w50p">
-                        <input type="text" ng-class="{error:user.captchaMessage}" ng-focus="user.captchaMessage=''" placeholder="请输入验证码" ng-model="user.captcha" />
+                        <input type="text" ng-class="{error:user.captchaMessage}" ng-focus="user.captchaMessage=''" placeholder="请输入验证码" />
                         <span class="vaildate-error" ng-if="user.captchaMessage">
                             <span ng-bind="user.captchaMessage"></span>
                         </span>
@@ -410,26 +405,25 @@
                     <button class="fs12 fr w40p btn btn-pink" ng-click="getCaptcha()" ng-disabled="captchaDisabled" ng-bind="captchaVal"></button>
                 </div>
                 <div class="fl form-group captcha-item">
-                     <div class="captcha-item">
-                        <div class="form-group captcha clearfix">
+                   <div class="form-group captcha clearfix">
                              <input type="text" id="captcha2" name="captcha2"  class="form-text" placeholder="短信验证码"/>
-                             <input type="button" id="getCaptcha"  value="获取短信验证码"/>
+                             <input type="button" id="getCaptcha11"  value="获取短信验证码" onclick="settime(this)"/>
                         </div>
                         <div class="form-error-message"></div>
-                    </div>
-                    </label>
-                 </div>   
+                </div>
+                	
+            </div>
         </div>
         <div class="form-group mb10">
             <label for="">登录密码</label>
-            <div><input type="password" ng-class="{error:user.passwordMessage}" ng-focus="user.passwordMessage=''"  maxlength="10" onpaste="return false" placeholder="输入登录密码 6-10个字符" ng-model="user.password" />
+            <div><input type="password" id = "pwd1" name = "pwd1" ng-class="{error:user.passwordMessage}" ng-focus="user.passwordMessage=''"  maxlength="10" onpaste="return false" placeholder="输入登录密码 6-10个字符" ng-model="user.password" />
                 <span class="vaildate-error" ng-if="user.passwordMessage">
                     <span ng-bind="user.passwordMessage"></span>
                 </span>
             </div>
         </div>
         <div class="form-group mb10">
-            <div><input type="password" ng-class="{error:user.password2Message}" ng-focus="user.password2Message=''" maxlength="10" onpaste="return false" placeholder="输入登录密码 6-10个字符" ng-model="user.password2"/>
+            <div><input type="password"  id = "repwd" name = "repwd" ng-class="{error:user.password2Message}" ng-focus="user.password2Message=''" maxlength="10" onpaste="return false" placeholder="输入登录密码 6-10个字符" ng-model="user.password2"/>
                 <span class="vaildate-error" ng-if="user.password2Message">
                     <span ng-bind="user.password2Message"></span>
                 </span>
@@ -439,7 +433,7 @@
             <dh-checkbox model="user.remember" title="我同意外卖超人" class="fl"></dh-checkbox>
             <a href="/terms-and-conditions/" target="_blank" class="fs12 fl link"> " 注册条款 "</a>
         </div>
-        <button  ng-disabled="!user.remember || registerBtnDisabled" ng-click="registerVaildate()" class="big-btn btn-green btn mb10" ng-bind="registerBtn"></button>
+        <button ng-disabled="!user.remember || registerBtnDisabled" ng-click=""  type = "submit" class="big-btn btn-green btn mb10" ng-bind="registerBtn">确认注册</button>
     </form>
 </dh-dialog>	
 
@@ -539,8 +533,8 @@
             <div>意见反馈</div>
         </li>
     </ul>
-    
     <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
     <script src="js/common.js"></script>
     
     <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=5cd6dcb00bc675bf26c9b4ab2af0759a"></script>
@@ -556,47 +550,63 @@
     
     <script>angular.bootstrap(document, ["app"]);</script>
     
-    
+   
    <script language="javascript">
-   function check(){
-	var account=loginForm.account.value;
-	var pwd=loginForm.pwd.value;
-	if((account=="")||(account==null)){
-		alert("请输入用户名");
-		loginForm.account.focus();
-		return;	
-	}else if((pwd=="")||(pwd==null)){
-		alert("请输入密码！");
-		loginForm.pwd.focus();
-		return;
-	}else{
-		loginForm.submit();
-	}
-		}
+   $(document).ready(function(){
+	   $("#account").blur(function(event) {
+	     $.ajax({
+	       type:"post",
+	       url:"/wmcr/uls.do?op=zh&account="+$("#account").val(),
+	       dataTypes:"text",
+	       success:function(msg){
+	         $("#accountStatus").html(msg);
+	       }
+	     });
+	   });
+	  
+	   $("#pwd").blur(function(event) {
+	     $.ajax({
+	       type:"post",
+	       url:"/wmcr/uls.do?op=chaxun",
+	       dataTypes:"text",
+	       data:"account="+$("#account").val()+"&pwd="+$("#pwd").val(),
+	       success:function(msg){
+	         $("#pwdStatus").html(msg);
+	       }
+	     });
+	   });
+	 }); 
   </script>
+  
+<script type="text/javascript"> 
+var countdown=60; 
+function settime(obj) { 
+    if (countdown == 0) { 
+        obj.removeAttribute("disabled");    
+        obj.value="免费获取验证码"; 
+        countdown = 60; 
+        return;
+    } else { 
+        obj.setAttribute("disabled", true); 
+        obj.value="重新发送(" + countdown + ")"; 
+        countdown--; 
+    } 
+setTimeout(function() { 
+    settime(obj) }
+    ,1000) 
+}
+$(function () {
+	$("#getCaptcha11").click(function() {
+		//console.log($("#captcha2").val());
+		$.get("/wmcr/urs.do", "op=yzm&account1=" + $("#account1").val(), function(data, status) {
+			console.log(data + "," + status);
+			$("#account1").text(data);
+		});
 
-     <!-- Baidu Analytics -->
-<script type="text/javascript">
-$(function(){
-	
-	$("#getCaptcha").click(function(){
-		 $.get("Rp.do","op=yzm&account="+document.getElementById("phone").value,function(data,status){
-			console.log(data+","+status);
-			$("#phone").html(data);
-		}); 
-        
 		/* location.href="Rp.do?op=yzm&account="+document.getElementById("phone").value;  */
 	});
-	
-	
-	
-	
 })
-
-</script>  
-
-
-
+</script>
 </body>
 </html>
     
