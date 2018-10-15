@@ -78,13 +78,13 @@
                 <dt >订单管理 <img class="b" src="img/jt-right-co.png" alt=""><img class="r" src="img/jt-bottom.png" alt=""></dt>
                 <dd>
                     <a href="#view/AllOrders.jsp">订单列表 </a>
-                    <a href="#">统计分析 </a>
+                    <a href="#view/AccountAnalyse.jsp">统计分析 </a>
                 </dd>
             </dl>
             <dl>
                 <dt>评论管理 <img class="b" src="img/jt-right-co.png" alt=""><img class="r" src="img/jt-bottom.png" alt=""></dt>
                 <dd>
-                    <a href="#">评论详情 </a>
+                    <a href="#view/commentList.jsp">评论详情 </a>
                    
                 </dd>
             </dl>
