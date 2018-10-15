@@ -95,22 +95,14 @@
                    
                 </dd>
             </dl>
-            <dl>
-                <dt>平台管理 <img class="b" src="img/jt-right-co.png" alt=""><img class="r" src="img/jt-bottom.png" alt=""></dt>
-                <dd>
-                    <a href="#view/main.html" >管理中心 </a>
-                    <a href="#">短信管理 </a>
-                    <a href="#">促销信息 </a>
-                    <a href="#">基本设置 </a>
-                </dd>
-            </dl>
+          
             
         </div>
     </div>
     <!--内容部分-->
     <div id="main" >
         <div   style="-webkit-overflow-scrolling:touch;overflow:auto;height: 100%;">
-            <iframe class="scroll"  src="view/main.html" id="ghrzFrame"  frameborder="no" border="0"></iframe>
+            <iframe class="scroll"  src="view/userList.jsp" id="ghrzFrame"  frameborder="no" border="0"></iframe>
         </div>
     </div>
 </body>

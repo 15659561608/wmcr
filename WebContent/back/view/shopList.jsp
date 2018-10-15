@@ -15,6 +15,9 @@
 	href="${pageContext.request.contextPath}/back/css/frame.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/back/css/addClass.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/back/layui/css/layui.css"
+	media="all">
 <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
 <!--[if lt IE 9]>
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -51,33 +54,44 @@
 			<thead>
 				<tr>
 					<th style="width: 5%;" class="sort cur">商户ID <img
-						class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt=""> <img
-						class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png"
+						class="bottom"
+						src="${pageContext.request.contextPath}/back/img/jt-bottom.png"
+						alt=""> <img class="top" style="display: none"
+						src="${pageContext.request.contextPath}/back/img/jt-right-co.png"
 						alt="">
 					</th>
 					<th class="sort cur" style="width: 10%">商户账号 <img
-						class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt=""> <img
-						class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png"
+						class="bottom"
+						src="${pageContext.request.contextPath}/back/img/jt-bottom.png"
+						alt=""> <img class="top" style="display: none"
+						src="${pageContext.request.contextPath}/back/img/jt-right-co.png"
 						alt="">
 					</th>
 					<th class="sort cur" style="width: 20%;">商户密码 <img
-						class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt=""> <img
-						class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png"
+						class="bottom"
+						src="${pageContext.request.contextPath}/back/img/jt-bottom.png"
+						alt=""> <img class="top" style="display: none"
+						src="${pageContext.request.contextPath}/back/img/jt-right-co.png"
 						alt="">
 					</th>
 					<th class="sort cur" style="width: 15%;">注册时间 <img
-						class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt=""> <img
-						class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png"
+						class="bottom"
+						src="${pageContext.request.contextPath}/back/img/jt-bottom.png"
+						alt=""> <img class="top" style="display: none"
+						src="${pageContext.request.contextPath}/back/img/jt-right-co.png"
 						alt="">
 					</th>
 					<th class="no-nowrap sort cur" style="width: 10%;">商户状态 <img
-						class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt=""> <img
-						class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png"
+						class="bottom"
+						src="${pageContext.request.contextPath}/back/img/jt-bottom.png"
+						alt=""> <img class="top" style="display: none"
+						src="${pageContext.request.contextPath}/back/img/jt-right-co.png"
 						alt="">
 					</th>
 					<th class="no-nowrap sort cur" style="width: 10%;">操作 <img
-						class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt=""> <img
-						class="top" style="display: none"
+						class="bottom"
+						src="${pageContext.request.contextPath}/back/img/jt-bottom.png"
+						alt=""> <img class="top" style="display: none"
 						src="${pageContext.request.contextPath}/back/img/jt-right-co.png"
 						alt="">
 					</th>
@@ -104,35 +118,17 @@
 		</table>
 	</div>
 
-<!-- 分页开始 -->
-	<div class="row clearfix text-center">
-		<div class="col-md-12 column">
-			<ul class="pagination">
-				<li><a href="javascript:prePage()">上一页</a></li>
+	<!-- 分页开始 -->
+	<!-- layui -->
+	<div align="center">
+		<fieldset class="layui-elem-field layui-field-title"
+			style="margin-top: 30px;"></fieldset>
 
-
-				<c:forEach begin="1" end="${b.totalPage}" var="index">
-
-					<c:if test="${index == b.page}">
-						<li class="active"><a href="#">${index}</a></li>
-					</c:if>
-
-					<c:if test="${index != b.page}">
-						<li><a
-							href="${pageContext.request.contextPath}/Bsc.do?op=queryBoss&page=${index}&keywords=${keywords}">${index}</a></li>
-					</c:if>
-				</c:forEach>
-
-
-				<li><a href="javascript:nextPage()">下一页</a></li>
-			</ul>
-		</div>
-
+		<div id="demo7"></div>
 	</div>
-	
 	<!-- 分页结束 -->
-	
-			
+
+
 	<!-- 遮罩开始 -->
 	<div class="row clearfix">
 		<div class="col-md-12 column">
@@ -149,16 +145,15 @@
 							</h4>
 						</div>
 						<!-- 表单开始 -->
-						<form class="form-horizontal" action="${pageContext.request.contextPath}/Bsc.do" method="post">
+						<form class="form-horizontal"
+							action="${pageContext.request.contextPath}/Bsc.do" method="post">
 							<div class="modal-body">
 
 								<div class="form-group">
 									<label for="" class="col-sm-2 control-label">商户账号</label>
 									<div class="col-sm-4">
-										<input type="hidden" name="op" value="update" /> 
-										<input
-											type="hidden" name="id" id="id" />
-											<input type="text"
+										<input type="hidden" name="op" value="update" /> <input
+											type="hidden" name="id" id="id" /> <input type="text"
 											required="required" class="form-control" name="account"
 											id="account" readonly="false" />
 									</div>
@@ -168,9 +163,9 @@
 									<label for="" class="col-sm-2 control-label">商户状态</label>
 									<div class="col-sm-3">
 										<select class="form-control" name="bossstate" id="bossstate">
-											<option value="0">未审核 </option>
-											<option value="1">正常 </option>
-											<option value="2">销毁 </option>
+											<option value="0">未审核</option>
+											<option value="1">正常</option>
+											<option value="2">销毁</option>
 										</select>
 									</div>
 								</div>
@@ -196,41 +191,20 @@
 
 		</div>
 	</div>
-	
+
 
 	<!-- 遮罩结束 -->
-	
 
-<%-- <script src="${pageContext.request.contextPath}/back/plugin/jquery/jquery.js"></script>
+
+	<%-- <script src="${pageContext.request.contextPath}/back/plugin/jquery/jquery.js"></script>
 <script src="${pageContext.request.contextPath}/back/js/frame-base.js"></script> --%>
-<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/back/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-	//上一页
-	function prePage(){
-		var page=1;
-		if(${b.page}>1){
-			page=${b.page-1};
-			
-		}
-		
-		location.href="${pageContext.request.contextPath}/Bsc.do?op=queryBoss&page="+page+"&keywords="+document.getElementById("keywords").value;
-		
-	}
-	//下一页
-	function nextPage(){
-		var page=${b.totalPage};
-		if(${b.page}<${b.totalPage}){
-			page=${b.page+1};
-			
-		}
-		
-		location.href="${pageContext.request.contextPath}/Bsc.do?op=queryBoss&page="+page+"&keywords="+document.getElementById("keywords").value;
-		
-	}
-	
-	</script>
-		<script>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/back/bootstrap/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/back/layui/layui.js"
+		charset="utf-8"></script>
+
+	<script>
 	
 	$(function() {
 	    $(".update").click(
@@ -249,5 +223,38 @@
 			});
 	});
 	</script>
-	</body>
+	<script>
+layui.use(['laypage', 'layer'], function(){
+  var laypage = layui.laypage
+  ,layer = layui.layer;
+  
+  
+  //完整功能
+  laypage.render({
+    elem: 'demo7'
+    ,count: ${b.total}
+    ,curr:${b.page}
+    ,limit:${b.pageSize}
+    ,theme: '#FFB800'
+    ,layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+    ,jump: function(obj,first){
+      console.log(obj)
+      console.log(first)
+      
+      if (!first) {
+    	  location.href="${pageContext.request.contextPath}/Bsc.do?op=queryBoss&page="+obj.curr+"&pageSize="+obj.limit+"&keywords="+document.getElementById("keywords").value;
+	}
+    }
+    
+    
+  });
+  
+ 
+  
+  
+
+  
+});
+</script>
+</body>
 </html>

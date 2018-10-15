@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/back/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/back/css/frame.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/back/css/addClass.css">
+    <link rel="stylesheet"
+	href="${pageContext.request.contextPath}/back/layui/css/layui.css"
+	media="all">
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -103,33 +106,20 @@
             </tbody>
         </table>
     </div>
-      <!-- 分页 开始 -->
+ 	<!-- 分页开始 -->
+	<!-- layui -->
+	<div align="center">
+		<fieldset class="layui-elem-field layui-field-title"
+			style="margin-top: 30px;"></fieldset>
 
-				<div class="row clearfix text-center">
-					<div class="col-md-12 column">
-						<ul class="pagination">
-							<li><a href="javascript:prePage()">上一页</a></li>
-
-							<!-- pd.totalPage -->
-							<c:forEach begin="1" end="${pd.totalPage}" var="index">
-
-								<c:if test="${index == pd.page}">
-									<li class="active"><a href="#">${index}</a></li>
-								</c:if>
-								<c:if test="${index!=pd.page}">
-									<li><a href="javascript:jumpPage(${index})">${index}</a></li>
-								</c:if>
-							</c:forEach>
-							<li><a href="javascript:nextPage()">下一页</a></li>
-						</ul>
-					</div>
-				</div>
-
-				<!-- 分页 结束 -->
+		<div id="demo"></div>
+	</div>
+	<!-- 分页结束 -->
 </body>
 <script src="../plugin/jquery/jquery.js"></script>
 <script src="../js/frame-base.js"></script>
-
+<script src="${pageContext.request.contextPath}/back/layui/layui.js"
+		charset="utf-8"></script>
 <script>
 	   //使用javascript代码来实现上一页
 	   function prePage()
@@ -167,6 +157,38 @@
 	   
 	</script>
 
+	<script>
+layui.use(['laypage', 'layer'], function(){
+  var laypage = layui.laypage
+  ,layer = layui.layer;
+  
+  
+  //完整功能
+  laypage.render({
+    elem: 'demo'
+    ,count: ${pd.total}
+    ,curr:${pd.page}
+    ,limit:${pd.pageSize}
+    ,theme: '#FFB800'
+    ,layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+    ,jump: function(obj,first){
+      console.log(obj)
+      console.log(first)
+      
+      if (!first) {
+    	  location.href="${pageContext.request.contextPath}/OrdersLServlet?op=queryansByPage&page="+obj.curr+"&pageSize="+obj.limit+"&keywords="+document.getElementById("keywords").value;
+	}
+    }
+    
+    
+  });
+  
+ 
+  
+  
 
+  
+});
+</script>
 
 </html>
