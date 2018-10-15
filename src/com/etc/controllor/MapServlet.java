@@ -17,6 +17,7 @@ import com.etc.service.impl.BusinessServiceImpl;
 import com.etc.services.BusinessService;
 import com.etc.util.BaiduMap;
 import com.etc.util.LocationUtils;
+import com.etc.util.PageData;
 
 /**
  * Servlet implementation class MapServlet3
@@ -46,8 +47,13 @@ public class MapServlet extends HttpServlet {
 		if("queryBusi".equals(op)) {
 			String address=request.getParameter("address");
 			HashMap<String, Double> hashmap=BaiduMap.getLatLon(address);
+			//获取所有门店
 			List<BusinessesCity> list=bs.getAllBusinesses();
+			//定义存储附近门店的集合
 			List<BusinessesCity> busiList=new ArrayList<>();
+			
+			
+			//筛选附近的门店
 			for (int i = 0; i < list.size(); i++) {
 				double distance=LocationUtils.getDistance(hashmap.get("lat"),hashmap.get("lon"), list.get(i).getLat(), list.get(i).getLon());
 				double disDouble=distance/1000;
@@ -55,8 +61,18 @@ public class MapServlet extends HttpServlet {
 					busiList.add(list.get(i));
 				}
 			}
+			//分页对象
+			int page=1;
+			int pageSize=10;
+			if(request.getParameter("page")!=null) {
+				page=Integer.valueOf(request.getParameter("page"));
+			}
+			if(request.getParameter("pageSize")!=null) {
+				pageSize=Integer.valueOf(request.getParameter("pageSize"));
+			}
+			PageData<BusinessesCity> pageData=new PageData<BusinessesCity>(busiList, busiList.size(), pageSize, page);
 			
-			request.setAttribute("busiList", busiList);
+			request.setAttribute("pageData", pageData);
 			request.getRequestDispatcher("").forward(request, response);
 		}
 	}
