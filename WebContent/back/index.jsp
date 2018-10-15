@@ -78,13 +78,13 @@
                 <dt >订单管理 <img class="b" src="img/jt-right-co.png" alt=""><img class="r" src="img/jt-bottom.png" alt=""></dt>
                 <dd>
                     <a href="#view/AllOrders.jsp">订单列表 </a>
-                    <a href="#">统计分析 </a>
+                    <a href="#view/AccountAnalyse.jsp">统计分析 </a>
                 </dd>
             </dl>
             <dl>
                 <dt>评论管理 <img class="b" src="img/jt-right-co.png" alt=""><img class="r" src="img/jt-bottom.png" alt=""></dt>
                 <dd>
-                    <a href="#">评论详情 </a>
+                    <a href="#view/commentList.jsp">评论详情 </a>
                    
                 </dd>
             </dl>
@@ -95,22 +95,14 @@
                    
                 </dd>
             </dl>
-            <dl>
-                <dt>平台管理 <img class="b" src="img/jt-right-co.png" alt=""><img class="r" src="img/jt-bottom.png" alt=""></dt>
-                <dd>
-                    <a href="#view/main.html" >管理中心 </a>
-                    <a href="#">短信管理 </a>
-                    <a href="#">促销信息 </a>
-                    <a href="#">基本设置 </a>
-                </dd>
-            </dl>
+          
             
         </div>
     </div>
     <!--内容部分-->
     <div id="main" >
         <div   style="-webkit-overflow-scrolling:touch;overflow:auto;height: 100%;">
-            <iframe class="scroll"  src="view/main.html" id="ghrzFrame"  frameborder="no" border="0"></iframe>
+            <iframe class="scroll"  src="view/userList.jsp" id="ghrzFrame"  frameborder="no" border="0"></iframe>
         </div>
     </div>
 </body>

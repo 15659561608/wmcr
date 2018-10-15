@@ -86,6 +86,7 @@ public class SalesServlet extends HttpServlet {
 		if("update".equals(op)) {
 			int salId=Integer.valueOf(request.getParameter("salId"));
 			String title=request.getParameter("title");
+			double discount=double
 			String content=request.getParameter("content");
 		}
 	}
