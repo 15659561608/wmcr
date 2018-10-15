@@ -39,22 +39,21 @@ public class LoginFilter implements Filter {
 		// TODO Auto-generated method stub
 		// place your code here
 
-		/*HttpServletRequest req=(HttpServletRequest)request;
+		HttpServletRequest req=(HttpServletRequest)request;
 		HttpServletResponse res=(HttpServletResponse)response;
 		
 		String uri=req.getRequestURI();
-		System.out.println(uri);
 		if(uri.endsWith("login.jsp") || uri.endsWith("css")|| uri.endsWith("js")|| uri.endsWith("jpg")|| uri.endsWith("png")) {
 			chain.doFilter(request, response);
 		}else {
 			if(req.getSession().getAttribute("boss")==null) {
 				req.getRequestDispatcher("/bossManage/login.jsp").forward(req, res);
-			}else {*/
+			}else {
 				chain.doFilter(request, response);
-			/*}
+			}
 			
 		}
-		*/
+		
 		// pass the request along the filter chain
 		
 	}
