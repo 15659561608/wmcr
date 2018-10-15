@@ -22,10 +22,10 @@ public class FoodsDaoImplf implements foodsDaof{
 	}
 
 	@Override
-	public PageData<Food> queryFoods(int page,int pageSize,String keyWords) {
+	public PageData<Food> queryFoods(int page,int pageSize,String keyWords,int busId) {
 		// TODO Auto-generated method stub
-		String sql="select * from food where foodName like ?";
-		PageData<Food> pd= BaseDao.getPage(sql, page, pageSize, Food.class,"%"+keyWords+"%");
+		String sql="select * from food where foodName like ? and busId=?";
+		PageData<Food> pd= BaseDao.getPage(sql, page, pageSize, Food.class,"%"+keyWords+"%",busId);
 		return pd;
 	}
 

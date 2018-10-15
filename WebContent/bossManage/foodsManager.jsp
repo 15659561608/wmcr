@@ -1,16 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="com.etc.entity.Boss"%>	
+<%@page import="com.etc.entity.Boss"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
- <%
-	Boss boss=null;
-	
-		boss=(Boss)session.getAttribute("boss");
-	
+<%
+	Boss boss = null;
 
-%> 
+	boss = (Boss) session.getAttribute("boss");
+%>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -25,9 +23,7 @@
 <script type="text/javascript" src="lib/respond.min.js"></script>
 <![endif]-->
 
-
-
- <link rel="stylesheet" type="text/css"
+<link rel="stylesheet" type="text/css"
 	href="static/h-ui/css/H-ui.min.css" />
 <link rel="stylesheet" type="text/css"
 	href="static/h-ui.admin/css/H-ui.admin.css" />
@@ -36,19 +32,30 @@
 <link rel="stylesheet" type="text/css"
 	href="static/h-ui.admin/skin/default/skin.css" id="skin" />
 <link rel="stylesheet" type="text/css"
-	href="static/h-ui.admin/css/style.css" />  
+	href="static/h-ui.admin/css/style.css" />
+
+<link rel="stylesheet" href="../layui/css/layui.css" media="all">
+
+
 <!-- <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script> -->
 
-	<!-- Bootstrap core CSS -->
- <%--   <link href="${pageContext.request.contextPath}/bossManage/css/bootstrap.min.css" rel="stylesheet"> --%>   
+<!-- Bootstrap core CSS -->
+<link
+	href="${pageContext.request.contextPath}/bossManage/css/bootstrap.min.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/back/layui/css/layui.css"
+	media="all">
 
 
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.1/js/affix.js"></script> -->
-<script src="${pageContext.request.contextPath}/bossManage/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/bossManage/js/my.js">
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.1/js/affix.js"></script> -->
+<script
+	src="${pageContext.request.contextPath}/bossManage/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/bossManage/js/my.js">
 	
 </script>
-  
+
 <!--[if IE 6]>
 <script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
@@ -65,153 +72,123 @@
 			href="javascript:location.replace(location.href);" title="刷新"><i
 			class="Hui-iconfont">&#xe68f;</i></a>
 	</nav>
-	<!-- <div class="page-container">
+	<%-- <div class="page-container">
 		<div class="text-c">
 			<form class="Huiform" method="post" action="" target="_self">
-				<input type="text" placeholder="分类名称" value="" class="input-text"
-					style="width: 120px"> <span class="btn-upload form-group">
-					<input class="input-text upload-url" type="text"
-					name="uploadfile-2" id="uploadfile-2" readonly style="width: 200px">
-					<a href="javascript:void();" class="btn btn-primary upload-btn"><i
-						class="Hui-iconfont">&#xe642;</i> 上传logo</a> <input type="file"
-					multiple name="file-2" class="input-file">
-				</span> <span class="select-box" style="width: 150px"> <select
-					class="select" name="brandclass" size="1">
-						<option value="1" selected>国内品牌</option>
-						<option value="0">国外品牌</option>
-				</select>
-				</span><a href="addFoods.jsp"><button type="button"
-						class="btn btn-success" id="" name=""
-						onClick="picture_colume_add(this);">
-						<i class="Hui-iconfont">&#xe600;</i> 添加
-					</button></a>
+				<button class="btn btn-danger">搜索</button><input type="hidden" name="op" value="queryFoods"> <input
+						type="text" class="form-controlSearch input-text " name="keywords" id="keywords"
+						value="${keywords}"  placeholder="搜索..." style="width:150px;">
 			</form>
-		</div> -->
-		<div class="cl pd-5 bg-1 bk-gray mt-20">
-			<span class="l"><a href="javascript:;" onclick="datadel()"
-				class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i>
-					批量删除</a></span> <span class="r">共有数据：<strong>${requestScope.pd.total}</strong> 条
-			</span>
-		</div>
-		<%-- <form class="navbar-form navbar-right" method="post"
+		</div>  --%>
+
+	<div class="cl pd-5 bg-1 bk-gray mt-20">
+		<span class="l"><a href="javascript:;" onclick="datadel()"
+			class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i>
+				批量删除</a></span>
+		<button class="btn btn-danger" style="margin-left: 750px">搜索</button>
+		<input type="hidden" name="op" value="queryFoods"> <input
+			type="text" class="form-controlSearch input-text " name="keywords"
+			id="keywords" value="${keywords}" placeholder="搜索..."
+			style="width: 150px;"> <span class="r"
+			style="margin-left: 400px">共有数据：<strong>${requestScope.pd.total}</strong>
+			条
+		</span>
+	</div>
+	<%-- <form class="navbar-form navbar-right" method="post"
 			action="${pageContext.request.contextPath}/fsf.do">
 			<input type="hidden" name="op" value="queryFoods"> <input
 				type="text" class="form-control" placeholder="搜搜..." name="keywords"
 				id="keywords" value="${keywords}">
 			<button class="btn btn-default">搜索</button>
 		</form> --%>
-		
-		<form class="navbar-form navbar-right" action="${pageContext.request.contextPath}/fsf.do" method="post">
-					<input type="hidden" name="op" value="queryFoods"> <input
-						type="text" class="form-control" name="keywords" id="keywords"
-						value="${keywords}"  placeholder="搜索...">
-					<button class="btn ">搜索</button>
-				</form>
-				
-		<div class="mt-20">
-			<table class="table table-border table-bordered table-bg ">
-				<thead>
-					<tr class="text-c">
+
+
+	<div class="mt-20">
+		<table class="table table-border table-bordered table-bg ">
+			<thead>
+				<tr class="text-c">
+					<th width="25"><input type="checkbox" name="" value=""></th>
+					<th>ID</th>
+					<th>菜名</th>
+					<th>价格</th>
+					<th>折扣</th>
+					<th>剩余数量</th>
+					<th>销量</th>
+					<th>详细描述</th>
+					<th>图片</th>
+					<th>状态</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:if test="${requestScope.pd == null}">
+					<jsp:forward page="../fsf.do?op=queryFoods"></jsp:forward>
+				</c:if>
+
+
+				<c:forEach items="${requestScope.pd.data}" var="food">
+
+					<tr>
 						<th width="25"><input type="checkbox" name="" value=""></th>
-						<th>ID</th>
-						<th>菜名</th>
-						<th>价格</th>
-						<th>折扣</th>
-						<th>剩余数量</th>
-						<th>销量</th>
-						<th>详细描述</th>
-						<th>图片</th>
-						<th>状态</th>
-						<th>操作</th>
+						<td>${food.id}</td>
+						<td>${food.foodName}</td>
+						<td>${food.price}</td>
+						<td>${food.discount}</td>
+						<td>${food.num}</td>
+						<td>${food.salNum}</td>
+						<td>${food.des}</td>
+
+						<%-- <td><img src="/img/<%=virtualPath%>"/></td>  --%>
+						<%-- <td><img src="${food.logo}" alt="${food.logo}" /></td> --%>
+						<%-- <td><Img src="${food.logo}" width="100px" height="100px"/></td> --%>
+						<td><Img src="${food.logo}" width="100px" height="100px" /></td>
+						<td>${food.state==0?"售罄":"有货"}</td>
+						<td><button class="btn btn-link update" data-toggle="modal"
+								data-target="#myModal">修改</button>
+							<button class="btn btn-link del">删除</button></td>
 					</tr>
-				</thead>
-				<tbody>
-					<c:if test="${requestScope.pd == null}">
-						<jsp:forward page="/fsf.do?op=queryFoods"></jsp:forward>
-					</c:if>
 
-
-					<c:forEach items="${requestScope.pd.data}" var="food">
-
-						<tr>
-							<th width="25"><input type="checkbox" name="" value=""></th>
-							<td>${food.id}</td>
-							<td>${food.foodName}</td>
-							<td>${food.price}</td>
-							<td>${food.discount}</td>
-							<td>${food.num}</td>
-							<td>${food.salNum}</td>
-							<td>${food.des}</td>
-
-							<%-- <td><img src="/img/<%=virtualPath%>"/></td>  --%>
-							<%-- <td><img src="${food.logo}" alt="${food.logo}" /></td> --%>
-							<%-- <td><Img src="${food.logo}" width="100px" height="100px"/></td> --%>
-							<td><Img src="${food.logo}" width="100px" height="100px"/></td>
-							<td>${food.state==0?"售罄":"有货"}</td>
-							<td><button class="btn btn-link update"
-											data-toggle="modal" data-target="#myModal">修改</button>
-								<button class="btn btn-link del">删除</button></td>
-						</tr>
-
-					</c:forEach>
-				</tbody>
-			</table>
-			
-			
-			<!-- 分页开始 -->
-			<div class="row clearfix text-center">
-		<div class="col-md-12 column">
-			<ul class="pagination">
-				<li><a href="javascript:prePage()">上一页</a></li>
-
-
-				<c:forEach begin="1" end="${pd.totalPage}" var="index">
-
-					<c:if test="${index ==pd.page}">
-						<li class="active"><a href="#">${index}</a></li>
-					</c:if>
-
-					<c:if test="${index != pd.page}">
-						<li><a
-							href="${pageContext.request.contextPath}/fsf.do?op=queryFoods&page=${index}&keywords=${keywords}">${index}</a></li>
-					</c:if>
 				</c:forEach>
+			</tbody>
+		</table>
 
 
-				<li><a href="javascript:nextPage()">下一页</a></li>
-			</ul>
+
+		<!-- 分页开始 -->
+		<!-- layui -->
+		<div align="center">
+			<fieldset class="layui-elem-field layui-field-title"
+				style="margin-top: 30px;"></fieldset>
+
+			<div id="demo7"></div>
 		</div>
+		<!-- 分页结束 -->
 
+
+		<!-- <div id="demo7" style="text-align: center"></div> -->
+		<!-- layui分页结束 -->
 	</div>
-	
-	<!-- 分页结束 -->
-	
-	
-			<!-- <div id="demo7" style="text-align: center"></div> -->
-			<!-- layui分页结束 -->
-		</div>
 
-		<!-- 模态开始 -->
-				<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-					aria-labelledby="myModalLabel" aria-hidden="true" >
-					<div class="modal-dialog">
-						<div class="modal-content" >
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal"
-									aria-hidden="true">&times;</button>
-								<h4 class="modal-title" id="myModalLabel">修改用户信息</h4>
-							</div>
-							<br>
-				<form method="POST" 
+	<!-- 模态开始 -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">修改用户信息</h4>
+				</div>
+				<br>
+				<form method="POST"
 					action="${pageContext.request.contextPath}/fsf.do?op=updateFoods">
 					<div class="form-group">
 
 						<label for="foodName" class="col-sm-2 control-label"
 							style="height: 30px; width: 90px">菜名</label>
 						<div class="col-sm-10">
-						 <!-- <input type="hidden" name="op" value="updateFoods" /> -- -->
-							<input type="hidden" class="form-control" id="id" name="id" />
-							 <input
+							<!-- <input type="hidden" name="op" value="updateFoods" /> -- -->
+							<input type="hidden" class="form-control" id="id" name="id" /> <input
 								type="text" class="form-control" id="foodName" name="foodName"
 								style="height: 30px; width: 450px" />
 						</div>
@@ -252,8 +229,8 @@
 							<textarea rows="10" cols="50" id="des" name="des"></textarea>
 						</div>
 					</div>
-					<div class="form-group" >
-						<label for="logo" class="col-sm-2 control-label" >图片</label>
+					<div class="form-group">
+						<label for="logo" class="col-sm-2 control-label">图片</label>
 						<div class="col-sm-10">
 							<input type="file" class="form-control" id="logo" name="logo"
 								value="" style="height: 30px; width: 450px" />
@@ -262,9 +239,9 @@
 					<div class="form-group">
 						<label for="state" class="col-sm-2 control-label">状态</label>
 						<div class="col-sm-10">
-						<input type="hidden" class="form-control" id="busid" name="busid"
-								value="${sessionScope.boss.id}"/>
-							
+							<input type="hidden" class="form-control" id="busid" name="busid"
+								value="${sessionScope.boss.id}" />
+
 							<!-- <input type="text" class="form-control" id="state" name="state" /> -->
 							<select name="state" style="height: 30px; width: 450px">
 								<option value="0">有货</option>
@@ -287,14 +264,18 @@
 			<!-- /.modal -->
 		</div>
 	</div>
-		<!-- 模态结束 -->
-	
+	<!-- 模态结束 -->
+	</div>
+
 	<!--_footer 作为公共模版分离出去-->
 	<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
 	<script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
 	<script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script>
 	<script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script>
-	<script src="${pageContext.request.contextPath}/bossManage/js/holder.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/bossManage/js/holder.min.js"></script>
+	<script src="${pageContext.request.contextPath}/back/layui/layui.js"
+		charset="utf-8"></script>
 	<!--/_footer 作为公共模版分离出去-->
 
 	<!--请在下方写此页面业务相关的脚本-->
@@ -316,7 +297,7 @@ $('.table-sort').dataTable({
 </script>
 
 
-	
+
 	<script>
 		/*当前页面*/
 		function curPage(page){
@@ -385,10 +366,50 @@ $('.table-sort').dataTable({
 
 					
 					})
+					
+					
+					
+				
 		})
 	</script>
 
-<!-- 	<script src="../layui/layui.js" charset="utf-8"></script>
+	<script>
+layui.use(['laypage', 'layer'], function(){
+  var laypage = layui.laypage
+  ,layer = layui.layer;
+  
+  
+  //完整功能
+  laypage.render({
+    elem: 'demo7'
+    ,count: ${pd.total}
+    ,curr:${pd.page}
+    ,limit:${pd.pageSize}
+    ,theme: '#FFB800'
+    ,layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+    ,jump: function(obj,first){
+      console.log(obj)
+      console.log(first)
+      
+      if (!first) {
+    	  location.href="${pageContext.request.contextPath}/fsf.do?op=queryFoods&page="+obj.curr+"&pageSize="+obj.limit+"&keywords="+document.getElementById("keywords").value;
+	}
+    }
+
+  });
+  
+  
+});
+</script>
+	<!-- 	<script type="text/javascript">
+	
+		$(".search").click(function(){
+			location.href="${pageContext.request.contextPath}/fsf.do?op=queryFoods&keyWords="+document.getElementById("keywords")
+		})
+	
+	</script> -->
+
+	<!-- 	<script src="../layui/layui.js" charset="utf-8"></script>
 	注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的
 	<script>
 layui.use(['laypage', 'layer'], function(){
@@ -415,7 +436,7 @@ layui.use(['laypage', 'layer'], function(){
 
 });
 </script> -->
-<!-- <script type="text/javascript">
+	<!-- <script type="text/javascript">
 
 	$(function(){
 		var salNum = $(this).parents("tr").find("td").eq(5).html();

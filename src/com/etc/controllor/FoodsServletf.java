@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.etc.entity.Boss;
 import com.etc.entity.Food;
 import com.etc.service.impl.FoodsServiceImplf;
 import com.etc.services.FoodServicesf;
@@ -62,7 +63,7 @@ public class FoodsServletf extends HttpServlet {
 			boolean flag = fsf.addFoods(food);
 
 			if (flag) {
-				request.getRequestDispatcher("foodsManager.jsp").forward(request, response);
+				request.getRequestDispatcher("bossManage/foodsManager.jsp").forward(request, response);
 			}
 
 		} else if ("queryFoods".equals(op)) {
@@ -83,16 +84,19 @@ public class FoodsServletf extends HttpServlet {
 			if (request.getParameter("keywords") != null) {
 				keywords = request.getParameter("keywords");
 			}
-
+			Boss boss = (Boss) request.getSession().getAttribute("boss");
+			int busId=boss.getId();
+		//	System.out.println(busId);
 			// 之前的代码要变
-			PageData<Food> pd = fsf.getFoods(page, pageSize, keywords);
-			pd.getData().forEach(System.out::println);
+			PageData<Food> pd = fsf.getFoods(page, pageSize, keywords,busId);
+			//pd.getData().forEach(System.out::println);
 			
 			request.setAttribute("pd", pd);
 			// 需要将每次模糊查询的关键字传递回来给jsp
 			request.setAttribute("keywords", keywords);
 			// 从当前控制器跳转到jsp页面[问题列表]，跳转的方法叫做转发
-			request.getRequestDispatcher("bossManage/foodsManager.jsp").forward(request, response);
+			request.getRequestDispatcher("bossManage/foodsManage.jsp").forward(request, response);
+			
 		}else if("delFoods".equals(op)) {
 			String id=request.getParameter("id");
 			//System.out.println(id);
@@ -115,7 +119,7 @@ public class FoodsServletf extends HttpServlet {
 			String logo = request.getParameter("logo");
 			
 			String state = request.getParameter("state");
-			Food food=new Food(Integer.valueOf(id),foodName,Double.valueOf(price),Double.valueOf(discount),Integer.valueOf(num),Integer.valueOf(salNum),des,logo,Integer.valueOf(busid),Integer.valueOf(state)); 
+			Food food=new Food(Integer.valueOf(id),foodName,Double.valueOf(price),Double.valueOf(discount),Integer.valueOf(num),Integer.valueOf(salNum),des,"\\bossManage\\imgs\\"+logo,Integer.valueOf(busid),Integer.valueOf(state)); 
 			
 			boolean flag=fsf.update(food);
 			System.out.println(flag);
