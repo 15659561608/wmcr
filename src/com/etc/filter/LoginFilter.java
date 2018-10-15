@@ -39,7 +39,7 @@ public class LoginFilter implements Filter {
 		// TODO Auto-generated method stub
 		// place your code here
 
-		HttpServletRequest req=(HttpServletRequest)request;
+		/*HttpServletRequest req=(HttpServletRequest)request;
 		HttpServletResponse res=(HttpServletResponse)response;
 		
 		String uri=req.getRequestURI();
@@ -49,12 +49,12 @@ public class LoginFilter implements Filter {
 		}else {
 			if(req.getSession().getAttribute("boss")==null) {
 				req.getRequestDispatcher("/bossManage/login.jsp").forward(req, res);
-			}else {
+			}else {*/
 				chain.doFilter(request, response);
-			}
+			/*}
 			
 		}
-		
+		*/
 		// pass the request along the filter chain
 		
 	}
