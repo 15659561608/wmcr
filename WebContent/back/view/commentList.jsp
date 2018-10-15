@@ -94,9 +94,10 @@
 								
 								<td>${c.account}</td>
 								<td>${c.busiName}</td>
-								<%-- <td>${c.praise == 5?"★★★★★":${c.praise == 4?"★★★★":${c.praise == 3?"★★★":${c.praise == 2?"★★":★}}}}</td> --%>
+								<%-- <td>${c.praise == 5?"★★★★★":c.praise == 4?"★★★★":c.praise == 3?"★★★":c.praise == 2?"★★":★}</td> --%>
 								<%-- <td>${c.praise==5?"★★★★★":${c.praise==4?"★★★★":"★★★"}}</td> --%>
-								 <td>${c.praise}</td> 
+								 <td>${c.praise==5?"★★★★★":c.praise == 4?"★★★★":c.praise == 3?"★★★":c.praise ==2?"★★":"★"}</td> 
+								  <%-- <td>${c.praise}</td>  --%>
 								<td>${c.content}</td>
 								<td>${c.comDate}</td>
 
