@@ -1,5 +1,10 @@
 package com.etc.entity;
 
+/**
+ * 
+ * @author Administrator
+ *
+ */
 public class Businesses {
 	private Integer id;
 
@@ -17,7 +22,6 @@ public class Businesses {
 
 	private Double lat;
 
-<<<<<<< HEAD
     public Businesses(String busiName, String phone, String address, String licence, Double lat, Double lon,
 			Integer typeId, Integer bossId, Integer cityId) {
 		super();
@@ -32,8 +36,6 @@ public class Businesses {
 		this.cityId = cityId;
 	}
 
-=======
->>>>>>> branch 'master' of https://github.com/15659561608/wmcr.git
 	private Double lon;
 
 	private Double starPrice;

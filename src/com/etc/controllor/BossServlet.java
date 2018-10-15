@@ -52,6 +52,7 @@ public class BossServlet extends HttpServlet {
 		}
 		
 		if("login".equals(op)) {
+			
 			String account=request.getParameter("account");
 			String pwd=MD5Util.getEncodeByMd5(request.getParameter("pwd"));
 			Boss boss=bs.checkLogin(account, pwd);

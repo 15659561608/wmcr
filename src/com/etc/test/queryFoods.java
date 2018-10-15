@@ -11,7 +11,7 @@ public class queryFoods {
 		FoodServicesf fsf = new FoodsServiceImplf();
 		List<Food> list=fsf.allFoods();
 		for (Food food : list) {
-			System.out.println(food.getState());
+			System.out.println("12"+food.getState());
 		}
 	}
 

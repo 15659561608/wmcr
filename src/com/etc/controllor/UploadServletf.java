@@ -70,7 +70,7 @@ public class UploadServletf extends HttpServlet {
 			int state = 0;
 			String path="";
 			String s="";
-			
+			String po="";
 			
 			DiskFileItemFactory factory = new DiskFileItemFactory();
 
@@ -134,20 +134,22 @@ public class UploadServletf extends HttpServlet {
 				    	    //项目地址
 				    	     path=request.getSession().getServletContext().getRealPath("/bossManage/imgs/"+fileName);
 				    	 
-				    	  /* String p=path.substring(0,path.lastIndexOf("\\")+1)+fileName;
+				    	   String p=path.substring(0,path.lastIndexOf("\\")+1)+fileName;
+				    	   System.out.println("项目的路径:"+path);
 				    	   System.out.println("项目的路径:"+p);
-				    	
 				    	    s="\\bossManage\\imgs\\"+path.substring(path.lastIndexOf("\\")+1);
-				    	    System.out.println("图片路径"+s);*/
-				    	    String po="H:\\space\\wmcr\\WebContent\\bossManage\\imgs\\"+fileName;
-				    	     Copyfile.copyFile(path,po);
-			    	    File uploadedFile = new File(path);
-				    	    item.write(uploadedFile);
+				    	    System.out.println("图片路径"+s);
+				    	     po="E:\\pro\\wmcr\\WebContent\\bossManage\\imgs\\"+fileName;
+				    	    String p2=request.getSession().getServletContext().getRealPath(request.getRequestURI());
+				    	    System.out.println("p2"+p2);
+				    	     Copyfile.copyFile(p,po);
+				    	     File uploadedFile = new File(path);
+				    	     item.write(uploadedFile);
 				    	    
 				    	   
 				    }
 				}
-				// System.out.println("结果"+foodName+price+discount+num+salNum+des+logo+busId+state+path);
+				 System.out.println("结果"+foodName+price+discount+num+salNum+des+logo+busId+state+s);
 				 Food food=new Food(foodName, price, discount, num, salNum, des, s, busId, state);
 				boolean flag=fsf.addFoods(food);
 				System.out.println("flag"+flag);

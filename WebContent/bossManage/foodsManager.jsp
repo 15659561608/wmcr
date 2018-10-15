@@ -1,6 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="com.etc.entity.Boss"%>	
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+
+ <%
+	Boss boss=null;
+	
+		boss=(Boss)session.getAttribute("boss");
+	
+
+%> 
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -30,7 +40,7 @@
 <!-- <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script> -->
 
 	<!-- Bootstrap core CSS -->
- <link href="${pageContext.request.contextPath}/bossManage/css/bootstrap.min.css" rel="stylesheet"> 
+ <%--   <link href="${pageContext.request.contextPath}/bossManage/css/bootstrap.min.css" rel="stylesheet"> --%>   
 
 
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.1/js/affix.js"></script> -->
@@ -135,6 +145,7 @@
 
 							<%-- <td><img src="/img/<%=virtualPath%>"/></td>  --%>
 							<%-- <td><img src="${food.logo}" alt="${food.logo}" /></td> --%>
+							<%-- <td><Img src="${food.logo}" width="100px" height="100px"/></td> --%>
 							<td><Img src="${food.logo}" width="100px" height="100px"/></td>
 							<td>${food.state==0?"售罄":"有货"}</td>
 							<td><button class="btn btn-link update"
@@ -182,7 +193,7 @@
 
 		<!-- 模态开始 -->
 				<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-					aria-labelledby="myModalLabel" aria-hidden="true">
+					aria-labelledby="myModalLabel" aria-hidden="true" >
 					<div class="modal-dialog">
 						<div class="modal-content" >
 							<div class="modal-header">
@@ -191,14 +202,16 @@
 								<h4 class="modal-title" id="myModalLabel">修改用户信息</h4>
 							</div>
 							<br>
-				<form method="POST" enctype="multipart/form-data"
-					action="${pageContext.request.contextPath}/fsf.do">
+				<form method="POST" 
+					action="${pageContext.request.contextPath}/fsf.do?op=updateFoods">
 					<div class="form-group">
 
 						<label for="foodName" class="col-sm-2 control-label"
 							style="height: 30px; width: 90px">菜名</label>
 						<div class="col-sm-10">
-							<input type="hidden" class="form-control" id="id" name="id" /> <input
+						 <!-- <input type="hidden" name="op" value="updateFoods" /> -- -->
+							<input type="hidden" class="form-control" id="id" name="id" />
+							 <input
 								type="text" class="form-control" id="foodName" name="foodName"
 								style="height: 30px; width: 450px" />
 						</div>
@@ -232,15 +245,15 @@
 								style="height: 30px; width: 450px" />
 						</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group" style="width: 800px">
 						<label for="des" class="col-sm-2 control-label"
 							style="height: 30px; width: 90px">详细描述</label>
 						<div class="col-sm-10">
-							<textarea rows="10" cols="62" id="des" name="des"></textarea>
+							<textarea rows="10" cols="50" id="des" name="des"></textarea>
 						</div>
 					</div>
-					<div class="form-group">
-						<label for="logo" class="col-sm-2 control-label">图片</label>
+					<div class="form-group" >
+						<label for="logo" class="col-sm-2 control-label" >图片</label>
 						<div class="col-sm-10">
 							<input type="file" class="form-control" id="logo" name="logo"
 								value="" style="height: 30px; width: 450px" />
@@ -249,8 +262,9 @@
 					<div class="form-group">
 						<label for="state" class="col-sm-2 control-label">状态</label>
 						<div class="col-sm-10">
-							<input type="hidden" class="form-control" id="busid" name="busid"
-								value="2" />
+						<input type="hidden" class="form-control" id="busid" name="busid"
+								value="${sessionScope.boss.id}"/>
+							
 							<!-- <input type="text" class="form-control" id="state" name="state" /> -->
 							<select name="state" style="height: 30px; width: 450px">
 								<option value="0">有货</option>
@@ -302,10 +316,8 @@ $('.table-sort').dataTable({
 </script>
 
 
-
-
-
-<script>
+	
+	<script>
 		/*当前页面*/
 		function curPage(page){
 			location.href="${pageContext.request.contextPath}/fsf.do?op=queryFoods&page="+page+"&keywords="+document.getElementById("keywords").value;
@@ -331,6 +343,9 @@ $('.table-sort').dataTable({
 	</script>
 
 	<script type="text/javascript">
+	
+	
+	
 		$(function() {
 			$(".del").click(function del() {
 				var foodName = $(this).parents("tr").find("td").eq(1).html();
@@ -357,6 +372,7 @@ $('.table-sort').dataTable({
 						var des = $(this).parents("tr").find("td").eq(6).html();
 						var logo = $(this).parents("tr").find("td").eq(7).html();
 						var state = $(this).parents("tr").find("td").eq(8).html();
+						console.log(id+foodName+price+discount+num+des+logo+state);
 						$("#id").val(id);
 						$("#foodName").val(foodName);
 						$("#price").val(price);
@@ -364,7 +380,7 @@ $('.table-sort').dataTable({
 						$("#num").val(num);
 						$("#salNum").val(salNum);
 						$("#des").val(des);
-						$("#logo").val(${food.logo});
+						//$("#logo").val(logo);
 						$("#state").val(state);
 
 					
