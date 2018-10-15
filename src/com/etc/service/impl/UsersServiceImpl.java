@@ -21,4 +21,9 @@ public class UsersServiceImpl implements UsersService {
 		// TODO Auto-generated method stub
 		return ud.usersRegister(u);
 	}
+	@Override
+	public List<Users> getUsersLoginByPwd(String pwd) {
+		// TODO Auto-generated method stub
+		return ud.usersLoginByPwd(pwd);
+	}
 }

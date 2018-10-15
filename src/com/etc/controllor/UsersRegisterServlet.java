@@ -28,7 +28,8 @@ public class UsersRegisterServlet extends HttpServlet {
 	private static UsersService us = new UsersServiceImpl();
 	private static ResetPwdService rps = new ResetPwdServiceImpl();
 	private static String account = null;
-	private static String yzm   = null;
+	private static String yzm = null;
+
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -54,7 +55,7 @@ public class UsersRegisterServlet extends HttpServlet {
 		 */
 		if (op.equals("yzm")) {
 			String account = request.getParameter("account1");
-			System.out.println(account);
+			// System.out.println(account);
 			Random random = new Random();
 			int code = random.nextInt(1000000);
 
@@ -66,8 +67,8 @@ public class UsersRegisterServlet extends HttpServlet {
 			out.print(account);
 			out.close();
 		} else if (op.equals("register")) {
-			 account = request.getParameter("account1");
-			 yzm = request.getParameter("captcha2");
+			account = request.getParameter("account1");
+			yzm = request.getParameter("captcha2");
 			Users u = rps.queryUsers(account);
 			HttpSession session = request.getSession();
 			int co = (int) session.getAttribute("code");
@@ -77,17 +78,16 @@ public class UsersRegisterServlet extends HttpServlet {
 			} else if (Integer.valueOf(yzm) != co) {
 				out.println("<script>alert('验证码不正确');location.href='wmcr/index.jsp'</script>");
 			} else {
-				 String pwd = request.getParameter("pwd1");
-				 String pwd1 = MD5Util.getEncodeByMd5(pwd);
-				 Users u1 = new Users(account,pwd1);
-				 boolean flag = us.getUsersRegister(u1);
-				 if(flag) {
-					 request.getSession().setAttribute("users", u);
-				out.println("<script>alert('注册成功');location.href='wmcr/index.jsp'</script>");
-				 }
-				 else {
-					 out.println("<script>alert('注册失败');location.href='wmcr/index.jsp'</script>");
-				 }
+				String pwd = request.getParameter("pwd1");
+				String pwd1 = MD5Util.getEncodeByMd5(pwd);
+				Users u1 = new Users(account, pwd1);
+				boolean flag = us.getUsersRegister(u1);
+				if (flag) {
+					request.getSession().setAttribute("users", u);
+					out.println("<script>alert('注册成功');location.href='wmcr/index.jsp'</script>");
+				} else {
+					out.println("<script>alert('注册失败');location.href='wmcr/index.jsp'</script>");
+				}
 			}
 
 		}
