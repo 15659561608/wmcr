@@ -30,7 +30,11 @@
 <![endif]-->
 <title>我的桌面</title>
 
-
+ <script type="text/javascript" charset="utf-8" src="Ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="Ueditor/ueditor.all.min.js"> </script>
+    <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+    <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+    <script type="text/javascript" charset="utf-8" src="Ueditor/lang/zh-cn/zh-cn.js"></script>
 </head>
 <body>
 
@@ -84,10 +88,12 @@
 			</div>
 			<div class="row cl">
 				<label class="form-label col-xs-3">门店简介：</label>
+				<div class="row clearfix">
 				<div class="formControls col-xs-8">
-					<input type="text" value="${busiInfo.des }" class="input-text"
-						placeholder="4~16个字符，字母/中文/数字/下划线" name="address" id="address">
+					<script id="editor" name="des" type="text/plain" style="width:1024px;height:500px;"></script>
+
 				</div>
+			</div>
 			</div>
 			<div class="row cl">
 				<label class="form-label col-xs-3">平均消费：</label>
@@ -246,9 +252,16 @@
 					$("#cityId").children("option").remove();
 					$("#cityId").append("<option value='-1'>请选择</option>");
 					$.each(data, function(index, v) {
-						$("#cityId").append(
-								"<option value='"+v.id+"'>" + v.cityName
-										+ "</option>");
+						var opts="";
+						if(${busiInfo.cityId}==v.id){
+							opts="<option selected='selected' value='"+v.id+"'>" + v.cityName
+							+ "</option>";
+						}else{
+							opts="<option value='"+v.id+"'>" + v.cityName
+							+ "</option>";
+						}
+						$("#cityId").append(opts);
+						
 					});
 				});
 	});
@@ -259,9 +272,15 @@
 					$("#typeId").children("option").remove();
 					$("#typeId").append("<option value='-1'>请选择</option>");
 					$.each(data, function(index, v) {
-						$("#typeId").append(
-								"<option value='"+v.id+"'>" + v.title
-										+ "</option>");
+						var opts="";
+						if(${busiInfo.typeId}==v.id){
+							opts="<option selected='selected' value='"+v.id+"'>" + v.title
+							+ "</option>";
+						}else{
+							opts="<option value='"+v.id+"'>" + v.title
+							+ "</option>";
+						}
+						$("#typeId").append(opts);
 					});
 				});
 	});
@@ -289,9 +308,15 @@
 <script>
 	$.validator.setDefaults({
 		submitHandler : function() {
-			//alert("提交事件!");
+			$("form").submit();
 		}
 	});
+	//手机号码验证  
+	jQuery.validator.addMethod("isMobile", function(value, element) {  
+	 var length = value.length;  
+	 var mobile = /^(13[0-9]{9})|(18[0-9]{9})|(14[0-9]{9})|(17[0-9]{9})|(15[0-9]{9})$/;  
+	 return this.optional(element) || (length == 11 && mobile.test(value));  
+	}, "请正确填写手机号码"); 
 	$().ready(function() {
 		$("#commentForm").validate({
 
@@ -299,7 +324,7 @@
 				buisName : "required",
 				phone : {
 					minlength : 11,
-					isMobile : true
+					isMobile:true
 				},
 				address : {
 					required : true,
@@ -337,7 +362,6 @@
 			},
 			messages : {
 				busiName : "请输入门店名",
-				phone : "请输手机号",
 				username : {
 					required : "请输入用户名",
 					minlength : "用户名必需由两个字母组成"
@@ -350,6 +374,121 @@
 		});
 
 	});
+
+	
 </script>
 
+<script type="text/javascript">
+
+    //实例化编辑器
+    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+    var ue = UE.getEditor('editor');
+
+
+    function isFocus(e){
+        alert(UE.getEditor('editor').isFocus());
+        UE.dom.domUtils.preventDefault(e)
+    }
+    function setblur(e){
+        UE.getEditor('editor').blur();
+        UE.dom.domUtils.preventDefault(e)
+    }
+    function insertHtml() {
+        var value = prompt('插入html代码', '');
+        UE.getEditor('editor').execCommand('insertHtml', value)
+    }
+    function createEditor() {
+        enableBtn();
+        UE.getEditor('editor');
+    }
+    function getAllHtml() {
+        alert(UE.getEditor('editor').getAllHtml())
+    }
+    function getContent() {
+        var arr = [];
+        arr.push("使用editor.getContent()方法可以获得编辑器的内容");
+        arr.push("内容为：");
+        arr.push(UE.getEditor('editor').getContent());
+        alert(arr.join("\n"));
+    }
+    function getPlainTxt() {
+        var arr = [];
+        arr.push("使用editor.getPlainTxt()方法可以获得编辑器的带格式的纯文本内容");
+        arr.push("内容为：");
+        arr.push(UE.getEditor('editor').getPlainTxt());
+        alert(arr.join('\n'))
+    }
+    function setContent(isAppendTo) {
+        var arr = [];
+        arr.push("使用editor.setContent('欢迎使用ueditor')方法可以设置编辑器的内容");
+        UE.getEditor('editor').setContent('欢迎使用ueditor', isAppendTo);
+        alert(arr.join("\n"));
+    }
+    function setDisabled() {
+        UE.getEditor('editor').setDisabled('fullscreen');
+        disableBtn("enable");
+    }
+
+    function setEnabled() {
+        UE.getEditor('editor').setEnabled();
+        enableBtn();
+    }
+
+    function getText() {
+        //当你点击按钮时编辑区域已经失去了焦点，如果直接用getText将不会得到内容，所以要在选回来，然后取得内容
+        var range = UE.getEditor('editor').selection.getRange();
+        range.select();
+        var txt = UE.getEditor('editor').selection.getText();
+        alert(txt)
+    }
+
+    function getContentTxt() {
+        var arr = [];
+        arr.push("使用editor.getContentTxt()方法可以获得编辑器的纯文本内容");
+        arr.push("编辑器的纯文本内容为：");
+        arr.push(UE.getEditor('editor').getContentTxt());
+        alert(arr.join("\n"));
+    }
+    function hasContent() {
+        var arr = [];
+        arr.push("使用editor.hasContents()方法判断编辑器里是否有内容");
+        arr.push("判断结果为：");
+        arr.push(UE.getEditor('editor').hasContents());
+        alert(arr.join("\n"));
+    }
+    function setFocus() {
+        UE.getEditor('editor').focus();
+    }
+    function deleteEditor() {
+        disableBtn();
+        UE.getEditor('editor').destroy();
+    }
+    function disableBtn(str) {
+        var div = document.getElementById('btns');
+        var btns = UE.dom.domUtils.getElementsByTagName(div, "button");
+        for (var i = 0, btn; btn = btns[i++];) {
+            if (btn.id == str) {
+                UE.dom.domUtils.removeAttributes(btn, ["disabled"]);
+            } else {
+                btn.setAttribute("disabled", "true");
+            }
+        }
+    }
+    function enableBtn() {
+        var div = document.getElementById('btns');
+        var btns = UE.dom.domUtils.getElementsByTagName(div, "button");
+        for (var i = 0, btn; btn = btns[i++];) {
+            UE.dom.domUtils.removeAttributes(btn, ["disabled"]);
+        }
+    }
+
+    function getLocalData () {
+        alert(UE.getEditor('editor').execCommand( "getlocaldata" ));
+    }
+
+    function clearLocalData () {
+        UE.getEditor('editor').execCommand( "clearlocaldata" );
+        alert("已清空草稿箱")
+    }
+</script>
 </html>

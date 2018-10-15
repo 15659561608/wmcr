@@ -17,7 +17,6 @@ public class Businesses {
 
 	private Double lat;
 
-<<<<<<< HEAD
     public Businesses(String busiName, String phone, String address, String licence, Double lat, Double lon,
 			Integer typeId, Integer bossId, Integer cityId) {
 		super();
@@ -32,8 +31,6 @@ public class Businesses {
 		this.cityId = cityId;
 	}
 
-=======
->>>>>>> branch 'master' of https://github.com/15659561608/wmcr.git
 	private Double lon;
 
 	private Double starPrice;
@@ -67,9 +64,11 @@ public class Businesses {
 	}
 
 	
+	
+
 	public Businesses(Integer id, String busiName, String phone, String address, Double avgCost, String licence,
 			Double lat, Double lon, Double starPrice, Double disFee, Integer onlinePay, Integer isReserve,
-			Integer isBusiness, String des, Integer typeId, Integer cityId, Integer state, String logo,
+			Integer isBusiness, String des, Integer typeId,Integer cityId, Integer state, String logo,
 			String regDate) {
 		super();
 		this.id = id;
@@ -92,6 +91,36 @@ public class Businesses {
 		this.logo = logo;
 		this.regDate = regDate;
 	}
+
+
+
+
+	public Businesses(String busiName, String phone, String address, Double avgCost, String licence, Double lat,
+			Double lon, Double starPrice, Double disFee, Integer onlinePay, Integer isReserve, Integer isBusiness,
+			String des, Integer typeId, Integer bossId, Integer cityId, Integer state, String logo, String regDate) {
+		super();
+		this.busiName = busiName;
+		this.phone = phone;
+		this.address = address;
+		this.avgCost = avgCost;
+		this.licence = licence;
+		this.lat = lat;
+		this.lon = lon;
+		this.starPrice = starPrice;
+		this.disFee = disFee;
+		this.onlinePay = onlinePay;
+		this.isReserve = isReserve;
+		this.isBusiness = isBusiness;
+		this.des = des;
+		this.typeId = typeId;
+		this.bossId = bossId;
+		this.cityId = cityId;
+		this.state = state;
+		this.logo = logo;
+		this.regDate = regDate;
+	}
+
+
 
 
 	public String getRegDate() {

@@ -19,17 +19,17 @@ public class BusinessDaoImpl implements BusinessDao {
 	@Override
 	public boolean addBusinesses(Businesses b) {
 		// TODO Auto-generated method stub
-		String sql="INSERT INTO businesses (busiName, phone, address, licence, lat, lon, typeId, bossId, cityId) VALUES ( ?,?,?,?,?,?,?,?,?)";
-		return BaseDao.execute(sql,b.getBusiName(),b.getPhone(),b.getAddress(),b.getLicence(),b.getLat(),b.getLon(),b.getId(),b.getBossId(),b.getCityId())>0;
+		String sql="INSERT INTO businesses (busiName, phone, address,avgCost, licence, lat, lon, starPrice,disFee,onlinePay,isReserve,logo,isBusiness,typeId,cityId,state,regDate,des, bossId) VALUES ( ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		return BaseDao.execute(sql,b.getBusiName(),b.getPhone(),b.getAddress(),b.getAvgCost(),b.getLicence(),b.getLat(),b.getLon(),b.getStarPrice(),b.getDisFee(),b.getOnlinePay(),b.getIsReserve(),b.getLogo(),b.getIsBusiness(),b.getTypeId(),b.getCityId(),b.getState(),b.getRegDate(),b.getDes(),b.getBossId())>0;
 	}
 
 	@Override
 	public boolean updateBusinesses(Businesses b) {
 		// TODO Auto-generated method stub
-		String sql="update businesses set busiName=?,phone=?,address=?,avgCost=?,licence=?,lat=?,lon=?,starPrice=?,disFee=?,onlinePay=?,isReserve=?,isBusiness=?,"
-				+ "typeId=?,cityId=?,state=?,regDate=? where id=?";
-		return BaseDao.execute(sql,b.getBusiName(),b.getPhone(),b.getAddress(),b.getAvgCost(),b.getLicence(),b.getLat(),b.getLon(),b.getStarPrice(),b.getDisFee(),b.getOnlinePay(),b.getIsReserve(),b.getIsBusiness(),b.getTypeId(),
-				b.getCityId(),b.getState(),b.getRegDate(),b.getId())>0;
+		String sql="update businesses set busiName=?,phone=?,address=?,avgCost=?,licence=?,lat=?,lon=?,logo=?,starPrice=?,disFee=?,onlinePay=?,isReserve=?,isBusiness=?,"
+				+ "typeId=?,cityId=?,state=?,regDate=?,des=? where id=?";
+		return BaseDao.execute(sql,b.getBusiName(),b.getPhone(),b.getAddress(),b.getAvgCost(),b.getLicence(),b.getLat(),b.getLon(),b.getLogo(),b.getStarPrice(),b.getDisFee(),b.getOnlinePay(),b.getIsReserve(),b.getIsBusiness(),b.getTypeId(),
+				b.getCityId(),b.getState(),b.getRegDate(),b.getDes(),b.getId())>0;
 	}
 
 	@Override
