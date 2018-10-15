@@ -167,19 +167,20 @@ public class BaiduMap {
 	 * @param address
 	 * @return
 	 */
-	public static Map<String, Double> getLatLon(String address){
-		String result = new BaiduMap().connectURL("http://api.map.baidu.com/geocoder/v2/?address=环岛东路商业街17号&output=json&ak=dfY6LWsD1xGtVTxskQXrUlYHPiH9AKP6&callback=showLocation", "");
+	public static HashMap<String, Double> getLatLon(String address){
+		String result = new BaiduMap().connectURL("http://api.map.baidu.com/geocoder/v2/?address="+address+"&output=json&ak=dfY6LWsD1xGtVTxskQXrUlYHPiH9AKP6&callback=showLocation", "");
 		result = new BaiduMap().unicode2Str(result);
 		result = result.substring(result.indexOf("{"), result.lastIndexOf("}") + 1);
 		Gson gson = new Gson();
 		JsonRootBean rr = gson.fromJson(result, JsonRootBean.class);
+		System.out.println(rr.getStatus());
 		if(rr.getStatus()!=0) {
 			return null;
 		}
 		HashMap<String, Double> hashmap=new HashMap<>();
 		hashmap.put("lat", rr.getResult().getLocation().getLat());
 		hashmap.put("lon", rr.getResult().getLocation().getLng());
-		return (Map<String, Double>) hashmap;
+		return hashmap;
 	}
 	public static void main(String[] args) {
 		String result = new BaiduMap().connectURL("http://api.map.baidu.com/geocoder/v2/?address=环岛东路商业街17号&output=json&ak=dfY6LWsD1xGtVTxskQXrUlYHPiH9AKP6&callback=showLocation", "");

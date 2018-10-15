@@ -1,11 +1,19 @@
 package com.etc.controllor;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.etc.service.impl.CityServiceImpl;
+import com.etc.service.impl.TypeServiceImpl;
+import com.etc.services.CitySevice;
+import com.etc.services.TypeSevice;
+import com.google.gson.Gson;
 
 /**
  * Servlet implementation class CityServlet
@@ -35,7 +43,14 @@ public class TypeServlet extends HttpServlet {
 		
 		
 		if("ajaxQuery".equals(op)) {
-			
+			response.setCharacterEncoding("utf-8");
+			response.setContentType("text/json");
+			TypeSevice ts=new TypeServiceImpl();
+			Gson gson=new Gson();
+			String jsonStr=gson.toJson(ts.getTypes());
+			PrintWriter out=response.getWriter();
+			out.print(jsonStr);
+			out.close();
 		}
 	}
 

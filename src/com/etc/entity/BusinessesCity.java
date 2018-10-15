@@ -36,16 +36,7 @@ public class BusinessesCity {
 
   
 
-	@Override
-	public String toString() {
-		return "BusinessesCity [id=" + id + ", busiName=" + busiName + ", phone=" + phone + ", address=" + address
-				+ ", avgCost=" + avgCost + ", licence=" + licence + ", salNum=" + salNum + ", lat=" + lat + ", lon="
-				+ lon + ", starPrice=" + starPrice + ", disFee=" + disFee + ", onlinePay=" + onlinePay + ", isReserve="
-				+ isReserve + ", isBusiness=" + isBusiness + ", des=" + des + ", typeId=" + typeId + ", bossId="
-				+ bossId + ", cityId=" + cityId + ", praise=" + praise + ", nag=" + nag + ", state=" + state + ", logo="
-				+ logo + ", cityName=" + cityName + ", regDate=" + regDate + "]";
-	}
-
+	
 	private Integer bossId;
 
     private Integer cityId;
@@ -58,7 +49,28 @@ public class BusinessesCity {
     private String logo;
     
     private String cityName;
-    private String regDate;
+    
+    private String title;
+    
+    public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	@Override
+	public String toString() {
+		return "BusinessesCity [id=" + id + ", busiName=" + busiName + ", phone=" + phone + ", address=" + address
+				+ ", avgCost=" + avgCost + ", licence=" + licence + ", salNum=" + salNum + ", lat=" + lat + ", lon="
+				+ lon + ", starPrice=" + starPrice + ", disFee=" + disFee + ", onlinePay=" + onlinePay + ", isReserve="
+				+ isReserve + ", isBusiness=" + isBusiness + ", des=" + des + ", typeId=" + typeId + ", bossId="
+				+ bossId + ", cityId=" + cityId + ", praise=" + praise + ", nag=" + nag + ", state=" + state + ", logo="
+				+ logo + ", cityName=" + cityName + ", title=" + title + ", regDate=" + regDate + "]";
+	}
+
+	private String regDate;
     public String getRegDate() {
 		return regDate;
 	}

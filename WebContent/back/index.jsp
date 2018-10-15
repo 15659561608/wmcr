@@ -69,7 +69,8 @@
              <dl>
                 <dt >配送员管理 <img class="b" src="img/jt-right-co.png" alt=""><img class="r" src="img/jt-bottom.png" alt=""></dt>
                 <dd>
-                    <a href="#view/shopList.jsp">配送员列表 </a>
+                    <a href="#view/distributor.jsp">配送员列表 </a>
+                     <a href="#view/addDistributor.jsp">新增配送员 </a>
                 </dd>
             </dl>
             

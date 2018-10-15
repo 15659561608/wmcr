@@ -23,6 +23,12 @@ public interface BusinessDao {
 	 * @return
 	 */
 	public List<BusinessesCity> getBusinesses(int bossId);
+	
+	/**
+	 * 获取门店信息
+	 * @return
+	 */
+	public List<BusinessesCity> getBusinessesById(int id);
 	/**
 	 * 添加门店
 	 * @param b
@@ -36,4 +42,10 @@ public interface BusinessDao {
 	 * @return
 	 */
 	public boolean updateBusinesses(Businesses b);
+	/**
+	 * 修改状态
+	 * @param op
+	 * @return
+	 */
+	public boolean updateBusiForString(String op,int value,int id);
 }

@@ -1,51 +1,100 @@
 package com.etc.entity;
 
 public class Businesses {
-    private Integer id;
+	private Integer id;
 
-    private String busiName;
+	private String busiName;
 
-    private String phone;
+	private String phone;
 
-    private String address;
+	private String address;
 
-    private Double avgCost;
+	private Double avgCost;
 
-    private String licence;
+	private String licence;
 
-    private Integer salNum;
+	private Integer salNum;
 
-    private Double lat;
+	private Double lat;
 
-    private Double lon;
+<<<<<<< HEAD
+    public Businesses(String busiName, String phone, String address, String licence, Double lat, Double lon,
+			Integer typeId, Integer bossId, Integer cityId) {
+		super();
+		this.busiName = busiName;
+		this.phone = phone;
+		this.address = address;
+		this.licence = licence;
+		this.lat = lat;
+		this.lon = lon;
+		this.typeId = typeId;
+		this.bossId = bossId;
+		this.cityId = cityId;
+	}
 
-    private Double starPrice;
+=======
+>>>>>>> branch 'master' of https://github.com/15659561608/wmcr.git
+	private Double lon;
 
-    private Double disFee;
+	private Double starPrice;
 
-    private Integer onlinePay;
+	private Double disFee;
 
-    private Integer isReserve;
+	private Integer onlinePay;
 
-    private Integer isBusiness;
+	private Integer isReserve;
 
-    private String des;
+	private Integer isBusiness;
 
-    private Integer typeId;
+	private String des;
 
-    private Integer bossId;
+	private Integer typeId;
 
-    private Integer cityId;
+	private Integer bossId;
 
-    private Integer praise;
+	private Integer cityId;
 
-    private Integer nag;
+	private Integer praise;
 
-    private Integer state;
-    private String logo;
-    private String regDate;
+	private Integer nag;
 
-    public String getRegDate() {
+	private Integer state;
+	private String logo;
+	private String regDate;
+
+	public Businesses() {
+		// TODO Auto-generated constructor stub
+	}
+
+	
+	public Businesses(Integer id, String busiName, String phone, String address, Double avgCost, String licence,
+			Double lat, Double lon, Double starPrice, Double disFee, Integer onlinePay, Integer isReserve,
+			Integer isBusiness, String des, Integer typeId, Integer cityId, Integer state, String logo,
+			String regDate) {
+		super();
+		this.id = id;
+		this.busiName = busiName;
+		this.phone = phone;
+		this.address = address;
+		this.avgCost = avgCost;
+		this.licence = licence;
+		this.lat = lat;
+		this.lon = lon;
+		this.starPrice = starPrice;
+		this.disFee = disFee;
+		this.onlinePay = onlinePay;
+		this.isReserve = isReserve;
+		this.isBusiness = isBusiness;
+		this.des = des;
+		this.typeId = typeId;
+		this.cityId = cityId;
+		this.state = state;
+		this.logo = logo;
+		this.regDate = regDate;
+	}
+
+
+	public String getRegDate() {
 		return regDate;
 	}
 
@@ -54,38 +103,38 @@ public class Businesses {
 	}
 
 	public Integer getId() {
-        return id;
-    }
+		return id;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public String getBusiName() {
-        return busiName;
-    }
+	public String getBusiName() {
+		return busiName;
+	}
 
-    public void setBusiName(String busiName) {
-        this.busiName = busiName == null ? null : busiName.trim();
-    }
+	public void setBusiName(String busiName) {
+		this.busiName = busiName == null ? null : busiName.trim();
+	}
 
-    public String getPhone() {
-        return phone;
-    }
+	public String getPhone() {
+		return phone;
+	}
 
-    public void setPhone(String phone) {
-        this.phone = phone == null ? null : phone.trim();
-    }
+	public void setPhone(String phone) {
+		this.phone = phone == null ? null : phone.trim();
+	}
 
-    public String getAddress() {
-        return address;
-    }
+	public String getAddress() {
+		return address;
+	}
 
-    public void setAddress(String address) {
-        this.address = address == null ? null : address.trim();
-    }
+	public void setAddress(String address) {
+		this.address = address == null ? null : address.trim();
+	}
 
-    public String getLogo() {
+	public String getLogo() {
 		return logo;
 	}
 
@@ -94,138 +143,138 @@ public class Businesses {
 	}
 
 	public Double getAvgCost() {
-        return avgCost;
-    }
+		return avgCost;
+	}
 
-    public void setAvgCost(Double avgCost) {
-        this.avgCost = avgCost;
-    }
+	public void setAvgCost(Double avgCost) {
+		this.avgCost = avgCost;
+	}
 
-    public String getLicence() {
-        return licence;
-    }
+	public String getLicence() {
+		return licence;
+	}
 
-    public void setLicence(String licence) {
-        this.licence = licence == null ? null : licence.trim();
-    }
+	public void setLicence(String licence) {
+		this.licence = licence == null ? null : licence.trim();
+	}
 
-    public Integer getSalNum() {
-        return salNum;
-    }
+	public Integer getSalNum() {
+		return salNum;
+	}
 
-    public void setSalNum(Integer salNum) {
-        this.salNum = salNum;
-    }
+	public void setSalNum(Integer salNum) {
+		this.salNum = salNum;
+	}
 
-    public Double getLat() {
-        return lat;
-    }
+	public Double getLat() {
+		return lat;
+	}
 
-    public void setLat(Double lat) {
-        this.lat = lat;
-    }
+	public void setLat(Double lat) {
+		this.lat = lat;
+	}
 
-    public Double getLon() {
-        return lon;
-    }
+	public Double getLon() {
+		return lon;
+	}
 
-    public void setLon(Double lon) {
-        this.lon = lon;
-    }
+	public void setLon(Double lon) {
+		this.lon = lon;
+	}
 
-    public Double getStarPrice() {
-        return starPrice;
-    }
+	public Double getStarPrice() {
+		return starPrice;
+	}
 
-    public void setStarPrice(Double starPrice) {
-        this.starPrice = starPrice;
-    }
+	public void setStarPrice(Double starPrice) {
+		this.starPrice = starPrice;
+	}
 
-    public Double getDisFee() {
-        return disFee;
-    }
+	public Double getDisFee() {
+		return disFee;
+	}
 
-    public void setDisFee(Double disFee) {
-        this.disFee = disFee;
-    }
+	public void setDisFee(Double disFee) {
+		this.disFee = disFee;
+	}
 
-    public Integer getOnlinePay() {
-        return onlinePay;
-    }
+	public Integer getOnlinePay() {
+		return onlinePay;
+	}
 
-    public void setOnlinePay(Integer onlinePay) {
-        this.onlinePay = onlinePay;
-    }
+	public void setOnlinePay(Integer onlinePay) {
+		this.onlinePay = onlinePay;
+	}
 
-    public Integer getIsReserve() {
-        return isReserve;
-    }
+	public Integer getIsReserve() {
+		return isReserve;
+	}
 
-    public void setIsReserve(Integer isReserve) {
-        this.isReserve = isReserve;
-    }
+	public void setIsReserve(Integer isReserve) {
+		this.isReserve = isReserve;
+	}
 
-    public Integer getIsBusiness() {
-        return isBusiness;
-    }
+	public Integer getIsBusiness() {
+		return isBusiness;
+	}
 
-    public void setIsBusiness(Integer isBusiness) {
-        this.isBusiness = isBusiness;
-    }
+	public void setIsBusiness(Integer isBusiness) {
+		this.isBusiness = isBusiness;
+	}
 
-    public String getDes() {
-        return des;
-    }
+	public String getDes() {
+		return des;
+	}
 
-    public void setDes(String des) {
-        this.des = des == null ? null : des.trim();
-    }
+	public void setDes(String des) {
+		this.des = des == null ? null : des.trim();
+	}
 
-    public Integer getTypeId() {
-        return typeId;
-    }
+	public Integer getTypeId() {
+		return typeId;
+	}
 
-    public void setTypeId(Integer typeId) {
-        this.typeId = typeId;
-    }
+	public void setTypeId(Integer typeId) {
+		this.typeId = typeId;
+	}
 
-    public Integer getBossId() {
-        return bossId;
-    }
+	public Integer getBossId() {
+		return bossId;
+	}
 
-    public void setBossId(Integer bossId) {
-        this.bossId = bossId;
-    }
+	public void setBossId(Integer bossId) {
+		this.bossId = bossId;
+	}
 
-    public Integer getCityId() {
-        return cityId;
-    }
+	public Integer getCityId() {
+		return cityId;
+	}
 
-    public void setCityId(Integer cityId) {
-        this.cityId = cityId;
-    }
+	public void setCityId(Integer cityId) {
+		this.cityId = cityId;
+	}
 
-    public Integer getPraise() {
-        return praise;
-    }
+	public Integer getPraise() {
+		return praise;
+	}
 
-    public void setPraise(Integer praise) {
-        this.praise = praise;
-    }
+	public void setPraise(Integer praise) {
+		this.praise = praise;
+	}
 
-    public Integer getNag() {
-        return nag;
-    }
+	public Integer getNag() {
+		return nag;
+	}
 
-    public void setNag(Integer nag) {
-        this.nag = nag;
-    }
+	public void setNag(Integer nag) {
+		this.nag = nag;
+	}
 
-    public Integer getState() {
-        return state;
-    }
+	public Integer getState() {
+		return state;
+	}
 
-    public void setState(Integer state) {
-        this.state = state;
-    }
+	public void setState(Integer state) {
+		this.state = state;
+	}
 }

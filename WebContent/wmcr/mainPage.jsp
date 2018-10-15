@@ -50,6 +50,8 @@
             
                 <div class="member-box fs12" login-box info="loginInfo">
                     <a href="member_order.jsp">查看订单</a>
+                    <span>/</span>
+                    <a href="index.jsp">退出系统</a>
                     <span>|</span>
                     <a href="#">欢迎，${sessionScope.users.account} 登陆</a>
                 </div>

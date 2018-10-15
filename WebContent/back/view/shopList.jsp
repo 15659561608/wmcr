@@ -46,7 +46,7 @@
 		</div> -->
 	</div>
 	<!--表格-->
-	<div class="table-wrapper pl27 " style="min-width: 1300px;">
+	<div class="table-wrapper pl27 " style="min-width: 1200px;">
 		<table class="table text-center">
 			<thead>
 				<tr>
@@ -104,11 +104,11 @@
 		</table>
 	</div>
 
-
+<!-- 分页开始 -->
 	<div class="row clearfix text-center">
 		<div class="col-md-12 column">
 			<ul class="pagination">
-				<li><a href="javascript:prePage()">&laquo;</a></li>
+				<li><a href="javascript:prePage()">上一页</a></li>
 
 
 				<c:forEach begin="1" end="${b.totalPage}" var="index">
@@ -124,11 +124,15 @@
 				</c:forEach>
 
 
-				<li><a href="javascript:nextPage()">&raquo;</a></li>
+				<li><a href="javascript:nextPage()">下一页</a></li>
 			</ul>
 		</div>
 
 	</div>
+	
+	<!-- 分页结束 -->
+	
+			
 	<!-- 遮罩开始 -->
 	<div class="row clearfix">
 		<div class="col-md-12 column">
@@ -145,7 +149,7 @@
 							</h4>
 						</div>
 						<!-- 表单开始 -->
-						<form class="form-horizontal" action="Bsc.do" method="post">
+						<form class="form-horizontal" action="${pageContext.request.contextPath}/Bsc.do" method="post">
 							<div class="modal-body">
 
 								<div class="form-group">
@@ -163,10 +167,10 @@
 								<div class="form-group">
 									<label for="" class="col-sm-2 control-label">商户状态</label>
 									<div class="col-sm-3">
-										<select class="form-control" name="state" id="state">
-											<option value="0">未审核</option>
-											<option value="1">正常</option>
-											<option value="2">销毁</option>
+										<select class="form-control" name="bossstate" id="bossstate">
+											<option value="0">未审核 </option>
+											<option value="1">正常 </option>
+											<option value="2">销毁 </option>
 										</select>
 									</div>
 								</div>
@@ -196,9 +200,9 @@
 
 	<!-- 遮罩结束 -->
 	
-</body>
-<script src="${pageContext.request.contextPath}/back/plugin/jquery/jquery.js"></script>
-<script src="${pageContext.request.contextPath}/back/js/frame-base.js"></script>
+
+<%-- <script src="${pageContext.request.contextPath}/back/plugin/jquery/jquery.js"></script>
+<script src="${pageContext.request.contextPath}/back/js/frame-base.js"></script> --%>
 <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/back/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript">
@@ -226,7 +230,7 @@
 	}
 	
 	</script>
-		<script "text/javascript">
+		<script>
 	
 	$(function() {
 	    $(".update").click(
@@ -241,8 +245,9 @@
 						.text();
                 $("#id").val(id);
 				$("#account").val(account);
-				$("#state").val(state == "未审核" ? 0 :(state=="正常"? 1 : 2 ));
+				$("#bossstate").val(state == "未审核" ? 0 :(state=="正常"? 1 : 2 ));
 			});
 	});
 	</script>
+	</body>
 </html>

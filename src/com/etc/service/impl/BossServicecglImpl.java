@@ -15,4 +15,10 @@ public class BossServicecglImpl implements BossServicecgl {
 		return bd.queryBoss(page, pageSize, keywords);
 	}
 
+	@Override
+	public boolean updateBoss(int id, String state) {
+		// TODO Auto-generated method stub
+		return bd.updateBoss(id, state);
+	}
+
 }
