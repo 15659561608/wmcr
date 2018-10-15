@@ -36,7 +36,7 @@
    
 		   </div>
 			<div class="text-c"> 
-			  姓名：<input type="text" class="form-controlSearch input-text " placeholder="输入姓名" data-column="2" id="col2_filter" style="width:100px;">
+			  门店名：<input type="text" class="form-controlSearch input-text " placeholder="输入 门店名" data-column="2" id="col2_filter" style="width:100px;">
 		     地址：<input type="text" class="form-controlSearch input-text " placeholder="输入地址" data-column="4" id="col4_filter" style="width:100px;">
 		          城市：<input type="text" class="form-controlSearch input-text " placeholder="输入城市" data-column="13" id="col13_filter" style="width:100px;">
     注册时间：<input type="text" class="form-controlSearch input-text Wdate" onfocus="WdatePicker({maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}'})"  placeholder="输入注册时间" data-column="17" id="col17_filter" style="width:100px;">
@@ -393,7 +393,7 @@ function member_del(obj,id){
         	"createdCell":function(nTd)
         	{
         		//表格最后一个列增加很多超链接 启用禁用。 编辑   删除 修改密码
-        		$(nTd).html(' <a title="编辑" onclick="showUpdate(this)" href="javascript:;" class="empedit ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> ');
+        		$(nTd).html(' <a title="编辑" onclick="showUpdate(this)" href="javascript:;" class="empedit ml-5"  style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> ');
         		//$(nTd).html('<a onClick="member_stop(this,\'10001\')">xx<a>');
         		//$(nTd).html('<a style="text-decoration:none" onClick="member_stop(this,\'10001\')" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a> <a title="编辑" href="javascript:;" onclick="member_edit(\'编辑\',\'member-add.html\',\'4\',\'\',\'510\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onClick="change_password(\'修改密码\',\'change-password.html\',\'10001\',\'600\',\'270\')" href="javascript:;" title="修改密码"><i class="Hui-iconfont">&#xe63f;</i></a> <a title="删除" href="javascript:;" onclick="member_del(this,\'1\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>');
         		//$(nTd).html("<td class='td-manage'><a style='text-decoration:none' onClick='member_stop(this,'10001')' href='javascript:;' title='停用'><i class='Hui-iconfont'>&#xe631;</i></a> <a title='编辑' href='javascript:;' onclick='member_edit('编辑','member-add.html','4','','510')' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6df;</i></a> <a style='text-decoration:none' class='ml-5' onClick='change_password('修改密码','change-password.html','10001','600','270')' href='javascript:;' title='修改密码'><i class='Hui-iconfont'>&#xe63f;</i></a> <a title='删除' href='javascript:;' onclick='member_del(this,'1')' class='ml-5' style='text-decoration:none'><i class='Hui-iconfont'>&#xe6e2;</i></a></td>");

@@ -1,5 +1,10 @@
 package com.etc.entity;
 
+/**
+ * 
+ * @author Administrator
+ *
+ */
 public class Businesses {
 	private Integer id;
 

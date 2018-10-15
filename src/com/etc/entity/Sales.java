@@ -1,33 +1,78 @@
 package com.etc.entity;
 
 public class Sales {
-    private Integer id;
+    private Integer salId;
 
     private String title;
 
     private Double discount;
 
-    public Integer getId() {
-        return id;
-    }
+    private int busId;
+    private String content;
+    private int state;
+   private String pubDate;
+	public String getPubDate() {
+	return pubDate;
+}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+public void setPubDate(String pubDate) {
+	this.pubDate = pubDate;
+}
 
-    public String getTitle() {
-        return title;
-    }
+	public Sales(Integer salId, String title, Double discount, String content, int state, String pubDate) {
+	super();
+	this.salId = salId;
+	this.title = title;
+	this.discount = discount;
+	this.content = content;
+	this.state = state;
+	this.pubDate = pubDate;
+}
 
-    public void setTitle(String title) {
-        this.title = title == null ? null : title.trim();
-    }
+	public String getTitle() {
+		return title;
+	}
 
-    public Double getDiscount() {
-        return discount;
-    }
+	
+	@Override
+	public String toString() {
+		return "Sales [salId=" + salId + ", title=" + title + ", discount=" + discount + ", busId=" + busId
+				+ ", content=" + content + ", state=" + state + ", pubDate=" + pubDate + "]";
+	}
 
-    public void setDiscount(Double discount) {
-        this.discount = discount;
-    }
+	public Integer getSalId() {
+		return salId;
+	}
+
+	public void setSalId(Integer salId) {
+		this.salId = salId;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public Double getDiscount() {
+		return discount;
+	}
+	public void setDiscount(Double discount) {
+		this.discount = discount;
+	}
+	public int getBusId() {
+		return busId;
+	}
+	public void setBusId(int busId) {
+		this.busId = busId;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public int getState() {
+		return state;
+	}
+	public void setState(int state) {
+		this.state = state;
+	}
 }
