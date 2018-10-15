@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>用户列表</title>
+    <title>评论列表</title>
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/back/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/back/css/frame.css">
@@ -19,73 +19,59 @@
 </head>
 
 <body>
-    <div class="frame-header"><span class="page-reload cur">用户列表</span></div>
+    <div class="frame-header"><span class="page-reload cur">评论列表</span></div>
     <!--操作栏-->
     <div class="operates clearfix" style="overflow: auto;white-space: nowrap; font-size: 0;">
-<div class="pull-left left-inp defualt">
 
-<%-- <form  method="post">       
-            <input type="text" class="pull-left" style="margin-left: 10px;" placeholder="用户名、手机号" name="keywords"id="keywords" value="${keywords}">
+        <div class="pull-left left-inp defualt">
+<%-- 
+        <form  method="post">
+            <input type="text" class="pull-left" style="margin-left: 10px;" placeholder="用户名、店铺名" name="keywords"id="keywords" value="${keywords}">
+			<input type="hidden" name="op" value="queryCommentByPage">
             <button class="btn delete pramary">搜索</button>
         </div>
-        <div class="right-btns" style="font-size: 0">
+        
 </form>
- --%>
-  <form class="navbar-form navbar-right" method="post"
-				action="${pageContext.request.contextPath}/csc.do">
-				<input type="hidden" name="op" value="queryCustomersByPage"> <input
+           --%>  
+           
+           
+           <form class="navbar-form navbar-right" method="post"
+				action="${pageContext.request.contextPath}/cmt.do">
+				<input type="hidden" name="op" value="queryCommentByPage"> <input
 					type="text" class="pull-left" style="margin-left: 10px;"
-					placeholder="用户名、手机号 " name="keywords" id="keywords"
+					placeholder="用户名、店铺名 " name="keywords" id="keywords"
 					value="${keywords}">
 				<button class="btn delete pramary" type="submit">搜索</button>
 			</form>
- 
- 
- 
-            
         </div>
     </div>
     <!--表格-->
     <div class="table-wrapper pl27 " style="min-width:1000px;">
         <table class="table text-center">
-           <thead>
+            <thead>
                 <tr>
-                    <th class="yt" style="width: 7%;"><input type="checkbox" class="allCheck" id="all">用户Id
-                       </th>
-                    <th style="width: 5%;" class="sort cur">用户名
+                    <th class="yt" style="width: 9%;">评论编号★
+                        <input type="checkbox" class="allCheck" id="all"><label for="all" style="width: 40px">&nbsp;&nbsp;&nbsp;</label></th>
+                    <th style="width: 16%;" class="sort cur">评论用户名
                         <img class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt="">
                         <img class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png" alt="">
                     </th>
-                    <th class="sort cur" style="width:7%">姓名
+                    <th class="sort cur" style="width:9%">评论店铺名
                         <img class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt="">
                         <img class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png" alt="">
                     </th>
-                    <th class="sort cur" style="width:9%">手机号
+                    <th class="sort cur" style="width:9%">好评星级
                         <img class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt="">
                         <img class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png" alt="">
                     </th>
-                    <th class="sort cur" style="width: 20%;">注册时间
+                    <th class="sort cur" style="width: 9%;">评论内容
                         <img class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt="">
                         <img class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png" alt="">
                     </th>
-                    <th class="sort cur" style="width: 20%;">收货地址
+                    <th class="sort cur" style="width: 9%;">评论时间
                         <img class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt="">
                         <img class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png" alt="">
                     </th>
-                    <th class="sort cur" style="width: 5%;">纬度
-                        <img class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt="">
-                        <img class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png" alt="">
-                    </th>
-                    <th class="sort cur" style="width: 5%;">经度
-                        <img class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt="">
-                        <img class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png" alt="">
-                    </th>
-                    <th class="sort cur" style="width: 9%;">状态
-                     <a   href="javascript:getStateByOrder()">
-                        <img class="bottom"  src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt="">
-                        <img class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png" alt="">
-                   </a>
-                     </th>
                     <th class="sort cur" style="width: 9%;">审核
                         <img class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt="">
                         <img class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png" alt="">
@@ -97,7 +83,7 @@
  <tbody>
 						
 						<c:if test="${requestScope.pd == null}">
-								<jsp:forward page="/csc.do?op=queryCustomersByPage"></jsp:forward>
+								<jsp:forward page="/cmt.do?op=queryCommentByPage"></jsp:forward>
 							</c:if>
 							<c:forEach items="${requestScope.pd.data}" var="c">
 
@@ -107,15 +93,16 @@
                     
 								
 								<td>${c.account}</td>
-								<td>${c.custName}</td>
-								<td>${c.phone}</td>
-								<td>${c.regDate}</td>
-								<td>${c.address}</td>
-								<td>${c.lat}</td>
-								<td>${c.lon}</td>
-								<td>${c.state ==0? "通过" : "未审核"}</td>
-								<td>
-								<a href="${pageContext.request.contextPath}/csc.do?userId=${c.id}&state=${c.state}&op=updateCustomerState">修改[超链接]</a>
+								<td>${c.busiName}</td>
+								<%-- <td>${c.praise == 5?"★★★★★":${c.praise == 4?"★★★★":${c.praise == 3?"★★★":${c.praise == 2?"★★":★}}}}</td> --%>
+								<%-- <td>${c.praise==5?"★★★★★":${c.praise==4?"★★★★":"★★★"}}</td> --%>
+								 <td>${c.praise}</td> 
+								<td>${c.content}</td>
+								<td>${c.comDate}</td>
+
+								
+								<td> 
+								<button class="btn btn-link del">删除[按钮]</button>
 								</td>
 								</tr>
 								</c:forEach>
@@ -128,7 +115,12 @@
     </div>
     <div class="table-tel clearfix">
         <div style="border-bottom: 1px solid #fff; overflow: hidden;" class="no-hover">
-           
+            <div class="fl tb1 tb1s" style="text-align: left;   ">
+                <input type="checkbox" class="allCheck" id="all" ><label for="all" style="width: 45px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></th>
+            </div>
+            <div class="fl tb2" style="text-align:left; width: 190px;display: table">&emsp;<span class="cur">短信</span>&emsp;<span class="cur">邮件</span>&emsp;<span class="cur">微信</span>&emsp;<span class="cur">审核</span>&emsp;
+            </div>
+   
             
             
   <!--分頁的開始  -->
@@ -189,19 +181,41 @@
             </div>
             <!-- 分页 -->
              --%>
+    
             
         </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
     </div>
+    
+    
+    
+    
+    
+    
+    
 </body>
 <script src="${pageContext.request.contextPath}/back/plugin/jquery/jquery.js"></script>
 <script src="${pageContext.request.contextPath}/back/js/frame-base.js"></script>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath}/back/bootstrap/js/bootstrap.min.js"></script>
+
 <script type="text/javascript">
+
+
 function prePage(){
 	var page = 1;
 	if(${pd.page}>1){
 		page=${pd.page}-1;
 	}
-	location.href="${pageContext.request.contextPath}/csc.do?op=queryCustomersByPage&page="+page+"&keywords="+document.getElementById("keywords").value;
+	location.href="${pageContext.request.contextPath}/cmt.do?op=queryCommentByPage&page="+page+"&keywords="+document.getElementById("keywords").value;
 }
 /**
  * 下一页
@@ -211,14 +225,14 @@ function nextPage(){
 	if(${pd.page}<${pd.totalPage}){
 		page=${pd.page}+1;
 	}
-	location.href="${pageContext.request.contextPath}/csc.do?op=queryCustomersByPage&page="+page+"&keywords="+document.getElementById("keywords").value;
+	location.href="${pageContext.request.contextPath}/cmt.do?op=queryCommentByPage&page="+page+"&keywords="+document.getElementById("keywords").value;
 }
 /**
  * 跳转到X页
  */
 function jumpPage(page){
 	
-	location.href="${pageContext.request.contextPath}/csc.do?op=queryCustomersByPage&page="+page+"&keywords="+document.getElementById("keywords").value;
+	location.href="${pageContext.request.contextPath}/cmt.do?op=queryCommentByPage&page="+page+"&keywords="+document.getElementById("keywords").value;
 }
 
 function getStateByOrder()
@@ -228,5 +242,23 @@ function getStateByOrder()
 	   location.href="${pageContext.request.contextPath}/csc.do?op=queryCustomersByOrder&page="+page+"&keywords="+document.getElementById("keywords").value;
 }
 
+$(function() {
+
+	// 事件 class为del的按钮的事件
+	$(".del").click(function() {
+
+		var flag = confirm("是否确定删除？删除的数据将不可恢复.");
+		if (flag == true) {
+			//$(this) 当前的按钮的文本
+			//$(this).parents("tr") 当前行对象
+			//$(this).parents("tr").find("td") 找当前行的列td
+			//$(this).parents("tr").find("td").eq(0) 当前行的第一个td
+			alert($(this).parents("tr").find("td").eq(0).text());
+			var comId = $(this).parents("tr").find("td").eq(0).text()
+			//将这个结果 传递给servlet
+			location.href = "${pageContext.request.contextPath}/cmt.do?op=del&comId=" + comId;
+		}
+	});
+});
 </script>
 </html>
