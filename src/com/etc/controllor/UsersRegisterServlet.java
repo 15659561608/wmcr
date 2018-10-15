@@ -68,7 +68,23 @@ public class UsersRegisterServlet extends HttpServlet {
 			out.close();
 		} else if (op.equals("register")) {
 			account = request.getParameter("account1");
+			if(account.isEmpty()) {
+				out.println("<script>alert('把文本框给我填好，然后注册好吗？');location.href='wmcr/index.jsp'</script>");
+			}
 			yzm = request.getParameter("captcha2");
+			if(yzm.isEmpty()) {
+				out.println("<script>alert('把文本框给我填好，然后注册好吗？');location.href='wmcr/index.jsp'</script>");
+			}
+			String pwd = request.getParameter("pwd1");
+			String pwd1 = MD5Util.getEncodeByMd5(pwd);
+			if(pwd1.isEmpty()) {
+				out.println("<script>alert('把文本框给我填好，然后注册好吗？');location.href='wmcr/index.jsp'</script>");
+			}
+			String repwd = request.getParameter("repwd");
+			if(repwd.isEmpty()) {
+				out.println("<script>alert('把文本框给我填好，然后注册好吗？');location.href='wmcr/index.jsp'</script>");
+			}
+			Users u1 = new Users(account, pwd1);
 			Users u = rps.queryUsers(account);
 			HttpSession session = request.getSession();
 			int co = (int) session.getAttribute("code");
@@ -77,17 +93,14 @@ public class UsersRegisterServlet extends HttpServlet {
 				out.println("<script>alert('账户已经存在');location.href='wmcr/index.jsp'</script>");
 			} else if (Integer.valueOf(yzm) != co) {
 				out.println("<script>alert('验证码不正确');location.href='wmcr/index.jsp'</script>");
-			} else {
-				String pwd = request.getParameter("pwd1");
-				String pwd1 = MD5Util.getEncodeByMd5(pwd);
-				Users u1 = new Users(account, pwd1);
+			} else if(u1!=null) {
 				boolean flag = us.getUsersRegister(u1);
 				if (flag) {
-					request.getSession().setAttribute("users", u);
+					//request.getSession().setAttribute("users", u);
 					out.println("<script>alert('注册成功');location.href='wmcr/index.jsp'</script>");
-				} else {
-					out.println("<script>alert('注册失败');location.href='wmcr/index.jsp'</script>");
-				}
+				} 
+			}else {
+				out.println("<script>alert('注册失败');location.href='wmcr/index.jsp'</script>");
 			}
 
 		}
