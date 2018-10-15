@@ -37,6 +37,7 @@ public class BossServletcgl extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		String op=request.getParameter("op");
+	
 		if (op.equals("queryBoss")) {
 			
 			int page = 1;
@@ -58,7 +59,15 @@ public class BossServletcgl extends HttpServlet {
 			request.setAttribute("keywords", keywords);
 			request.getRequestDispatcher("back/view/shopList.jsp").forward(request, response);
 		}
-		
+		if (op.equals("update")) {
+			String id=request.getParameter("id");
+			String state=request.getParameter("bossstate");
+			System.out.println(id);
+			boolean flag=bs.updateBoss(Integer.valueOf(id), state);
+			if (flag) {
+				request.getRequestDispatcher("back/view/shopList.jsp").forward(request, response);
+			} 
+		}
 		
 	}
 
