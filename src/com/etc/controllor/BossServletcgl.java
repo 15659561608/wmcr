@@ -41,7 +41,7 @@ public class BossServletcgl extends HttpServlet {
 		if (op.equals("queryBoss")) {
 			
 			int page = 1;
-			int pageSize = 5;
+			int pageSize = 10;
 			String keywords = "";
 			if (null != request.getParameter("page")) {
 				page = Integer.parseInt(request.getParameter("page"));

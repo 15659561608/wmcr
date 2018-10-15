@@ -14,6 +14,9 @@
 	href="${pageContext.request.contextPath}/back/css/frame.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/back/css/addClass.css">
+	<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/back/layui/css/layui.css"
+	media="all">
 <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
 <!--[if lt IE 9]>
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -70,13 +73,6 @@
 						src="${pageContext.request.contextPath}/back/img/jt-right-co.png"
 						alt="">
 					</th>
-					<th class="sort cur" style="width: 10%;">籍贯 <img
-						class="bottom"
-						src="${pageContext.request.contextPath}/back/img/jt-bottom.png"
-						alt=""> <img class="top" style="display: none"
-						src="${pageContext.request.contextPath}/back/img/jt-right-co.png"
-						alt="">
-					</th>
 					<th class="sort cur" style="width: 5%;">纬度 <img class="bottom"
 						src="${pageContext.request.contextPath}/back/img/jt-bottom.png"
 						alt=""> <img class="top" style="display: none"
@@ -124,7 +120,7 @@
 						<td>${dis.disName}</td>
 						<td>${dis.phone}</td>
 						<td>${dis.birthday}</td>
-						<td>${dis.nativeplace}</td>
+					
 						<td>${dis.lat}</td>
 						<td>${dis.lon}</td>
 						<td>${dis.num}</td>
@@ -137,33 +133,16 @@
 		</table>
 	</div>
 
-	<!-- 分页开始 -->
-	<div class="row clearfix text-center">
-		<div class="col-md-12 column">
-			<ul class="pagination">
-				<li><a href="javascript:prePage()">上一页</a></li>
+<!-- 分页开始 -->
+	<!-- layui -->
+	<div align="center">
+		<fieldset class="layui-elem-field layui-field-title"
+			style="margin-top: 30px;"></fieldset>
 
-
-				<c:forEach begin="1" end="${d.totalPage}" var="index">
-
-					<c:if test="${index == d.page}">
-						<li class="active"><a href="#">${index}</a></li>
-					</c:if>
-
-					<c:if test="${index != d.page}">
-						<li><a
-							href="${pageContext.request.contextPath}/Ds.do?op=queryDis&page=${index}&keywords=${keywords}">${index}</a></li>
-					</c:if>
-				</c:forEach>
-
-
-				<li><a href="javascript:nextPage()">下一页</a></li>
-			</ul>
-		</div>
-
+		<div id="demo7"></div>
 	</div>
-
 	<!-- 分页结束 -->
+
 
 
 	<!-- 遮罩开始 -->
@@ -178,17 +157,17 @@
 							<button type="button" class="close" data-dismiss="modal"
 								aria-hidden="true">×</button>
 							<h4 class="modal-title" id="myModalLabel">
-								<br> &nbsp;&nbsp;&nbsp;修改商户状态
+								<br> &nbsp;&nbsp;&nbsp;修改配送员
 							</h4>
 						</div>
 						<!-- 表单开始 -->
-						<form class="form-horizontal" action="Ds.do" method="post">
+						<form class="form-horizontal" action="${pageContext.request.contextPath}/Ds.do" method="post">
 							<div class="modal-body">
 
 								<div class="form-group">
 									<label for="" class="col-sm-2 control-label">姓名</label>
 									<div class="col-sm-4">
-										<input type="hidden" name="op" value="update" /> <input
+										<input type="hidden" name="op" value="updateDis" /> <input
 											type="hidden" name="id" id="id" /> <input type="text"
 											required="required" class="form-control" name="disName"
 											id="disName" readonly="false" />
@@ -198,10 +177,10 @@
 									<label for="" class="col-sm-2 control-label">电话</label>
 									<div class="col-sm-4">
 										<input type="text" required="required" class="form-control"
-											name="phone" id="phone" readonly="false" />
+											name="phone" id="phone" />
 									</div>
 								</div>
-								
+
 								<div class="form-group">
 									<label for="" class="col-sm-2 control-label">状态</label>
 									<div class="col-sm-3">
@@ -244,7 +223,11 @@
 	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/back/bootstrap/js/bootstrap.min.js"></script>
+		<script src="${pageContext.request.contextPath}/back/layui/layui.js"
+		charset="utf-8"></script>
 	<script type="text/javascript">
+	
+
 	//上一页
 	function prePage(){
 		var page=1;
@@ -283,7 +266,7 @@
 				var phone = $(this).parents("tr").find("td").eq(2)
 				        .text();
 				
-				var state = $(this).parents("tr").find("td").eq(8)
+				var state = $(this).parents("tr").find("td").eq(7)
 						.text();
 				
                 $("#id").val(id);
@@ -294,5 +277,34 @@
 			});
 	});
 	</script>
+	<script>
+layui.use(['laypage', 'layer'], function(){
+  var laypage = layui.laypage
+  ,layer = layui.layer;
+  
+  
+  //完整功能
+  laypage.render({
+    elem: 'demo7'
+    ,count: ${d.total}
+    ,curr:${d.page}
+    ,limit:${d.pageSize}
+    ,theme: '#FFB800'
+    ,layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+    ,jump: function(obj,first){
+      console.log(obj)
+      console.log(first)
+      
+      if (!first) {
+    	  location.href="${pageContext.request.contextPath}/Ds.do?op=queryDis&page="+obj.curr+"&pageSize="+obj.limit+"&keywords="+document.getElementById("keywords").value;
+	}
+    }
+    
+    
+  });
+  
+  
+});
+</script>
 </body>
 </html>
