@@ -115,9 +115,47 @@ public class BusinessServlet extends HttpServlet {
 	protected void doAdd(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
-		String busiName = request.getParameter("busiName");
-		String phone = request.getParameter("phone");
+		HttpSession session = request.getSession();
+		Boss boss = (Boss) session.getAttribute("boss");
+		String busiName=request.getParameter("busiName");
+		String phone=request.getParameter("phone");
+		String address=request.getParameter("address");
+		double avgCost=Double.valueOf(request.getParameter("avgCost"));
+		String licence=request.getParameter("licence");
+		double lat=0.0;
+		double lon=0.0;
+		HashMap<String,Double> hashmap=(HashMap<String, Double>) BaiduMap.getLatLon(address);
+		if(hashmap!=null) {
+			lat=hashmap.get("lat");
+			lon=hashmap.get("lon");
+		}
+		
+		double starPrice=Double.valueOf(request.getParameter("starPrice"));
+		double disFee=Double.valueOf(request.getParameter("disFee"));
+		
+		int onlinePay=Integer.valueOf(request.getParameter("onlinePay"));
+		int isReserve=Integer.valueOf(request.getParameter("isReserve"));
+		int isBusiness=Integer.valueOf(request.getParameter("isBusiness"));
+		String des=request.getParameter("des");
+		int typeId=Integer.valueOf(request.getParameter("typeId"));
+		int cityId=Integer.valueOf(request.getParameter("cityId"));
+		int state=0;
+		String logo=request.getParameter("logo");
+		int bossId=boss.getId();
+		Date d = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
+		String regDate = sdf.format(d);
+		Businesses businesses=new Businesses(busiName, phone, address, avgCost, licence, lat, lon, starPrice, disFee, onlinePay, isReserve, isBusiness, des, typeId, bossId, cityId, state, logo, regDate);
+		
+		BusinessService bs=new BusinessServiceImpl();
+		boolean result=bs.addBusinesses(businesses);
+		PrintWriter out=response.getWriter();
+		if(result) {
+			out.print("layer.msg('正在提交，请稍候..', {'time : 20000',btn : [ '我知道了' ],yes: function(index, layero){location.href='/wmcr/bossManage/index.jsp'}	});");
+		}else {
+			out.print("false");
+		}
+		out.close();
 	}
 
 	protected void doUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -151,11 +189,17 @@ public class BusinessServlet extends HttpServlet {
 		Date d = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
 		String regDate = sdf.format(d);
-		Businesses businesses=new Businesses(id, busiName, phone, address, avgCost, licence, lat, lon, starPrice, disFee, onlinePay, isReserve, isBusiness, des, typeId, cityId, state, logo, regDate);
+		Businesses businesses=new Businesses(id, busiName, phone, address, avgCost, licence, lat, lon, starPrice, disFee, onlinePay, isReserve, isBusiness, des, typeId,cityId, state, logo, regDate);
 		
 		BusinessService bs=new BusinessServiceImpl();
 		boolean result=bs.updateBusinesses(businesses);
-		System.out.println(result);
+		PrintWriter out=response.getWriter();
+		if(result) {
+			out.print("true");
+		}else {
+			out.print("false");
+		}
+		out.close();
 	}
 
 	protected void doDel(HttpServletRequest request, HttpServletResponse response)
