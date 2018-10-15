@@ -4,216 +4,186 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>用户列表</title>
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/back/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/back/css/frame.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/back/css/addClass.css">
-    <style>
-        .table-wrapper .table td label{
-            width: 40px;
-            text-align: left;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>用户列表</title>
+<meta name="viewport"
+	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/back/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/back/css/frame.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/back/css/addClass.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/back/layui/css/layui.css"
+	media="all">
+<style>
+.table-wrapper .table td label {
+	width: 40px;
+	text-align: left;
+}
+</style>
 </head>
 
 <body>
-    <div class="frame-header"><span class="page-reload cur">用户列表</span></div>
-    <!--操作栏-->
-    <div class="operates clearfix" style="overflow: auto;white-space: nowrap; font-size: 0;">
-<form  method="post">
-        <div class="pull-left left-inp defualt">
-            <input type="text" class="pull-left" style="margin-left: 10px;" placeholder="用户名、手机号" name="keywords"id="keywords" value="${keywords}">
-            <button class="btn delete pramary">搜索</button>
-        </div>
-        <div class="right-btns" style="font-size: 0">
-</form>
-            
-        </div>
-    </div>
-    <!--表格-->
-    <div class="table-wrapper pl27 " style="min-width:1000px;">
-        <table class="table text-center">
-           <thead>
-                <tr>
-                    <th class="yt" style="width: 7%;"><input type="checkbox" class="allCheck" id="all">用户Id
-                       </th>
-                    <th style="width: 5%;" class="sort cur">用户名
-                        <img class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt="">
-                        <img class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png" alt="">
-                    </th>
-                    <th class="sort cur" style="width:7%">姓名
-                        <img class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt="">
-                        <img class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png" alt="">
-                    </th>
-                    <th class="sort cur" style="width:9%">手机号
-                        <img class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt="">
-                        <img class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png" alt="">
-                    </th>
-                    <th class="sort cur" style="width: 20%;">注册时间
-                        <img class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt="">
-                        <img class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png" alt="">
-                    </th>
-                    <th class="sort cur" style="width: 20%;">收货地址
-                        <img class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt="">
-                        <img class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png" alt="">
-                    </th>
-                    <th class="sort cur" style="width: 5%;">纬度
-                        <img class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt="">
-                        <img class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png" alt="">
-                    </th>
-                    <th class="sort cur" style="width: 5%;">经度
-                        <img class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt="">
-                        <img class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png" alt="">
-                    </th>
-                    <th class="sort cur" style="width: 9%;">状态
-                     <a   href="javascript:getStateByOrder()">
-                        <img class="bottom"  src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt="">
-                        <img class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png" alt="">
-                   </a>
-                     </th>
-                    <th class="sort cur" style="width: 9%;">审核
-                        <img class="bottom" src="${pageContext.request.contextPath}/back/img/jt-bottom.png" alt="">
-                        <img class="top" style="display: none" src="${pageContext.request.contextPath}/back/img/jt-right-co.png" alt="">
-                    </th>
-                    
-                </tr>
-            </thead>
- <!-- 表格主体 -->
- <tbody>
-						
-						<c:if test="${requestScope.pd == null}">
-								<jsp:forward page="/csc.do?op=queryCustomersByPage"></jsp:forward>
-							</c:if>
-							<c:forEach items="${requestScope.pd.data}" var="c">
+	<div class="frame-header">
+		<span class="page-reload cur">用户列表</span>
+	</div>
+	<!--操作栏-->
+	<div class="operates clearfix"
+		style="overflow: auto; white-space: nowrap; font-size: 0;">
+		<form method="post">
+			<div class="pull-left left-inp defualt">
+				<input type="text" class="pull-left" style="margin-left: 10px;"
+					placeholder="用户名、手机号" name="keywords" id="keywords"
+					value="${keywords}">
+				<button class="btn delete pramary">搜索</button>
+			</div>
+			
+		</form>
 
-							<tr>
-							<td>
-                        <input type="checkbox" name="pkId" id="${c.id}"> <label for="${c.id}">${c.id}</label></td>
-                    
-								
-								<td>${c.account}</td>
-								<td>${c.custName}</td>
-								<td>${c.phone}</td>
-								<td>${c.regDate}</td>
-								<td>${c.address}</td>
-								<td>${c.lat}</td>
-								<td>${c.lon}</td>
-								<td>${c.state ==0? "通过" : "未审核"}</td>
-								<td>
-								<a href="${pageContext.request.contextPath}/csc.do?userId=${c.id}&state=${c.state}&op=updateCustomerState">修改[超链接]</a>
-								</td>
-								</tr>
-								</c:forEach>
-						</tbody>
- 
- <!-- 表格主体结束 -->
- 
-          
-        </table>
-    </div>
-    <div class="table-tel clearfix">
-        <div style="border-bottom: 1px solid #fff; overflow: hidden;" class="no-hover">
-           
-            
-            
-  <!--分頁的開始  -->
-					<center>
- 
- <nav aria-label="Page navigation" style=""   >
-            
-  <ul class="pagination pagination-lg centered">
-    <li>
-      <a href="javascript:prePage()" aria-label="上一页">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    
-    </li>
-      <!--pd.totalPage  -->
-      <c:forEach begin="1" end="${pd.totalPage}" var="index">
-      <c:if test="${index== pd.page}">
-    <li class="active"><a href="#">${index}</a></li>
-</c:if>
-<c:if test="${index!= pd.page}">
-    <li><a href="javascript:jumpPage(${index})">${index}</a></li>
-</c:if>
+	</div>
 
- </c:forEach>
-   
-    <li>
-      <a href="javascript:nextPage()" aria-label="下一页">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
+	<!--表格-->
+	<div class="table-wrapper pl27 " style="min-width: 1000px;">
+		<table class="table text-center">
+			<thead>
+				<tr>
+					<th class="yt" style="width: 7%;">用户Id</th>
+					<th style="width: 5%;" class="sort cur">用户名 <img
+						class="bottom"
+						src="${pageContext.request.contextPath}/back/img/jt-bottom.png"
+						alt=""> <img class="top" style="display: none"
+						src="${pageContext.request.contextPath}/back/img/jt-right-co.png"
+						alt="">
+					</th>
+					<th class="sort cur" style="width: 7%">姓名 <img class="bottom"
+						src="${pageContext.request.contextPath}/back/img/jt-bottom.png"
+						alt=""> <img class="top" style="display: none"
+						src="${pageContext.request.contextPath}/back/img/jt-right-co.png"
+						alt="">
+					</th>
+					<th class="sort cur" style="width: 9%">手机号 <img class="bottom"
+						src="${pageContext.request.contextPath}/back/img/jt-bottom.png"
+						alt=""> <img class="top" style="display: none"
+						src="${pageContext.request.contextPath}/back/img/jt-right-co.png"
+						alt="">
+					</th>
+					<th class="sort cur" style="width: 20%;">注册时间 <img
+						class="bottom"
+						src="${pageContext.request.contextPath}/back/img/jt-bottom.png"
+						alt=""> <img class="top" style="display: none"
+						src="${pageContext.request.contextPath}/back/img/jt-right-co.png"
+						alt="">
+					</th>
+					<th class="sort cur" style="width: 20%;">收货地址 <img
+						class="bottom"
+						src="${pageContext.request.contextPath}/back/img/jt-bottom.png"
+						alt=""> <img class="top" style="display: none"
+						src="${pageContext.request.contextPath}/back/img/jt-right-co.png"
+						alt="">
+					</th>
+					<th class="sort cur" style="width: 5%;">纬度 <img class="bottom"
+						src="${pageContext.request.contextPath}/back/img/jt-bottom.png"
+						alt=""> <img class="top" style="display: none"
+						src="${pageContext.request.contextPath}/back/img/jt-right-co.png"
+						alt="">
+					</th>
+					<th class="sort cur" style="width: 5%;">经度 <img class="bottom"
+						src="${pageContext.request.contextPath}/back/img/jt-bottom.png"
+						alt=""> <img class="top" style="display: none"
+						src="${pageContext.request.contextPath}/back/img/jt-right-co.png"
+						alt="">
+					</th>
+					<th class="sort cur" style="width: 9%;">状态 <a
+						href="javascript:getStateByOrder()"> <img class="bottom"
+							src="${pageContext.request.contextPath}/back/img/jt-bottom.png"
+							alt=""> <img class="top" style="display: none"
+							src="${pageContext.request.contextPath}/back/img/jt-right-co.png"
+							alt="">
+					</a>
+					</th>
+					<th class="sort cur" style="width: 9%;">审核 <img class="bottom"
+						src="${pageContext.request.contextPath}/back/img/jt-bottom.png"
+						alt=""> <img class="top" style="display: none"
+						src="${pageContext.request.contextPath}/back/img/jt-right-co.png"
+						alt="">
+					</th>
 
-	
+				</tr>
+			</thead>
+			<!-- 表格主体 -->
+			<tbody>
 
-            </nav> 
-          	</center>
-					<!-- 分頁的結束 -->		
-  
-  
-  
-  
-  
-  
-  <%-- 
-            <!-- 分页 -->
-            <div class="tab-margin clearfix " style="width: 400px; position: absolute; left: 50%; margin-left: -120px;"">
-                <div class="fl tb3" style="width: 225px;float: left;">
-                    <div class="page-wrapper text-left">
-                        <button class="btn-s"><img src="${pageContext.request.contextPath}/back/img/left-icon.png" alt=""></button>
-                        <a href="#" class="active">1</a>
-                        <a href="#" class="">2</a>
-                        <a href="#" class="">3</a>
-                        <button class="btn-s"><img src="${pageContext.request.contextPath}/back/img/right-icon.png" alt=""></button>
-                    </div>
-                </div>
+				<c:if test="${requestScope.pd == null}">
+					<jsp:forward page="/csc.do?op=queryCustomersByPage"></jsp:forward>
+				</c:if>
+				<c:forEach items="${requestScope.pd.data}" var="c">
 
-              
-            </div>
-            <!-- 分页 -->
-             --%>
-            
-        </div>
-    </div>
+					<tr>
+						<td><label for="${c.id}">${c.id}</label></td>
+						<td>${c.account}</td>
+						<td>${c.custName}</td>
+						<td>${c.phone}</td>
+						<td>${c.regDate}</td>
+						<td>${c.address}</td>
+						<td>${c.lat}</td>
+						<td>${c.lon}</td>
+						<td>${c.state ==0? "通过" : "未审核"}</td>
+						<td><a
+							href="${pageContext.request.contextPath}/csc.do?userId=${c.id}&state=${c.state}&op=updateCustomerState">修改[超链接]</a>
+						</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+
+			<!-- 表格主体结束 -->
+
+
+		</table>
+	</div>
+	<!-- 分页开始 -->
+	<!-- layui -->
+	<div align="center">
+		<fieldset class="layui-elem-field layui-field-title"
+			style="margin-top: 30px;"></fieldset>
+
+		<div id="demo7"></div>
+	</div>
+	<!-- 分页结束 -->
 </body>
-<script src="${pageContext.request.contextPath}/back/plugin/jquery/jquery.js"></script>
+<script
+	src="${pageContext.request.contextPath}/back/plugin/jquery/jquery.js"></script>
 <script src="${pageContext.request.contextPath}/back/js/frame-base.js"></script>
-<script type="text/javascript">
-function prePage(){
-	var page = 1;
-	if(${pd.page}>1){
-		page=${pd.page}-1;
-	}
-	location.href="${pageContext.request.contextPath}/csc.do?op=queryCustomersByPage&page="+page+"&keywords="+document.getElementById("keywords").value;
-}
-/**
- * 下一页
- */
-function nextPage(){
-	var page = ${pd.totalPage};
-	if(${pd.page}<${pd.totalPage}){
-		page=${pd.page}+1;
-	}
-	location.href="${pageContext.request.contextPath}/csc.do?op=queryCustomersByPage&page="+page+"&keywords="+document.getElementById("keywords").value;
-}
-/**
- * 跳转到X页
- */
-function jumpPage(page){
-	
-	location.href="${pageContext.request.contextPath}/csc.do?op=queryCustomersByPage&page="+page+"&keywords="+document.getElementById("keywords").value;
-}
+<script src="${pageContext.request.contextPath}/back/layui/layui.js"
+	charset="utf-8"></script>
 
-function getStateByOrder()
-{
-	   //${pd.page}当前是第几页
-	   //什么情况下才有下一页?	   
-	   location.href="${pageContext.request.contextPath}/csc.do?op=queryCustomersByOrder&page="+page+"&keywords="+document.getElementById("keywords").value;
-}
+<script>
+layui.use(['laypage', 'layer'], function(){
+  var laypage = layui.laypage
+  ,layer = layui.layer;
+  
+  
+  //完整功能
+  laypage.render({
+    elem: 'demo7'
+    ,count: ${pd.total}
+    ,curr:${pd.page}
+    ,limit:${pd.pageSize}
+    ,theme: '#FFB800'
+    ,layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+    ,jump: function(obj,first){
+      console.log(obj)
+      console.log(first)
+      
+      if (!first) {
+    	  location.href="${pageContext.request.contextPath}/csc.do?op=queryCustomersByOrder&page="+obj.curr+"&pageSize="+obj.limit+"&keywords="+document.getElementById("keywords").value;
+	}
+    }
 
+  });
+  
+  
+});
 </script>
 </html>
