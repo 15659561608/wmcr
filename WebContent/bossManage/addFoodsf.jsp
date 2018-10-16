@@ -1,16 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@page import="com.etc.entity.Boss"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="com.etc.entity.Boss"%>
 	
 	 <%
 	
 	 Boss boss=(Boss)session.getAttribute("boss");
 	
 %> 
-
-	<div class="page-container">
-		<!DOCTYPE HTML>
-		<html>
+<!DOCTYPE HTML>
+<html>
 <head>
 <meta charset="utf-8">
 <meta name="renderer" content="webkit|ie-comp|ie-stand">
@@ -23,38 +22,52 @@
 <script type="text/javascript" src="lib/respond.min.js"></script>
 <![endif]-->
 <link rel="stylesheet" type="text/css"
-	href="static/h-ui/css/H-ui.min.css" />
+	href="${pageContext.request.contextPath }/bossManage/static/h-ui/css/H-ui.min.css" />
 <link rel="stylesheet" type="text/css"
-	href="static/h-ui.admin/css/H-ui.admin.css" />
+	href="${pageContext.request.contextPath }/bossManage/static/h-ui.admin/css/H-ui.admin.css" />
 <link rel="stylesheet" type="text/css"
-	href="lib/Hui-iconfont/1.0.8/iconfont.css" />
+	href="${pageContext.request.contextPath }/bossManage/lib/Hui-iconfont/1.0.8/iconfont.css" />
 <link rel="stylesheet" type="text/css"
-	href="static/h-ui.admin/skin/default/skin.css" id="skin" />
+	href="${pageContext.request.contextPath }/bossManage/static/h-ui.admin/skin/default/skin.css"
+	id="skin" />
 <link rel="stylesheet" type="text/css"
-	href="static/h-ui.admin/css/style.css" />
+	href="${pageContext.request.contextPath }/bossManage/static/h-ui.admin/css/style.css" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath }/layui/css/layui.css" />
 <!--[if IE 6]>
 <script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]-->
-<title>添加菜品</title>
+<title>我的桌面</title>
+<script type="text/javascript" charset="utf-8"
+	src="${pageContext.request.contextPath }/Ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8"
+	src="${pageContext.request.contextPath }/Ueditor/ueditor.all.min.js">
+	
+</script>
 
-    <script type="text/javascript" charset="utf-8" src="../Ueditor/ueditor.config.js"></script>
-    <script type="text/javascript" charset="utf-8" src="../Ueditor/ueditor.all.min.js"> </script>
-    <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
-    <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
-    <script type="text/javascript" charset="utf-8" src="../Ueditor/lang/zh-cn/zh-cn.js"></script>
-
+<!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+<!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+<script type="text/javascript" charset="utf-8"
+	src="../Ueditor/lang/zh-cn/zh-cn.js"></script>
+<style>
+.form-label {
+	text-align: right;
+}
+</style>
 </head>
 <body>
 	<div class="page-container">
-		<form method="POST" enctype="multipart/form-data" action="${pageContext.request.contextPath}/usf.do" class="form form-horizontal responsive"
+		<form method="POST"  action="../fsf.do?op=addFoods" class="form form-horizontal responsive"
 			id="demoform" novalidate="novalidate">
 			<div class="row cl">
 				<label class="form-label col-xs-3">菜名：</label>
-				<div class="formControls col-xs-8">
-				<input type="hidden" class="form-control" id="busid" name="busid" value="${sessionScope.boss.id}"/>
-					<input type="text" class="input-text" placeholder="请输入美食名"
-						name="foodName" id="foodName" autocomplete="off">
+				<div class="formControls col-xs-8">	
+						<input type="hidden" class="form-control" id="id" name="id"/>
+						<input type="hidden"  id="logo-value" name="logo"  />
+					<input type="text" class="input-text" placeholder="请输入美食名111"
+						name="foodName" id="foodName" autocomplete="off" value="">
+						
 				</div>
 			</div>
 			<div class="row cl">
@@ -81,6 +94,7 @@
 			<div class="row cl">
 				<label class="form-label col-xs-3">销售数量</label>
 				<div class="formControls col-xs-8">
+				<input type="hidden" class="form-control" id="busid" name="busid" value="${sessionScope.boss.id}"/>
 					<input type="text" class="input-text" placeholder="销售数量"
 						name="salNum" id="salNum" autocomplete="off">
 				</div>
@@ -95,17 +109,19 @@
 			</div>
 			
 			<div class="row cl">
-				<label class="form-label col-xs-3">图片：</label>
-				<div class="formControls col-xs-8">
-					<span class="btn-upload form-group"> <input
-						class="input-text upload-url" type="text" name="logo"
-						id="uploadfile-2" readonly="" style="width: 200px"> <a
-						href="javascript:void();" class="btn btn-primary upload-btn"><i
-							class="Hui-iconfont"></i> 浏览文件</a> <input id="file-logo" type="file" multiple=""
-						name="logo" class="input-file">
-					</span>
+			<label class="form-label col-xs-3">缩略图：</label>
+			<div class="formControls col-xs-8">
+				<div class="layui-upload">
+				
+					<button type="button" class="layui-btn" id="test2">上传缩略图</button>
+					<div class="layui-upload-list">
+						<img class="layui-upload-img" id="demo2" >
+						<p id="demoText" ></p>
+					</div>
 				</div>
 			</div>
+		</div>
+
 			<div class="row clearfix">
 				<label class="form-label col-xs-3">状态：</label>
 				<div class="formControls col-xs-8">
@@ -120,7 +136,7 @@
 					</div>
 				</div>
 			</div>
-	</div>
+	
 
 	<div class="row cl">
 		<div class="col-xs-8 col-xs-offset-3">
@@ -130,16 +146,11 @@
 	</div>
 	</form>
 	</div>
-
-	<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
-	<script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script>
-
 </body>
-</html>
-</div>
 
 <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script>
+<script src="../layui/layui.all.js"></script>
 <script type="text/javascript">
 
     //实例化编辑器
@@ -255,10 +266,96 @@
 </script>
 
 <script>
-$("#file-logo").change(function(){
-	$("#logo-img").attr("src",$(this).val());
-	$("#logo-img").css();
+//图片ajax上传
+
+$("#logo").change(function(){
+	$("#logo-upload").css("display","");
+	
+	$("#logo-upload").click(function(){
+		/* $.get("${pageContext.request.contextPath}/UploadHandleServlet","new FormData($('#logo-form'))",function(){
+			
+		}); */
+		$("#logo-form").ajaxSubmit(function(data){
+            alert(data);
+       })
+		 
+	
+	}); 
+	
 });
 </script>
-</body>
+
+
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script>
+layui.use('upload', function(){
+  var $ = layui.jquery
+  ,upload = layui.upload;
+  
+  //缩略图上传
+  var uploadInst = upload.render({
+    elem: '#test1'
+    ,url: '${pageContext.request.contextPath }/UploadHandleServlet'
+    ,before: function(obj){
+      //预读本地文件示例，不支持ie8
+      obj.preview(function(index, file, result){
+        $('#demo1').attr('src', result); //图片链接（base64）
+      });
+    }
+    ,done: function(res){
+      //如果上传失败
+      if(res.code <1){
+        return layer.msg('上传失败');
+      }else{
+    	  layer.msg('上传成功');
+    	var logoPath=eval(res).data.path;
+    	 $("#logo-value").attr("value",logoPath);
+      }
+      //上传成功
+    }
+    ,error: function(){
+      //演示失败状态，并实现重传
+      var demoText = $('#demoText');
+      demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+      demoText.find('.demo-reload').on('click', function(){
+        uploadInst.upload();
+      });
+    }
+  });
+  
+  //营业执照上传
+  var uploadInst = upload.render({
+    elem: '#test2'
+    ,url: '${pageContext.request.contextPath }/UploadHandleServlet'
+    ,before: function(obj){
+      //预读本地文件示例，不支持ie8
+      obj.preview(function(index, file, result){
+        $('#demo2').attr('src', result); //图片链接（base64）
+      });
+    }
+    ,done: function(res){
+      //如果上传失败
+      if(res.code <1){
+        return layer.msg('上传失败');
+      }else{
+    	  layer.msg('上传成功');
+    	var licencePath=eval(res).data.path;
+    	$("#licence-value").attr("value",licencePath);
+      }
+      //上传成功
+    }
+    ,error: function(){
+      //演示失败状态，并实现重传
+      var demoText = $('#demoText');
+      demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+      demoText.find('.demo-reload').on('click', function(){
+        uploadInst.upload();
+      });
+    }
+  });
+ 
+  
+});
+</script>
+
 </html>
