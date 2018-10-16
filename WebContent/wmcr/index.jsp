@@ -24,6 +24,10 @@
     
     <link rel="stylesheet" href="css/frontPage.css"/>
     <title>首页</title>
+    
+  
+    
+    
 </head>
 <body class="day " ng-controller="bodyCtrl"  day-or-night>
     <section class="common-back" id="wrapBackground">
@@ -443,7 +447,7 @@
     <!-- 搜索附近餐厅弹窗 -->
     <dh-dialog class="disnone" height="500" type="street" header="请选择最靠近你的地址" show="addressShow">
         <ul class="select-street">
-            <li ng-repeat="item in shreets" ng-click="resultClick(item)">
+            <li ng-repeat="item in shreets" onclick="resultClick(this)">
                 <i class="icon address-yellow"></i>
                 <div class="shreets-item">
                     <h4 ng-bind="item.name"></h4>
@@ -458,61 +462,41 @@
     </dh-dialog>
     <!-- 搜索附近餐厅弹窗 -->
     
-    <!-- 商家入驻开始 -->
+<!--商家入驻开始-->
     <dh-dialog class="disnone" height="500" type="merchants" header="商户入驻申请" show="merchantsShow">
-        <div class="inline" ng-controller="merchantCtrl">
+     <form ng-controller="registerCtrl" class="register-form" action="" method="post" acname="bossRegisterForm" id="bossRegisterForm" >
+     <div class="inline" ng-controller="merchantCtrl">
             <div class="form-group row mb10">
-                <label class="col-3" >商户名称：</label>
+                <label class="col-3" >手机号码：</label>
                 <div class="col-8">
-                    <input type="text" ng-class="{error:merchants.nameMessage}" maxlength="11" placeholder="输入店铺的名称，例：美美小厨" ng-model="merchants.name"/>
+                    <input type="text" id="phone" name="phone"   ng-class="{error:merchants.nameMessage}" maxlength="11" placeholder="请输入正确的11位手机号" ng-model="merchants1.name"/>
                 </div>
-                <span class="vaildate-error col-8 col-offset-3" ng-if="merchants.nameMessage">
-                    <span ng-bind="merchants.nameMessage"></span>
-                </span>
             </div>
+            
             <div class="form-group row mb10">
-                <label class="col-3">所属城市：</label>
+                <label class="col-3" >密码：</label>
                 <div class="col-8">
-                    <select model="city" area-model="area" ng-class="{error:merchants.cityMessage}" class="city-change"></select>
+                    <input type="password" id="password" name="password"   ng-class="{error:merchants.nameMessage}" maxlength="11" placeholder="密码" ng-model="merchants2.name"/>
                 </div>
-                <span class="vaildate-error col-8 col-offset-3" ng-if="merchants.cityMessage">
-                    <span ng-bind="merchants.cityMessage"></span>
-                </span>
             </div>
             <div class="form-group row mb10">
-                <label class="col-3">行政分区：</label>
-                <span class="col-8">
-                    <select  id="areaSelect"></select>
-                </span>
-            </div>
-            <div class="form-group row mb10">
-                <label class="col-3">店主姓名：</label>
+                <label class="col-3" >确认密码：</label>
                 <div class="col-8">
-                    <input type="text" ng-class="{error:merchants.usernameMessage}" placeholder="请输入联系人姓名" ng-model="merchants.username"/>
+                    <input type="password" id="confirm_password" name="confirm_password"   ng-class="{error:merchants.nameMessage}" maxlength="11" placeholder="验证密码" ng-model="merchants3.name"/>
                 </div>
-                <span class="vaildate-error col-8 col-offset-3" ng-if="merchants.usernameMessage">
-                    <span ng-bind="merchants.usernameMessage"></span>
-                </span>
             </div>
-            <div class="form-group row mb20">
-                <label class="col-3">联系电话：</label>
-                <div class="col-8">
-                   <input type="text" ng-class="{error:merchants.phoneMessage}" maxlength="11" placeholder="建议输入11位手机号码" ng-model="merchants.phone"/>
-                </div>
-                <span class="vaildate-error col-8 col-offset-3" ng-if="merchants.phoneMessage">
-                    <span ng-bind="merchants.phoneMessage"></span>
-                </span>
-            </div>
+            
+           
             <div class="form-group row agreement mb20">
-               <input type="checkbox" ng-model="merchants.checkbox" id="male"/><label for="male">我同意外卖超人</label><a href="/agreement" target="_blank">"餐厅入驻协议"</a>
+               <input type="checkbox" class="checkbox" id="agree" name="agree"><label for="male">我同意外卖超人</label><a href="/agreement" target="_blank">"餐厅入驻协议"</a>
             </div>
             <div class="tc merchants-btn">
-                <button class="btn normal-btn btn-success" ng-click="merchantSubmit()" ng-disabled="!merchants.checkbox">确认</button>
-                <button class="btn normal-btn btn-cancel" ng-click="merchantCancel()">取消</button>
+                <button ng-disabled="!user.remember || registerBtnDisabled" ng-click=""  type = "submit" class="big-btn btn-green btn mb10" ng-bind="registerBtn">确认注册</button>
             </div>
         </div>
+        </form>
     </dh-dialog>
-<!-- 商家入驻结束 -->
+<!-- 商户入驻结束-->
     <dh-dialog class="disnone" type="alert" index="1001" header="" show="requestSuccess">
         <div class="alert-box fs14">
             <p>您的入驻申请已经提交成功！<br>请保持手机畅通，超人客服将尽快<br>联系您~</p>
@@ -606,6 +590,126 @@ $(function () {
 	});
 })
 </script>
+<script type="text/javascript">
+/*密码验证*/    
+function checkPwd(){
+  var pwd=$("pwd1");
+  var pwdId=divId("pwd_prompt");
+   pwdId.innerHTML="";    
+  var reg=/^[a-zA-Z0-9]{4,10}$/;    
+    if(reg.test(pwd)==false){
+       pwdId.innerHTML="密码不能含有非法字符，长度在4-10之间";
+    return false;
+      }
+      return true;
+    }
+    
+    
+    //地点列表项点击事件
+    
+    function resultClick(item){
+    	  var objList=$(list).find("h5").text();
+    		alert(objList);
+    }
+    
+  
+</script>
+
+
+
+
+
+<!--jqueryvaldate开始-->
+	<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
+
+<!--自定义手机验证-->
+<script>
+jQuery.validator.addMethod("isMobile", function(value, element) {  
+ var length = value.length;  
+ var mobile = /^(13[0-9]{9})|(18[0-9]{9})|(14[0-9]{9})|(17[0-9]{9})|(15[0-9]{9})$/;  
+ return this.optional(element) || (length == 11 && mobile.test(value));  
+}, "请正确填写手机号码");
+$(function(){
+	$("#cell").validate({
+	    rules: {
+	    	phone : {  
+	            required : true,  
+	            minlength : 11, 
+	            isMobile : true  
+	        		}, 
+	          },
+	   messages: {
+		   phone : {  
+		       required : "请输入手机号",  
+		       minlength : "不能小于11个字符",  
+		       isMobile : "请正确填写手机号码"  
+		  		 	}
+  				 },
+		});
+})
+</script>
+<!--自定义手机验证结束-->
+
+
+
+<script>
+$.validator.setDefaults({
+    submitHandler: function() {
+      alert("提交事件!");
+    }
+});
+$().ready(function() {
+// 在键盘按下并释放及提交后验证提交表单
+  $("#bossRegisterForm").validate({
+	    rules: {
+	    phone : {  
+	            required : true,  
+	            minlength : 11, 
+	            isMobile : true  
+	        		},
+	    password: {
+	        required: true,
+	        minlength: 5
+	      },
+	      confirm_password: {
+	        required: true,
+	        minlength: 5,
+	        equalTo: "#password"
+	      },
+	      agree: "required"
+	    },
+	    messages: {
+	      phone : {  
+		       required : "请输入手机号",  
+		       minlength : "不能小于11个字符",  
+		       isMobile : "请正确填写手机号码"  
+		  		 	},
+	      password: {
+	        required: "请输入密码",
+	        minlength: "密码长度不能小于 5 个字母"
+	      },
+	      confirm_password: {
+	        required: "请输入密码",
+	        minlength: "密码长度不能小于 5 个字母",
+	        equalTo: "两次密码输入不一致"
+	      },	      
+	      agree: "请接受我们的声明",
+	    }
+	});
+});
+</script>
+<style>
+.error{
+	color:red;
+}
+</style>
+
+
+
+
+<!--jqueryvaldate结束-->  
 
 </body>
 </html>
