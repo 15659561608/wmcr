@@ -1,8 +1,13 @@
 package com.etc.text;
 
-import com.etc.dao.impl.AccountlwqImpl;
+import java.util.List;
 
+import com.etc.dao.impl.AccountlwqImpl;
+import com.etc.entity.BusiNameL;
+import com.etc.entity.OrdersLwq;
 import com.etc.service.impl.AccountlwqServiceImpl;
+import com.etc.service.impl.BusiNameLServiceImpl;
+import com.etc.service.impl.OrdersLServiceImpl;
 
 /**
 * @author 作者 LinWQ:
@@ -14,7 +19,7 @@ public class AccountLwqTest {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		AccountlwqServiceImpl ai=new AccountlwqServiceImpl();
+		/*AccountlwqServiceImpl ai=new AccountlwqServiceImpl();
     Long a=ai.getSumUsers();
     System.out.println("用户总数"+a);
     Long a1=ai.getSumUsersStatus();
@@ -34,7 +39,13 @@ public class AccountLwqTest {
     System.out.println("订单总数"+a6); 
     
     Long a7=ai.getSumComments();
-    System.out.println("评论总数"+a7);
+    System.out.println("评论总数"+a7);*/
+		/*BusiNameLServiceImpl bnsi=new BusiNameLServiceImpl();
+		List<BusiNameL> b=bnsi.getBusiName("15659561608");
+		System.out.println(b);*/
+		OrdersLServiceImpl osi=new OrdersLServiceImpl();
+		List<OrdersLwq> list=osi.getOrdersBusi("15659561608","小牛小羊");
+		System.out.println(list);
 	}
 
 }

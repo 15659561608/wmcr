@@ -25,4 +25,9 @@ public class OrdersLServiceImpl implements OrdersLService{
 		// TODO Auto-generated method stub
 		return odi.queryOrdersByPage(page, pageSize, keywords);
 	}
+	@Override
+	public List<OrdersLwq> getOrdersBusi(String account, String busiName) {
+		// TODO Auto-generated method stub
+		return odi.queryOrdersBusi(account, busiName);
+	}
 }
