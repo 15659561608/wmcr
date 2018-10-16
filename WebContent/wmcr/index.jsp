@@ -1,6 +1,14 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<!DOCTYPE html><!--/*技术支持，小庄602842076     验证：商城技术支持*/
+/*技术支持，小庄602842076    验证：商城技术支持*/
+/*技术支持，小庄602842076    验证：商城技术支持*/
+/*技术支持，小庄602842076    验证：商城技术支持*/
+/*技术支持，小庄602842076    验证：商城技术支持*/
+/*https://shop116998991.taobao.com/*/
+/*https://shop116998991.taobao.com/*/
+/*https://shop116998991.taobao.com/*/-->
+
 <html>
 <head>
     <meta charset="utf-8"/>
@@ -18,18 +26,33 @@
         (function(document, screen) {if (screen.width < 760) {document.location.href="/mobile/";}}(document, screen));
     </script>
     
-    <script type="text/javascript" src = "js/check.js"></script>
-    
     <link rel="stylesheet" href="css/common.css?v=2015-5-20"/>
     
     <link rel="stylesheet" href="css/frontPage.css"/>
+    
+
+    <!--[if lte IE 7]><script>window.onload=function(){location.href="/ie6warning/"}</script><![endif]-->
+    <!--[if lt IE 9]>
+    <script src="js/respond.js"></script>
+    <script>
+        var e = "abbr, article, aside, audio, canvas, datalist, details, dialog, eventsource, figure, footer, header, hgroup, mark, menu, meter, nav, output, progress, section, time, video, dh-dialog, dh-checkbox".split(', ');
+         var i= e.length;while (i--){document.createElement(e[i])}
+    </script>
+    <![endif]-->
     <title>首页</title>
 </head>
 <body class="day " ng-controller="bodyCtrl"  day-or-night>
     <section class="common-back" id="wrapBackground">
         
-        <div id="main-box">     
+        <div id="main-box">
+             <!--二维码-->
+            <div class="qrCode-frame" ng-hide="qrCodeStatus">
+                <img src="images/wx.png" alt="扫描二维码" />
+                <em ng-click="qrCodeStatus=true">X</em>
+            </div>
+        
             
+    
     <section class="member-wrap" id="member-wrap">
         <div class="common-width posr">
             
@@ -38,7 +61,7 @@
                     <span>/</span>
                     <a href="javascript:void(0)" ng-click="registerDialogShow()">注册</a>
                     <span>|</span>
-                    <a href="member_order.jsp">查看订单</a>
+                    <a href="member_order.html">查看订单</a>
                 </div>
             
         </div>
@@ -46,7 +69,7 @@
 	<section class="common-width">
         <section class="city-list-wrap clearfix">
             <h1 class="fl">
-                <a class="frontpage-logo" href="index.jsp">外卖超人</a>
+                <a class="frontpage-logo" href="index.html">外卖超人</a>
             </h1>
             <div class="city-list-box back-yellow">
                 <div class="dropdown-box">
@@ -305,7 +328,7 @@
         </div>
     </footer>
     
-    <!-- 反馈开始 -->
+    
     <dh-dialog class="disnone" height="500" feeedbackclass="userFeedback" type="user-feedback" header="意见反馈" show="userFeedback">
         <div ng-controller="feedbackCtrl">
             <form novalidate="true" name="feedbackForm" class="inline">
@@ -341,16 +364,15 @@
             咨询加QQ群：337212031
         </div>
     </dh-dialog>
-    <!-- 反馈结束 -->
+    
     <a href="javascript:void(0)" animate-top="-65" class="merchants-icon" ng-click="merchantsShow=true;merchants={};merchants.checkbox=true;"></a>
-    <!-- 登陆开始 -->
-    <dh-dialog class="disnone" type='login' height="500" header="登录" show="loginShow" >
-    <!-- /wmcr/uls.do   ${pageContext.request.contextPath}/-->
-    <form class="login-form" action="${pageContext.request.contextPath}/uls.do?op=login"  method="post" novalidate name="loginForm" ng-controller="loginCtrl">
+    
+<dh-dialog class="disnone" type='login' height="500" header="登录" show="loginShow" >
+    <form class="login-form" novalidate name="loginForm" ng-controller="loginCtrl">
         <div class="form-group">
             <label for="">手机号码</label>
             <div>
-                <input  id  = "account"  name = "account" maxlength="11" type="text" class="form-text" placeholder="输入您的手机号码"/><div id="accountStatus" style="color:#F00"></div></label>
+                <input type="text" ng-model="user.username" ng-class="{error:user.usernameMessage}" ng-focus="user.usernameMessage=''" maxlength="11" placeholder="请输入你的手机号码" />
                 <span class="vaildate-error" ng-if="user.usernameMessage">
                     <span ng-bind="user.usernameMessage"></span>
                 </span>
@@ -362,18 +384,28 @@
         <div class="form-group mb10">
             <label for="">登录密码</label>
             <div>
-                <input type="password" id = "pwd" name = "pwd" maxlength="10" type="password" class="form-text" onpaste="return false" placeholder="请输入登录密码"/><div id="pwdStatus" style="color:#F00"></div></label>
+                <input type="password" onpaste="return false" ng-model="user.password" ng-focus="user.passwordMessage=''"  ng-class="{error:user.passwordMessage}" maxlength="10" placeholder="请输入登录密码" />
                 <span class="vaildate-error" ng-if="user.passwordMessage">
                     <span ng-bind="user.passwordMessage"></span>
                 </span>
             </div>
         </div>
-        <div class="clearfix mb10">
-            <input id="lRemember" type="checkbox" value="true"> 记住我
-                   
-                    <span class="fr fs12"><a class="yo" target="_black" href="pwd_forget.jsp">忘记密码</a></span>
+        <div ng-init="showCaptcha=0" ng-if="showCaptcha" class="form-group inline clearfix mb10">
+            <div class="fl w50p">
+                <input type="text" ng-model="user.captcha" ng-focus="user.captchaMessage=''"  ng-class="{error:user.captchaMessage}" placeholder="请输入验证码">
+                <span class="vaildate-error" ng-if="user.captchaMessage">
+                    <span ng-bind="user.captchaMessage"></span>
+                </span>
+            </div>
+            <label class="fr">
+                <dh-captcha change="captchaChange" src="images/yzm.gif"></dh-captcha>
+            </label>
         </div>
-         <button class="form-btn" id="loginPageBtn">登录</button>
+        <div class="clearfix mb10">
+            <dh-checkbox model="user.rememberme" title="记住我" class="fl"></dh-checkbox>
+            <a href="/account/password/reset_via_mobile/" target="_blank" class="fs12 fr link">忘记密码</a>
+        </div>
+        <button class="big-btn btn-green btn mb10" ng-click="loginVaildate()" ng-disabled="loginBtnDisabled" ng-bind="loginBtn"></button>
         <div class="clearfix">
             <span class="fr fs12">
                 没有账号?
@@ -382,45 +414,57 @@
         </div>
     </form>
 </dh-dialog>
-<!-- 登陆结束 -->
-
-<!-- 注册开始 -->
 <dh-dialog class="disnone" type='register' height="500" header="注册" show="registerShow" >
-      <form ng-controller="registerCtrl" class="register-form" action="/wmcr/urs.do?op=register" method="post" acname="registerForm">
+    <form ng-controller="registerCtrl" class="register-form" name="registerForm">
         <div class="form-group mb10">
             <label for="">手机号码</label>
             <div>
-                <input type="text"  id = "account1"  name = "account1" value=""  onblur="checkMobile()"  maxlength="11" placeholder="请输入您的手机号码" ng-model="user.username"/>
-                <div id = "mobile_prompt" style="color:#F00"></div>
+                <input type="text" ng-class="{error:user.usernameMessage}" maxlength="11" placeholder="请输入您的手机号码" ng-model="user.username"/>
+                <span class="vaildate-error" ng-if="user.usernameMessage">
+                    <span ng-bind="user.usernameMessage"></span>
+                </span>
+                <span class="vaildate-error" ng-if="user.isRegistered">
+                    该手机号码已经注册！<a href="javascript:;" ng-click="locationLogin()" class="link">立即登录</a>
+                </span>
             </div>
         </div>
+
+
+
         <div class="form-group captcha-wrap">
             <div class="clearfix captcha-box">
                 <div class="fl form-group captcha-item">
                     <div class="fl w50p">
+                        <input type="text" ng-class="{error:user.captchaMessage}" ng-focus="user.captchaMessage=''" placeholder="请输入验证码" ng-model="user.captcha" />
+                        <span class="vaildate-error" ng-if="user.captchaMessage">
+                            <span ng-bind="user.captchaMessage"></span>
+                        </span>
                     </div>
                     <button class="fs12 fr w40p btn btn-pink" ng-click="getCaptcha()" ng-disabled="captchaDisabled" ng-bind="captchaVal"></button>
                 </div>
                 <div class="fl form-group captcha-item">
-                   <div class="form-group captcha clearfix">
-                             <input type="text" id="captcha2" name="captcha2"  value = ""  onblur="checkYzm ()" class="form-text" placeholder="短信验证码"/>
-                             <div id = "yzm_prompt" style="color:#F00"></div>
-                             <input type="button" id="getCaptcha11"  value="获取短信验证码" onclick="settime(this)"/>
-                        </div>
-                        <div class="form-error-message"></div>
+                    <div class="fl w50p">
+                        <input type="text" ng-model="user.imgCaptcha" maxlength="4" ng-disabled="imgCaptchaIsDisabled" ng-class="{error:user.imgCaptchaMessage}" placeholder="请输入验证码">
+                        <span class="vaildate-error" ng-if="user.imgCaptchaMessage">
+                            <span ng-bind="user.imgCaptchaMessage"></span>
+                        </span>
+                    </div>
+                    <label class="fr">
+                        <dh-captcha style="width:119px;height:34px;" change="captchaImgChange" src="images/yzm.gif"></dh-captcha>
+                    </label>
                 </div>
-                	
             </div>
         </div>
         <div class="form-group mb10">
             <label for="">登录密码</label>
-            <div><input type="password" id = "pwd1" name = "pwd1" value = ""  onblur="checkPwd()" ng-class="{error:user.passwordMessage}" ng-focus="user.passwordMessage=''"  maxlength="10" onpaste="return false" placeholder="密码由英文字母和数字组成的4-10位字符" ng-model="user.password" />
-                <div id = "pwd_prompt" style="color:#F00"></div>
+            <div><input type="password" ng-class="{error:user.passwordMessage}" ng-focus="user.passwordMessage=''"  maxlength="10" onpaste="return false" placeholder="输入登录密码 6-10个字符" ng-model="user.password" />
+                <span class="vaildate-error" ng-if="user.passwordMessage">
+                    <span ng-bind="user.passwordMessage"></span>
+                </span>
             </div>
         </div>
         <div class="form-group mb10">
-            <div><input type="password"  id = "repwd" name = "repwd"  value = ""  onblur="checkRepwd()" ng-class="{error:user.password2Message}" ng-focus="user.password2Message=''" maxlength="10" onpaste="return false" placeholder="密码由英文字母和数字组成的4-10位字符" ng-model="user.password2"/>
-                 <div id = "repwd_prompt" style="color:#F00"></div>
+            <div><input type="password" ng-class="{error:user.password2Message}" ng-focus="user.password2Message=''" maxlength="10" onpaste="return false" placeholder="输入登录密码 6-10个字符" ng-model="user.password2"/>
                 <span class="vaildate-error" ng-if="user.password2Message">
                     <span ng-bind="user.password2Message"></span>
                 </span>
@@ -430,20 +474,19 @@
             <dh-checkbox model="user.remember" title="我同意外卖超人" class="fl"></dh-checkbox>
             <a href="/terms-and-conditions/" target="_blank" class="fs12 fl link"> " 注册条款 "</a>
         </div>
-        <button ng-disabled="!user.remember || registerBtnDisabled" ng-click=""  type = "submit" class="big-btn btn-green btn mb10" ng-bind="registerBtn">确认注册</button>
+        <button ng-disabled="!user.remember || registerBtnDisabled" ng-click="registerVaildate()" class="big-btn btn-green btn mb10" ng-bind="registerBtn"></button>
     </form>
-</dh-dialog>	
-<!-- 注册结束-->
+</dh-dialog>
 <script>
     var common_sms_code = '/ajax/common_sms_code/';
     var ajax_customer_user_register_start = '/ajax/customer_user_register_start/';
     var common_validate_sms_code = '/ajax/common_validate_sms_code/';
     var ajax_customer_user_register_register = '/ajax/customer_user_register_register/';
 </script>
-    <!-- 搜索附近餐厅弹窗 -->
+
     <dh-dialog class="disnone" height="500" type="street" header="请选择最靠近你的地址" show="addressShow">
         <ul class="select-street">
-            <li ng-repeat="item in shreets" onclick="resultClick(this)">
+            <li ng-repeat="item in shreets" ng-click="resultClick(item)">
                 <i class="icon address-yellow"></i>
                 <div class="shreets-item">
                     <h4 ng-bind="item.name"></h4>
@@ -456,9 +499,6 @@
             <p>请您检查地址拼写/格式是否正确和 <a href="javascript:void(0)" class="link" ng-click="resetStreet()">重新输入您的地址</a>。</p>
         </div>
     </dh-dialog>
-    <!-- 搜索附近餐厅弹窗 -->
-    
-    <!-- 商家入驻开始 -->
     <dh-dialog class="disnone" height="500" type="merchants" header="商户入驻申请" show="merchantsShow">
         <div class="inline" ng-controller="merchantCtrl">
             <div class="form-group row mb10">
@@ -512,7 +552,7 @@
             </div>
         </div>
     </dh-dialog>
-<!-- 商家入驻结束 -->
+
     <dh-dialog class="disnone" type="alert" index="1001" header="" show="requestSuccess">
         <div class="alert-box fs14">
             <p>您的入驻申请已经提交成功！<br>请保持手机畅通，超人客服将尽快<br>联系您~</p>
@@ -531,9 +571,13 @@
             <img src="images/scorll_feekback.png" alt=""/>
             <div>意见反馈</div>
         </li>
+        <li class="scroll-wx">
+            <img src="images/scroll_wx.png" alt=""/>
+             <div><img src="images/wx.png" alt=""/></div>
+        </li>
     </ul>
+    
     <script type="text/javascript" src="js/angular.min.js"></script>
-    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
     <script src="js/common.js"></script>
     
     <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=5cd6dcb00bc675bf26c9b4ab2af0759a"></script>
@@ -548,121 +592,11 @@
 
     
     <script>angular.bootstrap(document, ["app"]);</script>
-    
-   <!-- 登陆AJAX异步传输 -->
-   <script language="javascript">
-   $(document).ready(function(){
-	   $("#account").blur(function(event) {
-	     $.ajax({
-	       type:"post",
-	       url:"/wmcr/uls.do?op=zh&account="+$("#account").val(),
-	       dataTypes:"text",
-	       success:function(msg){
-	         $("#accountStatus").html(msg);
-	       }
-	     });
-	   });
-	  
-	   $("#pwd").blur(function(event) {
-	     $.ajax({
-	       type:"post",
-	       url:"/wmcr/uls.do?op=chaxun",
-	       dataTypes:"text",
-	       data:"pwd="+$("#pwd").val(),
-	       success:function(msg){
-	         $("#pwdStatus").html(msg);
-	       }
-	     });
-	   });
-	 }); 
-  </script>
-<!-- 验证码倒计时 ，AJAX请求验证码-->  
-<script type="text/javascript"> 
-var countdown=60; 
-function settime(obj) { 
-    if (countdown == 0) { 
-        obj.removeAttribute("disabled");    
-        obj.value="免费获取验证码"; 
-        countdown = 60; 
-        return;
-    } else { 
-        obj.setAttribute("disabled", true); 
-        obj.value="重新发送(" + countdown + ")"; 
-        countdown--; 
-    } 
-setTimeout(function() { 
-    settime(obj) }
-    ,1000) 
-}
-$(function () {
-	$("#getCaptcha11").click(function() {
-		//console.log($("#captcha2").val());
-		$.get("/wmcr/urs.do", "op=yzm&account1=" + $("#account1").val(), function(data, status) {
-			console.log(data + "," + status);
-			$("#account1").text(data);
-		});
-
-		/* location.href="Rp.do?op=yzm&account="+document.getElementById("phone").value;  */
-	});
-})
-</script>
-<script type="text/javascript">
-/*密码验证*/    
-function checkPwd(){
-  var pwd=$("pwd1");
-  var pwdId=divId("pwd_prompt");
-   pwdId.innerHTML="";    
-  var reg=/^[a-zA-Z0-9]{4,10}$/;    
-    if(reg.test(pwd)==false){
-       pwdId.innerHTML="密码不能含有非法字符，长度在4-10之间";
-    return false;
-      }
-      return true;
-    }
-    
-    
-    //地点列表项点击事件
-    
-    function resultClick(item){
-    	  var objList=$(list).find("h5").text();
-    		alert(objList);
-    }
-    
-  
-</script>
-<script type="text/javascript">
-/*密码验证*/    
-function checkPwd(){
-  var pwd=$("pwd1");
-  var pwdId=divId("pwd_prompt");
-   pwdId.innerHTML="";    
-  var reg=/^[a-zA-Z0-9]{4,10}$/;    
-    if(reg.test(pwd)==false){
-       pwdId.innerHTML="密码不能含有非法字符，长度在4-10之间";
-    return false;
-      }
-      return true;
-    }
-    
-    
-    //地点列表项点击事件
-    
-    function resultClick(item){
-    	  var objList=$(list).find("h5").text();
-    		alert(objList);
-    }
-    
-  
-</script>
-
-
-
-
-
 
 
 
 
 </body>
 </html>
+
     
