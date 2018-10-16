@@ -59,9 +59,11 @@ public class FoodsServletf extends HttpServlet {
 			String salNum = request.getParameter("salNum");
 			String des = request.getParameter("des");
 			String logo = request.getParameter("logo");
-			String busid = request.getParameter("busid");
-			String state = request.getParameter("state");
 			System.out.println(logo);
+			String busid = request.getParameter("busid");
+			System.out.println(busid);
+			String state = request.getParameter("state");
+			
 			Food food = new Food(0, foodName, Double.valueOf(price), Double.valueOf(discount), Integer.valueOf(num),
 					Integer.valueOf(salNum), des, logo, Integer.valueOf(busid), Integer.valueOf(state));
 			boolean flag = fsf.addFoods(food);
