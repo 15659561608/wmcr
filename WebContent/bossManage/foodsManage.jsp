@@ -40,8 +40,8 @@
 		style="overflow: auto; white-space: nowrap; font-size: 0;">
 		<div class="pull-left left-inp defualt">
 			<form class="navbar-form navbar-right" method="post"
-				action="${pageContext.request.contextPath}/Ds.do">
-				<input type="hidden" name="op" value="queryDis"> <input
+				action="${pageContext.request.contextPath}/fsf.do">
+				<input type="hidden" name="op" value="queryFoods"> <input
 					type="text" class="pull-left" style="margin-left: 10px;"
 					placeholder="相关菜品 " name="keywords" id="keywords"
 					value="${keywords}">
@@ -182,7 +182,7 @@
 							<button type="button" class="close" data-dismiss="modal"
 								aria-hidden="true">×</button>
 							<h4 class="modal-title" id="myModalLabel">
-								<br> &nbsp;&nbsp;&nbsp;修改配送员
+								<br> &nbsp;&nbsp;&nbsp;修改菜品
 							</h4>
 						</div>
 						<!-- 表单开始 -->
@@ -243,6 +243,8 @@
 								value="" style="height: 30px; width: 450px" />
 						</div>
 					</div>
+					
+					
 					<div class="form-group">
 						<label for="state" class="col-sm-2 control-label">状态</label>
 						<div class="col-sm-10">

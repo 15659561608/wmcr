@@ -355,7 +355,7 @@ layui.use('upload', function(){
     	  layer.msg('上传成功');
     	var licencePath=eval(res).data.path;
     	$("#logo-value").attr("value",licencePath);
-    	console.log(licencePath);
+    //	console.log(licencePath);
       }
       //上传成功
     }
