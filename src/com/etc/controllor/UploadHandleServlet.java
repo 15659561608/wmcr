@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,7 +31,8 @@ public class UploadHandleServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 得到上传文件的保存目录，将上传的文件存放于WEB-INF目录下，不允许外界直接访问，保证上传文件的安全
-		String savePath = this.getServletContext().getRealPath("/WEB-INF/upload");
+		System.out.println("hh");
+		String savePath ="C:\\Users\\Administrator\\git\\wmcr\\WebContent\\uploads"; //this.getServletContext().getRealPath("/WEB-INF/upload");
 		// 上传时生成的临时文件保存目录
 		String tempPath = this.getServletContext().getRealPath("/WEB-INF/temp");
 		File tmpFile = new File(tempPath);
@@ -38,7 +40,7 @@ public class UploadHandleServlet extends HttpServlet {
 			// 创建临时目录
 			tmpFile.mkdir();
 		}
-
+		PrintWriter pw=response.getWriter();
 		// 消息提示
 		String message = "";
 		try {
@@ -105,6 +107,12 @@ public class UploadHandleServlet extends HttpServlet {
 						String saveFilename = makeFileName(filename);
 						// 得到文件的保存目录
 						String realSavePath = makePath(saveFilename, savePath);
+					
+						
+						String dirPath=realSavePath+"\\"+saveFilename;
+						//数据库保存路径
+						String DbSavePath=dirPath.substring(dirPath.indexOf("\\uploads"));
+						DbSavePath=DbSavePath.replace("\\", "/");
 						// 创建一个文件输出流
 						FileOutputStream out = new FileOutputStream(realSavePath + "\\" + saveFilename);
 						// 创建一个缓冲区
@@ -122,30 +130,52 @@ public class UploadHandleServlet extends HttpServlet {
 						out.close();
 						// 删除处理文件上传时生成的临时文件
 						// item.delete();
-						message = "文件上传成功！";
+//						message = "文件上传成功！";
+						pw.print("{\r\n" + 
+								"  \"code\": 1\r\n" + 
+								"  ,\"msg\": \"上传成功\"\r\n" + 
+								"  ,\"data\": {\r\n" + 
+								"    \"path\": \""+DbSavePath+"\"\r\n" + 
+								"  }\r\n" + 
+								"}  ");
 					} else {
-						message = "文件格式不正确！";
-						System.out.println(message);
+						pw.print("{\r\n" + 
+								"  \"code\": 0\r\n" + 
+								"  ,\"msg\": \"文件格式不正确！\"\r\n" + 
+								"}  ");
+//						message = "文件格式不正确！";
 						return;
 					}
 				}
 			}
 		} catch (FileUploadBase.FileSizeLimitExceededException e) {
 			e.printStackTrace();
-			request.setAttribute("message", "单个文件超出最大值！！！");
-			request.getRequestDispatcher("/message.jsp").forward(request, response);
+//			request.setAttribute("message", "单个文件超出最大值！！！");
+//			request.getRequestDispatcher("/message.jsp").forward(request, response);
+			pw.print("{\r\n" + 
+					"  \"code\": 0\r\n" + 
+					"  ,\"msg\": \"单个文件超出最大值！\"\r\n" + 
+					"}  ");
 			return;
 		} catch (FileUploadBase.SizeLimitExceededException e) {
 			e.printStackTrace();
-			request.setAttribute("message", "上传文件的总的大小超出限制的最大值！！！");
-			request.getRequestDispatcher("/message.jsp").forward(request, response);
+//			request.setAttribute("message", "上传文件的总的大小超出限制的最大值！！！");
+//			request.getRequestDispatcher("/message.jsp").forward(request, response);
+			pw.print("{\r\n" + 
+					"  \"code\": 0\r\n" + 
+					"  ,\"msg\": \"上传文件的总的大小超出限制的最大值！\"\r\n" + 
+					"}  ");
 			return;
 		} catch (Exception e) {
-			message = "文件上传失败！";
+//			message = "文件上传失败！";
+			pw.print("{\r\n" + 
+					"  \"code\": 0\r\n" + 
+					"  ,\"msg\": \"文件上传失败！\"\r\n" + 
+					"}  ");
 			e.printStackTrace();
 		}
-		request.setAttribute("message", message);
-		request.getRequestDispatcher("/message.jsp").forward(request, response);
+//		request.setAttribute("message", message);
+//		request.getRequestDispatcher("/message.jsp").forward(request, response);
 	}
 
 	/**

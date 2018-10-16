@@ -51,4 +51,20 @@ public class FoodsDaoImplf implements foodsDaof{
 		return s;
 	}
 
+	@Override
+	public List<Food> queryFoods() {
+		// TODO Auto-generated method stub
+		String sql="select * from food";
+		List<Food> list=(List<Food>) BaseDao.select(sql, Food.class);
+		return list;
+	}
+
+	@Override
+	public PageData<Food> queryFoods(int page, int pageSize) {
+		// TODO Auto-generated method stub
+		String sql="select * from food";
+		PageData<Food> pd= BaseDao.getPage(sql, page, pageSize, Food.class);
+		return pd;
+	}
+
 }

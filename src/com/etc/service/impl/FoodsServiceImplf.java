@@ -46,6 +46,18 @@ public class FoodsServiceImplf implements FoodServicesf{
 		return fdf.getFoods();
 	}
 
+	@Override
+	public List<Food> getFoods() {
+		// TODO Auto-generated method stub
+		return fdf.queryFoods();
+	}
+
+	@Override
+	public PageData<Food> getFoods(int page, int pageSize) {
+		// TODO Auto-generated method stub
+		return fdf.queryFoods(page, pageSize);
+	}
+
 
 
 }

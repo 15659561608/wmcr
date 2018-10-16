@@ -47,33 +47,54 @@ public class MapServlet extends HttpServlet {
 		if("queryBusi".equals(op)) {
 			String address=request.getParameter("address");
 			HashMap<String, Double> hashmap=BaiduMap.getLatLon(address);
-			//获取所有门店
-			List<BusinessesCity> list=bs.getAllBusinesses();
-			//定义存储附近门店的集合
-			List<BusinessesCity> busiList=new ArrayList<>();
-			
-			
-			//筛选附近的门店
-			for (int i = 0; i < list.size(); i++) {
-				double distance=LocationUtils.getDistance(hashmap.get("lat"),hashmap.get("lon"), list.get(i).getLat(), list.get(i).getLon());
-				double disDouble=distance/1000;
-				if(disDouble<=5.0) {
-					busiList.add(list.get(i));
+			if(hashmap!=null) {
+				//获取所有门店
+				List<BusinessesCity> list=bs.getAllBusinesses();
+				//定义存储附近门店的集合
+				List<BusinessesCity> busiList=new ArrayList<>();
+				
+				
+				//筛选附近的门店
+				for (int i = 0; i < list.size(); i++) {
+					double distance=LocationUtils.getDistance(hashmap.get("lat"),hashmap.get("lon"), list.get(i).getLat(), list.get(i).getLon());
+					System.out.println(distance);
+					double disDouble=distance/1000;
+					if(disDouble<=5.0) {
+						busiList.add(list.get(i));
+					}
 				}
+				//分页对象
+				int page=1;
+				int pageSize=10;
+				if(request.getParameter("page")!=null) {
+					page=Integer.valueOf(request.getParameter("page"));
+				}
+				if(request.getParameter("pageSize")!=null) {
+					pageSize=Integer.valueOf(request.getParameter("pageSize"));
+				}
+				
+				
+				
+				//定义分页数据
+				List<BusinessesCity> pageList=new ArrayList<>();
+				if(busiList.size()>0) {
+					for(int i=(page-1);i<pageSize;i++) {
+						pageList.add(busiList.get(i));
+					}
+				}else {
+					request.setAttribute("msg","msg");
+					request.getRequestDispatcher("wmcr/shop_list.jsp").forward(request, response);
+				}
+				PageData<BusinessesCity> pageData=new PageData<BusinessesCity>(pageList, busiList.size(), pageSize, page);
+				request.setAttribute("pageData", pageData);
+				request.setAttribute("address",address);
+				request.getRequestDispatcher("wmcr/shop_list.jsp").forward(request, response);
+			}else {
+				request.setAttribute("address",address);
+				request.setAttribute("msg","msg");
+				request.getRequestDispatcher("wmcr/shop_list.jsp").forward(request, response);
 			}
-			//分页对象
-			int page=1;
-			int pageSize=10;
-			if(request.getParameter("page")!=null) {
-				page=Integer.valueOf(request.getParameter("page"));
-			}
-			if(request.getParameter("pageSize")!=null) {
-				pageSize=Integer.valueOf(request.getParameter("pageSize"));
-			}
-			PageData<BusinessesCity> pageData=new PageData<BusinessesCity>(busiList, busiList.size(), pageSize, page);
 			
-			request.setAttribute("pageData", pageData);
-			request.getRequestDispatcher("").forward(request, response);
 		}
 	}
 

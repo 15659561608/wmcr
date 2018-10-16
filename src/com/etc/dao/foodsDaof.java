@@ -11,11 +11,12 @@ import com.etc.util.PageData;
 */
 public interface foodsDaof {
 	boolean addFoods(Food food);
-	
+	PageData<Food> queryFoods(int page,int pageSize);
 	PageData<Food> queryFoods(int page,int pageSize,String keyWords,int busId);
 	List<Food> getFoods();
 	boolean delFoods(int id);
 	boolean updateFoods(Food food);
+	List<Food> queryFoods();
 	
 
 }

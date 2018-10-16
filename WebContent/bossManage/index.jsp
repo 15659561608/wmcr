@@ -76,7 +76,7 @@
 			<dt><i class="Hui-iconfont">&#xe613;</i> 商家相册管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="picture-list.html" data-title="图片管理" href="javascript:void(0)">图片管理</a></li>
+					<li><a data-href="picture-list.jsp" data-title="图片管理" href="javascript:void(0)">图片管理</a></li>
 			</ul>
 		</dd>
 	</dl>
@@ -129,6 +129,15 @@
 					<li><a data-href="sales.jsp" data-title="显示促销信息" href="javascript:void(0)">显示促销信息</a></li>
 					<li><a data-href="addAsles.jsp" data-title="发布促销信息" href="javascript:void(0)">发布促销信息</a></li>
 					<li><a data-href="HisSales.jsp" data-title="查看历史促销信息" href="javascript:void(0)">查看历史促销信息</a></li>
+			</ul>
+		</dd>
+	</dl>
+		<dl id="menu-system">
+			<dt><i class="Hui-iconfont">&#xe62e;</i> 订单管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd>
+				<ul>
+					<li><a data-href="ordersLmessage.jsp" data-title="查看订单" href="javascript:void(0)">查看订单</a></li>
+					
 			</ul>
 		</dd>
 	</dl>

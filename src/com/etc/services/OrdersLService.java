@@ -14,4 +14,6 @@ import com.etc.util.PageData;
 public interface OrdersLService {
 	List<OrdersLwq> getOrders();
 	PageData<OrdersLwq> getOrdersByPage(int page, int pageSize, String keywords);
+	
+	List<OrdersLwq> getOrdersBusi(String account,String busiName);
 }

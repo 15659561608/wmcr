@@ -151,7 +151,7 @@ public class BusinessServlet extends HttpServlet {
 		boolean result=bs.addBusinesses(businesses);
 		PrintWriter out=response.getWriter();
 		if(result) {
-			out.print("layer.msg('正在提交，请稍候..', {'time : 20000',btn : [ '我知道了' ],yes: function(index, layero){location.href='/wmcr/bossManage/index.jsp'}	});");
+			out.print("<script>alert('提交成功!');location.href='bossManage/addbusi.jsp';</script>");
 		}else {
 			out.print("false");
 		}
@@ -195,9 +195,9 @@ public class BusinessServlet extends HttpServlet {
 		boolean result=bs.updateBusinesses(businesses);
 		PrintWriter out=response.getWriter();
 		if(result) {
-			out.print("true");
+			out.print("<script>alert('提交成功!');location.href='bossManage/updateBusi.jsp';</script>");
 		}else {
-			out.print("false");
+			out.print("<script>alert('提交失败!');location.href='bossManage/updateBusi.jsp';</script>");
 		}
 		out.close();
 	}
