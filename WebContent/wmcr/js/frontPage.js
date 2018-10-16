@@ -63,8 +63,11 @@ var bodyCtrl = (function(window){
                 scope.keyword = '';
                 scope.autocompleteFocus();
             }
-            scope.resultClick = function (list) {
-                if(!list){return false;}
+            
+            //点击搜索地点项事件
+           scope.resultClick = function (list) {
+        	   location.href="../MapServlet?op=queryBusi&lat="+list.y+"&lng="+list.x+"&address="+list.name;
+              /*if(!list){return false;}
                 var loactionUrl = '/restaurants/000000/';
                 var get_grid_location_data = {
                     lat: list.y,
@@ -106,8 +109,8 @@ var bodyCtrl = (function(window){
                         }
                     }
                   window.location = loactionUrl.replace('000000', grid_location_id);
-                });
-            }
+                });*/
+          }
         },
         changeCity : function(){
             scope.isKeywordChange = true;

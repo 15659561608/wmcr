@@ -30,7 +30,11 @@ public interface BusinessService {
 	 * @return
 	 */
 	public boolean addBusinesses(Businesses b);
-	
+	/**
+	 * 获取门店列表
+	 * @return
+	 */
+	public List<BusinessesCity> getAllBusinesses();
 	/**
 	 * 修改门店信息
 	 * @param b

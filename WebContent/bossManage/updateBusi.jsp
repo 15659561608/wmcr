@@ -24,6 +24,8 @@
 	href="bossManage/static/h-ui.admin/skin/default/skin.css" id="skin" />
 <link rel="stylesheet" type="text/css"
 	href="bossManage/static/h-ui.admin/css/style.css" />
+	<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath }/layui/css/layui.css" />
 <!--[if IE 6]>
 <script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
@@ -54,16 +56,19 @@
 			<input type="hidden" value="${busiInfo.id }" name="id" />
 			<div class="row cl">
 				<label class="form-label col-xs-3">缩略图：</label>
-				<div class="formControls col-xs-8">
-					<span class="btn-upload form-group"> <input
-						class="input-text upload-url" type="text" name="uploadfile-2"
-						id="uploadfile-2" readonly="" style="width: 200px"> <a
-						href="javascript:void();" class="btn btn-primary upload-btn"><i
-							class="Hui-iconfont"></i> 浏览文件</a> <input value="${busiInfo.logo }"
-						type="file" multiple="" name="logo" class="input-file">
-					</span>
+			<div class="formControls col-xs-8">
+				<div class="layui-upload">
+					<button type="button" class="layui-btn" id="test2">上传缩略图</button>
+					<div class="layui-upload-list">
+						<img class="layui-upload-img" id="demo2">
+						<p id="demoText"></p>
+					</div>
 				</div>
 			</div>
+			</div>
+			<input
+				type="hidden" value="${busiInfo.logo }" id="logo-value" name="logo" /> <input
+				type="hidden" value="${busiInfo.licence }" id="licence-value" name="licence" />
 			<div class="row cl">
 				<label class="form-label col-xs-3">门店名：</label>
 				<div class="formControls col-xs-8">
@@ -104,15 +109,15 @@
 			</div>
 			<div class="row cl">
 				<label class="form-label col-xs-3">营业执照：</label>
-				<div class="formControls col-xs-8">
-					<span class="btn-upload form-group"> <input
-						class="input-text upload-url" type="text" name="uploadfile-2"
-						id="uploadfile-2" readonly="" style="width: 200px"> <a
-						href="javascript:void();" class="btn btn-primary upload-btn"><i
-							class="Hui-iconfont"></i> 浏览文件</a> <input type="file" multiple=""
-						name="licence" value="${busiInfo.licence }" class="input-file">
-					</span>
-				</div>
+					<div class="formControls col-xs-8">
+						<div class="layui-upload">
+							<button type="button" class="layui-btn" id="test1">上传营业执照</button>
+							<div class="layui-upload-list">
+								<img class="layui-upload-img" id="demo1">
+								<p id="demoText"></p>
+							</div>
+						</div>
+					</div>
 			</div>
 			<div class="row cl">
 				<label class="form-label col-xs-3">起送价：</label>
@@ -490,5 +495,78 @@
         UE.getEditor('editor').execCommand( "clearlocaldata" );
         alert("已清空草稿箱")
     }
+</script>
+
+
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script>
+layui.use('upload', function(){
+  var $ = layui.jquery
+  ,upload = layui.upload;
+  
+  //缩略图上传
+  var uploadInst = upload.render({
+    elem: '#test1'
+    ,url: '${pageContext.request.contextPath }/UploadHandleServlet'
+    ,before: function(obj){
+      //预读本地文件示例，不支持ie8
+      obj.preview(function(index, file, result){
+        $('#demo1').attr('src', result); //图片链接（base64）
+      });
+    }
+    ,done: function(res){
+      //如果上传失败
+      if(res.code <1){
+        return layer.msg('上传失败');
+      }else{
+    	  layer.msg('上传成功');
+    	var logoPath=eval(res).data.path;
+    	 $("#logo-value").attr("value",logoPath);
+      }
+      //上传成功
+    }
+    ,error: function(){
+      //演示失败状态，并实现重传
+      var demoText = $('#demoText');
+      demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+      demoText.find('.demo-reload').on('click', function(){
+        uploadInst.upload();
+      });
+    }
+  });
+  
+  //营业执照上传
+  var uploadInst = upload.render({
+    elem: '#test2'
+    ,url: '${pageContext.request.contextPath }/UploadHandleServlet'
+    ,before: function(obj){
+      //预读本地文件示例，不支持ie8
+      obj.preview(function(index, file, result){
+        $('#demo2').attr('src', ('${busiInfo.licence}'=='')?result:'${contextPage.request.contextPath}/${busiInfo.licence}'); //图片链接（base64）
+      });
+    }
+    ,done: function(res){
+      //如果上传失败
+      if(res.code <1){
+        return layer.msg('上传失败');
+      }else{
+    	  layer.msg('上传成功');
+    	var licencePath=eval(res).data.path;
+    	$("#licence-value").attr("value",licencePath);
+      }
+      //上传成功
+    }
+    ,error: function(){
+      //演示失败状态，并实现重传
+      var demoText = $('#demoText');
+      demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+      demoText.find('.demo-reload').on('click', function(){
+        uploadInst.upload();
+      });
+    }
+  });
+ 
+  
+});
 </script>
 </html>

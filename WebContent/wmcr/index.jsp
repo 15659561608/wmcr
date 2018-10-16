@@ -630,6 +630,34 @@ function checkPwd(){
     
   
 </script>
+<script type="text/javascript">
+/*密码验证*/    
+function checkPwd(){
+  var pwd=$("pwd1");
+  var pwdId=divId("pwd_prompt");
+   pwdId.innerHTML="";    
+  var reg=/^[a-zA-Z0-9]{4,10}$/;    
+    if(reg.test(pwd)==false){
+       pwdId.innerHTML="密码不能含有非法字符，长度在4-10之间";
+    return false;
+      }
+      return true;
+    }
+    
+    
+    //地点列表项点击事件
+    
+    function resultClick(item){
+    	  var objList=$(list).find("h5").text();
+    		alert(objList);
+    }
+    
+  
+</script>
+
+
+
+
 
 
 
