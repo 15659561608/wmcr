@@ -15,4 +15,9 @@ import com.etc.util.PageData;
 public interface OrdersLDao {
 	List<OrdersLwq> queryOrders();
 	PageData<OrdersLwq> queryOrdersByPage(int page, int pageSize, String keywords);
+	
+	//商家查看门店订单
+	List<OrdersLwq> queryOrdersBusi(String account,String busiName);
+	
+	List<OrdersLwq> queryOrdersByid(int id);
 }

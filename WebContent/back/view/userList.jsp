@@ -130,8 +130,7 @@
 						<td>${c.lat}</td>
 						<td>${c.lon}</td>
 						<td>${c.state ==0? "通过" : "未审核"}</td>
-						<td><a
-							href="${pageContext.request.contextPath}/csc.do?userId=${c.id}&state=${c.state}&op=updateCustomerState">修改[超链接]</a>
+						<td><a href="${pageContext.request.contextPath}/csc.do?userId=${c.id}&state=${c.state}&op=updateCustomerState">修改</a>
 						</td>
 					</tr>
 				</c:forEach>

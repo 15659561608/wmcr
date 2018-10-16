@@ -134,7 +134,7 @@
 						class="r" src="img/jt-bottom.png" alt="">
 				</dt>
 				<dd>
-					<a href="#view/">店铺列表 </a> 
+					<a href="#view/businesses.jsp">店铺列表 </a> 
 					
 				</dd>
 			</dl>
@@ -144,8 +144,8 @@
 						class="r" src="img/jt-bottom.png" alt="">
 				</dt>
 				<dd>
-					<a href="#view/city.jsp">类别列表 </a> 
-					<a href="#view/addCity.jsp">增加类别</a>
+					<a href="#view/typeList.jsp">类别列表 </a> 
+					<a href="#view/addType.jsp">增加类别</a>
 
 				</dd>
 			</dl>
