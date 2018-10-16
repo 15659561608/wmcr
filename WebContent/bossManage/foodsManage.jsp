@@ -143,7 +143,7 @@
 						<%-- <td><img src="/img/<%=virtualPath%>"/></td>  --%>
 						<%-- <td><img src="${food.logo}" alt="${food.logo}" /></td> --%>
 						<%-- <td><Img src="${food.logo}" width="100px" height="100px"/></td> --%>
-						<td><Img src="${food.logo}" width="100px" height="100px" /></td>
+						<td><Img src="${pageContext.request.contextPath}/${food.logo}" width="100px" height="100px" /></td>
 						<td>${food.state==0?"售罄":"有货"}</td>
 						<td><button class="btn btn-link update"
 								href="#modal-container-671859" data-toggle="modal">修改</button>
