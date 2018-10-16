@@ -139,7 +139,7 @@ public class UploadServletf extends HttpServlet {
 				    	   System.out.println("项目的路径:"+p);
 				    	    s="\\bossManage\\imgs\\"+path.substring(path.lastIndexOf("\\")+1);
 				    	    System.out.println("图片路径"+s);
-				    	     po="E:\\pro\\wmcr\\WebContent\\bossManage\\imgs\\"+fileName;
+				    	     po="E:\\pro\\wmcr\\WebContent\\imgs\\"+fileName;
 				    	    String p2=request.getSession().getServletContext().getRealPath(request.getRequestURI());
 				    	    System.out.println("p2"+p2);
 				    	     Copyfile.copyFile(p,po);
