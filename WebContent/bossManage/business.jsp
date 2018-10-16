@@ -343,7 +343,7 @@ function member_del(obj,id){
         	"createdCell":function(nTd,sData, oData, iRow, iCol)
         	{
         		//表格最后一个列增加很多超链接 启用禁用。 编辑   删除 修改密码
-        		$(nTd).html("<img style='width:50px;height:50px;' src='"+oData.logo+"' />");
+        		$(nTd).html("<img style='width:50px;height:50px;' src='${pageContext.request.contextPath}"+oData.logo+"' />");
         	}	
         },
         {"data": "busiName"},
