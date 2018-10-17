@@ -106,7 +106,6 @@ public class UsersRegisterServlet extends HttpServlet {
 					request.getRequestDispatcher("wmcr/index.jsp").forward(request, response);
 				}
 			}
-
 		}
 	}
 
