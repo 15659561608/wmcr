@@ -386,7 +386,7 @@
 
 <!-- 注册开始 -->
 <dh-dialog class="disnone" type='register' height="500" header="注册" show="registerShow" >
-      <form ng-controller="registerCtrl" class="register-form" action="/wmcr/urs.do?op=register" method="post" acname="registerForm">
+<form ng-controller="registerCtrl" class="register-form" action="/wmcr/urs.do?op=register" method="post" acname="registerForm" id = "registerForm" onsubmit = " return checkform()">
         <div class="form-group mb10">
             <label for="">手机号码</label>
             <div>
@@ -460,10 +460,8 @@
     
 <!--商家入驻开始-->
     <dh-dialog class="disnone" height="500" type="merchants" header="商户入驻申请" 
-
 show="merchantsShow">
      <form ng-controller="registerCtrl" class="register-form" action="" method="post" 
-
 acname="bossRegisterForm" id="bossRegisterForm" >
      <div class="inline" ng-controller="merchantCtrl">
             <div class="form-group row mb10">
