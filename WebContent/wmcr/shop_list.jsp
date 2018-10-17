@@ -111,9 +111,20 @@
                         <label class="fl">菜品分类：</label>
                         <ul class="clearfix">
                             
-                            <li ng-class="{cur:cuisineIndex=='all'}" ng-click="changeCuisine('all')">所有菜系</li>
+                            <li ng-class="{cur:cuisineIndex=='all'}" onclick="javascript:location.href='${pageContext.request.contextPath }/MapServlet?op=queryBusi&address=${address}&id=${v.id}';">所有菜系</li>
+                            <c:forEach items="${typeList }" var="v">
+                            <c:choose>
                             
-                            <li ng-class="{cur:cuisineIndex=='cantonese'}" ng-click="changeCuisine('cantonese')">粤菜</li>
+                            	<c:when test="${typeId==v.id }">
+                            		<li ng-class="{cur:cuisineIndex=='chinese-fastfood'}" value="${v.id }" style="background:#f5bb00;" onclick="javascript:location.href='${pageContext.request.contextPath }/MapServlet?op=queryBusiByType&address=${address}&id=${v.id}';">${v.title }</li>
+                            	</c:when>
+                            	<c:otherwise>
+                             	 	<li ng-class="{cur:cuisineIndex=='chinese-fastfood'}" value="${v.id }" onclick="javascript:location.href='${pageContext.request.contextPath }/MapServlet?op=queryBusiByType&address=${address}&id=${v.id}';" >${v.title }</li>
+                            	
+                            	</c:otherwise>
+                            </c:choose>
+                            </c:forEach>
+                            <!-- <li ng-class="{cur:cuisineIndex=='cantonese'}" ng-click="changeCuisine('cantonese')">粤菜</li>
                             
                             <li ng-class="{cur:cuisineIndex=='chinese-fastfood'}" ng-click="changeCuisine('chinese-fastfood')">中餐简餐</li>
                             
@@ -133,7 +144,7 @@
                             
                             <li ng-class="{cur:cuisineIndex=='supermarket'}" ng-click="changeCuisine('supermarket')">超市</li>
                             
-                            <li ng-class="{cur:cuisineIndex=='western'}" ng-click="changeCuisine('western')">西餐</li>
+                            <li ng-class="{cur:cuisineIndex=='western'}" ng-click="changeCuisine('western')">西餐</li> -->
                             
                         </ul>
                     </div>
@@ -241,12 +252,12 @@
                                 class="restaurant-item fl c_japan-korea c_all p_all p_356 p_352 p_42  p_online fee 0"
                                 data-price='150' data-count="1205" data-title="pageData.data.busiName">
                                 <div class="img-box fl">
-                                    <a href="shop_detail.html">
+                                    <a href="${pageContext.request.contextPath }/Business?op=busiDetail&id=${v.id}">
                                         <img src="${pageContext.request.contextPath }/${v.logo}" width="82px" height="82px">
                                     </a>
                                 </div>
                                 <article class="restaurant-introduce fl">
-                                    <h3 class="ellipsis"><a href="shop_detail.html">${v.busiName}</a></h3>
+                                    <h3 class="ellipsis"><a href="${pageContext.request.contextPath }/Business?op=busiDetail&id=${v.id}">${v.busiName}</a></h3>
                                     <dl class="clearfix">
                                         
                                             <dt class="fl ellipsis">已售${v.salNum}单</dt>

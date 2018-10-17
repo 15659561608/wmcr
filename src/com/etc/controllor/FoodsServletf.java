@@ -162,10 +162,10 @@ public class FoodsServletf extends HttpServlet {
 					list3.add(food.get(i));
 				}
 			}
-			
-			System.out.println("11111");
-			list1.forEach(System.out::println);
-			pd.getData().forEach(System.out::println);		
+//			
+//			System.out.println("11111");
+//			list1.forEach(System.out::println);
+//			pd.getData().forEach(System.out::println);		
 			
 			request.setAttribute("pd", pd);
 			

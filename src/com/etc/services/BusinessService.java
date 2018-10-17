@@ -36,6 +36,21 @@ public interface BusinessService {
 	 */
 	public List<BusinessesCity> getAllBusinesses();
 	/**
+	 * 获取审核通过的门店列表
+	 * @return
+	 */
+	public List<BusinessesCity> getPassBusinesses();
+	/**
+	 * 根据类别获取审核通过的门店列表
+	 * @return
+	 */
+	public List<BusinessesCity> getPassBusinessesByType(int id);
+	/**
+	 * 获取营业中门店列表
+	 * @return
+	 */
+	public List<BusinessesCity> getOnBusinesses();
+	/**
 	 * 修改门店信息
 	 * @param b
 	 * @return

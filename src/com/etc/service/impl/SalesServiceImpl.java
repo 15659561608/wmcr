@@ -19,7 +19,7 @@ public class SalesServiceImpl implements SalesService {
 	@Override
 	public List<SalesBusi> getSalesByBusId(int busId) {
 		// TODO Auto-generated method stub
-		return sd.getHisSalesByBusId(busId);
+		return sd.getSalesByBusId(busId);
 	}
 
 	@Override

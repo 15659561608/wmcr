@@ -50,7 +50,7 @@
 
                         <ul class="member" login-box>
                             <li><a href="index.html" class="index">首页</a></li>
-                            <li class="login-register"><a href="${pageContext.request.contextPath }/wmcr/login.jsp"   class="login"  rel="nofollow">登录</a><span class="cg">/</span><a href="register.html" referer-url  rel="nofollow" class="register">注册</a></li>
+                            <li class="login-register"><a href="login.html" referer-url  class="login"  rel="nofollow">登录</a><span class="cg">/</span><a href="register.html" referer-url  rel="nofollow" class="register">注册</a></li>
                             <li><a href="member_order.html" class="order-center"  rel="nofollow">查看订单</a></li>
                             <li class=""><a href="gifts.html"  rel="nofollow">氪星礼品站</a></li>
                             <li class="phone-client "><a href="#"  rel="nofollow" target="_blank"><span>手机客户端</span></a></li>
@@ -3360,8 +3360,7 @@
                                 <div class="cart-item-list select-none">
                                     <div class="disnone" ng-class="{disnone:isEmpty}">
                                         <div class="cart-item cart-data clearfix" ng-repeat="obj in cartDatas">
-                                            <div class="goods-name ellipsis foodName" ng-bind="obj.name"></div>
-                                            <input type="hidden" class="foodId" ng-bind="obj.id"/>
+                                            <div class="goods-name ellipsis" ng-bind="obj.name"></div>
                                             <div class="goods-count clearfix ellipsis">
                                                 <span class="goods-sub icon sub-icon fl" sub-goods="[[$index]]"></span>
                                                 <span class="goods-nums fl" ng-bind="obj.quantity"></span>
@@ -3401,7 +3400,7 @@
                                     <div class="fr">合计：￥<span ng-bind="total|number:2"></span></div>
                                 </div>
                                 <div class="checkout">
-                                    <button class="checkout btn" onclick="xdMethod()" >立即下单</button>
+                                    <button class="checkout btn" ng-disabled="isPlaceOrder" ng-click="createOrder()" ng-bind="createOrderBtnName">立即下单</button>
                                 </div>
                             </div>
                         </section>
@@ -3832,19 +3831,7 @@
 
     <!-- Baidu Analytics -->
 
-<script src="${pageContext.request.contextPath }/wmcr/js/jquery-1.8.1.js"></script>
-<script>
-	
-	//下单操作
-	function xdMethod(){
-		var ids="";
-		$.each($(".foodId"),function(i,v){
-			ids+=$(this).text()+",";
-		});
-		
-		location.href='${pageContext.request.contextPath }/ohs.do?op=add&ids='+ids;
-	}
-</script>
+
 
 
 </body>

@@ -70,5 +70,26 @@ public class BusinessDaoImpl implements BusinessDao {
 		
 		return (List<BusinessesCity>)BaseDao.select(sql, BusinessesCity.class,id);
 	}
+	@Override
+	public List<BusinessesCity> getPassBusinesses() {
+		// TODO Auto-generated method stub
+		String sql="select b.id,b.busiName,b.phone,b.address,b.avgCost,b.licence,b.salNum,b.lat,b.lon,b.starPrice,b.disFee,b.onlinePay,b.isReserve,b.isBusiness,b.des,b.typeId,b.bossId,b.cityId,b.praise,b.nag,b.state,b.logo,b.regDate,c.cityName,t.title from businesses"
+				+ " b,city c,type t where b.cityId=c.id and b.typeId=t.id and b.state=1";
+		return (List<BusinessesCity>)BaseDao.select(sql, BusinessesCity.class);
+	}
+	@Override
+	public List<BusinessesCity> getOnBusinesses() {
+		// TODO Auto-generated method stub
+		String sql="select b.id,b.busiName,b.phone,b.address,b.avgCost,b.licence,b.salNum,b.lat,b.lon,b.starPrice,b.disFee,b.onlinePay,b.isReserve,b.isBusiness,b.des,b.typeId,b.bossId,b.cityId,b.praise,b.nag,b.state,b.logo,b.regDate,c.cityName,t.title from businesses"
+				+ " b,city c,type t where b.cityId=c.id and b.typeId=t.id and b.state=1 and b.isBusiness=1";
+		return (List<BusinessesCity>)BaseDao.select(sql, BusinessesCity.class);
+	}
+	@Override
+	public List<BusinessesCity> getPassBusinessesByType(int id) {
+		// TODO Auto-generated method stub
+		String sql="select b.id,b.busiName,b.phone,b.address,b.avgCost,b.licence,b.salNum,b.lat,b.lon,b.starPrice,b.disFee,b.onlinePay,b.isReserve,b.isBusiness,b.des,b.typeId,b.bossId,b.cityId,b.praise,b.nag,b.state,b.logo,b.regDate,c.cityName,t.title from businesses"
+				+ " b,city c,type t where b.cityId=c.id and b.typeId=t.id and b.state=1 and t.id=?";
+		return (List<BusinessesCity>)BaseDao.select(sql, BusinessesCity.class,id);
+	}
 
 }

@@ -79,4 +79,22 @@ public class BusinessServiceImpl implements BusinessService {
 		return bd.getAllBusinesses();
 	}
 
+	@Override
+	public List<BusinessesCity> getPassBusinesses() {
+		// TODO Auto-generated method stub
+		return bd.getPassBusinesses();
+	}
+
+	@Override
+	public List<BusinessesCity> getOnBusinesses() {
+		// TODO Auto-generated method stub
+		return bd.getOnBusinesses();
+	}
+
+	@Override
+	public List<BusinessesCity> getPassBusinessesByType(int id) {
+		// TODO Auto-generated method stub
+		return bd.getPassBusinessesByType(id);
+	}
+
 }

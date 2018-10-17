@@ -2,6 +2,9 @@ package com.etc.controllor;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Random;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -48,12 +51,16 @@ public class AliPayServlet extends HttpServlet {
 			op=request.getParameter("op");
 		}
 		response.setCharacterEncoding("utf-8");
-		response.setContentType("application/json");
+		response.setContentType("text/html");
 		PrintWriter out=response.getWriter();
 		
 		if("pay".equals(op)) {
-			//商户订单号，商户网站订单系统中唯一订单号，必填
-			String out_trade_no = new String(request.getParameter("WIDout_trade_no").getBytes("ISO-8859-1"),"UTF-8");
+			
+			
+			//将订单插入数据库
+			
+			//生成商户订单号
+			String out_trade_no = getOrderIdByTime(); //new String(request.getParameter("WIDout_trade_no").getBytes("ISO-8859-1"),"UTF-8");
 			//付款金额，必填
 			String total_amount = new String(request.getParameter("WIDtotal_amount").getBytes("ISO-8859-1"),"UTF-8");
 			//订单名称，必填
@@ -85,11 +92,22 @@ public class AliPayServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-			//输出
+//			//输出
 			out.println(result);
 		}
 	}
 
+	//生成订单号
+	public static String getOrderIdByTime() {
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddHHmmss");
+		String newDate=sdf.format(new Date());
+		String result="";
+		Random random=new Random();
+		for(int i=0;i<3;i++){
+			result+=random.nextInt(10);
+		}
+		return newDate+result;
+	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

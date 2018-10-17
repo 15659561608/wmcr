@@ -127,7 +127,7 @@
 			<dd>
 				<ul>
 					<li><a data-href="sales.jsp" data-title="显示促销信息" href="javascript:void(0)">显示促销信息</a></li>
-					<li><a data-href="addAsles.jsp" data-title="发布促销信息" href="javascript:void(0)">发布促销信息</a></li>
+					<li><a data-href="addsles.jsp" data-title="发布促销信息" href="javascript:void(0)">发布促销信息</a></li>
 					<li><a data-href="HisSales.jsp" data-title="查看历史促销信息" href="javascript:void(0)">查看历史促销信息</a></li>
 			</ul>
 		</dd>
