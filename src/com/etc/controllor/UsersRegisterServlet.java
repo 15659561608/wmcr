@@ -29,6 +29,7 @@ public class UsersRegisterServlet extends HttpServlet {
 	private static ResetPwdService rps = new ResetPwdServiceImpl();
 	private static String account = null;
 	private static String yzm = null;
+	private static String pwd1 = null;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -48,61 +49,63 @@ public class UsersRegisterServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
+		HttpSession session = request.getSession();
 		PrintWriter out = response.getWriter();
 		String op = request.getParameter("op");
 		/**
 		 * 获取验证码
 		 */
 		if (op.equals("yzm")) {
-			String account = request.getParameter("account1");
-			// System.out.println(account);
-			Random random = new Random();
-			int code = random.nextInt(1000000);
-
-			// 把随机数存进session
-			request.getSession().setAttribute("code", code);
-			Message m = new Message();
-			m.getRequest2(account, String.valueOf(code));
-			request.getRequestDispatcher("wmcr/index.jsp").forward(request, response);
-			out.print(account);
-			out.close();
+			account = request.getParameter("account1");
+			//System.out.println(account);
+			Users u = rps.queryUsers(account);
+			//判断账户是否存在，存在不发送验证码
+			if (u == null) {
+				// System.out.println(account);
+				//生成随机数
+				Random random = new Random();
+				int code = random.nextInt(1000000);
+				//把随机数存进session
+				session.setAttribute("code", code);
+				//调用短信验证接口
+				Message m = new Message();
+				//发送验证码至手机
+				m.getRequest2(account, String.valueOf(code));
+				//request.getRequestDispatcher("wmcr/index.jsp").forward(request, response);
+				out.print(account);
+				out.close();
+			}
+			else {
+				out.println("<script>alert('账户已经存在')</script>");
+				request.getRequestDispatcher("wmcr/index.jsp").forward(request, response);
+			}
 		} else if (op.equals("register")) {
 			account = request.getParameter("account1");
-			if(account.isEmpty()) {
-				out.println("<script>alert('把文本框给我填好，然后注册好吗？');location.href='wmcr/index.jsp'</script>");
-			}
 			yzm = request.getParameter("captcha2");
-			if(yzm.isEmpty()) {
-				out.println("<script>alert('把文本框给我填好，然后注册好吗？');location.href='wmcr/index.jsp'</script>");
-			}
 			String pwd = request.getParameter("pwd1");
-			String pwd1 = MD5Util.getEncodeByMd5(pwd);
-			if(pwd1.isEmpty()) {
-				out.println("<script>alert('把文本框给我填好，然后注册好吗？');location.href='wmcr/index.jsp'</script>");
-			}
 			String repwd = request.getParameter("repwd");
-			if(repwd.isEmpty()) {
-				out.println("<script>alert('把文本框给我填好，然后注册好吗？');location.href='wmcr/index.jsp'</script>");
+			//如果密码相等加密
+			if(pwd.equals(repwd)) {
+				// MD5加密
+				pwd1 = MD5Util.getEncodeByMd5(pwd);
+				String pwd2 = MD5Util.getEncodeByMd5(repwd);
 			}
-			Users u1 = new Users(account, pwd1);
-			Users u = rps.queryUsers(account);
-			HttpSession session = request.getSession();
+			
 			int co = (int) session.getAttribute("code");
 
-			if (u != null) {
-				out.println("<script>alert('账户已经存在');location.href='wmcr/index.jsp'</script>");
-			} else if (Integer.valueOf(yzm) != co) {
-				out.println("<script>alert('验证码不正确');location.href='wmcr/index.jsp'</script>");
-			} else if(u1!=null) {
+			if (Integer.valueOf(yzm) != co) {
+				out.println("<script>alert('验证码不正确')</script>");
+			} else {
+				Users u1 = new Users(account, pwd1);
 				boolean flag = us.getUsersRegister(u1);
 				if (flag) {
-					//request.getSession().setAttribute("users", u);
-					out.println("<script>alert('注册成功');location.href='wmcr/index.jsp'</script>");
-				} 
-			}else {
-				out.println("<script>alert('注册失败');location.href='wmcr/index.jsp'</script>");
+					out.println("<script>alert('注册成功')</script>");
+					request.getRequestDispatcher("wmcr/index.jsp").forward(request, response);
+				} else {
+					out.println("<script>alert('注册失败')</script>");
+					request.getRequestDispatcher("wmcr/index.jsp").forward(request, response);
+				}
 			}
-
 		}
 	}
 
