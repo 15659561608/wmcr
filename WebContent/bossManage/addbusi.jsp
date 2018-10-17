@@ -377,6 +377,9 @@
 				cityId : {
 					required : true,
 					min : 0
+				},typeId : {
+					required : true,
+					min : 0
 				},
 				agree : "required"
 			},

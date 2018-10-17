@@ -3,7 +3,7 @@ package com.etc.entity;
 public class Ordersdetail {
     private Integer id;
 
-    private Integer orderId;
+    private String orderId;
 
     private Integer foodId;
 
@@ -12,16 +12,24 @@ public class Ordersdetail {
     public Integer getId() {
         return id;
     }
-
-    public void setId(Integer id) {
+public Ordersdetail() {
+	// TODO Auto-generated constructor stub
+}
+    public Ordersdetail(String orderId, Integer foodId, Integer num) {
+	super();
+	this.orderId = orderId;
+	this.foodId = foodId;
+	this.num = num;
+}
+	public void setId(Integer id) {
         this.id = id;
     }
 
-    public Integer getOrderId() {
+    public String getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(Integer orderId) {
+    public void setOrderId(String orderId) {
         this.orderId = orderId;
     }
 

@@ -1,8 +1,10 @@
 package com.etc.dao.impl;
 
+import java.sql.Connection;
 import java.util.List;
 
 import com.etc.dao.OrdersLDao;
+import com.etc.entity.Orders;
 import com.etc.entity.OrdersLwq;
 import com.etc.util.BaseDao;
 import com.etc.util.PageData;
@@ -58,6 +60,13 @@ public class OrderLDaoImpl implements OrdersLDao{
 		// TODO Auto-generated method stub
 		String sql="update orders set state=? where id=?";
 		return BaseDao.execute(sql, status,id)>0;
+	}
+
+	@Override
+	public boolean addOrders(Orders o,Connection conn) {
+		// TODO Auto-generated method stub
+		String sql="INSERT INTO orders (id, userId, busId, ordDate, money, state) VALUES (?, ?,?,?,?, 0)";
+		return BaseDao.execute(sql, conn, o.getId(),o.getUserId(),o.getBusId(),o.getOrdDate(),o.getMoney())>0;
 	}
 
 }

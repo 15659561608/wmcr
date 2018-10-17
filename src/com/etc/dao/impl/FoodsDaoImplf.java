@@ -67,4 +67,15 @@ public class FoodsDaoImplf implements foodsDaof{
 		return pd;
 	}
 
+	@Override
+	public Food getFoodById(int id) {
+		// TODO Auto-generated method stub
+		String sql="select * from food where id=?";
+		List<Food> list=(List<Food>) BaseDao.select(sql, Food.class,id);
+		if(list.size()>0) {
+			return list.get(0);
+		}
+		return null;
+	}
+
 }

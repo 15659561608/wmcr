@@ -17,5 +17,10 @@ public interface FoodServicesf {
 	boolean update(Food food);
 	List<Food> allFoods();
 	List<Food> getFoods();
-
+	/**
+	 * 根据编号获取菜品
+	 * @param id
+	 * @return
+	 */
+	public Food getFoodById(int id);
 }
