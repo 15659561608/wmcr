@@ -114,8 +114,8 @@
 
 		<ul class="clearfix menu-nav-list" scroll-position-static="160">
 			<li class="no-line "><a href="shop_intro.html">餐厅介绍</a></li>
-			<li><a href="shop_detail.html">菜单</a></li>
-			<li class="active"><a href="shop_comment.html">评论</a></li>
+			<li><a href="shop_detail.jsp">菜单</a></li>
+			<li class="active"><a href="#">评论</a></li>
 			<li><a href="shop_brand.html" id='point-tab'>大家都在点</a></li>
 
 		</ul>
