@@ -104,7 +104,7 @@ public class UsersLoginServlet extends HttpServlet {
 				// response.addCookie(cookie1);
 				out.print("<script>alert('登录成功');location.href='wmcr/mainPage.jsp'</script>");
 			} else {
-				out.print("<script>alert('登录失败')");
+				out.print("<script>alert('登录失败');location.href='wmcr/index.jsp'</script>");
 			}
 		}
 	}
