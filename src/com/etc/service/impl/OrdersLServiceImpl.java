@@ -30,4 +30,17 @@ public class OrdersLServiceImpl implements OrdersLService{
 		// TODO Auto-generated method stub
 		return odi.queryOrdersBusi(account, busiName);
 	}
+	/**
+	 * 根据订单编号查询订单信息
+	 */
+	@Override
+	public List<OrdersLwq> getOrdersByid(int id) {
+		// TODO Auto-generated method stub
+		return odi.queryOrdersByid(id);
+	}
+	@Override
+	public boolean updateOrdersByid(int id, int status) {
+		// TODO Auto-generated method stub
+		return odi.updateOrdersByid(id, status);
+	}
 }
