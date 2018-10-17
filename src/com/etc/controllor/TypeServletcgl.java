@@ -68,31 +68,37 @@ public class TypeServletcgl extends HttpServlet {
 
 		if ("addType".equals(op)) {
 
-			String title=request.getParameter("title");
-			String pId=request.getParameter("pId");
-			
-			boolean flag=ts.addType(title,Integer.valueOf(pId));
+			String title = request.getParameter("title");
+			String pId = request.getParameter("pId");
+
+			boolean flag = ts.addType(title, Integer.valueOf(pId));
 			if (flag) {
 				request.getRequestDispatcher("back/view/addType.jsp").forward(request, response);
 			}
 		}
 		if ("findType".equals(op)) {
-			
+
 			response.setContentType("application/json");
 			PrintWriter out = response.getWriter();
 			List<Type> type = ts.getType();
-			
+
 			Gson gson = new Gson();
 
 			String jsonStr = gson.toJson(type);
 
 			out.print(jsonStr);
-			
-//			request.getSession().setAttribute("tp", type);
-//			request.setAttribute("t", type);
-			//request.getRequestDispatcher("back/view/addType.jsp").forward(request, response);
 		}
-
+		if ("update".equals(op)) {
+			String id = request.getParameter("id");
+			String fuTitle = request.getParameter("fuTitle");
+			
+			boolean flag=ts.updateType(Integer.valueOf(id),Integer.valueOf(fuTitle));
+			
+			if (flag) {
+				request.getRequestDispatcher("back/view/typeList.jsp").forward(request, response);
+					
+			}
+		}
 	}
 
 	/**

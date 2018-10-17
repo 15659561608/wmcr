@@ -43,14 +43,12 @@
 					<div class="form-group">
 						<label for="" class="col-sm-2 control-label">父类名</label>
 						<div class="col-sm-4">
-							<c:if test="${requestScope.t==null}">
-								<jsp:forward page="/Tsc.do?op=findType"></jsp:forward>
-							</c:if>
-							<select name="pId" class="col-sm-12">
-							
-								<c:forEach items="${requestScope.t}" var="ty">
-									<option  value="${ty.id}">${ty.title}</option>
-								</c:forEach>
+
+							<select class="form-control" name="pId" id="pId" class="col-sm-12">
+
+
+								<option value="">--请选择--</option>
+
 							</select>
 						</div>
 					</div>
@@ -68,5 +66,24 @@
 
 		</div>
 	</div>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/back/bootstrap/js/bootstrap.min.js"></script>
+	<script>
+		$(function() {
+			$.get("${pageContext.request.contextPath}/Tsc.do?op=findType",
+					function(data, status) {
+						//	var arr = JSON.parse(data);
+
+						$.each(data, function(index, e) {
+
+							$("#pId").append(
+									"<option value="+e.id+">" + e.title
+											+ "</option>");
+						});
+
+					});
+		});
+	</script>
 </body>
 </html>

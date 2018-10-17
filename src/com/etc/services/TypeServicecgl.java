@@ -11,4 +11,5 @@ public interface TypeServicecgl {
 	PageData<Typecgl> queryType(int page, int pageSize, String keywords);
 	List<Type> getType();
 	boolean addType(String title, int pId);
+	boolean updateType(int id, int pId);
 }

@@ -151,9 +151,8 @@
 								<div class="form-group">
 									<label for="" class="col-sm-2 control-label">父类别</label>
 									<div class="col-sm-4">
-										<select class="form-control" name="fuTitle" id="fuTitle">
-											<option value="0">--请选择--</option>
-
+										<select class="form-control" name="fuTitle" id="fuTitle" required="required">
+											<option value="">--请选择--</option>
 										</select>
 									</div>
 								</div>
@@ -203,14 +202,12 @@
 				var title = $(this).parents("tr").find("td").eq(1)
 						.text();
 				
-				var fuTitle = $(this).parents("tr").find("td").eq(2)
-						.text();
 				
 				
 			
                 $("#id").val(id);
 				$("#title").val(title);
-				$("#fuTitle").val(fuTitle);
+			
 				 // $("#fuTitle option[value='"+key+"']").attr("selected","selected"); 
 
 			});

@@ -13,4 +13,6 @@ public interface TypeDaocgl {
 	List<Type> getType();
 
 	boolean addType(String title, int pId);
+
+	boolean updateType(int id, int pId);
 }
