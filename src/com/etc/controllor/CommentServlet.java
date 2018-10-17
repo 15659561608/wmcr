@@ -43,7 +43,7 @@ public class CommentServlet extends HttpServlet {
 		response.setContentType("html/text;charset=utf-8");
 		String op = request.getParameter("op");
 		 PrintWriter out=response.getWriter();
-		if ("queryComment".equals("op")) {
+		if ("queryComment".equals("op")) {   
 
 		
 			BusinessesCity bus=(BusinessesCity)request.getSession().getAttribute("busss");
