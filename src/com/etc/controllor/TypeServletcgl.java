@@ -1,6 +1,7 @@
 package com.etc.controllor;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -14,6 +15,7 @@ import com.etc.entity.Typecgl;
 import com.etc.service.impl.TypeServicecglImpl;
 import com.etc.services.TypeServicecgl;
 import com.etc.util.PageData;
+import com.google.gson.Gson;
 
 /**
  * Servlet implementation class TypeServletcgl
@@ -75,11 +77,20 @@ public class TypeServletcgl extends HttpServlet {
 			}
 		}
 		if ("findType".equals(op)) {
-
+			
+			response.setContentType("application/json");
+			PrintWriter out = response.getWriter();
 			List<Type> type = ts.getType();
-			request.getSession().setAttribute("tp", type);
-			request.setAttribute("t", type);
-			request.getRequestDispatcher("back/view/addType.jsp").forward(request, response);
+			
+			Gson gson = new Gson();
+
+			String jsonStr = gson.toJson(type);
+
+			out.print(jsonStr);
+			
+//			request.getSession().setAttribute("tp", type);
+//			request.setAttribute("t", type);
+			//request.getRequestDispatcher("back/view/addType.jsp").forward(request, response);
 		}
 
 	}
