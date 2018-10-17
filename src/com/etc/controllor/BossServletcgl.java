@@ -39,7 +39,7 @@ public class BossServletcgl extends HttpServlet {
 		String op=request.getParameter("op");
 	
 		if (op.equals("queryBoss")) {
-			
+		System.out.println(request.getAttribute("busiId"));
 			int page = 1;
 			int pageSize = 10;
 			String keywords = "";

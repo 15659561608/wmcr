@@ -120,19 +120,11 @@
 
 		</ul>
 		<section class="main-box"> <section class="review-messages">
-		<header class="review-header-box clearfix"> 全部评论（共177条评论） <label
-			class="checkbox view-check fr" title="有内容的评论" model="filterObj">
-			<div class="checker">
-				<span ng-class="{checked:model}"> <input type="checkbox"
-					ng-model="model" ng-true-value="true" ng-disabled="disable"
-					class="ng-pristine ng-valid">
-				</span>
-			</div> <span class="ng-binding">有内容的评论</span>
-		</label> </header>
+		<header class="review-header-box clearfix"> 全部评论（共177条评论） </header>
 		
 		 <article class="review-item"> <input type="text"
 			style="width: 800px; height: auto;" />
-<button type="submit" class="btn btn-warning">Action</button>
+<button type="submit" class="btn btn-warning">发布</button>
 		<div class="wrapper">
 			<span id="result"></span>
 
@@ -148,39 +140,25 @@
 
 
 		</article>
+		<c:if test="${requestScope.c==null}">
+				<jsp:forward page="${pageContext.request.contextPath}/CommentServlet?op=queryComment"></jsp:forward>
+				</c:if>
+				
+				<c:forEach var="co" items="${requestScope.c.data}">
+				
+			   <article class="review-item">
 		
-		 <article class="review-item">
-		<div class="fr review-search order-detail">
-			<a href="javascript:" class="review-read-color review-order"
-				detailKey="Lj0t5fMW6sJW7g4Pz6r778NDM9Q56bOUZJYGOzUtBsbgzURWJvqVZeO8pv70cmUb">看他点了什么
-				></a>
-			<div class="order-menu-info">
-				<div class="order-menu-inner">
-					<div class="order-loding"
-						ng-hide="loadStatus['Lj0t5fMW6sJW7g4Pz6r778NDM9Q56bOUZJYGOzUtBsbgzURWJvqVZeO8pv70cmUb']">
-						<img src="images/o_loading.gif" alt="">
-					</div>
-					<div class="order-loding"
-						ng-show="loadError['Lj0t5fMW6sJW7g4Pz6r778NDM9Q56bOUZJYGOzUtBsbgzURWJvqVZeO8pv70cmUb']"
-						ng-bind="errorText"></div>
-					<div class="order-menu-body">
-						<div class="order-detail-item" ng-class="{last:$last}"
-							ng-repeat="menu_itemmenu_item in menuItenmenus['Lj0t5fMW6sJW7g4Pz6r778NDM9Q56bOUZJYGOzUtBsbgzURWJvqVZeO8pv70cmUb'] track by $index">
-							<div class="goods-name ellipsis" ng-bind="menu_itemmenu_item"></div>
-						</div>
-					</div>
-				</div>
-				<div class="menu-close">×</div>
-			</div>
-		</div>
-		<span id="phone">183****7031</span> <span id="time">2015-05-01 15:09:14</span> 
+		<span id="phone">${co.userId}</span> <span id="time">${co.comDate}</span> 
 		<div class="review-content" id="content">
-		ffff
+		${co.content}
 		
 		</div>
 
 
-		</article> </section> </section> </section>
+		      </article>
+				</c:forEach>
+		
+	 </section> </section> </section>
 
 	</div>
 	</section>
@@ -571,7 +549,7 @@
 
 		}
 	</script>
-	
+<!--  	
 <script type="text/javascript">
 			$(function (){
 				
@@ -591,6 +569,6 @@
 				
 			});
 		</script>
-
+-->
 </body>
 </html>
