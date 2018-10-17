@@ -63,10 +63,10 @@ public class OrdersLServlet extends HttpServlet {
 			request.setAttribute("keywords", keywords);
 			// 从当前控制器跳转到jsp页面,跳转的方法叫做转发
 			request.getRequestDispatcher("back/view/AllOrders.jsp").forward(request, response);
-		}
+		}    
 		/*if("Pay".equals(op)) {
 			String goods-name=request.getParameter("goods-name");
-		}*/
+		}*/  
 	}
 
 	/**
