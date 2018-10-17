@@ -124,7 +124,7 @@ public class BusinessServlet extends HttpServlet {
 
 			// 获取门店活动信息
 			List<SalesBusi> salesList = new SalesServiceImpl().getSalesByBusId(19);
-
+			
 			// 获取门店菜品
 			PageData<Food> foodList = new FoodsServiceImplf().getFoods(page, pageSize, "", id);
 
@@ -142,6 +142,7 @@ public class BusinessServlet extends HttpServlet {
 			request.setAttribute("busiInfo", list.get(0));
 			request.setAttribute("salesList", salesList);
 			request.setAttribute("foodList", foodList);
+			request.setAttribute("busiId", id);
 			request.getRequestDispatcher("wmcr/shop_detail.jsp").forward(request, response);
 		}
 	}

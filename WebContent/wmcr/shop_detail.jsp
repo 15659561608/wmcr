@@ -3358,6 +3358,7 @@
                                     <div class="goods-subtotal fs16">小计</div>
                                 </div>
                                 <div class="cart-item-list select-none">
+                                <input type="hidden" class="busiId" ng-bind="obj.id"/>
                                     <div class="disnone" ng-class="{disnone:isEmpty}">
                                         <div class="cart-item cart-data clearfix" ng-repeat="obj in cartDatas">
                                             <div class="goods-name ellipsis foodName" ng-bind="obj.name"></div>
@@ -3842,7 +3843,7 @@
 			ids+=$(this).text()+",";
 		});
 		
-		location.href='${pageContext.request.contextPath }/ohs.do?op=add&ids='+ids;
+		location.href='${pageContext.request.contextPath }/ohs.do?op=add&busiId='+${busiId}+'&ids='+ids;
 	}
 </script>
 
