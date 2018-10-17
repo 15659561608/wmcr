@@ -42,10 +42,22 @@ public class OrderLDaoImpl implements OrdersLDao{
 		return (List<OrdersLwq>) BaseDao.select(sql, OrdersLwq.class, account,"%"+busiName+"%");
 	}
 
+	/**
+	 * 根据订单编号查找整条订单信息
+	 */
 	@Override
 	public List<OrdersLwq> queryOrdersByid(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		String sql="select orders.id,users.account,businesses.busiName,orders.ordDate,orders.money,food.foodName,ordersdetail.num,orders.state from\r\n" + 
+				"				orders,businesses,users,ordersdetail,food where orders.userId=users.id and orders.busId=businesses.id and ordersdetail.orderId=orders.id and ordersdetail.foodId=food.id and orders.id=?";
+		return (List<OrdersLwq>) BaseDao.select(sql, OrdersLwq.class, id);
+	}
+
+	@Override
+	public boolean updateOrdersByid(int id, int status) {
+		// TODO Auto-generated method stub
+		String sql="update orders set state=? where id=?";
+		return BaseDao.execute(sql, status,id)>0;
 	}
 
 }

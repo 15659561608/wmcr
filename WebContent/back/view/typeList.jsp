@@ -1,14 +1,10 @@
+<%@page import="java.util.List"%>
 <%@ page import="com.etc.entity.Type"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<%
-
-Type type=(Type)session.getAttribute("tp");
-
-
-%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 
@@ -155,20 +151,12 @@ Type type=(Type)session.getAttribute("tp");
 								<div class="form-group">
 									<label for="" class="col-sm-2 control-label">父类别</label>
 									<div class="col-sm-4">
-										 <c:if test="${requestScope.t==null}">
-								<jsp:forward page="/Tsc.do?op=findType"></jsp:forward>
-							</c:if>
-							<select name="pId" class="col-sm-12">
-							
-								<%-- <c:forEach items="${sessionScope.type}" var="ty"> --%>
-								
-									<option  value="${sessionScope.type.id}">${sessionScope.type.title}</option>
-								
-								<%-- </c:forEach> --%>
-									</select>
+										<select class="form-control" name="fuTitle" id="fuTitle" required="required">
+											<option value="">--请选择--</option>
+										</select>
 									</div>
 								</div>
-								
+
 							</div>
 
 							<div class="modal-footer">
@@ -214,12 +202,28 @@ Type type=(Type)session.getAttribute("tp");
 				var title = $(this).parents("tr").find("td").eq(1)
 						.text();
 				
-				var pId = $(this).parents("tr").find("td").eq(2)
-						.text();
+				
+				
+			
                 $("#id").val(id);
 				$("#title").val(title);
-				$("#pId").val(pId);
+			
+				 // $("#fuTitle option[value='"+key+"']").attr("selected","selected"); 
+
 			});
+	    
+
+		$.get("${pageContext.request.contextPath}/Tsc.do?op=findType", function(data, status) {
+		//	var arr = JSON.parse(data);
+	
+
+			$.each(data, function(index, e) {
+
+				$("#fuTitle").append("<option value="+e.id+">" + e.title + "</option>");
+			});
+
+		});
+	    
 	});
 	</script>
 	<script>
@@ -241,7 +245,9 @@ layui.use(['laypage', 'layer'], function(){
       console.log(first)
       
       if (!first) {
-    	  location.href="${pageContext.request.contextPath}/Tsc.do?op=queryType&page="+obj.curr+"&pageSize="+obj.limit+"&keywords="+document.getElementById("keywords").value;
+    	  location.href="${pageContext.request.contextPath}/Tsc.do?op=queryType&page="+obj.curr+"&pageSize="+obj.limit
+
++"&keywords="+document.getElementById("keywords").value;
 	}
     }
     

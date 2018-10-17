@@ -43,8 +43,12 @@ public class AccountLwqTest {
 		/*BusiNameLServiceImpl bnsi=new BusiNameLServiceImpl();
 		List<BusiNameL> b=bnsi.getBusiName("15659561608");
 		System.out.println(b);*/
-		OrdersLServiceImpl osi=new OrdersLServiceImpl();
+	/*	OrdersLServiceImpl osi=new OrdersLServiceImpl();
 		List<OrdersLwq> list=osi.getOrdersBusi("15659561608","小牛小羊");
+		System.out.println(list);*/
+		
+		OrdersLServiceImpl osi=new OrdersLServiceImpl();
+	boolean list=osi.updateOrdersByid(1997, 1);
 		System.out.println(list);
 	}
 

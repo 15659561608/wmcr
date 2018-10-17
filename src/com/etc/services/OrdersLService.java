@@ -16,4 +16,8 @@ public interface OrdersLService {
 	PageData<OrdersLwq> getOrdersByPage(int page, int pageSize, String keywords);
 	
 	List<OrdersLwq> getOrdersBusi(String account,String busiName);
+	
+   List<OrdersLwq> getOrdersByid(int id);
+   
+   boolean updateOrdersByid(int id, int status);
 }

@@ -335,7 +335,12 @@ function member_del(obj,id){
     //对应的返回数据格式
     
     employee.filed =[
-    	 {"data": ""},
+    	  {   //第一个列
+          	"data": "extn",
+              "createdCell": function (nTd, sData, oData, iRow, iCol) {
+                  $(nTd).html("<input type='checkbox' value='"+oData.id+"' name='checkList' value='" + sData + "'>");
+              }
+          },
         {"data": "id"},
         {"data": "account"},
         {"data": "busiName"},
@@ -682,6 +687,7 @@ function updateOP(obj){
 } 
 
 function showUpdate(obj){
+	//获取选中的id
 	var id=$(obj).parent().parent().find("input").val();
 	layer.open({
  		type: 2,

@@ -30,4 +30,10 @@ public class TypeServicecglImpl implements TypeServicecgl {
 		// TODO Auto-generated method stub
 		return td.addType(title,pId);
 	}
+
+	@Override
+	public boolean updateType(int id, int pId) {
+		// TODO Auto-generated method stub
+		return td.updateType(id,pId);
+	}
 }

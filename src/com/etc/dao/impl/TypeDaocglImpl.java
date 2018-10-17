@@ -35,4 +35,12 @@ public class TypeDaocglImpl implements TypeDaocgl {
 		return BaseDao.execute(sql, title, pId) > 0;
 	}
 
+	@Override
+	public boolean updateType(int id, int pId) {
+		// TODO Auto-generated method stub
+		String sql = "UPDATE type SET pId=? WHERE (id=?)";
+		
+		return BaseDao.execute(sql, pId,id)>0;
+	}
+
 }
