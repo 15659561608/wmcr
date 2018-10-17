@@ -28,7 +28,9 @@ import com.etc.entity.SalesBusi;
 import com.etc.service.impl.BusinessServiceImpl;
 import com.etc.service.impl.FoodsServiceImplf;
 import com.etc.service.impl.SalesServiceImpl;
+import com.etc.service.impl.TypeServiceImpl;
 import com.etc.services.BusinessService;
+import com.etc.services.TypeSevice;
 import com.etc.util.BaiduMap;
 import com.etc.util.PageData;
 import com.google.gson.Gson;
@@ -144,6 +146,16 @@ public class BusinessServlet extends HttpServlet {
 			request.setAttribute("foodList", foodList);
 			request.setAttribute("busiId", id);
 			request.getRequestDispatcher("wmcr/shop_detail.jsp").forward(request, response);
+		}
+		if("ajaxQuery".equals(op)) {
+			response.setCharacterEncoding("utf-8");
+			response.setContentType("text/json");
+			Gson gson=new Gson();
+			List<BusinessesCity> businesses = (List<BusinessesCity>) bs.getPassBusinesses();
+			String jsonStr=gson.toJson(businesses);
+			PrintWriter out=response.getWriter();
+			out.print(jsonStr);
+			out.close();
 		}
 	}
 

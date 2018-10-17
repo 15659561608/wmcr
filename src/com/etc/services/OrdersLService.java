@@ -1,8 +1,11 @@
 package com.etc.services;
 
+import java.sql.Connection;
 import java.util.List;
 
+import com.etc.entity.Orders;
 import com.etc.entity.OrdersLwq;
+import com.etc.entity.Ordersdetail;
 import com.etc.util.PageData;
 
 /**
@@ -20,4 +23,6 @@ public interface OrdersLService {
    List<OrdersLwq> getOrdersByid(int id);
    
    boolean updateOrdersByid(int id, int status);
+   //用户下单
+ 	public boolean addOrders(Orders o,Connection conn);
 }

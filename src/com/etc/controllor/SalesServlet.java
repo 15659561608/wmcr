@@ -105,6 +105,26 @@ public class SalesServlet extends HttpServlet {
 				out.print("<script>alert('修改失败!');location.href='bossManage/updateSales.jsp';</script>");
 			}
 		}
+		if("add".equals(op)) {
+			int salId=Integer.valueOf(request.getParameter("salId"));
+			String title=request.getParameter("title");
+			double discount=Double.valueOf(request.getParameter("discount"));
+			String content=request.getParameter("content");
+			int state=0;
+			SimpleDateFormat simple=new SimpleDateFormat("yyy-MM-dd HH:mm:ss");
+			String pubDate=simple.format(new Date());
+			int busiId=Integer.valueOf(request.getParameter("busiId"));
+			Sales s=new Sales(title, discount,busiId, content, pubDate);
+			boolean result=ss.addSales(s);
+			response.setCharacterEncoding("utf-8");
+			response.setContentType("text/html");
+			PrintWriter out=response.getWriter();
+			if(result) {
+				out.print("<script>alert('提交成功!');location.href='bossManage/updateSales.jsp';</script>");
+			}else {
+				out.print("<script>alert('提交失败!');location.href='bossManage/updateSales.jsp';</script>");
+			}
+		}
 	}
 	
 

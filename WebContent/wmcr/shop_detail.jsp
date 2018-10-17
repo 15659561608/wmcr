@@ -3398,8 +3398,8 @@
                                 </div>
                                 <div id="cart-item-list"></div>
                                 <div class="total clearfix disnone" ng-class="{disnone:isEmpty}">
-                                    <div class="fl">配送费：￥<span ng-bind="deliveryCost|number:2"></span></div>
-                                    <div class="fr">合计：￥<span ng-bind="total|number:2"></span></div>
+                                    <div class="fl">配送费：${busiInfo.disFee }￥<span ng-bind="deliveryCost|number:2"></span></div>
+                                    <div class="fr" value="">合计：￥<span ng-bind="total|number:2" class="totalPrice"></span></div>
                                 </div>
                                 <div class="checkout">
                                     <button class="checkout btn" onclick="xdMethod()" >立即下单</button>
@@ -3839,11 +3839,15 @@
 	//下单操作
 	function xdMethod(){
 		var ids="";
+		var nums="";
 		$.each($(".foodId"),function(i,v){
 			ids+=$(this).text()+",";
 		});
-		
-		location.href='${pageContext.request.contextPath }/ohs.do?op=add&busiId='+${busiId}+'&ids='+ids;
+		$.each($(".goods-nums"),function(i,v){
+			nums+=$(this).text()+",";
+		});
+		var totalPrice=$(".totalPrice").text();
+		location.href='${pageContext.request.contextPath }/ohs.do?op=add&nums='+nums+'&totalPrice='+totalPrice+'&busiId='+${busiId}+'&ids='+ids;
 	}
 </script>
 
