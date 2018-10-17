@@ -12,8 +12,30 @@ public class Boss {
     private Date regDate;
 
     private Integer state;
+    
+    
+    
 
-    public Integer getId() {
+    @Override
+	public String toString() {
+		return "Boss [id=" + id + ", account=" + account + ", pwd=" + pwd + ", regDate=" + regDate + ", state=" + state
+				+ "]";
+	}
+
+	public Boss() {
+		super();
+	}
+
+	public Boss(Integer id, String account, String pwd, Date regDate, Integer state) {
+		super();
+		this.id = id;
+		this.account = account;
+		this.pwd = pwd;
+		this.regDate = regDate;
+		this.state = state;
+	}
+
+	public Integer getId() {
         return id;
     }
 
