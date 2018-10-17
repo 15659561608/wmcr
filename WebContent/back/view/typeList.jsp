@@ -1,13 +1,11 @@
-<%@page import="java.util.List"%>
 <%@ page import="com.etc.entity.Type"%>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%
 
-List<Type> type=(List<Type>)session.getAttribute("tp");
+Type type=(Type)session.getAttribute("tp");
 
 
 %>
@@ -162,11 +160,11 @@ List<Type> type=(List<Type>)session.getAttribute("tp");
 							</c:if>
 							<select name="pId" class="col-sm-12">
 							
-							 <c:forEach items="${sessionScope.type}" var="ty"> 
+								<%-- <c:forEach items="${sessionScope.type}" var="ty"> --%>
 								
-									<option  value="${ty.id}">${ty.title}</option>
+									<option  value="${sessionScope.type.id}">${sessionScope.type.title}</option>
 								
-							 </c:forEach> 
+								<%-- </c:forEach> --%>
 									</select>
 									</div>
 								</div>
