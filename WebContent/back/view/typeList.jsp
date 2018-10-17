@@ -10,7 +10,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>商户列表</title>
+<title>类别列表</title>
 <meta name="viewport"
 	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <link rel="stylesheet"
@@ -31,7 +31,7 @@
 
 <body>
 	<div class="frame-header">
-		<span class="page-reload cur">商户列表</span>
+		<span class="page-reload cur">类别列表</span>
 	</div>
 	<!--操作栏-->
 	<div class="operates clearfix"
@@ -130,7 +130,7 @@
 							<button type="button" class="close" data-dismiss="modal"
 								aria-hidden="true">×</button>
 							<h4 class="modal-title" id="myModalLabel">
-								<br> &nbsp;&nbsp;&nbsp;修改商户状态
+								<br> &nbsp;&nbsp;&nbsp;修改父类别
 							</h4>
 						</div>
 						<!-- 表单开始 -->
