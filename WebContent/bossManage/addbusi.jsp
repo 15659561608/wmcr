@@ -65,9 +65,9 @@
 			<label class="form-label col-xs-3">缩略图：</label>
 			<div class="formControls col-xs-8">
 				<div class="layui-upload">
-					<button type="button" class="layui-btn" id="test2">上传缩略图</button>
+					<button type="button" class="layui-btn" id="test1">上传缩略图</button>
 					<div class="layui-upload-list">
-						<img class="layui-upload-img" id="demo2">
+						<img class="layui-upload-img" id="demo1">
 						<p id="demoText"></p>
 					</div>
 				</div>
@@ -123,9 +123,9 @@
 					<label class="form-label col-xs-3">营业执照：</label>
 					<div class="formControls col-xs-8">
 						<div class="layui-upload">
-							<button type="button" class="layui-btn" id="test1">上传营业执照</button>
+							<button type="button" class="layui-btn" id="test2">上传营业执照</button>
 							<div class="layui-upload-list">
-								<img class="layui-upload-img" id="demo1">
+								<img class="layui-upload-img" id="demo2">
 								<p id="demoText"></p>
 							</div>
 						</div>

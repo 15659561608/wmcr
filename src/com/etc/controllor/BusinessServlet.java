@@ -195,9 +195,9 @@ public class BusinessServlet extends HttpServlet {
 		boolean result=bs.updateBusinesses(businesses);
 		PrintWriter out=response.getWriter();
 		if(result) {
-			out.print("true");
+			out.print("<script>alert('提交成功!');location.href='bossManage/updateBusi.jsp';</script>");
 		}else {
-			out.print("false");
+			out.print("<script>alert('提交失败!');location.href='bossManage/updateBusi.jsp';</script>");
 		}
 		out.close();
 	}

@@ -58,7 +58,7 @@ public class OrdersLMessageServlet extends HttpServlet {
 			String jsonData = gson.toJson(od);
 			response.setContentType("text/json");
 			PrintWriter out = response.getWriter();
-			System.out.println(jsonData);
+			//System.out.println(jsonData);
 			out.println(jsonData);
 			out.close();
 		}

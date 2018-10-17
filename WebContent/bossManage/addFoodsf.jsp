@@ -58,13 +58,26 @@
 </head>
 <body>
 	<div class="page-container">
+	<div class="row cl">
+			<label class="form-label col-xs-3">缩略图：</label>
+			<div class="formControls col-xs-8">
+				<div class="layui-upload">
+					<button type="button" class="layui-btn" id="test2">上传缩略图</button>
+					<div class="layui-upload-list">
+						<img class="layui-upload-img" id="demo2" >
+						<p id="demoText"></p>
+					</div>
+				</div>
+			</div>
+		</div>
 		<form method="POST"  action="../fsf.do?op=addFoods" class="form form-horizontal responsive"
 			id="demoform" novalidate="novalidate">
 			<div class="row cl">
 				<label class="form-label col-xs-3">菜名：</label>
 				<div class="formControls col-xs-8">	
 						<input type="hidden" class="form-control" id="id" name="id"/>
-						<input type="hidden"  id="logo-value" name="logo"  />
+						<input type="hidden" value="" id="logo-value" name="logo" />
+						<input type="hidden" class="form-control" id="busid" name="busid" value="${sessionScope.boss.id}"/>
 					<input type="text" class="input-text" placeholder="请输入美食名111"
 						name="foodName" id="foodName" autocomplete="off" value="">
 						
@@ -94,7 +107,7 @@
 			<div class="row cl">
 				<label class="form-label col-xs-3">销售数量</label>
 				<div class="formControls col-xs-8">
-				<input type="hidden" class="form-control" id="busid" name="busid" value="${sessionScope.boss.id}"/>
+				
 					<input type="text" class="input-text" placeholder="销售数量"
 						name="salNum" id="salNum" autocomplete="off">
 				</div>
@@ -108,19 +121,19 @@
 				</div>
 			</div>
 			
-			<div class="row cl">
+			<!-- <div class="row cl">
 			<label class="form-label col-xs-3">缩略图：</label>
 			<div class="formControls col-xs-8">
 				<div class="layui-upload">
 				
 					<button type="button" class="layui-btn" id="test2">上传缩略图</button>
 					<div class="layui-upload-list">
-						<img class="layui-upload-img" id="demo2" >
+						<img class="layui-upload-img" id="demo2" name="logo">
 						<p id="demoText" ></p>
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 
 			<div class="row clearfix">
 				<label class="form-label col-xs-3">状态：</label>
@@ -292,7 +305,7 @@ layui.use('upload', function(){
   var $ = layui.jquery
   ,upload = layui.upload;
   
-  //缩略图上传
+  //（未使用）上传
   var uploadInst = upload.render({
     elem: '#test1'
     ,url: '${pageContext.request.contextPath }/UploadHandleServlet'
@@ -309,6 +322,7 @@ layui.use('upload', function(){
       }else{
     	  layer.msg('上传成功');
     	var logoPath=eval(res).data.path;
+    	
     	 $("#logo-value").attr("value",logoPath);
       }
       //上传成功
@@ -323,7 +337,7 @@ layui.use('upload', function(){
     }
   });
   
-  //营业执照上传
+  //图片上传
   var uploadInst = upload.render({
     elem: '#test2'
     ,url: '${pageContext.request.contextPath }/UploadHandleServlet'
@@ -340,7 +354,8 @@ layui.use('upload', function(){
       }else{
     	  layer.msg('上传成功');
     	var licencePath=eval(res).data.path;
-    	$("#licence-value").attr("value",licencePath);
+    	$("#logo-value").attr("value",licencePath);
+    //	console.log(licencePath);
       }
       //上传成功
     }
