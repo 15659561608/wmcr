@@ -2,6 +2,9 @@ package com.etc.controllor;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.etc.entity.Comment;
+import com.etc.entity.Users;
 import com.etc.service.impl.CommentServiceImpl;
 import com.etc.services.CommentService;
 import com.etc.util.PageData;
@@ -41,14 +45,13 @@ public class CommentServlet extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("html/text;charset=utf-8");
 		String op = request.getParameter("op");
-		System.out.println(op);
-		
+		PrintWriter out = response.getWriter();
+		int busId = (int) request.getSession().getAttribute("busss");
+
 		if ("queryComment".equals(op)) {
 			int page = 1;
 			int pageSize = 10;
-			//int busId = (int) request.getAttribute("busss");
-			int bus=(int) request.getSession().getAttribute("busss");
-			System.out.println("////////////" + bus);
+
 			if (null != request.getParameter("page")) {
 				page = Integer.parseInt(request.getParameter("page"));
 			}
@@ -56,12 +59,43 @@ public class CommentServlet extends HttpServlet {
 				pageSize = Integer.parseInt(request.getParameter("pageSize"));
 			}
 
-		//	PageData<Comment> comment = (PageData<Comment>) cs.queryComment(page, pageSize, busId);
+			PageData<Comment> comment = (PageData<Comment>) cs.queryComment(page, pageSize, busId);
 
-		/*	request.setAttribute("c", comment);
+			request.setAttribute("c", comment);
 
 			// 从当前控制器跳转到jsp页面[问题列表]，跳转的方法叫做转发
-			r/quest.getRequestDispatcher("wmcr/shop_comment.jsp").forward(request, response);*/
+			request.getRequestDispatcher("wmcr/shop_comment.jsp").forward(request, response);
+
+		}
+
+		if ("addComment".equals(op)) {
+			String content = request.getParameter("content");
+			String praise = request.getParameter("result");
+			Date getdate = Calendar.getInstance().getTime();
+			String comDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(getdate);
+			Users u = (Users) request.getSession().getAttribute("users");
+			int userId = u.getId();
+			// 判断用户是否买过这家店的东西
+			boolean flag = cs.queryorder(userId, busId);
+			System.out.println(userId);
+			// 判断用户是否登录
+			if (u != null) {
+				System.out.println("***************");
+				out.print("<script>alert('请先登录');location.href='wmcr/shop_comment.jsp'</script>");
+				
+			}
+			// 判断用户是否买过这家店的东西
+			if (flag == false) {
+				out.print("<script>alert('你还没下过单不可评论');location.href='wmcr/shop_comment.jsp'</script>");
+			}
+
+			else {
+
+				boolean f = cs.addComment(content, comDate, Integer.valueOf(praise), userId, busId);
+				if (f) {
+
+				}
+			}
 
 		}
 	}

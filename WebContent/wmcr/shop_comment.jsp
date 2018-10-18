@@ -122,13 +122,16 @@
 
 		</ul>
 		<section class="main-box"> <section class="review-messages">
-		<header class="review-header-box clearfix"> 全部评论（共177条评论） </header>
+		<header class="review-header-box clearfix"> 全部评论 </header>
 		
-		 <article class="review-item"> <input type="text"
-			style="width: 800px; height: auto;" />
+		 <article class="review-item">
+		 <form method="post" action="${pageContext.request.contextPath}/CommentServlet">
+		 <input type="hidden" name="op" value="addComment">
+		  <input type="text"
+			style="width: 800px; height: auto;" name="content" id="content"/>
 <button type="submit" class="btn btn-warning">发布</button>
 		<div class="wrapper">
-			<span id="result"></span>
+			<span id="result" name="result"></span>
 
 			<ul id="star">
 				<li>★</li>
@@ -137,20 +140,20 @@
 				<li>★</li>
 				<li>★</li>
 			</ul>
-
+<div id="star_word">一般</div>
 		</div>
-
+</form>
 
 		</article>
 		<c:if test="${requestScope.c==null}">
-				<jsp:forward page="/CommentServlet?op=queryComment"></jsp:forward>
+				<jsp:forward page="../CommentServlet?op=queryComment"></jsp:forward>
 				</c:if>
 				
 				<c:forEach var="co" items="${requestScope.c.data}">
 				
 			   <article class="review-item">
 		
-		<span id="phone">${co.userId}</span> <span id="time">${co.comDate}</span> 
+		<span id="phone">${co.userId}</span> <span id="time">${co.comDate}</span> <span id="praise">${co.praise==5?"★★★★★":co.praise == 4?"★★★★":co.praise == 3?"★★★":co.praise ==2?"★★":"★"}</span> 
 		<div class="review-content" id="content">
 		${co.content}
 		

@@ -13,5 +13,15 @@ public class CommentServiceImpl implements CommentService {
 		// TODO Auto-generated method stub
 		return cd.queryComment(page,pageSize, busId);
 	}
+	@Override
+	public boolean queryorder(int userId, int busId) {
+		// TODO Auto-generated method stub
+		return cd.queryorder(userId, busId);
+	}
+	@Override
+	public boolean addComment(String content, String comDate, int praise, int userId, int busId) {
+		// TODO Auto-generated method stub
+		return cd.addComment(content, comDate, praise, userId, busId);
+	}
 
 }
