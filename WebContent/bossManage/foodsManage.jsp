@@ -154,7 +154,7 @@
 						<%-- <td><Img src="${food.logo}" width="100px" height="100px"/></td> --%>
 						<%-- <td><Img src='${pageContext.request.contextPath}/"+${food.logo}+"' width="100px" height="100px" /></td> --%>
 						<%-- <td>${pageContext.request.contextPath}${food.logo}</td> --%>
-						<td><img  src="${pageContext.request.contextPath}${food.logo}" style="width:100px; height:100px"/></td>
+						<td><img  src="${pageContext.request.contextPath}${food.logo}" width="100px" height="100px"/></td>
 						<td>${food.busiName}(${food.address})</td>
 						<td>${food.state==0?"售罄":"有货"}</td>
 						<td><button class="btn btn-link update"
