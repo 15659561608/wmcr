@@ -1,8 +1,10 @@
 package com.etc.dao;
 
+import java.sql.Connection;
 import java.util.List;
 
-
+import com.etc.entity.Orders;
+import com.etc.entity.OrdersData;
 import com.etc.entity.OrdersLwq;
 import com.etc.util.PageData;
 
@@ -21,7 +23,11 @@ public interface OrdersLDao {
 	List<OrdersLwq> queryOrdersBusi(String account,String busiName);
 	
 	//根据订单编号修改订单状态
-	List<OrdersLwq> queryOrdersByid(int id);
-	
-	public boolean updateOrdersByid(int id,int status);
+	List<OrdersLwq> queryOrdersByid(String id);
+	public List<OrdersData> queryOrdersByOrderId(String id);
+	public boolean updateOrdersByid(String id,int status);
+	//用户下单
+	public boolean addOrders(Orders o,Connection conn);
+	//根据订单编号获取订单信息
+	public Orders getorders(String orderId);
 }

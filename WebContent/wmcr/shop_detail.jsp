@@ -45,11 +45,11 @@
             <header id="header">
                 <div class="common-width clearfix">
                     <h1 class="fl">
-                        <a class="logo base-logo" href="index.html">外卖超人</a>
+                        <a class="logo base-logo" href="${pageContext.request.contextPath }/wmcr/index.jsp">外卖超人</a>
                     </h1>
 
                         <ul class="member" login-box>
-                            <li><a href="index.html" class="index">首页</a></li>
+                            <li><a href="${pageContext.request.contextPath }/wmcr/index.jsp" class="index">首页</a></li>
                             <li class="login-register"><a href="${pageContext.request.contextPath }/wmcr/login.jsp"   class="login"  rel="nofollow">登录</a><span class="cg">/</span><a href="register.html" referer-url  rel="nofollow" class="register">注册</a></li>
                             <li><a href="member_order.html" class="order-center"  rel="nofollow">查看订单</a></li>
                             <li class=""><a href="gifts.html"  rel="nofollow">氪星礼品站</a></li>
@@ -110,8 +110,8 @@
 </header>
 <ul class="clearfix menu-nav-list" scroll-position-static="160">
     <li class="no-line "><a href="shop_intro.html">餐厅介绍</a></li>
-    <li class="active"><a href="shop_detail.html">菜单</a></li>
-    <li ><a href="shop_comment.html">评论</a></li>
+    <li class="active"><a href="#">菜单</a></li>
+    <li ><a href="wmcr/shop_comment.jsp">评论</a></li>
 	<li ><a href="shop_brand.html" id='point-tab'>大家都在点</a></li>
     
 </ul>
@@ -3358,6 +3358,7 @@
                                     <div class="goods-subtotal fs16">小计</div>
                                 </div>
                                 <div class="cart-item-list select-none">
+                                <input type="hidden" class="busiId" ng-bind="obj.id"/>
                                     <div class="disnone" ng-class="{disnone:isEmpty}">
                                         <div class="cart-item cart-data clearfix" ng-repeat="obj in cartDatas">
                                             <div class="goods-name ellipsis foodName" ng-bind="obj.name"></div>
@@ -3397,8 +3398,8 @@
                                 </div>
                                 <div id="cart-item-list"></div>
                                 <div class="total clearfix disnone" ng-class="{disnone:isEmpty}">
-                                    <div class="fl">配送费：￥<span ng-bind="deliveryCost|number:2"></span></div>
-                                    <div class="fr">合计：￥<span ng-bind="total|number:2"></span></div>
+                                    <div class="fl">配送费：${busiInfo.disFee }￥<span ng-bind="deliveryCost|number:2"></span></div>
+                                    <div class="fr" value="">合计：￥<span ng-bind="total|number:2" class="totalPrice"></span></div>
                                 </div>
                                 <div class="checkout">
                                     <button class="checkout btn" onclick="xdMethod()" >立即下单</button>
@@ -3838,11 +3839,15 @@
 	//下单操作
 	function xdMethod(){
 		var ids="";
+		var nums="";
 		$.each($(".foodId"),function(i,v){
 			ids+=$(this).text()+",";
 		});
-		
-		location.href='${pageContext.request.contextPath }/ohs.do?op=add&ids='+ids;
+		$.each($(".goods-nums"),function(i,v){
+			nums+=$(this).text()+",";
+		});
+		var totalPrice=$(".totalPrice").text();
+		location.href='${pageContext.request.contextPath }/ohs.do?op=add&nums='+nums+'&totalPrice='+totalPrice+'&busiId='+${busiId}+'&ids='+ids;
 	}
 </script>
 

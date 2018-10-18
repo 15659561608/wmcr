@@ -17,7 +17,7 @@
 <link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.min.css" />
 <link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/H-ui.admin.css" />
 <link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.css" />
-<link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/green/skin.css" id="skin" />
 <link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
 <!--[if IE 6]>
 <script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
@@ -127,7 +127,7 @@
 			<dd>
 				<ul>
 					<li><a data-href="sales.jsp" data-title="显示促销信息" href="javascript:void(0)">显示促销信息</a></li>
-					<li><a data-href="addsles.jsp" data-title="发布促销信息" href="javascript:void(0)">发布促销信息</a></li>
+					<li><a data-href="addsales.jsp" data-title="发布促销信息" href="javascript:void(0)">发布促销信息</a></li>
 					<li><a data-href="HisSales.jsp" data-title="查看历史促销信息" href="javascript:void(0)">查看历史促销信息</a></li>
 			</ul>
 		</dd>

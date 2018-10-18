@@ -18,11 +18,11 @@
         (function(document, screen) {if (screen.width < 760) {document.location.href="/mobile/";}}(document, screen));
     </script>
     
-    <script type="text/javascript" src = "js/check.js"></script>
+    <script type="text/javascript" src = "${pageContext.request.contextPath}/wmcr/js/check.js"></script>
     
-    <link rel="stylesheet" href="css/common.css?v=2015-5-20"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/wmcr/css/common.css?v=2015-5-20"/>
     
-    <link rel="stylesheet" href="css/frontPage.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/wmcr/css/frontPage.css"/>
     <title>首页</title>
 </head>
 <body class="day " ng-controller="bodyCtrl"  day-or-night>
@@ -32,7 +32,6 @@
             
     <section class="member-wrap" id="member-wrap">
         <div class="common-width posr">
-            
                 <div class="member-box fs12" login-box info="loginInfo">
                     <a href="javascript:void(0)" ng-click="logoinDialogShow()">登录</a>
                     <span>/</span>
@@ -205,73 +204,73 @@
                     <ul class="clearfix">
                         <li>
                             <a href="shop_brand.html" target="_blank">
-                                <img src="images/restaurant_03.png" alt="巴贝拉">
+                                <img src="${pageContext.request.contextPath}/wmcr/images/restaurant_03.png" alt="巴贝拉">
                             </a>
                             <a href="shop_brand.html" target="_blank" class="restaurant-name fs14">巴贝拉</a>
                         </li>
                         <li>
                             <a href="shop_brand.html" target="_blank">
-                                <img src="images/restaurant_04.jpg" alt="望湘园">
+                                <img src="${pageContext.request.contextPath}/wmcr/images/restaurant_04.jpg" alt="望湘园">
                             </a>
                             <a href="shop_brand.html" target="_blank" class="restaurant-name fs14">望湘园</a>
                         </li>
                         <li>
                             <a href="shop_brand.html" target="_blank">
-                                <img src="images/restaurant_09.png" alt="鲜芋仙">
+                                <img src="${pageContext.request.contextPath}/wmcr/images/restaurant_09.png" alt="鲜芋仙">
                             </a>
                             <a href="shop_brand.html" target="_blank" class="restaurant-name fs14">鲜芋仙</a>
                         </li>
                         <li>
                             <a href="shop_brand.html" target="_blank">
-                                <img src="images/restaurant_15.png" alt="星巴克">
+                                <img src="${pageContext.request.contextPath}/wmcr/images/restaurant_15.png" alt="星巴克">
                             </a>
                             <a href="shop_brand.html" target="_blank" class="restaurant-name fs14">星巴克</a>
                         </li>
                         <li>
                             <a href="shop_brand.html" target="_blank">
-                                <img src="images/subway.png" alt="赛百味">
+                                <img src="${pageContext.request.contextPath}/wmcr/images/subway.png" alt="赛百味">
                             </a>
                             <a href="shop_brand.html" target="_blank" class="restaurant-name fs14">赛百味</a>
                         </li>
                         <li>
                             <a href="shop_brand.html" target="_blank">
-                                <img src="images/bifengtang.png" alt="避风塘">
+                                <img src="${pageContext.request.contextPath}/wmcr/images/bifengtang.png" alt="避风塘">
                             </a>
                             <a href="shop_brand.html" target="_blank" class="restaurant-name fs14">避风塘</a>
                         </li>
                         <li>
                             <a href="shop_brand.html" target="_blank">
-                                <img src="images/restaurant_07.png" alt="味千拉面">
+                                <img src="${pageContext.request.contextPath}/wmcr/images/restaurant_07.png" alt="味千拉面">
                             </a>
                             <a href="shop_brand.html" target="_blank" class="restaurant-name fs14">味千拉面</a>
                         </li>
                         <li>
                             <a href="shop_brand.html" target="_blank">
-                                <img src="images/restaurant_08.jpg" alt="吉野家">
+                                <img src="${pageContext.request.contextPath}/wmcr/images/restaurant_08.jpg" alt="吉野家">
                             </a>
                             <a href="shop_brand.html" target="_blank" class="restaurant-name fs14">吉野家</a>
                         </li>
                         <li>
                             <a href="shop_brand.html" target="_blank">
-                                <img src="images/restaurant_14.jpg" alt="必胜客">
+                                <img src="${pageContext.request.contextPath}/wmcr/images/restaurant_14.jpg" alt="必胜客">
                             </a>
                             <a href="shop_brand.html" target="_blank" class="restaurant-name fs14">必胜客</a>
                         </li>
                         <li>
                             <a href="shop_brand.html" target="_blank">
-                                <img src="images/restaurant_10.png" alt="萨莉亚">
+                                <img src="${pageContext.request.contextPath}/wmcr/images/restaurant_10.png" alt="萨莉亚">
                             </a>
                             <a href="shop_brand.html" target="_blank" class="restaurant-name fs14">萨莉亚</a>
                         </li>
                         <li>
                             <a href="shop_brand.html" target="_blank">
-                                <img src="images/restaurant_12.jpg" alt="新旺茶餐厅">
+                                <img src="${pageContext.request.contextPath}/wmcr/images/restaurant_12.jpg" alt="新旺茶餐厅">
                             </a>
                             <a href="shop_brand.html" target="_blank" class="restaurant-name fs14">新旺茶餐厅</a>
                         </li>
                         <li>
                             <a href="shop_brand.html" target="_blank">
-                                <img src="images/restaurant_16.png" alt="CoCo壱番屋">
+                                <img src="${pageContext.request.contextPath}/wmcr/images/restaurant_16.png" alt="CoCo壱番屋">
                             </a>
                             <a href="shop_brand.html" target="_blank" class="restaurant-name fs14">CoCo壱番屋</a>
                         </li>
@@ -346,7 +345,7 @@
     <!-- 登陆开始 -->
     <dh-dialog class="disnone" type='login' height="500" header="登录" show="loginShow" >
     <!-- /wmcr/uls.do   ${pageContext.request.contextPath}/-->
-    <form class="login-form" action="${pageContext.request.contextPath}/uls.do?op=login"  method="post" novalidate name="loginForm" ng-controller="loginCtrl" onsubmit = " return checkform2()">
+  <form class="login-form" action="${pageContext.request.contextPath}/uls.do?op=login"  method="post" novalidate name="loginForm" ng-controller="loginCtrl" onsubmit = " return checkform2()">
         <div class="form-group">
             <label for="">手机号码</label>
             <div>
@@ -403,9 +402,10 @@
                 </div>
                 <div class="fl form-group captcha-item">
                    <div class="form-group captcha clearfix">
-                             <input type="text" id="captcha2" name="captcha2"  value = ""  onblur="checkYzm ()" class="form-text" placeholder="短信验证码"/>
+                             <input type="text" id="captcha2" name="captcha2" style="width:130px;height:30px;"  value = ""  onblur="checkYzm ()" class="form-text" placeholder="短信验证码"/>
+                             <input type="button" id="getCaptcha11" style="width:110px;height:45px;"  value="获取短信验证码" onclick="settime(this)"/>
                              <div id = "yzm_prompt" style="color:#F00"></div>
-                             <input type="button" id="getCaptcha11"  value="获取短信验证码" onclick="settime(this)"/>
+                             
                         </div>
                         <div class="form-error-message"></div>
                 </div>
@@ -443,7 +443,7 @@
     <!-- 搜索附近餐厅弹窗 -->
     <dh-dialog class="disnone" height="500" type="street" header="请选择最靠近你的地址" show="addressShow">
         <ul class="select-street">
-            <li ng-repeat="item in shreets" onclick="resultClick(this)">
+            <li ng-repeat="item in shreets" value="" ng-value="item.name" onclick="resultClick(this)">
                 <i class="icon address-yellow"></i>
                 <div class="shreets-item">
                     <h4 ng-bind="item.name"></h4>
@@ -460,34 +460,63 @@
     
 <!--商家入驻开始-->
     <dh-dialog class="disnone" height="500" type="merchants" header="商户入驻申请" show="merchantsShow">
-     <form ng-controller="registerCtrl" class="register-form" action="" method="post" acname="bossRegisterForm" id="bossRegisterForm" >
+     <form ng-controller="registerCtrl" class="register-form" action="/wmcr/brs.do?op=bossRegister" method="post" acname="bossRegisterForm" id="bossRegisterForm" >
      <div class="inline" ng-controller="merchantCtrl">
             <div class="form-group row mb10">
                 <label class="col-3" >手机号码：</label>
                 <div class="col-8">
-                    <input type="text" id="phone" name="phone"   ng-class="{error:merchants.nameMessage}" maxlength="11" placeholder="请输入正确的11位手机号" ng-model="merchants1.name"/>
+                    <input type="text" id="phone" name="phone"  class="{error:merchants.nameMessage}" maxlength="11" placeholder="请输入正确的11位手机号" 
+ng-model="merchants1.name"/>
                 </div>
             </div>
+         <div id="phoneData"></div>
+                <div class="fl form-group captcha-item" style="width: 100%;">
+                   <div class="form-group captcha clearfix" style="margin: 0;">   
+                        <input type="button" id="getyzm" style="margin-
+top:10px;float: left; width: 70px;padding: 0;" value="获取验证码" onclick="settime(this)"/>                                           
+                        <input type="text" id="yzmtext" name="yzmtext"  value = "" 
+
+style="width: 14.5rem;height: 1rem; margin-left:17px;float: left;" onblur="checkYzm ()" 
+
+class="form-text" placeholder="短信验证码"/>
+                        
+                             <div id = "yzm_prompt" style="color:#F00"></div>
+                             
+                        </div>
+                        <div class="form-error-message"></div>
+                </div>
             
             <div class="form-group row mb10">
                 <label class="col-3" >密码：</label>
                 <div class="col-8">
-                    <input type="password" id="password" name="password"   ng-class="{error:merchants.nameMessage}" maxlength="11" placeholder="密码" ng-model="merchants2.name"/>
+                    <input type="password" id="password" name="password"   ng-
+
+class="{error:merchants.nameMessage}" maxlength="11" placeholder="密码" ng-
+
+model="merchants2.name"/>
                 </div>
             </div>
             <div class="form-group row mb10">
                 <label class="col-3" >确认密码：</label>
                 <div class="col-8">
-                    <input type="password" id="confirm_password" name="confirm_password"   ng-class="{error:merchants.nameMessage}" maxlength="11" placeholder="验证密码" ng-model="merchants3.name"/>
+                    <input type="password" id="confirm_password" name="confirm_password"   
+
+ng-class="{error:merchants.nameMessage}" maxlength="11" placeholder="验证密码" ng-
+
+model="merchants3.name"/>
                 </div>
             </div>
             
            
             <div class="form-group row agreement mb20">
-               <input type="checkbox" class="checkbox" id="agree" name="agree"><label for="male">我同意外卖超人</label><a href="/agreement" target="_blank">"餐厅入驻协议"</a>
+               <input type="checkbox" class="checkbox" id="agree" name="agree"><label 
+
+for="male">我同意外卖超人</label>< a href=" " target="_blank">"餐厅入驻协议"</ a>
             </div>
             <div class="tc merchants-btn">
-                <button ng-disabled="!user.remember || registerBtnDisabled" ng-click=""  type = "submit" class="big-btn btn-green btn mb10" ng-bind="registerBtn">确认注册</button>
+                <button ng-disabled="!user.remember || registerBtnDisabled" ng-click=""  
+
+type = "submit" class="big-btn btn-green btn mb10" ng-bind="registerBtn">确认注册</button>
             </div>
         </div>
         </form>
@@ -506,14 +535,14 @@
     
 
      <ul class="site-fixed">
-        <li class="scroll-top"><img src="images/scroll_top1.png" alt=""/> </li>
+        <li class="scroll-top"><img src="${pageContext.request.contextPath}/wmcr/images/scroll_top1.png" alt=""/> </li>
         <li class="scorll-feekback" ng-click="userFeedback=true">
             <img src="images/scorll_feekback.png" alt=""/>
             <div>意见反馈</div>
         </li>
     </ul>
-    <script type="text/javascript" src="js/angular.min.js"></script>
-    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/wmcr/js/angular.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/wmcr/js/jquery-1.7.2.min.js"></script>
     <script src="js/common.js"></script>
     
     <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=5cd6dcb00bc675bf26c9b4ab2af0759a"></script>
@@ -574,6 +603,7 @@ setTimeout(function() {
     settime(obj) }
     ,1000) 
 }
+
 $(function () {
 	$("#getCaptcha11").click(function() {
 		//console.log($("#captcha2").val());
@@ -584,7 +614,25 @@ $(function () {
 
 		/* location.href="Rp.do?op=yzm&account="+document.getElementById("phone").value;  */
 	});
+
 })
+
+/*czd 短信验证  */
+$(function () {
+	$("#getyzm").click(function() {
+		//console.log($("#captcha2").val());
+		$.get("/wmcr/brs.do", "op=yzm&phone=" + $("#phone").val(), function(data, status) {
+			console.log(data + "," + status);
+			$("#phone").text(data);
+		});
+
+		/* location.href="Rp.do?op=yzm&account="+document.getElementById("phone").value;  */
+	});
+
+})
+
+
+
 </script>
 <!--jqueryvaldate开始-->
 <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
@@ -598,43 +646,87 @@ var length = value.length;
 var mobile = /^(13[0-9]{9})|(18[0-9]{9})|(14[0-9]{9})|(17[0-9]{9})|(15[0-9]{9})$/;  
 return this.optional(element) || (length == 11 && mobile.test(value));  
 }, "请正确填写手机号码");
-$(function(){
-$("#cell").validate({
-    rules: {
-    	phone : {  
-            required : true,  
-            minlength : 11, 
-            isMobile : true  
-        		}, 
-          },
-   messages: {
-	   phone : {  
-	       required : "请输入手机号",  
-	       minlength : "不能小于11个字符",  
-	       isMobile : "请正确填写手机号码"  
-	  		 	}
-				 },
+
+</script>
+<script>
+jQuery.validator.addMethod("phonesame", function(value, element) {
+	var flag = 0;
+	$.ajax({
+		type: "post",
+		url: "/wmcr/brs.do?op=checkPhoneAjax",
+		async: false,
+		data:"phone="+$("#phone").val(),
+		success: function(msg) {
+			if(msg=="yes") {
+				flag = 1;			
+			}
+		}
 	});
-})
+	if(flag == 0) {
+		console.log(flag);
+		return false;
+	} else {
+		console.log(flag);
+		return true;
+	}
+}, "該用戶已存在");
 </script>
 <!--自定义手机验证结束-->
+<!-- 自定义验证码验证 -->
+<script type="text/javascript">
+jQuery.validator.addMethod("codesame", function(value, element) {
+	var flag = 0;
+	$.ajax({
+		type: "post",
+		url: "/wmcr/brs.do?op=checkYzmAjax",
+		async: false,
+		data:"yzmtext="+$("#yzmtext").val(),
+		success: function(result) {
+			console.log(result+"hello");
+			if(result=="yes") {
+				flag = 1;
+			}
+		}
+	});
+	if(flag == 0) {
+		console.log(flag);
+		return false;
+	} else {
+		console.log(flag);
+		return true;
+	}
+}, "验证码错误");
+</script>
+<!--  自定义验证码验证结束-->
 
 
+
+    //地点列表项点击事件
+    
+    function resultClick(item){
+    	  var address=$(item).attr("value");
+    		location.href="${pageContext.request.contextPath}/MapServlet?op=queryBusi&address="+address;
+    }
+</script>
 <!-- 商家入駐JS -->
 <script>
-$.validator.setDefaults({
+/* $.validator.setDefaults({
 submitHandler: function() {
   alert("提交事件!");
 }
-});
+}); */
 $().ready(function() {
 //在键盘按下并释放及提交后验证提交表单
 $("#bossRegisterForm").validate({
     rules: {
-    phone : {  
+    	yzmtext : {  
+    		codesame:true
+        		},
+    	phone : {  
             required : true,  
             minlength : 11, 
-            isMobile : true  
+            isMobile : true,
+            phonesame:true
         		},
     password: {
         required: true,
@@ -651,7 +743,8 @@ $("#bossRegisterForm").validate({
       phone : {  
 	       required : "请输入手机号",  
 	       minlength : "不能小于11个字符",  
-	       isMobile : "请正确填写手机号码"  
+	       isMobile : "请正确填写手机号码" ,
+	       phonesame :"用户已注册，可以登录咯"
 	  		 	},
       password: {
         required: "请输入密码",
@@ -663,16 +756,21 @@ $("#bossRegisterForm").validate({
         equalTo: "两次密码输入不一致"
       },	      
       agree: "请接受我们的声明",
+      yzmtext:"验证码错误",
     }
 });
 });
 </script>
+
 <style>
 .error{
 color:red;
 }
 </style>
 <!--jqueryvaldate结束-->
+
+
+ 
 </body>
 </html>
     

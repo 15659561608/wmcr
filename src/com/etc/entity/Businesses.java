@@ -292,4 +292,17 @@ public class Businesses {
 	public void setState(Integer state) {
 		this.state = state;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Businesses [id=" + id + ", busiName=" + busiName + ", phone=" + phone + ", address=" + address
+				+ ", avgCost=" + avgCost + ", licence=" + licence + ", salNum=" + salNum + ", lat=" + lat + ", lon="
+				+ lon + ", starPrice=" + starPrice + ", disFee=" + disFee + ", onlinePay=" + onlinePay + ", isReserve="
+				+ isReserve + ", isBusiness=" + isBusiness + ", des=" + des + ", typeId=" + typeId + ", bossId="
+				+ bossId + ", cityId=" + cityId + ", praise=" + praise + ", nag=" + nag + ", state=" + state + ", logo="
+				+ logo + ", regDate=" + regDate + "]";
+	}
+	
+	
 }

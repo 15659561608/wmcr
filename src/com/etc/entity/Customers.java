@@ -7,7 +7,19 @@ public class Customers {
 		super();
 	}
 
-	public Customers(Integer id, String custName, String phone, Date regDate, String address, Integer userId,
+	public Customers(String custName, String phone, String regDate, String address, Integer userId, Double lat,
+			Double lon) {
+		super();
+		this.custName = custName;
+		this.phone = phone;
+		this.regDate = regDate;
+		this.address = address;
+		this.userId = userId;
+		this.lat = lat;
+		this.lon = lon;
+	}
+
+	public Customers(Integer id, String custName, String phone, String regDate, String address, Integer userId,
 			Double lat, Double lon, Integer state) {
 		super();
 		this.id = id;
@@ -22,7 +34,7 @@ public class Customers {
 	}
 
 	//2018年10月10日14:07:20 CZD 
-	public Customers(String account, Integer id, String custName, String phone, Date regDate, String address,
+	public Customers(String account, Integer id, String custName, String phone, String regDate, String address,
 			Integer userId, Double lat, Double lon, Integer state) {
 		super();
 		this.account = account;
@@ -54,7 +66,7 @@ public class Customers {
 
     private String phone;
 
-    private Date regDate;
+    private String regDate;
 
     private String address;
 
@@ -99,11 +111,11 @@ public class Customers {
         this.phone = phone == null ? null : phone.trim();
     }
 
-    public Date getregDate() {
+    public String getregDate() {
         return regDate;
     }
 
-    public void setregDate(Date regDate) {
+    public void setregDate(String regDate) {
         this.regDate = regDate;
     }
 
