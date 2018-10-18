@@ -10,12 +10,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.etc.entity.Boss;
+import com.etc.entity.Businesses;
 import com.etc.entity.Food;
 import com.etc.entity.Foodf;
+import com.etc.service.impl.BusinessesServiceImplf;
 import com.etc.service.impl.FoodsServiceImplf;
+import com.etc.services.BusinessesServicef;
 import com.etc.services.FoodServicesf;
 import com.etc.util.PageData;
 
@@ -26,7 +28,7 @@ import com.etc.util.PageData;
 public class FoodsServletf extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private FoodServicesf fsf = new FoodsServiceImplf();
-
+	 private BusinessesServicef bsf=new BusinessesServiceImplf();
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -72,7 +74,7 @@ public class FoodsServletf extends HttpServlet {
 			}
 
 		}else if("queryFoods".equals(op)){
-			System.out.println(op);
+		//	System.out.println(op);
 		int page = 1;// 默认第一页
 		int pageSize = 5;// 默认每页显示10条
 		// 如果用户传递的参数不为空
@@ -89,19 +91,17 @@ public class FoodsServletf extends HttpServlet {
 		if (request.getParameter("keywords") != null) {
 			keywords = request.getParameter("keywords");
 		}
-		HttpSession session=request.getSession();
-		Boss b=(Boss)session.getAttribute("boss");
-		int busid= b.getId();
-		//int busid = (int) request.getSession().getAttribute("busid");
+		Boss boss = (Boss) request.getSession().getAttribute("boss");
 		//System.out.println("111"+busid);
-		/*List<Businesses> list=bsf.queryBusinesses();
-		list.forEach(System.out::println);
-		*/
-		// System.out.println(busId);
-		// 之前的代码要变
-		PageData<Foodf> pd = fsf.getFoods(page, pageSize, keywords,busid);
-		List<Foodf> list=pd.getData();
+		//List<Businesses> list=bsf.queryBusinesses();
 		//list.forEach(System.out::println);
+		int bid=boss.getId();
+		
+		// 之前的代码要变
+		PageData<Foodf> pd = new FoodsServiceImplf().queryFoodfs(page, pageSize, "", bid);
+		//PageData<Foodf> pd = fsf.getFoods(page, pageSize, keywords);
+	//	List<Foodf> list=pd.getData();
+	//	list.forEach(System.out::println);
 		int total=pd.getTotal();
 		request.setAttribute("total", total);
 		request.setAttribute("pd", pd);
@@ -122,9 +122,9 @@ public class FoodsServletf extends HttpServlet {
 	{
 		System.out.println("op" + op);
 		String id = request.getParameter("id");
-		//System.out.println("菜名111111111" + id);
+		System.out.println("菜名111111111" + id);
 		String foodName = request.getParameter("foodName");
-	//	System.out.println("菜名" + foodName);
+		System.out.println("菜名" + foodName);
 		String price = request.getParameter("price");
 		String discount = request.getParameter("discount");
 		String num = request.getParameter("num");
