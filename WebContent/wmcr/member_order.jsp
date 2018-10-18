@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+        <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,41 +82,41 @@
                 <header>历史订单</header>
                 
     <section class="user-center-body order" id="orderBody">
-        
+     <c:if test="${requestScope.pd == null}">
+								<jsp:forward page="/PersonOrdersServlet?op=queryansByPage"></jsp:forward>
+	</c:if>
+								<c:forEach items="${requestScope.pd}" var="a">
         <div class="order-list ">
              <div class="order-hd">
-                <span><i>订单编号：</i>D-03788798</span><i>创建时间：</i>2015-05-03 09:26:52
+                <span><i>订单编号：</i>${a.id}</span><i>创建时间：</i>${a.ordDate}
              </div>
              <div class="order-bd clearfix">
                  <div class="fl restaurant-msg">
                      <div>
                          <img src="http://dhcrestaurantlogo.dhero.cn/1019?v=1402245333" alt="" width="43" height="43" class="fl" />
-                         <i class="fl">吉祥馄饨 (高安路店)</i>
+                         <i class="fl">${a.busiName}</i>
                      </div>
                      <p class="clearfix">
                         <i class="fl"></i>
-                        <span class="fl">餐厅电话：021-64738871, 18019138185</span>
+                        <span class="fl">菜单：${a.foodName}</span>
                     </p>
                  </div>
                  <div class="fl order-type padding-margin">
-                     <p>订单类型：餐到付款</p>
-                     <p>订单状态：等待确认</p>
+                     <p>数量</p>
+                     <p>${a.num}</p>
                  </div>
                  <div class="fl order-total padding-margin">
                      <p>订单金额</p>
-                     <p><i>￥32.00</i></p>
+                     <p><i>${a.money}</i></p>
                  </div>
                  <div class="order-operate fl padding-margin">
-                    
-                         
-                    
-                    
-                    
+                    <p>${a.state==0?"已支付":"未支付"}</p>
                     <p>
                         <a href="javascript:" order-number orderId="3788798" class="btn_a see-details">查看详情<i></i></a>
                     </p>
                  </div>
              </div>
+             </c:forEach>
              <div class="order-details clearfix">
                 <div ng-hide="orderStatus['3788798']" class="order-loading">
                     <span ng-show="orderStatus['3788798_error']" class="order-hide">访问出错，请重新加载！</span>
