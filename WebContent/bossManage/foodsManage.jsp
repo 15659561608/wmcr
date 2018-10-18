@@ -35,9 +35,8 @@
 </head>
 
 <body>
-	<div class="frame-header">
-		<span class="page-reload cur">菜品列表</span>
-	</div>
+	<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 菜品管理 <span class="c-gray en">&gt;</span> 查看菜品列表 <a class="btn btn-success radius r" style="line-height:2.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+
 	<!--操作栏-->
 	<div class="operates clearfix"
 		style="overflow: auto; white-space: nowrap; font-size: 0;">
@@ -153,7 +152,9 @@
 						<%-- <td><img src="/img/<%=virtualPath%>"/></td>  --%>
 						<%-- <td><img src="${food.logo}" alt="${food.logo}" /></td> --%>
 						<%-- <td><Img src="${food.logo}" width="100px" height="100px"/></td> --%>
-						<td><Img src="${food.logo}" width="100px" height="100px" /></td>
+						<%-- <td><Img src='${pageContext.request.contextPath}/"+${food.logo}+"' width="100px" height="100px" /></td> --%>
+						<td>${pageContext.request.contextPath}${food.logo}</td>
+						<td><img  src="${pageContext.request.contextPath}${food.logo}" style="width:100px; height:100px"/></td>
 						<td>${food.busiName}(${food.address})</td>
 						<td>${food.state==0?"售罄":"有货"}</td>
 						<td><button class="btn btn-link update"
