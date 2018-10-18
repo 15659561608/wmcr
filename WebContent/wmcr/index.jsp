@@ -346,11 +346,7 @@
     <!-- 登陆开始 -->
     <dh-dialog class="disnone" type='login' height="500" header="登录" show="loginShow" >
     <!-- /wmcr/uls.do   ${pageContext.request.contextPath}/-->
-<<<<<<< HEAD
   <form class="login-form" action="${pageContext.request.contextPath}/uls.do?op=login"  method="post" novalidate name="loginForm" ng-controller="loginCtrl" onsubmit = " return checkform2()">
-=======
-    <form class="login-form" action="${pageContext.request.contextPath}/uls.do?op=login"  method="post" novalidate name="loginForm" ng-controller="loginCtrl" onsubmit = " return checkform2()">
->>>>>>> branch 'master' of https://github.com/15659561608/wmcr.git
         <div class="form-group">
             <label for="">手机号码</label>
             <div>
@@ -390,11 +386,7 @@
 
 <!-- 注册开始 -->
 <dh-dialog class="disnone" type='register' height="500" header="注册" show="registerShow" >
-<<<<<<< HEAD
- <form ng-controller="registerCtrl" class="register-form" action="/wmcr/urs.do?op=register" method="post" acname="registerForm" id = "registerForm" onsubmit = " return checkform()">
-=======
       <form ng-controller="registerCtrl" class="register-form" action="/wmcr/urs.do?op=register" method="post" acname="registerForm" id = "registerForm" onsubmit = " return checkform()">
->>>>>>> branch 'master' of https://github.com/15659561608/wmcr.git
         <div class="form-group mb10">
             <label for="">手机号码</label>
             <div>
@@ -467,10 +459,8 @@
     <!-- 搜索附近餐厅弹窗 -->
     
 <!--商家入驻开始-->
-    <dh-dialog class="disnone" height="500" type="merchants" header="商户入驻申请" 
-show="merchantsShow">
-     <form ng-controller="registerCtrl" class="register-form" action="" method="post" 
-acname="bossRegisterForm" id="bossRegisterForm" >
+    <dh-dialog class="disnone" height="500" type="merchants" header="商户入驻申请" show="merchantsShow">
+     <form ng-controller="registerCtrl" class="register-form" action="/wmcr/brs.do?op=bossRegister" method="post" acname="bossRegisterForm" id="bossRegisterForm" >
      <div class="inline" ng-controller="merchantCtrl">
             <div class="form-group row mb10">
                 <label class="col-3" >手机号码：</label>
@@ -479,15 +469,11 @@ acname="bossRegisterForm" id="bossRegisterForm" >
 ng-model="merchants1.name"/>
                 </div>
             </div>
-         <div id="phoneData"></div>   
-            
+         <div id="phoneData"></div>
                 <div class="fl form-group captcha-item" style="width: 100%;">
                    <div class="form-group captcha clearfix" style="margin: 0;">   
                         <input type="button" id="getyzm" style="margin-
-
-top:10px;float: left; width: 70px;padding: 0;" value="获取验证码" onclick="settime(this)"/>
-                    
-                        
+top:10px;float: left; width: 70px;padding: 0;" value="获取验证码" onclick="settime(this)"/>                                           
                         <input type="text" id="yzmtext" name="yzmtext"  value = "" 
 
 style="width: 14.5rem;height: 1rem; margin-left:17px;float: left;" onblur="checkYzm ()" 
@@ -581,7 +567,7 @@ type = "submit" class="big-btn btn-green btn mb10" ng-bind="registerBtn">确认�
 	       url:"/wmcr/uls.do?op=zh&account="+$("#account").val(),
 	       dataTypes:"text",
 	       success:function(msg){
-	         $("#accountStatus").html(msg);
+	         $("#accountStatus")hijian.html(msg);
 	       }
 	     });
 	   });
@@ -630,7 +616,7 @@ $(function () {
 	});
 
 })
-<<<<<<< HEAD
+
 /*czd 短信验证  */
 $(function () {
 	$("#getyzm").click(function() {
@@ -646,8 +632,7 @@ $(function () {
 })
 
 
-=======
->>>>>>> branch 'master' of https://github.com/15659561608/wmcr.git
+
 </script>
 <!--jqueryvaldate开始-->
 <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
@@ -661,43 +646,86 @@ var length = value.length;
 var mobile = /^(13[0-9]{9})|(18[0-9]{9})|(14[0-9]{9})|(17[0-9]{9})|(15[0-9]{9})$/;  
 return this.optional(element) || (length == 11 && mobile.test(value));  
 }, "请正确填写手机号码");
-$(function(){
-$("#cell").validate({
-    rules: {
-    	phone : {  
-            required : true,  
-            minlength : 11, 
-            isMobile : true  
-        		}, 
-          },
-   messages: {
-	   phone : {  
-	       required : "请输入手机号",  
-	       minlength : "不能小于11个字符",  
-	       isMobile : "请正确填写手机号码"  
-	  		 	}
-				 },
+
+</script>
+<script>
+jQuery.validator.addMethod("phonesame", function(value, element) {
+	var flag = 0;
+	$.ajax({
+		type: "post",
+		url: "/wmcr/brs.do?op=checkPhoneAjax",
+		async: false,
+		data:"phone="+$("#phone").val(),
+		success: function(msg) {
+			if(msg=="yes") {
+				flag = 1;			
+			}
+		}
 	});
-})
+	if(flag == 0) {
+		console.log(flag);
+		return false;
+	} else {
+		console.log(flag);
+		return true;
+	}
+}, "該用戶已存在");
 </script>
 <!--自定义手机验证结束-->
+<!-- 自定义验证码验证 -->
+<script type="text/javascript">
+jQuery.validator.addMethod("codesame", function(value, element) {
+	var flag = 0;
+	$.ajax({
+		type: "post",
+		url: "/wmcr/brs.do?op=checkYzmAjax",
+		async: false,
+		data:"yzmtext="+$("#yzmtext").val(),
+		success: function(result) {
+			console.log(result+"hello");
+			if(result=="yes") {
+				flag = 1;
+			}
+		}
+	});
+	if(flag == 0) {
+		console.log(flag);
+		return false;
+	} else {
+		console.log(flag);
+		return true;
+	}
+}, "验证码错误");
+</script>
+<!--  自定义验证码验证结束-->
+<script>
 
-
+    //地点列表项点击事件
+    
+    function resultClick(item){
+    	  var address=$(item).attr("value");
+    		location.href="${pageContext.request.contextPath}/MapServlet?op=queryBusi&address="+address;
+    }
+</script>
 <!-- 商家入駐JS -->
 <script>
-$.validator.setDefaults({
+/* $.validator.setDefaults({
 submitHandler: function() {
   alert("提交事件!");
 }
-});
+}); */
 $().ready(function() {
 //在键盘按下并释放及提交后验证提交表单
 $("#bossRegisterForm").validate({
     rules: {
-    phone : {  
+    	yzmtext : {  
+    		codesame:true
+        		},
+    	phone : {  
             required : true,  
             minlength : 11, 
-            isMobile : true  
+            isMobile : true,
+            phonesame:true
         		},
     password: {
         required: true,
@@ -714,7 +742,8 @@ $("#bossRegisterForm").validate({
       phone : {  
 	       required : "请输入手机号",  
 	       minlength : "不能小于11个字符",  
-	       isMobile : "请正确填写手机号码"  
+	       isMobile : "请正确填写手机号码" ,
+	       phonesame :"用户已注册，可以登录咯"
 	  		 	},
       password: {
         required: "请输入密码",
@@ -726,6 +755,7 @@ $("#bossRegisterForm").validate({
         equalTo: "两次密码输入不一致"
       },	      
       agree: "请接受我们的声明",
+      yzmtext:"验证码错误",
     }
 });
 });
@@ -736,32 +766,9 @@ color:red;
 }
 </style>
 <!--jqueryvaldate结束-->
-<<<<<<< HEAD
-<script type="text/javascript" >
-$(function(){
-	$("#phone").blur(function(){
-		
-		$.get("/wmcr/brs.do?op=checkPhone","phone="+$(this).val()+"&random="+Math.random(),function(data,status){
-			console.log(data+","+status);
-		if(status =="success"){
-			$("#phoneData").html(data);
-		}	
-			
-		});
-	});
-});
-</script>
 
 
-
-
-
-
-
-
-
-=======
->>>>>>> branch 'master' of https://github.com/15659561608/wmcr.git
+ 
 </body>
 </html>
     
