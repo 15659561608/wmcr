@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.etc.dao.foodsDaof;
 import com.etc.entity.Food;
+import com.etc.entity.Foodf;
 import com.etc.util.BaseDao;
 import com.etc.util.PageData;
 
@@ -37,7 +38,7 @@ public class FoodsDaoImplf implements foodsDaof{
 	}
 
 	@Override
-	public boolean updateFoods(Food food) {
+	public boolean updateFoods(Foodf food) {
 		// TODO Auto-generated method stub
 		String sql="update food set foodName=?, price=?, discount=?, num=?, salNum=?, des=?, logo=?, state=? where id=?";
 		return BaseDao.execute(sql, food.getFoodName(),food.getPrice(),food.getDiscount(),food.getNum(),food.getSalNum(),food.getDes(),food.getLogo(),food.getState(),food.getId())>0;
@@ -68,6 +69,23 @@ public class FoodsDaoImplf implements foodsDaof{
 	}
 
 	@Override
+	public PageData<Foodf> queryFoods(int page, int pageSize, String keyWords) {
+		// TODO Auto-generated method stub
+		String sql="select food.id,food.foodName,food.price,food.discount,food.num,food.salNum,food.des,food.logo,businesses.busiName,businesses.address,food.state \r\n" + 
+				"from food inner JOIN businesses \r\n" + 
+				"on food.busId=businesses.id and foodName like ? ";
+		PageData<Foodf> pd= BaseDao.getPage(sql, page, pageSize, Foodf.class,"%"+keyWords+"%");
+		return pd;
+	}
+
+	@Override
+	public boolean updateFoods(Food food) {
+		// TODO Auto-generated method stub
+		String sql="update food set foodName=?, price=?, discount=?, num=?, salNum=?, des=?, logo=?,busId=?, state=? where id=?";
+		return BaseDao.execute(sql, food.getFoodName(),food.getPrice(),food.getDiscount(),food.getNum(),food.getSalNum(),food.getDes(),food.getLogo(),food.getBusId(),food.getState(),food.getId())>0;
+	
+	}
+	@Override
 	public Food getFoodById(int id) {
 		// TODO Auto-generated method stub
 		String sql="select * from food where id=?";
@@ -77,5 +95,7 @@ public class FoodsDaoImplf implements foodsDaof{
 		}
 		return null;
 	}
+
+
 
 }

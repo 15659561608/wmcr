@@ -149,6 +149,19 @@
 					</div>
 				</div>
 			</div>
+			<div class="row clearfix">
+				<label class="form-label col-xs-3">门店：</label>
+				<div class="formControls col-xs-8">
+
+					<div class="col-xs-6">
+						<span class="select-box"> 
+						<select class="select" size="1" name="busiName" id="busiName">
+								
+						</select>
+						</span>
+					</div>
+				</div>
+			</div>
 	
 
 	<div class="row cl">
@@ -371,6 +384,20 @@ layui.use('upload', function(){
  
   
 });
+</script>
+
+<script type="text/javascript">
+$(function() {
+		$.get("${pageContext.request.contextPath}/bsf.do", function(data, status) {
+	//	var arr = JSON.parse(data);
+	console.log("11111");
+		$.each(data, function(index, e) {
+			$("#busiName").append("<option value="+e.id+">" + e.busiName +","+e.address +"</option>");
+		});
+
+	});
+});
+
 </script>
 
 </html>

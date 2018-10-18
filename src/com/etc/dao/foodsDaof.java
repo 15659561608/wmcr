@@ -3,6 +3,7 @@ package com.etc.dao;
 import java.util.List;
 
 import com.etc.entity.Food;
+import com.etc.entity.Foodf;
 import com.etc.util.PageData;
 
 /**
@@ -11,17 +12,14 @@ import com.etc.util.PageData;
  */
 public interface foodsDaof {
 	boolean addFoods(Food food);
+	PageData<Food> queryFoods(int page,int pageSize);
+	PageData<Foodf> queryFoods(int page,int pageSize,String keyWords);
 
-	PageData<Food> queryFoods(int page, int pageSize);
-
-	PageData<Food> queryFoods(int page, int pageSize, String keyWords, int busId);
-
+	PageData<Food> queryFoods(int page,int pageSize,String keyWords,int busId);
 	List<Food> getFoods();
-
 	boolean delFoods(int id);
-
+	boolean updateFoods(Foodf food);
 	boolean updateFoods(Food food);
-
 	List<Food> queryFoods();
 	/**
 	 * 根据编号获取菜品

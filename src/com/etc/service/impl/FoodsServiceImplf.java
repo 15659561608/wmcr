@@ -5,7 +5,7 @@ import java.util.List;
 import com.etc.dao.foodsDaof;
 import com.etc.dao.impl.FoodsDaoImplf;
 import com.etc.entity.Food;
-
+import com.etc.entity.Foodf;
 import com.etc.services.FoodServicesf;
 import com.etc.util.PageData;
 
@@ -35,7 +35,7 @@ public class FoodsServiceImplf implements FoodServicesf{
 	}
 
 	@Override
-	public boolean update(Food food) {
+	public boolean update(Foodf food) {
 		// TODO Auto-generated method stub
 		return fdf.updateFoods(food);
 	}
@@ -59,10 +59,22 @@ public class FoodsServiceImplf implements FoodServicesf{
 	}
 
 	@Override
+	public PageData<Foodf> getFoods(int page, int pageSize, String keyWords) {
+		// TODO Auto-generated method stub
+		return fdf.queryFoods(page, pageSize, keyWords);
+	}
+
+	@Override
+	public boolean update(Food food) {
+		// TODO Auto-generated method stub
+		return fdf.updateFoods(food);
+	}
+	@Override
 	public Food getFoodById(int id) {
 		// TODO Auto-generated method stub
 		return fdf.getFoodById(id);
 	}
+
 
 
 
