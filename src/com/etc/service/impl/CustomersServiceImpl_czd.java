@@ -1,5 +1,7 @@
 package com.etc.service.impl;
 
+import java.util.List;
+
 import com.etc.dao.CustomersDao_czd;
 import com.etc.dao.impl.CustomersDaoImpl_czd;
 import com.etc.entity.Customers;
@@ -23,6 +25,16 @@ public class CustomersServiceImpl_czd implements CustomersService_czd {
 	public PageData<Customers> getCustomersByOrder(int page, int pageSize, String keywords, int flag) {
 		// TODO Auto-generated method stub
 		return cdc.queryCustomersByOder(page, pageSize, keywords, flag);
+	}
+	@Override
+	public List<Customers> queryCustomersByUserId(int userId) {
+		// TODO Auto-generated method stub
+		return cdc.queryCustomersByUserId(userId);
+	}
+	@Override
+	public boolean addCustomers(Customers c) {
+		// TODO Auto-generated method stub
+		return cdc.addCustomers(c);
 	}
 
 }

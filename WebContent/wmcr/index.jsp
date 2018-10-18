@@ -32,7 +32,6 @@
             
     <section class="member-wrap" id="member-wrap">
         <div class="common-width posr">
-            
                 <div class="member-box fs12" login-box info="loginInfo">
                     <a href="javascript:void(0)" ng-click="logoinDialogShow()">登录</a>
                     <span>/</span>
@@ -403,9 +402,10 @@
                 </div>
                 <div class="fl form-group captcha-item">
                    <div class="form-group captcha clearfix">
-                             <input type="text" id="captcha2" name="captcha2"  value = ""  onblur="checkYzm ()" class="form-text" placeholder="短信验证码"/>
+                             <input type="text" id="captcha2" name="captcha2" style="width:130px;height:30px;"  value = ""  onblur="checkYzm ()" class="form-text" placeholder="短信验证码"/>
+                             <input type="button" id="getCaptcha11" style="width:110px;height:45px;"  value="获取短信验证码" onclick="settime(this)"/>
                              <div id = "yzm_prompt" style="color:#F00"></div>
-                             <input type="button" id="getCaptcha11"  value="获取短信验证码" onclick="settime(this)"/>
+                             
                         </div>
                         <div class="form-error-message"></div>
                 </div>

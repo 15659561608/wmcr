@@ -74,7 +74,7 @@
                 <i class="icon address-icon"></i>
                 当前共有${pageData.total }家餐厅，当前地址：<strong >${address}</strong>
             </h1>
-            <a href="index.html" class="fl">[更改地址]</a>
+            <a href="${pageContext.request.contextPath }/wmcr/mainPage.jsp" class="fl">[更改地址]</a>
                 <div class="fr search-address-orderList">
                     <div class="input-icon">
                         <input type="text" ng-model="filterObj.name" placeholder="搜索：餐厅" class="trans"/>

@@ -1,5 +1,7 @@
 package com.etc.dao.impl;
 
+import java.util.List;
+
 import com.etc.dao.CustomersDao_czd;
 import com.etc.entity.Customers;
 import com.etc.util.BaseDao;
@@ -39,6 +41,18 @@ public class CustomersDaoImpl_czd implements CustomersDao_czd {
 		PageData<Customers> pd =BaseDao.getPage(sql, page, pageSize, Customers.class,"%"+keywords+"%");
 		
 		return pd;
+	}
+	@Override
+	public List<Customers> queryCustomersByUserId(int userId) {
+		// TODO Auto-generated method stub
+		String sql="SELECT * FROM customers where userId=?";
+		return (List<Customers>)BaseDao.select(sql, Customers.class,userId);
+	}
+	@Override
+	public boolean addCustomers(Customers c) {
+		// TODO Auto-generated method stub
+		String sql="INSERT INTO customers (custName, phone, regDate, address, userId, lat, lon) VALUES (?, ?, ?, ?, ?, ?,?)";
+		return BaseDao.execute(sql,c.getcustName(),c.getPhone(),c.getregDate(),c.getAddress(),c.getuserId(),c.getLat(),c.getLon())>0;
 	}
 
 	

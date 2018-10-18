@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 import javax.servlet.ServletException;
@@ -15,9 +16,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.etc.entity.Customers;
 import com.etc.entity.Orders;
 import com.etc.entity.Ordersdetail;
 import com.etc.entity.Users;
+import com.etc.service.impl.CustomersServiceImpl_czd;
 import com.etc.service.impl.FoodsServiceImplf;
 import com.etc.service.impl.OrdersDetailServiceImpl;
 import com.etc.service.impl.OrdersLServiceImpl;
@@ -103,6 +106,10 @@ public class OrderHandlerServler extends HttpServlet {
 				}
 				
 				conn.commit();
+				//获取用户地址列表
+				List<Customers> cusList=new CustomersServiceImpl_czd().queryCustomersByUserId(user.getId());
+				request.setAttribute("cusList", cusList);
+				System.out.println(cusList);
 				request.setAttribute("orderId", orderId);
 				request.getRequestDispatcher("wmcr/order.jsp").forward(request, response);
 			} catch (SQLException e) {
@@ -115,6 +122,7 @@ public class OrderHandlerServler extends HttpServlet {
 			
 			
 		}
+		
 	}
 
 	//生成订单号
