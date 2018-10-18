@@ -23,10 +23,10 @@ public class FoodsDaoImplf implements foodsDaof{
 	}
 
 	@Override
-	public PageData<Food> queryFoods(int page,int pageSize,String keyWords,int busId) {
+	public PageData<Foodf> queryFoods(int page,int pageSize,String keyWords) {
 		// TODO Auto-generated method stub
-		String sql="select * from food where foodName like ? and busId=?";
-		PageData<Food> pd= BaseDao.getPage(sql, page, pageSize, Food.class,"%"+keyWords+"%",busId);
+		String sql="select * from food where foodName like ? ";
+		PageData<Foodf> pd= BaseDao.getPage(sql, page, pageSize, Foodf.class,"%"+keyWords+"%");
 		return pd;
 	}
 
@@ -69,12 +69,12 @@ public class FoodsDaoImplf implements foodsDaof{
 	}
 
 	@Override
-	public PageData<Foodf> queryFoods(int page, int pageSize, String keyWords) {
+	public PageData<Foodf> queryFoods(int page, int pageSize, String keyWords,int busId) {
 		// TODO Auto-generated method stub
 		String sql="select food.id,food.foodName,food.price,food.discount,food.num,food.salNum,food.des,food.logo,businesses.busiName,businesses.address,food.state \r\n" + 
 				"from food inner JOIN businesses \r\n" + 
-				"on food.busId=businesses.id and foodName like ? ";
-		PageData<Foodf> pd= BaseDao.getPage(sql, page, pageSize, Foodf.class,"%"+keyWords+"%");
+				"on food.busId=businesses.id and foodName like ? and busId=? ";
+		PageData<Foodf> pd= BaseDao.getPage(sql, page, pageSize, Foodf.class,"%"+keyWords+"%",busId);
 		return pd;
 	}
 

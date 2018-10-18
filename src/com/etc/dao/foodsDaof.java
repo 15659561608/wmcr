@@ -15,7 +15,7 @@ public interface foodsDaof {
 	PageData<Food> queryFoods(int page,int pageSize);
 	PageData<Foodf> queryFoods(int page,int pageSize,String keyWords);
 
-	PageData<Food> queryFoods(int page,int pageSize,String keyWords,int busId);
+	PageData<Foodf> queryFoods(int page,int pageSize,String keyWords,int busId);
 	List<Food> getFoods();
 	boolean delFoods(int id);
 	boolean updateFoods(Foodf food);
