@@ -388,7 +388,7 @@
 						$("#num").val(num);
 						$("#salNum").val(salNum);
 						$("#des").val(des);
-						//$("#logo").val(logo);
+						$("#logo").val(logo);
 						$("#busiName").val(busiName);
 						$("#state").val(state);
 

@@ -91,5 +91,10 @@ public class BusinessDaoImpl implements BusinessDao {
 				+ " b,city c,type t where b.cityId=c.id and b.typeId=t.id and b.state=1 and t.id=?";
 		return (List<BusinessesCity>)BaseDao.select(sql, BusinessesCity.class,id);
 	}
-
+ 
+	@Override
+	public List<Businesses> getBusName(int id) {
+		// TODO Auto-generated method stub
+		return (List<Businesses>) BaseDao.select("SELECT * from businesses where businesses.bossId = ?",Businesses.class,id);
+	}
 }

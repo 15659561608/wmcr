@@ -96,5 +96,10 @@ public class BusinessServiceImpl implements BusinessService {
 		// TODO Auto-generated method stub
 		return bd.getPassBusinessesByType(id);
 	}
+	@Override
+	public List<Businesses> selectBusName(int id) {
+		// TODO Auto-generated method stub
+		return bd.getBusName(id);
+	}
 
 }

@@ -72,7 +72,7 @@ public class OrderHandlerServler extends HttpServlet {
 		//下单
 		if("add".equals(op)) {
 			if(user==null) {
-				request.getRequestDispatcher("wmcr/index.jsp").forward(request, response);
+				request.getRequestDispatcher("wmcr/login.jsp").forward(request, response);
 				return;
 			}
 			//获取商品编号
@@ -126,7 +126,6 @@ public class OrderHandlerServler extends HttpServlet {
 				List<BusinessesCity> busiInfo=new BusinessServiceImpl().getBusinessesById(Integer.valueOf(busiId));
 				request.setAttribute("detailsList", detailsList);
 				request.setAttribute("busiInfo", busiInfo.get(0));
-				System.out.println(busiInfo);
 				request.setAttribute("ord", ord);
 				request.getRequestDispatcher("wmcr/order.jsp").forward(request, response);
 			} catch (SQLException e) {
@@ -145,13 +144,14 @@ public class OrderHandlerServler extends HttpServlet {
 			response.setCharacterEncoding("utf-8");
 			PrintWriter out=response.getWriter();
 			if(user==null) {
-				request.getRequestDispatcher("wmcr/index.jsp").forward(request, response);
+				request.getRequestDispatcher("wmcr/login.jsp").forward(request, response);
 				return;
 			}
 			
 			String custName=request.getParameter("name");
 			String phone=request.getParameter("phone");
 			String address=request.getParameter("address");
+			System.out.println(custName);
 			SimpleDateFormat simple=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String regDate=simple.format(new Date());
 			

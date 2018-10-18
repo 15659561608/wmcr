@@ -22,6 +22,7 @@ import com.etc.entity.Businesses;
 import com.etc.entity.BusinessesCity;
 import com.etc.entity.BusinessesData;
 import com.etc.entity.Food;
+import com.etc.entity.Foodf;
 import com.etc.entity.MenuData;
 import com.etc.entity.Sales;
 import com.etc.entity.SalesBusi;
@@ -128,6 +129,7 @@ public class BusinessServlet extends HttpServlet {
 			List<SalesBusi> salesList = new SalesServiceImpl().getSalesByBusId(19);
 			
 			// 获取门店菜品
+		
 			PageData<Food> foodList = new FoodsServiceImplf().getFoods(page, pageSize, "", id);
 
 			/*

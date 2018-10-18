@@ -53,21 +53,18 @@ public class AliPayServlet extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html");
 		PrintWriter out=response.getWriter();
-		
 		if("pay".equals(op)) {
-			
 			
 			//将订单插入数据库
 			
 			//生成商户订单号
-			String out_trade_no = getOrderIdByTime(); //new String(request.getParameter("WIDout_trade_no").getBytes("ISO-8859-1"),"UTF-8");
+			String out_trade_no = new String(request.getParameter("ordId").getBytes("ISO-8859-1"),"UTF-8");
 			//付款金额，必填
-			String total_amount = new String(request.getParameter("WIDtotal_amount").getBytes("ISO-8859-1"),"UTF-8");
+			String total_amount = new String(request.getParameter("money").getBytes("ISO-8859-1"),"UTF-8");
 			//订单名称，必填
-			String subject = new String(request.getParameter("WIDsubject").getBytes("ISO-8859-1"),"UTF-8");
+			String subject = new String(request.getParameter("orderName"));
 			//商品描述，可空
 			String body = new String(request.getParameter("WIDbody").getBytes("ISO-8859-1"),"UTF-8");
-			
 			alipayRequest.setBizContent("{\"out_trade_no\":\""+ out_trade_no +"\"," 
 					+ "\"total_amount\":\""+ total_amount +"\"," 
 					+ "\"subject\":\""+ subject +"\"," 
@@ -97,17 +94,7 @@ public class AliPayServlet extends HttpServlet {
 		}
 	}
 
-	//生成订单号
-	public static String getOrderIdByTime() {
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddHHmmss");
-		String newDate=sdf.format(new Date());
-		String result="";
-		Random random=new Random();
-		for(int i=0;i<3;i++){
-			result+=random.nextInt(10);
-		}
-		return newDate+result;
-	}
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

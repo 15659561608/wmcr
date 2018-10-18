@@ -31,5 +31,5 @@ public class BossServiceImpl implements BossService {
 		// TODO Auto-generated method stub
 		return bd.getBoss(account);
 	}
-
+	
 }

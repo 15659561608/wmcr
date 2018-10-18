@@ -8,7 +8,6 @@ public interface BossService {
 	 * @return
 	 */
 	public Boss getBoss(int bossId);
-	
 	/**
 	 * 修改密码
 	 * @param newPwd
