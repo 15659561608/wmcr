@@ -96,6 +96,14 @@ public class FoodsDaoImplf implements foodsDaof{
 		return null;
 	}
 
+	@Override
+	public PageData<Foodf> queryFoodfs(int page, int pageSize, String keyWords, int busId) {
+		// TODO Auto-generated method stub
+		String sql="select * from food where foodName like ? and busId=?";
+		PageData<Foodf> pd= BaseDao.getPage(sql, page, pageSize, Foodf.class,"%"+keyWords+"%",busId);
+		return pd;
+	}
+
 
 
 }

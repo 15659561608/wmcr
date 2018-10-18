@@ -8,10 +8,10 @@
     <meta name="keywords" content="" />
     <meta name="description" content="" />
     <meta property="wb:webmaster" content="239d3d1dbdde1b2c" />
-    <link rel="stylesheet" type="text/css" href="css/reset.css" />
-    <link rel="stylesheet" href="css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/wmcr/css/reset.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/wmcr/css/common.css"/>
     
-    <link rel="stylesheet" href="css/login.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/wmcr/css/login.css"/>
     <title>登录</title>
     <script type="text/javascript">
         
@@ -28,17 +28,16 @@
         <div class="common-width">
             
                 <section class="clearfix">
-                    <h1 class="logo" title="外卖超人">
-                        <a href="index.html"></a>
+               	 <h1 class="fl">
+                        <a class="logo base-logo" href="index.html">外卖超人</a>
                     </h1>
-                    <span class="page-name"> | 登录</span>
                 </section>
                 
             
         </div>
     </header>
     
-    <section class="main">
+    <section class="main" style="height:750px;">
         <div class="common-width">
             
     <div class="main-inner">
@@ -52,9 +51,9 @@
                 <span class="vaildate-error" ng-if="user.usernameMessage">
                     <span ng-bind="user.usernameMessage"></span>
                 </span>
-                <span class="vaildate-error" ng-if="user.isLogined">
+             <!--    <span class="vaildate-error" ng-if="user.isLogined">
                     该手机号码尚未注册！<a href="javascript:;" ng-click="locationRegister()" class="link">立即注册</a>
-                </span>
+                </span> -->
             </div>
         </div>
         <div class="form-group mb10">
@@ -103,12 +102,12 @@
     </footer>
     
     
-    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/wmcr/js/jquery-1.7.2.min.js"></script>
     
     <script>
     var userVaildate = '/ajax/user_login/';
     </script>
-<script type="text/javascript" src="js/loginVaildate.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/wmcr/js/loginVaildate.js"></script>
 
     <!-- Baidu Analytics -->
 

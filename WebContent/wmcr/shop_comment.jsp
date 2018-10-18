@@ -16,6 +16,7 @@
 <meta name="baidu-site-verification" content="IYCrtVH0i1" />
 <meta property="wb:webmaster" content="239d3d1dbdde1b2c" />
 <link rel="icon" type="image/png" href="images/favicon.ico" />
+
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/back/bootstrap/css/bootstrap.min.css">
 <script type="text/javascript">
@@ -115,14 +116,14 @@
 		</header>
 
 		<ul class="clearfix menu-nav-list" scroll-position-static="160">
-			<li class="no-line "><a href="shop_intro.html">餐厅介绍</a></li>
-			<li><a href="shop_detail.jsp">菜单</a></li>
+			<li class="no-line "><a href="#">餐厅介绍</a></li>
+			<li><a href="${pageContext.request.contextPath}/Business?op=busiDetail&id=${requestScope.busId}">菜单</a></li>
 			<li class="active"><a href="#">评论</a></li>
-			<li><a href="shop_brand.html" id='point-tab'>大家都在点</a></li>
+			<li><a href="#" id='point-tab'>大家都在点</a></li>
 
 		</ul>
 		<section class="main-box"> <section class="review-messages">
-		<header class="review-header-box clearfix"> 全部评论 </header>
+		<header class="review-header-box clearfix"> 全部评论(共${requestScope.total}条评论) </header>
 		
 		 <article class="review-item">
 		 <form method="post" action="${pageContext.request.contextPath}/CommentServlet">
@@ -131,7 +132,8 @@
 			style="width: 800px; height: auto;" name="content" id="content"/>
 <button type="submit" class="btn btn-warning">发布</button>
 		<div class="wrapper">
-			<span id="result" name="result"></span>
+		<input type="hidden" name="praise" id="praise" />
+			<p id="result" name="result"></p>
 
 			<ul id="star">
 				<li>★</li>
@@ -153,7 +155,7 @@
 				
 			   <article class="review-item">
 		
-		<span id="phone">${co.userId}</span> <span id="time">${co.comDate}</span> <span id="praise">${co.praise==5?"★★★★★":co.praise == 4?"★★★★":co.praise == 3?"★★★":co.praise ==2?"★★":"★"}</span> 
+		<span id="phone">用户编号:${co.userId}</span> <span id="time">发布时间:${co.comDate}</span> <span id="praise">${co.praise==5?"★★★★★":co.praise == 4?"★★★★":co.praise == 3?"★★★":co.praise ==2?"★★":"★"}</span> 
 		<div class="review-content" id="content">
 		${co.content}
 		
@@ -403,7 +405,7 @@
 
 	<script type="text/javascript" src="js/angular.min.js"></script>
 	<script src="js/common.js"></script>
-
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 
 	<script src="js/service.js"></script>
 
@@ -523,6 +525,7 @@
 	<!-- Baidu Analytics -->
 	<script>
 		window.onload = function() {
+			
 			var star = document.getElementById("star");
 			var star_li = star.getElementsByTagName("li");
 			var star_word = document.getElementById("star_word");
@@ -548,10 +551,12 @@
 				}
 				star_li[i].onclick = function() {
 					result.innerHTML = (this.index + 1);
+					//praise.innerHTML = (this.index + 1);
+					$("#praise").val(this.index + 1);
 
 				}
 			}
-
+			
 		}
 	</script>
 <!--  	

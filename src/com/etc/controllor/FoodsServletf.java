@@ -11,9 +11,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.etc.entity.Boss;
+import com.etc.entity.Businesses;
 import com.etc.entity.Food;
 import com.etc.entity.Foodf;
+import com.etc.service.impl.BusinessesServiceImplf;
 import com.etc.service.impl.FoodsServiceImplf;
+import com.etc.services.BusinessesServicef;
 import com.etc.services.FoodServicesf;
 import com.etc.util.PageData;
 
@@ -24,7 +28,7 @@ import com.etc.util.PageData;
 public class FoodsServletf extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private FoodServicesf fsf = new FoodsServiceImplf();
-
+	 private BusinessesServicef bsf=new BusinessesServiceImplf();
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -87,14 +91,15 @@ public class FoodsServletf extends HttpServlet {
 		if (request.getParameter("keywords") != null) {
 			keywords = request.getParameter("keywords");
 		}
-		//int busid = (int) request.getSession().getAttribute("busid");
+		Boss boss = (Boss) request.getSession().getAttribute("boss");
 		//System.out.println("111"+busid);
-		/*List<Businesses> list=bsf.queryBusinesses();
-		list.forEach(System.out::println);
-		*/
-		// System.out.println(busId);
+		//List<Businesses> list=bsf.queryBusinesses();
+		//list.forEach(System.out::println);
+		int bid=boss.getId();
+		
 		// 之前的代码要变
-		PageData<Foodf> pd = fsf.getFoods(page, pageSize, keywords);
+		PageData<Foodf> pd = new FoodsServiceImplf().queryFoodfs(page, pageSize, "", bid);
+		//PageData<Foodf> pd = fsf.getFoods(page, pageSize, keywords);
 	//	List<Foodf> list=pd.getData();
 	//	list.forEach(System.out::println);
 		int total=pd.getTotal();
