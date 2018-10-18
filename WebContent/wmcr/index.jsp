@@ -345,7 +345,7 @@
     <!-- 登陆开始 -->
     <dh-dialog class="disnone" type='login' height="500" header="登录" show="loginShow" >
     <!-- /wmcr/uls.do   ${pageContext.request.contextPath}/-->
-    <form class="login-form" action="${pageContext.request.contextPath}/uls.do?op=login"  method="post" novalidate name="loginForm" ng-controller="loginCtrl" onsubmit = " return checkform2()">
+  <form class="login-form" action="${pageContext.request.contextPath}/uls.do?op=login"  method="post" novalidate name="loginForm" ng-controller="loginCtrl" onsubmit = " return checkform2()">
         <div class="form-group">
             <label for="">手机号码</label>
             <div>
@@ -460,34 +460,63 @@
     
 <!--商家入驻开始-->
     <dh-dialog class="disnone" height="500" type="merchants" header="商户入驻申请" show="merchantsShow">
-     <form ng-controller="registerCtrl" class="register-form" action="" method="post" acname="bossRegisterForm" id="bossRegisterForm" >
+     <form ng-controller="registerCtrl" class="register-form" action="/wmcr/brs.do?op=bossRegister" method="post" acname="bossRegisterForm" id="bossRegisterForm" >
      <div class="inline" ng-controller="merchantCtrl">
             <div class="form-group row mb10">
                 <label class="col-3" >手机号码：</label>
                 <div class="col-8">
-                    <input type="text" id="phone" name="phone"   ng-class="{error:merchants.nameMessage}" maxlength="11" placeholder="请输入正确的11位手机号" ng-model="merchants1.name"/>
+                    <input type="text" id="phone" name="phone"  class="{error:merchants.nameMessage}" maxlength="11" placeholder="请输入正确的11位手机号" 
+ng-model="merchants1.name"/>
                 </div>
             </div>
+         <div id="phoneData"></div>
+                <div class="fl form-group captcha-item" style="width: 100%;">
+                   <div class="form-group captcha clearfix" style="margin: 0;">   
+                        <input type="button" id="getyzm" style="margin-
+top:10px;float: left; width: 70px;padding: 0;" value="获取验证码" onclick="settime(this)"/>                                           
+                        <input type="text" id="yzmtext" name="yzmtext"  value = "" 
+
+style="width: 14.5rem;height: 1rem; margin-left:17px;float: left;" onblur="checkYzm ()" 
+
+class="form-text" placeholder="短信验证码"/>
+                        
+                             <div id = "yzm_prompt" style="color:#F00"></div>
+                             
+                        </div>
+                        <div class="form-error-message"></div>
+                </div>
             
             <div class="form-group row mb10">
                 <label class="col-3" >密码：</label>
                 <div class="col-8">
-                    <input type="password" id="password" name="password"   ng-class="{error:merchants.nameMessage}" maxlength="11" placeholder="密码" ng-model="merchants2.name"/>
+                    <input type="password" id="password" name="password"   ng-
+
+class="{error:merchants.nameMessage}" maxlength="11" placeholder="密码" ng-
+
+model="merchants2.name"/>
                 </div>
             </div>
             <div class="form-group row mb10">
                 <label class="col-3" >确认密码：</label>
                 <div class="col-8">
-                    <input type="password" id="confirm_password" name="confirm_password"   ng-class="{error:merchants.nameMessage}" maxlength="11" placeholder="验证密码" ng-model="merchants3.name"/>
+                    <input type="password" id="confirm_password" name="confirm_password"   
+
+ng-class="{error:merchants.nameMessage}" maxlength="11" placeholder="验证密码" ng-
+
+model="merchants3.name"/>
                 </div>
             </div>
             
            
             <div class="form-group row agreement mb20">
-               <input type="checkbox" class="checkbox" id="agree" name="agree"><label for="male">我同意外卖超人</label><a href="/agreement" target="_blank">"餐厅入驻协议"</a>
+               <input type="checkbox" class="checkbox" id="agree" name="agree"><label 
+
+for="male">我同意外卖超人</label>< a href=" " target="_blank">"餐厅入驻协议"</ a>
             </div>
             <div class="tc merchants-btn">
-                <button ng-disabled="!user.remember || registerBtnDisabled" ng-click=""  type = "submit" class="big-btn btn-green btn mb10" ng-bind="registerBtn">确认注册</button>
+                <button ng-disabled="!user.remember || registerBtnDisabled" ng-click=""  
+
+type = "submit" class="big-btn btn-green btn mb10" ng-bind="registerBtn">确认注册</button>
             </div>
         </div>
         </form>
@@ -538,7 +567,7 @@
 	       url:"/wmcr/uls.do?op=zh&account="+$("#account").val(),
 	       dataTypes:"text",
 	       success:function(msg){
-	         $("#accountStatus").html(msg);
+	         $("#accountStatus")hijian.html(msg);
 	       }
 	     });
 	   });
@@ -574,6 +603,7 @@ setTimeout(function() {
     settime(obj) }
     ,1000) 
 }
+
 $(function () {
 	$("#getCaptcha11").click(function() {
 		//console.log($("#captcha2").val());
@@ -584,7 +614,25 @@ $(function () {
 
 		/* location.href="Rp.do?op=yzm&account="+document.getElementById("phone").value;  */
 	});
+
 })
+
+/*czd 短信验证  */
+$(function () {
+	$("#getyzm").click(function() {
+		//console.log($("#captcha2").val());
+		$.get("/wmcr/brs.do", "op=yzm&phone=" + $("#phone").val(), function(data, status) {
+			console.log(data + "," + status);
+			$("#phone").text(data);
+		});
+
+		/* location.href="Rp.do?op=yzm&account="+document.getElementById("phone").value;  */
+	});
+
+})
+
+
+
 </script>
 <!--jqueryvaldate开始-->
 <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
@@ -598,26 +646,59 @@ var length = value.length;
 var mobile = /^(13[0-9]{9})|(18[0-9]{9})|(14[0-9]{9})|(17[0-9]{9})|(15[0-9]{9})$/;  
 return this.optional(element) || (length == 11 && mobile.test(value));  
 }, "请正确填写手机号码");
-$(function(){
-$("#cell").validate({
-    rules: {
-    	phone : {  
-            required : true,  
-            minlength : 11, 
-            isMobile : true  
-        		}, 
-          },
-   messages: {
-	   phone : {  
-	       required : "请输入手机号",  
-	       minlength : "不能小于11个字符",  
-	       isMobile : "请正确填写手机号码"  
-	  		 	}
-				 },
+
+</script>
+<script>
+jQuery.validator.addMethod("phonesame", function(value, element) {
+	var flag = 0;
+	$.ajax({
+		type: "post",
+		url: "/wmcr/brs.do?op=checkPhoneAjax",
+		async: false,
+		data:"phone="+$("#phone").val(),
+		success: function(msg) {
+			if(msg=="yes") {
+				flag = 1;			
+			}
+		}
 	});
-})
+	if(flag == 0) {
+		console.log(flag);
+		return false;
+	} else {
+		console.log(flag);
+		return true;
+	}
+}, "該用戶已存在");
 </script>
 <!--自定义手机验证结束-->
+<!-- 自定义验证码验证 -->
+<script type="text/javascript">
+jQuery.validator.addMethod("codesame", function(value, element) {
+	var flag = 0;
+	$.ajax({
+		type: "post",
+		url: "/wmcr/brs.do?op=checkYzmAjax",
+		async: false,
+		data:"yzmtext="+$("#yzmtext").val(),
+		success: function(result) {
+			console.log(result+"hello");
+			if(result=="yes") {
+				flag = 1;
+			}
+		}
+	});
+	if(flag == 0) {
+		console.log(flag);
+		return false;
+	} else {
+		console.log(flag);
+		return true;
+	}
+}, "验证码错误");
+</script>
+<!--  自定义验证码验证结束-->
+<script>
 
 <script>
     //地点列表项点击事件
@@ -629,19 +710,23 @@ $("#cell").validate({
 </script>
 <!-- 商家入駐JS -->
 <script>
-$.validator.setDefaults({
+/* $.validator.setDefaults({
 submitHandler: function() {
   alert("提交事件!");
 }
-});
+}); */
 $().ready(function() {
 //在键盘按下并释放及提交后验证提交表单
 $("#bossRegisterForm").validate({
     rules: {
-    phone : {  
+    	yzmtext : {  
+    		codesame:true
+        		},
+    	phone : {  
             required : true,  
             minlength : 11, 
-            isMobile : true  
+            isMobile : true,
+            phonesame:true
         		},
     password: {
         required: true,
@@ -658,7 +743,8 @@ $("#bossRegisterForm").validate({
       phone : {  
 	       required : "请输入手机号",  
 	       minlength : "不能小于11个字符",  
-	       isMobile : "请正确填写手机号码"  
+	       isMobile : "请正确填写手机号码" ,
+	       phonesame :"用户已注册，可以登录咯"
 	  		 	},
       password: {
         required: "请输入密码",
@@ -670,6 +756,7 @@ $("#bossRegisterForm").validate({
         equalTo: "两次密码输入不一致"
       },	      
       agree: "请接受我们的声明",
+      yzmtext:"验证码错误",
     }
 });
 });
@@ -681,6 +768,9 @@ color:red;
 }
 </style>
 <!--jqueryvaldate结束-->
+
+
+ 
 </body>
 </html>
     

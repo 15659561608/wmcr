@@ -46,8 +46,9 @@ public class CommentServlet extends HttpServlet {
 		if ("queryComment".equals(op)) {
 			int page = 1;
 			int pageSize = 10;
-			int busId = (int) request.getAttribute("busssId");
-			System.out.println("////////////" + busId);
+			//int busId = (int) request.getAttribute("busss");
+			int bus=(int) request.getSession().getAttribute("busss");
+			System.out.println("////////////" + bus);
 			if (null != request.getParameter("page")) {
 				page = Integer.parseInt(request.getParameter("page"));
 			}
@@ -55,12 +56,12 @@ public class CommentServlet extends HttpServlet {
 				pageSize = Integer.parseInt(request.getParameter("pageSize"));
 			}
 
-			PageData<Comment> comment = (PageData<Comment>) cs.queryComment(page, pageSize, busId);
+		//	PageData<Comment> comment = (PageData<Comment>) cs.queryComment(page, pageSize, busId);
 
-			request.setAttribute("c", comment);
+		/*	request.setAttribute("c", comment);
 
 			// 从当前控制器跳转到jsp页面[问题列表]，跳转的方法叫做转发
-			request.getRequestDispatcher("wmcr/shop_comment.jsp").forward(request, response);
+			r/quest.getRequestDispatcher("wmcr/shop_comment.jsp").forward(request, response);*/
 
 		}
 	}

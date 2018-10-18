@@ -16,8 +16,8 @@ public class Boss_select_test {
 		b.setPwd("132456");
 		boolean flag =bsc.registerBoss(b);
 		System.out.println(flag);*/
-		String account = "15659561608";
-		List<Boss> list = bsc.isExis(account);
+		String acc = "1111111111111111";
+		List<Boss> list = bsc.isExis(acc);
 		System.out.println(list);
 		
 	}
