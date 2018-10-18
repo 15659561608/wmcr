@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import com.etc.entity.Users;
 import com.etc.service.impl.ResetPwdServiceImpl;
 import com.etc.services.ResetPwdService;
+import com.etc.util.MD5Util;
 import com.etc.util.Message;
 
 /**
@@ -100,7 +101,7 @@ public class ResetPwdServlet extends HttpServlet {
 			String account=us.getAccount();
 			
 			String pwd=request.getParameter("pass");
-			
+			 pwd = MD5Util.getEncodeByMd5(pwd);
 				Users u=new Users(account,pwd);
 				boolean flag=rps.updateUsers(u);
 				if (flag) {

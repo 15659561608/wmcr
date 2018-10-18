@@ -65,7 +65,7 @@
         <div class="log-success"></div>
         <div class="log-content">
             <p>新密码设置成功！请牢记您的密码</p>
-            <p>您可以<a href="/account/login/">立即登录</a></p>
+            <p>您可以<a href="index.jsp">立即登录</a></p>
         </div>
     </div>
 </div>
