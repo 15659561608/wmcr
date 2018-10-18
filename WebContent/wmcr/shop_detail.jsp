@@ -62,7 +62,7 @@
         <div id="main-box">
              <!--二维码-->
             <div class="qrCode-frame" ng-hide="qrCodeStatus">
-                <img src="images/wx.png" alt="扫描二维码" />
+                <img src="${pageContext.request.contextPath }${busiInfo.logo }/wmcr/images/wx.png" alt="扫描二维码" />
                 <em ng-click="qrCodeStatus=true">X</em>
             </div>
         
