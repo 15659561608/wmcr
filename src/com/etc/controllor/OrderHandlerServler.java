@@ -98,7 +98,7 @@ public class OrderHandlerServler extends HttpServlet {
 				//插入订单详细表
 				OrdersDetailService ods=new OrdersDetailServiceImpl();
 				for (int i = 0; i < id.length; i++) {
-					Ordersdetail od=new Ordersdetail(orderId, Integer.valueOf(i), Integer.valueOf(num[i]));
+					Ordersdetail od=new Ordersdetail(orderId, Integer.valueOf(id[i]), Integer.valueOf(num[i]));
 					ods.addOrdersDetail(od, conn);
 				}
 				
