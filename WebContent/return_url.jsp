@@ -53,13 +53,12 @@
 	
 		//付款金额
 		String total_amount = new String(request.getParameter("total_amount").getBytes("ISO-8859-1"),"UTF-8");
-		String test = new String(request.getParameter("test").getBytes("ISO-8859-1"),"UTF-8");
 		//修改订单状态
 		
-		/* OrdersLService os=new OrdersLServiceImpl();
+		OrdersLService os=new OrdersLServiceImpl();
 		os.updateOrdersByid(out_trade_no, 1);
-		response.sendRedirect("wmcr/order_success.jsp"); */
-		out.println("trade_no:"+trade_no+"<br/>out_trade_no:"+out_trade_no+"<br/>total_amount:"+total_amount+"<br/>test:"+test);
+		response.sendRedirect("wmcr/order_success.jsp");
+		out.println("trade_no:"+trade_no+"<br/>out_trade_no:"+out_trade_no+"<br/>total_amount:"+total_amount);
 		
 		
 	}else {

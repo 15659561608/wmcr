@@ -14,6 +14,8 @@ public interface BusinessService {
 	 * @return
 	 */
 	public List<Businesses> getBusinesses();
+	
+	public List<Businesses> selectBusName(int id); 
 	/**
 	 * 获取门店列表
 	 * @return

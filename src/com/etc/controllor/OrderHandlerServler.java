@@ -151,6 +151,7 @@ public class OrderHandlerServler extends HttpServlet {
 			String custName=request.getParameter("name");
 			String phone=request.getParameter("phone");
 			String address=request.getParameter("address");
+			System.out.println(custName);
 			SimpleDateFormat simple=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String regDate=simple.format(new Date());
 			

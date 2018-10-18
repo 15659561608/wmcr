@@ -47,5 +47,5 @@ public class BossDaoImpl implements BossDao {
 		}
 		return null;
 	}
-
+ 
 }

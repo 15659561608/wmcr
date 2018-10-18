@@ -23,7 +23,7 @@ public class FoodsServiceImplf implements FoodServicesf{
 	}
 
 	@Override
-	public PageData<Foodf> getFoods(int page, int pageSize, String keyWords,int busId) {
+	public PageData<Food> getFoods(int page, int pageSize, String keyWords,int busId) {
 		// TODO Auto-generated method stub
 		return fdf.queryFoods(page, pageSize, keyWords,busId);
 	}
@@ -73,6 +73,12 @@ public class FoodsServiceImplf implements FoodServicesf{
 	public Food getFoodById(int id) {
 		// TODO Auto-generated method stub
 		return fdf.getFoodById(id);
+	}
+
+	@Override
+	public PageData<Foodf> queryFoodfs(int page, int pageSize, String keyWords, int busId) {
+		// TODO Auto-generated method stub
+		return fdf.queryFoodfs(page, pageSize, keyWords, busId);
 	}
 
 

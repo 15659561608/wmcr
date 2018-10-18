@@ -129,8 +129,9 @@ public class BusinessServlet extends HttpServlet {
 			List<SalesBusi> salesList = new SalesServiceImpl().getSalesByBusId(19);
 			
 			// 获取门店菜品
-			PageData<Foodf> foodList = new FoodsServiceImplf().getFoods(page, pageSize, "", id);
 		
+			PageData<Food> foodList = new FoodsServiceImplf().getFoods(page, pageSize, "", id);
+
 			/*
 			 * // 拼接json字符串 Gson gson = new Gson(); List<MenuData> beanList=new
 			 * ArrayList<>(); for (int i = 0; i < foodList.getData().size(); i++) { MenuData

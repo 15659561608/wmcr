@@ -53,7 +53,6 @@ public class AliPayServlet extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html");
 		PrintWriter out=response.getWriter();
-		
 		if("pay".equals(op)) {
 			
 			//将订单插入数据库
@@ -63,19 +62,13 @@ public class AliPayServlet extends HttpServlet {
 			//付款金额，必填
 			String total_amount = new String(request.getParameter("money").getBytes("ISO-8859-1"),"UTF-8");
 			//订单名称，必填
-			String subject = new String(request.getParameter("orderName").getBytes("ISO-8859-1"),"UTF-8");
+			String subject = new String(request.getParameter("orderName"));
 			//商品描述，可空
 			String body = new String(request.getParameter("WIDbody").getBytes("ISO-8859-1"),"UTF-8");
-			System.out.println(out_trade_no);
-			System.out.println(total_amount);
-			System.out.println(subject);
-			System.out.println(body);
-			String test="test";
 			alipayRequest.setBizContent("{\"out_trade_no\":\""+ out_trade_no +"\"," 
 					+ "\"total_amount\":\""+ total_amount +"\"," 
 					+ "\"subject\":\""+ subject +"\"," 
 					+ "\"body\":\""+ body +"\"," 
-					+ "\"test\":\""+ test +"\"," 
 					+ "\"product_code\":\"FAST_INSTANT_TRADE_PAY\"}");
 			
 			//若想给BizContent增加其他可选请求参数，以增加自定义超时时间参数timeout_express来举例说明

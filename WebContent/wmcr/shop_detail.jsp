@@ -270,18 +270,6 @@
                                 
                                 <ul class="clearfix menu-group">
                                    
-                                      
-                                  
-                                      
-                                  
-                                      
-                                  
-                                      
-                                  
-                                      
-                                  
-                                      
-                                 
                                 </ul>
                         </section>
                     </article>

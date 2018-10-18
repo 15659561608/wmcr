@@ -47,13 +47,13 @@
             <header id="header">
                 <div class="common-width clearfix">
                     <h1 class="fl">
-                        <a class="logo base-logo" href="index.html">外卖超人</a>
+                        <a class="logo base-logo" href="<c:choose><c:when test="${users !=null }">${pageContext.request.contextPath }/wmcr/mainPage.jsp</c:when><c:otherwise>${pageContext.request.contextPath }/wmcr/index.jsp</c:otherwise></c:choose>">外卖超人</a>
                     </h1>
                     
                         <ul class="member logging" ng-init="loginInfo=true">
-                            <li><a href="index.html" class="index">首页</a></li>
+                            <li><a href="<c:choose><c:when test="${users !=null }">${pageContext.request.contextPath }/wmcr/mainPage.jsp</c:when><c:otherwise>${pageContext.request.contextPath }/wmcr/index.jsp</c:otherwise></c:choose>" class="index">首页</a></li>
                             <li class="userName">
-                                <a href="/account/center/manage/" rel="nofollow" draw-user>18005151538<em></em></a>
+                                <a href="/account/center/manage/" rel="nofollow" draw-user><em></em></a>
                                 <div>
                                     <p><a href="/account/center/manage/"  rel="nofollow">账号管理</a></p>
                                     <p><a href="/account/center/address/"  rel="nofollow">地址管理</a></p>
@@ -215,7 +215,7 @@
 							<form style="display:none;" id="paySub" method="post" action="${pageContext.request.contextPath }/AliPay?op=pay">
 								<input type="hidden" name="ordId" value="${ord.id }"/>
 								<input type="hidden" name="money" value="${ord.money+busiInfo.disFee }"/>
-								<input type="hidden" name="orderName" value="${busiInfo.busiName }"/>
+								<input type="hidden" id="orderName" name="orderName" value="${busiInfo.busiName }"/>
 								<input type="hidden" name="WIDbody" value=""/>
 							</form>
 						<button id="subBtn"
@@ -451,7 +451,7 @@
             <div class="form-group row mb20">
                 <label class="require col-3">收单人：</label>
                 <div class="col-8">
-                    <input type="text" required maxlength="10"
+                    <input type="text" required maxlength="10" id="adsName"
                            ng-class="{error:userAddressForm.submit && userAddressForm.name.$invalid}" name="name"
                            placeholder="您的称呼" ng-model="userAddress.customer_name">
                 </div>
@@ -462,7 +462,7 @@
             <div class="form-group row mb20">
                 <label class="require col-3">手机号码：</label>
                 <div class="col-8">
-                    <input type="text" maxlength="11" required mobile
+                    <input type="text" maxlength="11" required mobile id="adsPhone"
                            ng-class="{error:userAddressForm.submit && userAddressForm.contact.$invalid}" name="contact"
                            placeholder="您的联系方式" ng-model="userAddress.customer_phone">
                 </div>
@@ -476,7 +476,7 @@
             <div class="form-group row mb30">
                 <label class="require col-3">送餐地址：</label>
                 <div class="col-8">
-                    <input type="text" required
+                    <input type="text" required id="adsAds"
                            ng-class="{error:userAddressForm.submit && userAddressForm.address.$invalid}" name="address"
                            placeholder="详细地址，如武定西路1189号606室" ng-model="userAddress.delivery_address">
                 </div>

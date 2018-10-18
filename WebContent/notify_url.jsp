@@ -22,6 +22,7 @@
  */
  
 	//获取支付宝POST过来反馈信息
+	System.out.println("c");
 	Map<String,String> params = new HashMap<String,String>();
 	Map<String,String[]> requestParams = request.getParameterMap();
 	for (Iterator<String> iter = requestParams.keySet().iterator(); iter.hasNext();) {

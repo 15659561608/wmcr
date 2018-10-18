@@ -54,7 +54,7 @@
 					<td><input name="" type="checkbox" value=""></td>
 					<td>001</td>
 					<td>分类名称</td>
-					<td><a href="javascript:;" onClick="picture_edit('图库编辑','picture-show.html','10001')"><img width="210" class="picture-thumb" src="temp/200jpg"></a></td>
+					<td><a href="javascript:;" onClick="picture_edit('图库编辑','picture-show.html','10001')"><img width="210" class="picture-thumb" src="temp/200.jpg"></a></td>
 					<td class="text-l"><a class="maincolor" href="javascript:;" onClick="picture_edit('图库编辑','picture-show.html','10001')">现代简约 白色 餐厅</a></td>
 					<td class="text-c">标签</td>
 					<td>2014-6-11 11:11:42</td>
@@ -165,7 +165,7 @@ function picture_edit(title,url,id){
 
 /*图片-删除*/
 function picture_del(obj,id){
-	layer.confirm('确认要删除吗？',function(index){
+	layer.confirm('确认要删除吗？',function(index) {
 		$.ajax({
 			type: 'POST',
 			url: '',

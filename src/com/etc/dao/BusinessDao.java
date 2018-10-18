@@ -18,6 +18,7 @@ public interface BusinessDao {
 	 */
 	public List<Businesses> getBusinesses();
 	
+	public List<Businesses> getBusName(int id);
 	/**
 	 * 获取门店列表
 	 * @return

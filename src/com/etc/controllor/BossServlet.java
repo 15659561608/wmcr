@@ -3,6 +3,7 @@ package com.etc.controllor;
 import java.awt.print.Printable;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,9 +13,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.etc.entity.Boss;
+import com.etc.entity.Businesses;
 import com.etc.service.impl.BossServiceImpl;
+import com.etc.service.impl.BusinessServiceImpl;
 import com.etc.services.BossService;
+import com.etc.services.BusinessService;
 import com.etc.util.MD5Util;
+import com.google.gson.Gson;
 
 /**
  * Servlet implementation class BossInfoServlet
@@ -79,6 +84,20 @@ public class BossServlet extends HttpServlet {
 			}else {
 				out.print("密码错误");
 			}
+		}
+		if("select".equals(op)) {
+			response.setCharacterEncoding("utf-8");
+			response.setContentType("text/json");
+			//查询店铺信息
+			BusinessService bss= new BusinessServiceImpl();
+			//查询商户的ID
+			BossService boss = new BossServiceImpl();
+			Boss b=(Boss)session.getAttribute("boss");
+		    List<Businesses> list = bss.selectBusName(b.getId());
+			Gson gson=new Gson();
+			String jsonStr=gson.toJson(list);
+			out.print(jsonStr);
+			out.close();
 		}
 		
 	}

@@ -1,13 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html><!--/*技术支持，小庄602842076     验证：商城技术支持*/
-/*技术支持，小庄602842076    验证：商城技术支持*/
-/*技术支持，小庄602842076    验证：商城技术支持*/
-/*技术支持，小庄602842076    验证：商城技术支持*/
-/*技术支持，小庄602842076    验证：商城技术支持*/
-/*https://shop116998991.taobao.com/*/
-/*https://shop116998991.taobao.com/*/
-/*https://shop116998991.taobao.com/*/-->
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -46,13 +39,13 @@
             <header id="header">
                 <div class="common-width clearfix">
                     <h1 class="fl">
-                        <a class="logo base-logo" href="index.html">外卖超人</a>
+                        <a class="logo base-logo" href="<c:choose><c:when test="${users !=null }">${pageContext.request.contextPath }/wmcr/mainPage.jsp</c:when><c:otherwise>${pageContext.request.contextPath }/wmcr/index.jsp</c:otherwise></c:choose>">外卖超人</a>
                     </h1>
                     
                         <ul class="member logging" ng-init="loginInfo=true">
-                            <li><a href="index.html" class="index">首页</a></li>
+                            <li><a href=" <c:choose><c:when test="${users !=null }">${pageContext.request.contextPath }/wmcr/mainPage.jsp</c:when><c:otherwise>${pageContext.request.contextPath }/wmcr/index.jsp</c:otherwise></c:choose>" class="index">首页</a></li>
                             <li class="userName">
-                                <a href="/account/center/manage/" rel="nofollow" draw-user>18005151538<em></em></a>
+                                <a href="/account/center/manage/" rel="nofollow" draw-user>${user.account }<em></em></a>
                                 <div>
                                     <p><a href="/account/center/manage/"  rel="nofollow">账号管理</a></p>
                                     <p><a href="/account/center/address/"  rel="nofollow">地址管理</a></p>
@@ -86,14 +79,14 @@
         <div class="confirm-content fl">
             <div class="content">
                 <h3>订单已成功提交</h3>
-                <p>请保持手机13851435593畅通，稍后超人客服或餐厅会与您联系。</p>
+                <p>请保持手机畅通，稍后超人客服或餐厅会与您联系。</p>
                 <p>感谢使用外卖超人。</p>
                 
                     
-                    <p>获得氪星币：<span class="c_xkb">320</span>个</p>
-                    
+<!--                     <p>获得氪星币：<span class="c_xkb">320</span>个</p>
+ -->                    
                 
-                <a href="/account/center/orders/" class="order">查看订单</a>
+                <a href="${pageContext.request.contextPath }/wmcr/member_order.jsp" class="order">查看订单</a>
                 
             </div>
         </div>
