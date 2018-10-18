@@ -43,11 +43,12 @@ public class CommentServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
-		response.setContentType("html/text;charset=utf-8");
+		response.setContentType("text/html;charset=utf-8");
 		String op = request.getParameter("op");
 		PrintWriter out = response.getWriter();
 		int busId = (int) request.getSession().getAttribute("busss");
-
+		
+		request.setAttribute("busId", busId);
 		if ("queryComment".equals(op)) {
 			int page = 1;
 			int pageSize = 10;
@@ -60,41 +61,50 @@ public class CommentServlet extends HttpServlet {
 			}
 
 			PageData<Comment> comment = (PageData<Comment>) cs.queryComment(page, pageSize, busId);
+			int i = comment.getTotal();
 
+			request.setAttribute("total", i);
 			request.setAttribute("c", comment);
 
-			// 从当前控制器跳转到jsp页面[问题列表]，跳转的方法叫做转发
+			
 			request.getRequestDispatcher("wmcr/shop_comment.jsp").forward(request, response);
 
 		}
 
 		if ("addComment".equals(op)) {
 			String content = request.getParameter("content");
-			String praise = request.getParameter("result");
+			String praise = request.getParameter("praise");
 			Date getdate = Calendar.getInstance().getTime();
 			String comDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(getdate);
+			
 			Users u = (Users) request.getSession().getAttribute("users");
 			int userId = u.getId();
+			
 			// 判断用户是否买过这家店的东西
 			boolean flag = cs.queryorder(userId, busId);
-			System.out.println(userId);
+			// System.out.println(userId);
+			// System.out.println(flag);
 			// 判断用户是否登录
-			if (u != null) {
-				System.out.println("***************");
-				out.print("<script>alert('请先登录');location.href='wmcr/shop_comment.jsp'</script>");
-				
+			if (u == null) {
+
+				out.print("<script>alert('请先登录');location.href='wmcr/index.jsp'</script>");
+				// out.print("<script>alert('请先登录');location.href='wmcr/shop_comment.jsp'</script>");
+
 			}
 			// 判断用户是否买过这家店的东西
 			if (flag == false) {
 				out.print("<script>alert('你还没下过单不可评论');location.href='wmcr/shop_comment.jsp'</script>");
+				// request.getRequestDispatcher("wmcr/shop_comment.jsp").forward(request,
+				// response);
 			}
 
 			else {
 
 				boolean f = cs.addComment(content, comDate, Integer.valueOf(praise), userId, busId);
 				if (f) {
-
+					out.print("<script>alert('评论成功');location.href='wmcr/shop_comment.jsp'</script>");
 				}
+				
 			}
 
 		}
