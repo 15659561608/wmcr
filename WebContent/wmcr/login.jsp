@@ -44,23 +44,41 @@
     <div class="main-inner">
         
             <div class="log-box" id="loginPageBox">
-                <div class="form-group w275">
-                    <label for="lPhone">手机号码</label>
-                    <span class="fs12 fr">没有注册 ？ <a href="/account/register/" class="yo">立即注册</a></span>
-                    <input id="lPhone" maxlength="11" type="text" class="form-text" placeholder="输入您的手机号码"/></label>
-                </div>
-                <div class="form-error-message"></div>
-                <div class="form-group w275">
-                    <label  for="lPass" >登录密码</label>
-                    <input id="lPass" maxlength="10" type="password" class="form-text" onpaste="return false" placeholder="请输入登录密码"/></label>
-                </div>
-                        <input id="lRemember" type="checkbox" value="true"> 记住我
+                <form class="login-form" action="${pageContext.request.contextPath}/uls.do?op=login"  method="post" novalidate name="loginForm" ng-controller="loginCtrl" onsubmit = " return checkform2()">
+        <div class="form-group">
+            <label for="">手机号码</label>
+            <div>
+                <input  id  = "account"  name = "account" maxlength="11" type="text" class="form-text" placeholder="输入您的手机号码"/><div id="accountStatus" style="color:#F00"></div></label>
+                <span class="vaildate-error" ng-if="user.usernameMessage">
+                    <span ng-bind="user.usernameMessage"></span>
+                </span>
+                <span class="vaildate-error" ng-if="user.isLogined">
+                    该手机号码尚未注册！<a href="javascript:;" ng-click="locationRegister()" class="link">立即注册</a>
+                </span>
+            </div>
+        </div>
+        <div class="form-group mb10">
+            <label for="">登录密码</label>
+            <div>
+                <input type="password" id = "pwd" name = "pwd" maxlength="10" type="password" class="form-text" onpaste="return false" placeholder="请输入登录密码"/><div id="pwdStatus" style="color:#F00"></div></label>
+                <span class="vaildate-error" ng-if="user.passwordMessage">
+                    <span ng-bind="user.passwordMessage"></span>
+                </span>
+            </div>
+        </div>
+        <div class="clearfix mb10">
+            <input id="lRemember" type="checkbox" value="true"> 记住我
                    
-                    <span class="fr fs12"><a class="yo" target="_black" href="/account/password/reset_via_mobile/">忘记密码</a></span>
-            
-                <div>
-                    <button class="form-btn" id="loginPageBtn">登录</button>
-                </div>
+                    <span class="fr fs12"><a class="yo" target="_black" href="pwd_forget.jsp">忘记密码</a></span>
+        </div>
+         <button class="form-btn" id="loginPageBtn">登录</button>
+        <div class="clearfix">
+            <span class="fr fs12">
+                没有账号?
+                <a href="javascript:void(0)" ng-click="locationRegister()" class="link">立即注册</a>
+            </span>
+        </div>
+    </form>
     </div>
 
         </div>
@@ -112,7 +130,7 @@ var s0 = d.getElementsByTagName("script")[0];s0.parentNode.insertBefore(s, s0);
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;·
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
   m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
@@ -122,5 +140,33 @@ var s0 = d.getElementsByTagName("script")[0];s0.parentNode.insertBefore(s, s0);
 </script>
 <!-- End Google Analytics Code -->
 
+<!-- 登陆AJAX异步传输 -->
+   <script language="javascript">
+   $(document).ready(function(){
+	   $("#account").blur(function(event) {
+	     $.ajax({
+	       type:"post",
+	       url:"/wmcr/uls.do?op=zh&account="+$("#account").val(),
+	       dataTypes:"text",
+	       success:function(msg){
+	         $("#accountStatus").html(msg);
+	       }
+	     });
+	   });
+	  
+	   $("#pwd").blur(function(event) {
+	     $.ajax({
+	       type:"post",
+	       url:"/wmcr/uls.do?op=chaxun",
+	       dataTypes:"text",
+	       data:"pwd="+$("#pwd").val(),
+	       success:function(msg){
+	         $("#pwdStatus").html(msg);
+	       }
+	     });
+	   });
+	 }); 
+  </script>
+  <script type="text/javascript" src = "${pageContext.request.contextPath}/wmcr/js/check.js"></script>
 </body>
 </html>
