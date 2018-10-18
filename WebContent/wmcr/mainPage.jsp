@@ -483,60 +483,70 @@
             <p>请您检查地址拼写/格式是否正确和 <a href="javascript:void(0)" class="link" ng-click="resetStreet()">重新输入您的地址</a>。</p>
         </div>
     </dh-dialog>
-    <!-- 商家入驻弹窗 -->
+ <!--商家入驻开始-->
     <dh-dialog class="disnone" height="500" type="merchants" header="商户入驻申请" show="merchantsShow">
-        <div class="inline" ng-controller="merchantCtrl">
+     <form ng-controller="registerCtrl" class="register-form" action="/wmcr/brs.do?op=bossRegister" method="post" acname="bossRegisterForm" id="bossRegisterForm" >
+     <div class="inline" ng-controller="merchantCtrl">
             <div class="form-group row mb10">
-                <label class="col-3" >商户名称：</label>
+                <label class="col-3" >手机号码：</label>
                 <div class="col-8">
-                    <input type="text" ng-class="{error:merchants.nameMessage}" maxlength="11" placeholder="输入店铺的名称，例：美美小厨" ng-model="merchants.name"/>
+                    <input type="text" id="phone" name="phone"  class="{error:merchants.nameMessage}" maxlength="11" placeholder="请输入正确的11位手机号" 
+ng-model="merchants1.name"/>
                 </div>
-                <span class="vaildate-error col-8 col-offset-3" ng-if="merchants.nameMessage">
-                    <span ng-bind="merchants.nameMessage"></span>
-                </span>
+            </div>
+         <div id="phoneData"></div>
+                <div class="fl form-group captcha-item" style="width: 100%;">
+                   <div class="form-group captcha clearfix" style="margin: 0;">   
+                        <input type="button" id="getyzm" style="margin-
+top:10px;float: left; width: 70px;padding: 0;" value="获取验证码" onclick="settime(this)"/>                                           
+                        <input type="text" id="yzmtext" name="yzmtext"  value = "" 
+
+style="width: 14.5rem;height: 1rem; margin-left:17px;float: left;" onblur="checkYzm ()" 
+
+class="form-text" placeholder="短信验证码"/>
+                        
+                             <div id = "yzm_prompt" style="color:#F00"></div>
+                             
+                        </div>
+                        <div class="form-error-message"></div>
+                </div>
+            
+            <div class="form-group row mb10">
+                <label class="col-3" >密码：</label>
+                <div class="col-8">
+                    <input type="password" id="password" name="password"   ng-
+
+class="{error:merchants.nameMessage}" maxlength="11" placeholder="密码" ng-
+
+model="merchants2.name"/>
+                </div>
             </div>
             <div class="form-group row mb10">
-                <label class="col-3">所属城市：</label>
+                <label class="col-3" >确认密码：</label>
                 <div class="col-8">
-                    <select model="city" area-model="area" ng-class="{error:merchants.cityMessage}" class="city-change"></select>
+                    <input type="password" id="confirm_password" name="confirm_password"   
+
+ng-class="{error:merchants.nameMessage}" maxlength="11" placeholder="验证密码" ng-
+
+model="merchants3.name"/>
                 </div>
-                <span class="vaildate-error col-8 col-offset-3" ng-if="merchants.cityMessage">
-                    <span ng-bind="merchants.cityMessage"></span>
-                </span>
             </div>
-            <div class="form-group row mb10">
-                <label class="col-3">行政分区：</label>
-                <span class="col-8">
-                    <select  id="areaSelect"></select>
-                </span>
-            </div>
-            <div class="form-group row mb10">
-                <label class="col-3">店主姓名：</label>
-                <div class="col-8">
-                    <input type="text" ng-class="{error:merchants.usernameMessage}" placeholder="请输入联系人姓名" ng-model="merchants.username"/>
-                </div>
-                <span class="vaildate-error col-8 col-offset-3" ng-if="merchants.usernameMessage">
-                    <span ng-bind="merchants.usernameMessage"></span>
-                </span>
-            </div>
-            <div class="form-group row mb20">
-                <label class="col-3">联系电话：</label>
-                <div class="col-8">
-                   <input type="text" ng-class="{error:merchants.phoneMessage}" maxlength="11" placeholder="建议输入11位手机号码" ng-model="merchants.phone"/>
-                </div>
-                <span class="vaildate-error col-8 col-offset-3" ng-if="merchants.phoneMessage">
-                    <span ng-bind="merchants.phoneMessage"></span>
-                </span>
-            </div>
+            
+           
             <div class="form-group row agreement mb20">
-               <input type="checkbox" ng-model="merchants.checkbox" id="male"/><label for="male">我同意外卖超人</label><a href="/agreement" target="_blank">"餐厅入驻协议"</a>
+               <input type="checkbox" class="checkbox" id="agree" name="agree"><label 
+
+for="male">我同意外卖超人</label>< a href=" " target="_blank">"餐厅入驻协议"</ a>
             </div>
             <div class="tc merchants-btn">
-                <button class="btn normal-btn btn-success" ng-click="merchantSubmit()" ng-disabled="!merchants.checkbox">确认</button>
-                <button class="btn normal-btn btn-cancel" ng-click="merchantCancel()">取消</button>
+                <button ng-disabled="!user.remember || registerBtnDisabled" ng-click=""  
+
+type = "submit" class="big-btn btn-green btn mb10" ng-bind="registerBtn">确认注册</button>
             </div>
         </div>
+        </form>
     </dh-dialog>
+<!-- 商户入驻结束-->   
 
     <dh-dialog class="disnone" type="alert" index="1001" header="" show="requestSuccess">
         <div class="alert-box fs14">
@@ -558,7 +568,8 @@
         </li>
     </ul>
     
-    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/wmcr/js/angular.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/wmcr/js/jquery-1.7.2.min.js"></script>
     <script src="js/common.js"></script>
     
     <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=5cd6dcb00bc675bf26c9b4ab2af0759a"></script>
@@ -574,24 +585,192 @@
     
     <script>angular.bootstrap(document, ["app"]);</script>
     
-    
-   <script language="javascript">
-   function check(){
-	var account=loginForm.account.value;
-	var pwd=loginForm.pwd.value;
-	if((account=="")||(account==null)){
-		alert("请输入用户名");
-		loginForm.account.focus();
-		return;	
-	}else if((pwd=="")||(pwd==null)){
-		alert("请输入密码！");
-		loginForm.pwd.focus();
-		return;
-	}else{
-		loginForm.submit();
-	}
+
+
+<!-- 验证码倒计时 ，AJAX请求验证码-->  
+<script type="text/javascript"> 
+var countdown=60; 
+function settime(obj) { 
+    if (countdown == 0) { 
+        obj.removeAttribute("disabled");    
+        obj.value="免费获取验证码"; 
+        countdown = 60; 
+        return;
+    } else { 
+        obj.setAttribute("disabled", true); 
+        obj.value="重新发送(" + countdown + ")"; 
+        countdown--; 
+    } 
+setTimeout(function() { 
+    settime(obj) }
+    ,1000) 
+}
+
+$(function () {
+	$("#getCaptcha11").click(function() {
+		//console.log($("#captcha2").val());
+		$.get("/wmcr/urs.do", "op=yzm&account1=" + $("#account1").val(), function(data, status) {
+			console.log(data + "," + status);
+			$("#account1").text(data);
+		});
+
+		/* location.href="Rp.do?op=yzm&account="+document.getElementById("phone").value;  */
+	});
+
+})
+
+/*czd 短信验证  */
+$(function () {
+	$("#getyzm").click(function() {
+		//console.log($("#captcha2").val());
+		$.get("/wmcr/brs.do", "op=yzm&phone=" + $("#phone").val(), function(data, status) {
+			console.log(data + "," + status);
+			$("#phone").text(data);
+		});
+
+		/* location.href="Rp.do?op=yzm&account="+document.getElementById("phone").value;  */
+	});
+
+})
+
+
+
+</script>
+<!--jqueryvaldate开始-->
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
+
+<!--自定义手机验证-->
+<script>
+jQuery.validator.addMethod("isMobile", function(value, element) {  
+var length = value.length;  
+var mobile = /^(13[0-9]{9})|(18[0-9]{9})|(14[0-9]{9})|(17[0-9]{9})|(15[0-9]{9})$/;  
+return this.optional(element) || (length == 11 && mobile.test(value));  
+}, "请正确填写手机号码");
+
+</script>
+<script>
+jQuery.validator.addMethod("phonesame", function(value, element) {
+	var flag = 0;
+	$.ajax({
+		type: "post",
+		url: "/wmcr/brs.do?op=checkPhoneAjax",
+		async: false,
+		data:"phone="+$("#phone").val(),
+		success: function(msg) {
+			if(msg=="yes") {
+				flag = 1;			
+			}
 		}
-  </script>
+	});
+	if(flag == 0) {
+		console.log(flag);
+		return false;
+	} else {
+		console.log(flag);
+		return true;
+	}
+}, "該用戶已存在");
+</script>
+<!--自定义手机验证结束-->
+<!-- 自定义验证码验证 -->
+<script type="text/javascript">
+jQuery.validator.addMethod("codesame", function(value, element) {
+	var flag = 0;
+	$.ajax({
+		type: "post",
+		url: "/wmcr/brs.do?op=checkYzmAjax",
+		async: false,
+		data:"yzmtext="+$("#yzmtext").val(),
+		success: function(result) {
+			console.log(result+"hello");
+			if(result=="yes") {
+				flag = 1;
+			}
+		}
+	});
+	if(flag == 0) {
+		console.log(flag);
+		return false;
+	} else {
+		console.log(flag);
+		return true;
+	}
+}, "验证码错误");
+</script>
+<!--  自定义验证码验证结束-->
+<script>
+
+
+
+    //地点列表项点击事件
+    
+    function resultClick(item){
+    	  var address=$(item).attr("value");
+    		location.href="${pageContext.request.contextPath}/MapServlet?op=queryBusi&address="+address;
+    }
+</script>
+<!-- 商家入駐JS -->
+<script>
+/* $.validator.setDefaults({
+submitHandler: function() {
+  alert("提交事件!");
+}
+}); */
+$().ready(function() {
+//在键盘按下并释放及提交后验证提交表单
+$("#bossRegisterForm").validate({
+    rules: {
+    	yzmtext : {  
+    		codesame:true
+        		},
+    	phone : {  
+            required : true,  
+            minlength : 11, 
+            isMobile : true,
+            phonesame:true
+        		},
+    password: {
+        required: true,
+        minlength: 5
+      },
+      confirm_password: {
+        required: true,
+        minlength: 5,
+        equalTo: "#password"
+      },
+      agree: "required"
+    },
+    messages: {
+      phone : {  
+	       required : "请输入手机号",  
+	       minlength : "不能小于11个字符",  
+	       isMobile : "请正确填写手机号码" ,
+	       phonesame :"用户已注册，可以登录咯"
+	  		 	},
+      password: {
+        required: "请输入密码",
+        minlength: "密码长度不能小于 5 个字母"
+      },
+      confirm_password: {
+        required: "请输入密码",
+        minlength: "密码长度不能小于 5 个字母",
+        equalTo: "两次密码输入不一致"
+      },	      
+      agree: "请接受我们的声明",
+      yzmtext:"验证码错误",
+    }
+});
+});
+</script>
+
+<style>
+.error{
+color:red;
+}
+</style>
+<!--jqueryvaldate结束-->
 
     
 
