@@ -18,11 +18,11 @@
         (function(document, screen) {if (screen.width < 760) {document.location.href="/mobile/";}}(document, screen));
     </script>
     
-    <script type="text/javascript" src = "js/check.js"></script>
+    <script type="text/javascript" src = "${pageContext.request.contextPath}/wmcr/js/check.js"></script>
     
-    <link rel="stylesheet" href="css/common.css?v=2015-5-20"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/wmcr/css/common.css?v=2015-5-20"/>
     
-    <link rel="stylesheet" href="css/frontPage.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/wmcr/css/frontPage.css"/>
     <title>首页</title>
 </head>
 <body class="day " ng-controller="bodyCtrl"  day-or-night>
@@ -205,73 +205,73 @@
                     <ul class="clearfix">
                         <li>
                             <a href="shop_brand.html" target="_blank">
-                                <img src="images/restaurant_03.png" alt="巴贝拉">
+                                <img src="${pageContext.request.contextPath}/wmcr/images/restaurant_03.png" alt="巴贝拉">
                             </a>
                             <a href="shop_brand.html" target="_blank" class="restaurant-name fs14">巴贝拉</a>
                         </li>
                         <li>
                             <a href="shop_brand.html" target="_blank">
-                                <img src="images/restaurant_04.jpg" alt="望湘园">
+                                <img src="${pageContext.request.contextPath}/wmcr/images/restaurant_04.jpg" alt="望湘园">
                             </a>
                             <a href="shop_brand.html" target="_blank" class="restaurant-name fs14">望湘园</a>
                         </li>
                         <li>
                             <a href="shop_brand.html" target="_blank">
-                                <img src="images/restaurant_09.png" alt="鲜芋仙">
+                                <img src="${pageContext.request.contextPath}/wmcr/images/restaurant_09.png" alt="鲜芋仙">
                             </a>
                             <a href="shop_brand.html" target="_blank" class="restaurant-name fs14">鲜芋仙</a>
                         </li>
                         <li>
                             <a href="shop_brand.html" target="_blank">
-                                <img src="images/restaurant_15.png" alt="星巴克">
+                                <img src="${pageContext.request.contextPath}/wmcr/images/restaurant_15.png" alt="星巴克">
                             </a>
                             <a href="shop_brand.html" target="_blank" class="restaurant-name fs14">星巴克</a>
                         </li>
                         <li>
                             <a href="shop_brand.html" target="_blank">
-                                <img src="images/subway.png" alt="赛百味">
+                                <img src="${pageContext.request.contextPath}/wmcr/images/subway.png" alt="赛百味">
                             </a>
                             <a href="shop_brand.html" target="_blank" class="restaurant-name fs14">赛百味</a>
                         </li>
                         <li>
                             <a href="shop_brand.html" target="_blank">
-                                <img src="images/bifengtang.png" alt="避风塘">
+                                <img src="${pageContext.request.contextPath}/wmcr/images/bifengtang.png" alt="避风塘">
                             </a>
                             <a href="shop_brand.html" target="_blank" class="restaurant-name fs14">避风塘</a>
                         </li>
                         <li>
                             <a href="shop_brand.html" target="_blank">
-                                <img src="images/restaurant_07.png" alt="味千拉面">
+                                <img src="${pageContext.request.contextPath}/wmcr/images/restaurant_07.png" alt="味千拉面">
                             </a>
                             <a href="shop_brand.html" target="_blank" class="restaurant-name fs14">味千拉面</a>
                         </li>
                         <li>
                             <a href="shop_brand.html" target="_blank">
-                                <img src="images/restaurant_08.jpg" alt="吉野家">
+                                <img src="${pageContext.request.contextPath}/wmcr/images/restaurant_08.jpg" alt="吉野家">
                             </a>
                             <a href="shop_brand.html" target="_blank" class="restaurant-name fs14">吉野家</a>
                         </li>
                         <li>
                             <a href="shop_brand.html" target="_blank">
-                                <img src="images/restaurant_14.jpg" alt="必胜客">
+                                <img src="${pageContext.request.contextPath}/wmcr/images/restaurant_14.jpg" alt="必胜客">
                             </a>
                             <a href="shop_brand.html" target="_blank" class="restaurant-name fs14">必胜客</a>
                         </li>
                         <li>
                             <a href="shop_brand.html" target="_blank">
-                                <img src="images/restaurant_10.png" alt="萨莉亚">
+                                <img src="${pageContext.request.contextPath}/wmcr/images/restaurant_10.png" alt="萨莉亚">
                             </a>
                             <a href="shop_brand.html" target="_blank" class="restaurant-name fs14">萨莉亚</a>
                         </li>
                         <li>
                             <a href="shop_brand.html" target="_blank">
-                                <img src="images/restaurant_12.jpg" alt="新旺茶餐厅">
+                                <img src="${pageContext.request.contextPath}/wmcr/images/restaurant_12.jpg" alt="新旺茶餐厅">
                             </a>
                             <a href="shop_brand.html" target="_blank" class="restaurant-name fs14">新旺茶餐厅</a>
                         </li>
                         <li>
                             <a href="shop_brand.html" target="_blank">
-                                <img src="images/restaurant_16.png" alt="CoCo壱番屋">
+                                <img src="${pageContext.request.contextPath}/wmcr/images/restaurant_16.png" alt="CoCo壱番屋">
                             </a>
                             <a href="shop_brand.html" target="_blank" class="restaurant-name fs14">CoCo壱番屋</a>
                         </li>
@@ -443,7 +443,7 @@
     <!-- 搜索附近餐厅弹窗 -->
     <dh-dialog class="disnone" height="500" type="street" header="请选择最靠近你的地址" show="addressShow">
         <ul class="select-street">
-            <li ng-repeat="item in shreets" onclick="resultClick(this)">
+            <li ng-repeat="item in shreets" value="" ng-value="item.name" onclick="resultClick(this)">
                 <i class="icon address-yellow"></i>
                 <div class="shreets-item">
                     <h4 ng-bind="item.name"></h4>
@@ -535,14 +535,14 @@ type = "submit" class="big-btn btn-green btn mb10" ng-bind="registerBtn">确认�
     
 
      <ul class="site-fixed">
-        <li class="scroll-top"><img src="images/scroll_top1.png" alt=""/> </li>
+        <li class="scroll-top"><img src="${pageContext.request.contextPath}/wmcr/images/scroll_top1.png" alt=""/> </li>
         <li class="scorll-feekback" ng-click="userFeedback=true">
             <img src="images/scorll_feekback.png" alt=""/>
             <div>意见反馈</div>
         </li>
     </ul>
-    <script type="text/javascript" src="js/angular.min.js"></script>
-    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/wmcr/js/angular.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/wmcr/js/jquery-1.7.2.min.js"></script>
     <script src="js/common.js"></script>
     
     <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=5cd6dcb00bc675bf26c9b4ab2af0759a"></script>
@@ -700,6 +700,8 @@ jQuery.validator.addMethod("codesame", function(value, element) {
 <!--  自定义验证码验证结束-->
 <script>
 
+<script>
+
     //地点列表项点击事件
     
     function resultClick(item){
@@ -760,6 +762,7 @@ $("#bossRegisterForm").validate({
 });
 });
 </script>
+
 <style>
 .error{
 color:red;

@@ -3,23 +3,34 @@ package com.etc.entity;
 import java.util.Date;
 
 public class Orders {
-    private Integer id;
+    private String id;
 
     private Integer userId;
 
     private Integer busId;
 
-    private Date ordDate;
+    private String ordDate;
 
     private Double money;
 
     private Integer state;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
+public Orders() {
+	// TODO Auto-generated constructor stub
+}
+    public Orders(String id, Integer userId, Integer busId, String ordDate, Double money) {
+		super();
+		this.id = id;
+		this.userId = userId;
+		this.busId = busId;
+		this.ordDate = ordDate;
+		this.money = money;
+	}
 
-    public void setId(Integer id) {
+	public void setId(String id) {
         this.id = id;
     }
 
@@ -39,11 +50,11 @@ public class Orders {
         this.busId = busId;
     }
 
-    public Date getOrdDate() {
+    public String getOrdDate() {
         return ordDate;
     }
 
-    public void setOrdDate(Date ordDate) {
+    public void setOrdDate(String ordDate) {
         this.ordDate = ordDate;
     }
 

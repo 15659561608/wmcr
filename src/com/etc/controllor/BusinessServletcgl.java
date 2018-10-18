@@ -1,6 +1,8 @@
 package com.etc.controllor;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -69,6 +71,7 @@ public class BusinessServletcgl extends HttpServlet {
 				request.getRequestDispatcher("back/view/businesses.jsp").forward(request, response);
 			}
 		}
+		
 	}
 
 	/**

@@ -1,9 +1,13 @@
 package com.etc.service.impl;
 
+import java.sql.Connection;
 import java.util.List;
 
 import com.etc.dao.impl.OrderLDaoImpl;
+import com.etc.entity.Orders;
 import com.etc.entity.OrdersLwq;
+import com.etc.entity.Ordersdetail;
+import com.etc.services.OrdersDetailService;
 import com.etc.services.OrdersLService;
 import com.etc.util.PageData;
 
@@ -42,5 +46,10 @@ public class OrdersLServiceImpl implements OrdersLService{
 	public boolean updateOrdersByid(int id, int status) {
 		// TODO Auto-generated method stub
 		return odi.updateOrdersByid(id, status);
+	}
+	@Override
+	public boolean addOrders(Orders o, Connection conn) {
+		// TODO Auto-generated method stub
+		return odi.addOrders(o, conn);
 	}
 }
