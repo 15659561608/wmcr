@@ -116,10 +116,10 @@
 		</header>
 
 		<ul class="clearfix menu-nav-list" scroll-position-static="160">
-			<li class="no-line "><a href="shop_intro.html">餐厅介绍</a></li>
-			<li><a href="shop_detail.jsp">菜单</a></li>
+			<li class="no-line "><a href="#">餐厅介绍</a></li>
+			<li><a href="${pageContext.request.contextPath}/Business?op=busiDetail&id=${requestScope.busId}">菜单</a></li>
 			<li class="active"><a href="#">评论</a></li>
-			<li><a href="shop_brand.html" id='point-tab'>大家都在点</a></li>
+			<li><a href="#" id='point-tab'>大家都在点</a></li>
 
 		</ul>
 		<section class="main-box"> <section class="review-messages">

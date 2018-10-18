@@ -47,7 +47,8 @@ public class CommentServlet extends HttpServlet {
 		String op = request.getParameter("op");
 		PrintWriter out = response.getWriter();
 		int busId = (int) request.getSession().getAttribute("busss");
-
+		
+		request.setAttribute("busId", busId);
 		if ("queryComment".equals(op)) {
 			int page = 1;
 			int pageSize = 10;
@@ -78,6 +79,7 @@ public class CommentServlet extends HttpServlet {
 			
 			Users u = (Users) request.getSession().getAttribute("users");
 			int userId = u.getId();
+			
 			// 判断用户是否买过这家店的东西
 			boolean flag = cs.queryorder(userId, busId);
 			// System.out.println(userId);
