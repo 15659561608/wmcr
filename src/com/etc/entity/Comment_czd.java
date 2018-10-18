@@ -7,7 +7,7 @@ public class Comment_czd {
 
     private String content;//评论内容
 
-    private Date comDate;//评论时间
+    private String comDate;//评论时间
 
     private Integer praise;//好评星级
  
@@ -28,7 +28,7 @@ public class Comment_czd {
 		super();
 	}
 
-	public Comment_czd(Integer id, String content, Date comDate, Integer praise, String busiName, String account) {
+	public Comment_czd(Integer id, String content, String comDate, Integer praise, String busiName, String account) {
 		super();
 		this.id = id;
 		this.content = content;
@@ -54,11 +54,11 @@ public class Comment_czd {
         this.content = content == null ? null : content.trim();
     }
 
-    public Date getComDate() {
+    public String getComDate() {
         return comDate;
     }
 
-    public void setComDate(Date comDate) {
+    public void setComDate(String comDate) {
         this.comDate = comDate;
     }
 

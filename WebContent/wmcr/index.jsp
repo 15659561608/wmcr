@@ -481,9 +481,9 @@ style="width: 14.5rem;height: 1rem; margin-left:17px;float: left;" onblur="check
 class="form-text" placeholder="短信验证码"/>
                         
                              <div id = "yzm_prompt" style="color:#F00"></div>
-                             
+                           <div class="form-error-message"></div>  
                         </div>
-                        <div class="form-error-message"></div>
+                        
                 </div>
             
             <div class="form-group row mb10">

@@ -9,7 +9,7 @@ public class Boss {
 
     private String pwd;
 
-    private Date regDate;
+    private String regDate;
 
     private Integer state;
     
@@ -32,7 +32,7 @@ public class Boss {
 		super();
 	}
 
-	public Boss(Integer id, String account, String pwd, Date regDate, Integer state) {
+	public Boss(Integer id, String account, String pwd, String regDate, Integer state) {
 		super();
 		this.id = id;
 		this.account = account;
@@ -65,11 +65,11 @@ public class Boss {
         this.pwd = pwd == null ? null : pwd.trim();
     }
 
-    public Date getRegDate() {
+    public String getRegDate() {
         return regDate;
     }
 
-    public void setRegDate(Date regDate) {
+    public void setRegDate(String regDate) {
         this.regDate = regDate;
     }
 
