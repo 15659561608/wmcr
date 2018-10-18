@@ -16,7 +16,13 @@ public class Boss {
     
     
 
-    @Override
+    public Boss(String account, String pwd) {
+		super();
+		this.account = account;
+		this.pwd = pwd;
+	}
+
+	@Override
 	public String toString() {
 		return "Boss [id=" + id + ", account=" + account + ", pwd=" + pwd + ", regDate=" + regDate + ", state=" + state
 				+ "]";
