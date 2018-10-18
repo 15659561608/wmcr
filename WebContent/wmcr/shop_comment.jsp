@@ -547,7 +547,7 @@
 					}
 				}
 				star_li[i].onclick = function() {
-					result.innerHTML = (this.index + 1) + "分";
+					result.innerHTML = (this.index + 1);
 
 				}
 			}
