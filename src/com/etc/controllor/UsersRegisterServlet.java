@@ -100,10 +100,10 @@ public class UsersRegisterServlet extends HttpServlet {
 				boolean flag = us.getUsersRegister(u1);
 				if (flag) {
 					out.println("<script>alert('注册成功')</script>");
-					request.getRequestDispatcher("wmcr/index.jsp").forward(request, response);
+					out.print("<script>alert('登录成功');location.href='wmcr/login.jsp'</script>");
 				} else {
-					out.println("<script>alert('注册失败')</script>");
-					request.getRequestDispatcher("wmcr/index.jsp").forward(request, response);
+				
+					out.print("<script>alert('登录失败');location.href='wmcr/register.jsp'</script>");
 				}
 			}
 		}

@@ -44,50 +44,52 @@
     <div class="main-inner">
         
     <div class="log-box" id="registerPageBox">
-        <div class="form-group w275">
+        <form ng-controller="registerCtrl" class="register-form" action="/wmcr/urs.do?op=register" method="post" acname="registerForm" id = "registerForm" onsubmit = " return checkform()">
+        <div class="form-group mb10">
             <label for="">手机号码</label>
-            <input type="text" id="rPhone" maxlength="11" class="form-text" placeholder="请输入你的手机号码" />
-        </div>
-        <div class="form-error-message"></div>
-
-        <div class="captcha-wrap">
-            <div class="captcha-box" id="captchaBox" style="margin-left: -300px">
-                <div class="captcha-item">
-                    <div class="form-group captcha clearfix">
-                        <input type="text" id="rCaptcha" class="form-text" placeholder="短信验证码"/>
-                        <input type="button" id="getCaptcha"  class="captcha-btn" value="获取验证码"/>
-                    </div>
-                    <div class="form-error-message"></div>
-                </div>
-                <div class="captcha-item">
-                    <div class="form-group captcha clearfix">
-                        <input type="text" id="imgCaptcha" disabled="disabled" maxlength="4" class="form-text" placeholder="输入验证码"/>
-                        <span><img id="captchaImg" _src="/captcha/" src="/captcha/" alt="验证码"/></span>
-                    </div>
-                    <div class="form-error-message"></div>
-                </div>
+            <div>
+                <input type="text"  id = "account1"  name = "account1" value=""  onblur="checkMobile()"  maxlength="11" placeholder="请输入您的手机号码" ng-model="user.username"/>
+                <div id = "mobile_prompt" style="color:#F00"></div>
             </div>
         </div>
-
-        <div class="form-group w275">
+        <div class="form-group captcha-wrap">
+            <div class="clearfix captcha-box">
+                <div class="fl form-group captcha-item">
+                    <div class="fl w50p">
+                    </div>
+                    <button class="fs12 fr w40p btn btn-pink" ng-click="getCaptcha()" ng-disabled="captchaDisabled" ng-bind="captchaVal"></button>
+                </div>
+                <div class="fl form-group captcha-item">
+                   <div class="form-group captcha clearfix">
+                             <input type="text" id="captcha2" name="captcha2"  value = ""  onblur="checkYzm ()" class="form-text" placeholder="短信验证码"/>
+                             <div id = "yzm_prompt" style="color:#F00"></div>
+                             <input type="button" id="getCaptcha11"  value="获取短信验证码" onclick="settime(this)"/>
+                        </div>
+                        <div class="form-error-message"></div>
+                </div>
+                	
+            </div>
+        </div>
+        <div class="form-group mb10">
             <label for="">登录密码</label>
-            <input type="password" id="rPass" maxlength="10" class="form-text" onpaste="return false" placeholder="输入登录密码 6-10个字符"/>
+            <div><input type="password" id = "pwd1" name = "pwd1" value = ""  onblur="checkPwd()" ng-class="{error:user.passwordMessage}" ng-focus="user.passwordMessage=''"  maxlength="10" onpaste="return false" placeholder="密码由英文字母和数字组成的4-10位字符" ng-model="user.password" />
+                <div id = "pwd_prompt" style="color:#F00"></div>
+            </div>
         </div>
-        <div class="form-error-message"></div>
-        <div class="form-group w275">
-            <input type="password" id="rPass2" maxlength="10" class="form-text" onpaste="return false" placeholder="输入登录密码 6-10个字符"/>
+        <div class="form-group mb10">
+            <div><input type="password"  id = "repwd" name = "repwd"  value = ""  onblur="checkRepwd()" ng-class="{error:user.password2Message}" ng-focus="user.password2Message=''" maxlength="10" onpaste="return false" placeholder="密码由英文字母和数字组成的4-10位字符" ng-model="user.password2"/>
+                 <div id = "repwd_prompt" style="color:#F00"></div>
+                <span class="vaildate-error" ng-if="user.password2Message">
+                    <span ng-bind="user.password2Message"></span>
+                </span>
+            </div>
         </div>
-        <div class="form-error-message"></div>
-
-        <div class="checkbox form-group clearfix mb5">
-            <input type="checkbox" checked="checked" id="rAgree" value="true">
-            <label for="rAgree" class="fl fs12">我同意外卖超人</label>
-            <span class="fl fs12"><a class="yo" target="_blank" href="/terms-and-conditions/">"注册条款"</a></span>
+        <div class="clearfix mb10">
+            <dh-checkbox model="user.remember" title="我同意外卖超人" class="fl"></dh-checkbox>
+            <a href="/terms-and-conditions/" target="_blank" class="fs12 fl link"> " 注册条款 "</a>
         </div>
-        <div class="form-error-message"></div>
-        <div>
-            <button class="form-btn" id="registerPageBtn">确认注册</button>
-        </div>
+        <button ng-disabled="!user.remember || registerBtnDisabled" ng-click=""  type = "submit" class="big-btn btn-green btn mb10" ng-bind="registerBtn">确认注册</button>
+    </form>
         
     </div>
 
@@ -154,6 +156,40 @@ var s0 = d.getElementsByTagName("script")[0];s0.parentNode.insertBefore(s, s0);
   ga('require', 'ecommerce', 'ecommerce.js');
 </script>
 <!-- End Google Analytics Code -->
+<script type="text/javascript" src = "${pageContext.request.contextPath}/wmcr/js/check.js"></script>
+  </script>
+<!-- 验证码倒计时 ，AJAX请求验证码-->  
+<script type="text/javascript"> 
+var countdown=60; 
+function settime(obj) { 
+    if (countdown == 0) { 
+        obj.removeAttribute("disabled");    
+        obj.value="免费获取验证码"; 
+        countdown = 60; 
+        return;
+    } else { 
+        obj.setAttribute("disabled", true); 
+        obj.value="重新发送(" + countdown + ")"; 
+        countdown--; 
+    } 
+setTimeout(function() { 
+    settime(obj) }
+    ,1000) 
+}
+
+$(function () {
+	$("#getCaptcha11").click(function() {
+		//console.log($("#captcha2").val());
+		$.get("/wmcr/urs.do", "op=yzm&account1=" + $("#account1").val(), function(data, status) {
+		
+			$("#account1").text(data);
+		});
+
+		/* location.href="Rp.do?op=yzm&account="+document.getElementById("phone").value;  */
+	});
+
+})
+</script>
 
 </body>
 </html>

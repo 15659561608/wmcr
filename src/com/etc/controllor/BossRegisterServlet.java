@@ -43,7 +43,7 @@ public class BossRegisterServlet extends HttpServlet {
 		response.setCharacterEncoding("utf-8");		
 		PrintWriter out = response.getWriter();
 		String op =request.getParameter("op");	
-		
+		System.out.println("get");
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		if("checkPhone".equals(op)) {
@@ -56,7 +56,8 @@ public class BossRegisterServlet extends HttpServlet {
 				doCheckPhoneAjax(request,response);
 			}else if("checkYzmAjax".equals(op)) {
 				doCheckYzmAjax(request,response);
-			}else if("bossRegister".equals("op")) {
+			}else if("bossRegister".equals(op)) {
+			System.out.println("bossRegister");
 				doBossRegister(request,response);
 			}
 		}
@@ -147,20 +148,23 @@ public class BossRegisterServlet extends HttpServlet {
 	protected void doBossRegister(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 //设置编码
+		System.out.println("doboss");
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");			
 		PrintWriter out = response.getWriter();
 		String account = request.getParameter("phone");
 		String password = request.getParameter("password");
 		String	pwd = MD5Util.getEncodeByMd5(password);
-		Boss b = new Boss(account,password);
+		Boss b = new Boss(account,pwd);
+		System.out.println(b);
 		boolean flag = bsc.registerBoss(b);
+		System.out.println(flag);
 		if(flag==true) {
-			out.println("<script>alert('注册成功')</script>");
-			request.getRequestDispatcher("wmcr/index.jsp").forward(request, response);
+			out.println("<script>alert('注册成功');location.href='wmcr/index.jsp';</script>");
+			/*request.getRequestDispatcher("wmcr/index.jsp").forward(request, response);*/
 		}else {
-			out.println("<script>alert('注册失败')</script>");
-			request.getRequestDispatcher("wmcr/index.jsp").forward(request, response);
+			out.println("<script>alert('注册失败');location.href='wmcr/index.jsp'</script>");
+			/*request.getRequestDispatcher("wmcr/index.jsp").forward(request, response);*/
 		}
 	}	
 }

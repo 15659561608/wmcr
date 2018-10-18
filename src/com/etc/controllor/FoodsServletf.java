@@ -44,26 +44,26 @@ public class FoodsServletf extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("html/text;charset=utf-8");
 		String op = request.getParameter("op");
-		 PrintWriter out=response.getWriter();	
+		// PrintWriter out=response.getWriter();	
 		if ("addFoods".equals(op)) {
-				System.out.println(op);
+			//	System.out.println(op);
 			String foodName = request.getParameter("foodName");
-			System.out.println(foodName);
+		//	System.out.println(foodName);
 			String price = request.getParameter("price");
 			String discount = request.getParameter("discount");
 			String num = request.getParameter("num");
 			String salNum = request.getParameter("salNum");
 			String des = request.getParameter("des");
 			String logo = request.getParameter("logo");
-			System.out.println(logo);
+		//	System.out.println(logo);
 			String busid = request.getParameter("busiName");
-			System.out.println(busid);
+		//	System.out.println(busid);
 			String state = request.getParameter("state");
 			
 			Food food = new Food(0, foodName, Double.valueOf(price), Double.valueOf(discount), Integer.valueOf(num),
 					Integer.valueOf(salNum), des, logo, Integer.valueOf(busid), Integer.valueOf(state));
 			boolean flag = fsf.addFoods(food);
-			System.out.println(flag);
+		//	System.out.println(flag);
 
 			if (flag) {
 				request.getRequestDispatcher("bossManage/foodsManage.jsp").forward(request, response);
@@ -129,13 +129,13 @@ public class FoodsServletf extends HttpServlet {
 		String logo = request.getParameter("logo");
 		String busiId=request.getParameter("busiName");
 		String state = request.getParameter("state");
-		System.out.println("33"+busiId);
+		//System.out.println("33"+busiId);
 		Food food = new Food(Integer.valueOf(id), foodName, Double.valueOf(price), Double.valueOf(discount),
 				Integer.valueOf(num), Integer.valueOf(salNum), des, logo,
 				Integer.valueOf(busiId), Integer.valueOf(state));
 		
 		boolean flag = fsf.update(food);
-		System.out.println(flag);
+	//	System.out.println(flag);
 		if (flag) {
 			request.getRequestDispatcher("bossManage/foodsManage.jsp").forward(request, response);
 		}
@@ -170,9 +170,9 @@ public class FoodsServletf extends HttpServlet {
 			}
 		}
 
-		System.out.println("11111");
+	//	System.out.println("11111");
 		list1.forEach(System.out::println);
-		pd.getData().forEach(System.out::println);
+	//	pd.getData().forEach(System.out::println);
 
 		request.setAttribute("pd", pd);
 

@@ -567,7 +567,7 @@ type = "submit" class="big-btn btn-green btn mb10" ng-bind="registerBtn">确认�
 	       url:"/wmcr/uls.do?op=zh&account="+$("#account").val(),
 	       dataTypes:"text",
 	       success:function(msg){
-	         $("#accountStatus")hijian.html(msg);
+	         $("#accountStatus").html(msg);
 	       }
 	     });
 	   });
@@ -699,7 +699,8 @@ jQuery.validator.addMethod("codesame", function(value, element) {
 </script>
 <!--  自定义验证码验证结束-->
 
-<script>
+
+
     //地点列表项点击事件
     
     function resultClick(item){
