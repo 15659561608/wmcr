@@ -620,7 +620,6 @@ $("#cell").validate({
 <!--自定义手机验证结束-->
 
 <script>
-
     //地点列表项点击事件
     
     function resultClick(item){
