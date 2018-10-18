@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -16,17 +17,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.etc.entity.BusinessesCity;
 import com.etc.entity.Customers;
 import com.etc.entity.Orders;
+import com.etc.entity.OrdersData;
+import com.etc.entity.OrdersLwq;
 import com.etc.entity.Ordersdetail;
 import com.etc.entity.Users;
+import com.etc.service.impl.BusiNameLServiceImpl;
+import com.etc.service.impl.BusinessServiceImpl;
 import com.etc.service.impl.CustomersServiceImpl_czd;
 import com.etc.service.impl.FoodsServiceImplf;
 import com.etc.service.impl.OrdersDetailServiceImpl;
 import com.etc.service.impl.OrdersLServiceImpl;
+import com.etc.services.CustomersService_czd;
 import com.etc.services.FoodServicesf;
 import com.etc.services.OrdersDetailService;
 import com.etc.services.OrdersLService;
+import com.etc.util.BaiduMap;
 import com.etc.util.BaseDao;
 
 /**
@@ -109,8 +117,17 @@ public class OrderHandlerServler extends HttpServlet {
 				//获取用户地址列表
 				List<Customers> cusList=new CustomersServiceImpl_czd().queryCustomersByUserId(user.getId());
 				request.setAttribute("cusList", cusList);
-				System.out.println(cusList);
-				request.setAttribute("orderId", orderId);
+				
+				//获取订单列表
+				List<OrdersData> detailsList=(List<OrdersData>) os.queryOrdersByOrderId(orderId);
+				//获取订单信息
+				Orders ord=os.getorders(orderId);
+				//获取门店信息
+				List<BusinessesCity> busiInfo=new BusinessServiceImpl().getBusinessesById(Integer.valueOf(busiId));
+				request.setAttribute("detailsList", detailsList);
+				request.setAttribute("busiInfo", busiInfo.get(0));
+				System.out.println(busiInfo);
+				request.setAttribute("ord", ord);
 				request.getRequestDispatcher("wmcr/order.jsp").forward(request, response);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -121,6 +138,40 @@ public class OrderHandlerServler extends HttpServlet {
 			
 			
 			
+		}else if("addAddress".equals(op)) {
+			//添加联系人地址
+			
+			response.setContentType("text/html");
+			response.setCharacterEncoding("utf-8");
+			PrintWriter out=response.getWriter();
+			if(user==null) {
+				request.getRequestDispatcher("wmcr/index.jsp").forward(request, response);
+				return;
+			}
+			
+			String custName=request.getParameter("name");
+			String phone=request.getParameter("phone");
+			String address=request.getParameter("address");
+			SimpleDateFormat simple=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String regDate=simple.format(new Date());
+			
+			//根据地址获取经纬度
+			double lat = 0.0;
+			double lon = 0.0;
+			HashMap<String, Double> hashmap = (HashMap<String, Double>) BaiduMap.getLatLon(address);
+			if (hashmap != null) {
+				lat = hashmap.get("lat");
+				lon = hashmap.get("lon");
+			}
+			
+			Customers c=new Customers(custName, phone, regDate, address, user.getId(), lat, lon);
+			CustomersService_czd cs=new CustomersServiceImpl_czd();
+			boolean result=cs.addCustomers(c);
+			if(result) {
+				out.print("true");
+			}else {
+				out.print("false");
+			}
 		}
 		
 	}

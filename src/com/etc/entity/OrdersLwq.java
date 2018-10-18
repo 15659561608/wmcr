@@ -4,11 +4,11 @@ import java.util.Date;
 
 public class OrdersLwq {
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -72,7 +72,7 @@ public class OrdersLwq {
 		super();
 	}
 
-	public OrdersLwq(Integer id, String account, String busiName, String ordDate, Double money, String foodName, int num,
+	public OrdersLwq(String id, String account, String busiName, String ordDate, Double money, String foodName, int num,
 			Integer state) {
 		super();
 		this.id = id;
@@ -91,7 +91,7 @@ public class OrdersLwq {
 				+ ", money=" + money + ", foodName=" + foodName + ", num=" + num + ", state=" + state + "]";
 	}
 
-	private Integer id;
+	private String id;
 
     private String account;
 

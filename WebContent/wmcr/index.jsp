@@ -698,7 +698,6 @@ jQuery.validator.addMethod("codesame", function(value, element) {
 }, "验证码错误");
 </script>
 <!--  自定义验证码验证结束-->
-<script>
 
 <script>
     //地点列表项点击事件

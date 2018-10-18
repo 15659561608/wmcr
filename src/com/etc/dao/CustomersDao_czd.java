@@ -24,4 +24,5 @@ public interface CustomersDao_czd {
 	 * @return
 	 */
 	public boolean addCustomers(Customers c);
+	
 }

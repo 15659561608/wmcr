@@ -45,11 +45,11 @@
             <header id="header">
                 <div class="common-width clearfix">
                     <h1 class="fl">
-                        <a class="logo base-logo" href="index.html">外卖超人</a>
+                        <a class="logo base-logo" href="${pageContext.request.contextPath }/wmcr/index.jsp">外卖超人</a>
                     </h1>
 
                         <ul class="member" login-box>
-                            <li><a href="index.html" class="index">首页</a></li>
+                            <li><a href="${pageContext.request.contextPath }/wmcr/index.jsp" class="index">首页</a></li>
                             <li class="login-register"><a href="${pageContext.request.contextPath }/wmcr/login.jsp"   class="login"  rel="nofollow">登录</a><span class="cg">/</span><a href="register.html" referer-url  rel="nofollow" class="register">注册</a></li>
                             <li><a href="member_order.html" class="order-center"  rel="nofollow">查看订单</a></li>
                             <li class=""><a href="gifts.html"  rel="nofollow">氪星礼品站</a></li>

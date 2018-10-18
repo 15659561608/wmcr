@@ -65,7 +65,7 @@ public class OrdersLMessageServlet extends HttpServlet {
 		}else if("updateInfo".equals(op)) {
 			String id=request.getParameter("id");
 			 //System.out.println(id);
-			List<OrdersLwq> list = olsi.getOrdersByid(Integer.valueOf(id));
+			List<OrdersLwq> list = olsi.getOrdersByid(id);
 			//
 			//System.out.println(list);
 			request.setAttribute("busiInfo", list.get(0));
@@ -74,7 +74,7 @@ public class OrdersLMessageServlet extends HttpServlet {
 			String id=request.getParameter("id");
 			String status=request.getParameter("ordersStatus");
 			
-			boolean flag=olsi.updateOrdersByid(Integer.valueOf(id), Integer.valueOf(status));
+			boolean flag=olsi.updateOrdersByid(id, Integer.valueOf(status));
 			PrintWriter out=response.getWriter();
 			if(flag) {
 				out.print("<script>alert('提交成功!');location.href='bossManage/index.jsp';</script>");

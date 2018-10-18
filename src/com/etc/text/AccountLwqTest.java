@@ -48,7 +48,7 @@ public class AccountLwqTest {
 		System.out.println(list);*/
 		
 		OrdersLServiceImpl osi=new OrdersLServiceImpl();
-	boolean list=osi.updateOrdersByid(1997, 1);
+	boolean list=osi.updateOrdersByid("20181018085710096", 1);
 		System.out.println(list);
 	}
 
