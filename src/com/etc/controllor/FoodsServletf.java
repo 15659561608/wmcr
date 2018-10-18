@@ -91,14 +91,14 @@ public class FoodsServletf extends HttpServlet {
 		if (request.getParameter("keywords") != null) {
 			keywords = request.getParameter("keywords");
 		}
-		Boss boss = (Boss) request.getSession().getAttribute("boss");
+		//Boss boss = (Boss) request.getSession().getAttribute("boss");
 		//System.out.println("111"+busid);
 		//List<Businesses> list=bsf.queryBusinesses();
 		//list.forEach(System.out::println);
-		int bid=boss.getId();
+		//int bid=boss.getId();
 		
 		// 之前的代码要变
-		PageData<Foodf> pd = new FoodsServiceImplf().queryFoodfs(page, pageSize, "", bid);
+		PageData<Foodf> pd = new FoodsServiceImplf().getFoods(page, pageSize, "");
 		//PageData<Foodf> pd = fsf.getFoods(page, pageSize, keywords);
 	//	List<Foodf> list=pd.getData();
 	//	list.forEach(System.out::println);
