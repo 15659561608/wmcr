@@ -222,6 +222,7 @@
 								<input type="hidden" id="hSAddress" name="sAddress" value=""/>
 								<input type="hidden" id="hSPhone" name="sPhone" value=""/>
 								<input type="hidden" id="hRemarks" name="remarks" value=""/>
+								<input type="hidden" name="orderId" value="${orderId }"/>
 							</form>
 						<button id="subBtn"
 							 class="btn btn-success fs20">
@@ -587,14 +588,19 @@
 								}
 							}); 
 				});
-		$("#subBtn").click(function(){
+		//用户地址点击
+		$(".user-address-item").click(function(){
 			sName=$("[class='user-address-item fl ng-scope userAddressHover active'] #sName").text();
 			sAddress=$("[class='user-address-item fl ng-scope userAddressHover active'] #sAddress").text();
 			sPhone=$("[class='user-address-item fl ng-scope userAddressHover active'] #sPhone").text();
+
 			$("#hSName").val(sName);
 			$("#hSAddress").val(sAddress);
 			$("#hSPhone").val(sPhone);
 			$("#hRemarks").val($("#remarks").val());
+		});
+		//提交订单
+		$("#subBtn").click(function(){
 			$("#paySub").submit();
 		});
 		

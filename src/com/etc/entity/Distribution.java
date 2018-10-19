@@ -1,6 +1,11 @@
 package com.etc.entity;
 
 public class Distribution {
+	@Override
+	public String toString() {
+		return "Distribution [dId=" + dId + ", disTime=" + disTime + ", remarks=" + remarks + ", disId=" + disId
+				+ ", ordId=" + ordId + ", name=" + name + ", phone=" + phone + ", address=" + address + "]";
+	}
 	private int dId;
 	private String disTime;
 	private String remarks;

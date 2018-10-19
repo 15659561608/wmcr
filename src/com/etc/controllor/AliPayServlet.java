@@ -2,8 +2,10 @@ package com.etc.controllor;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 import javax.servlet.ServletException;
@@ -11,12 +13,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.request.AlipayTradePagePayRequest;
 import com.alipay.config.AlipayConfig;
+import com.etc.dao.impl.DistributionDaoImpl;
+import com.etc.entity.Distribution;
+import com.etc.entity.Distributor;
+import com.etc.service.impl.DistributionServiceImpl;
+import com.etc.service.impl.DistributorServiceImpl;
+import com.etc.services.DistributionService;
+import com.etc.services.DistributorService;
+import com.etc.util.BaseDao;
 
 /**
  * Servlet implementation class AliPayServlet
@@ -46,6 +57,8 @@ public class AliPayServlet extends HttpServlet {
 		alipayRequest.setReturnUrl(AlipayConfig.return_url);
 		alipayRequest.setNotifyUrl(AlipayConfig.notify_url);
 		
+		HttpSession session=request.getSession();
+		
 		String op="null";
 		if(request.getParameter("op")!=null) {
 			op=request.getParameter("op");
@@ -54,9 +67,32 @@ public class AliPayServlet extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out=response.getWriter();
 		if("pay".equals(op)) {
+			if(session.getAttribute("distribution")!=null) {
+				out.print("<script>alert('请勿重复提交订单');</script>");
+				return;
+			}
+			// 获取配送信息
+			String sName = request.getParameter("sName");
+			String sPhone = request.getParameter("sPhone");
+			String sAddress = request.getParameter("sAddress");
+			String remarks = request.getParameter("remarks");
+			String orderId = request.getParameter("orderId");
+			SimpleDateFormat simple1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String disTime = simple1.format(new Date());
+			// 获取配送员编号
+			DistributorService dis = new DistributorServiceImpl();
+			Connection conn=BaseDao.getConn();
+			List<Distributor> disList = dis.queryDis(conn);
+			int ri = disList.size();
+			int disId = disList.get(new Random().nextInt(ri)).getId();
+			Distribution distribution = new Distribution(disTime, remarks, disId, orderId, sName, sPhone, sAddress);
 			
-			//将订单插入数据库
-			
+			// 创建配送session
+			session.setAttribute("distribution", distribution);
+			session.setMaxInactiveInterval(3600);
+			//将配送信息插入配送表
+			DistributionService ds=new DistributionServiceImpl();
+			ds.addDis(distribution, conn);
 			//生成商户订单号
 			String out_trade_no = new String(request.getParameter("ordId").getBytes("ISO-8859-1"),"UTF-8");
 			//付款金额，必填

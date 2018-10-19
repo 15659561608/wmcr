@@ -3,7 +3,14 @@ package com.etc.entity;
 import java.util.Date;
 
 public class Distributor {
-    private Integer id;
+    @Override
+	public String toString() {
+		return "Distributor [id=" + id + ", disName=" + disName + ", phone=" + phone + ", birthday=" + birthday
+				+ ", nativeplace=" + nativeplace + ", lat=" + lat + ", lon=" + lon + ", num=" + num + ", state=" + state
+				+ "]";
+	}
+
+	private Integer id;
 
     private String disName;
 
