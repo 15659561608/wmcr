@@ -1,6 +1,8 @@
 package com.etc.dao.impl;
 
+import java.sql.Connection;
 import java.util.Date;
+import java.util.List;
 
 import com.etc.dao.DistributorDao;
 import com.etc.entity.Distributor;
@@ -18,7 +20,15 @@ public class DistributorDaoImpl implements DistributorDao {
 		return dis;
 	}
 
-	
+	@Override
+	public List<Distributor> queryDis(Connection conn) {
+		// TODO Auto-generated method stub
+		String sql = "select * from distributor where state=0";
+
+		List<Distributor> dis = (List<Distributor>)BaseDao.select(sql, conn, Distributor.class);
+		return dis;
+	}
+
 
 	@Override
 	public boolean addDis(String disName, String phone, Date birthday) {

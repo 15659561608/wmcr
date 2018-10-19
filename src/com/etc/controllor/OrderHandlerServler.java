@@ -19,6 +19,8 @@ import javax.servlet.http.HttpSession;
 
 import com.etc.entity.BusinessesCity;
 import com.etc.entity.Customers;
+import com.etc.entity.Distribution;
+import com.etc.entity.Distributor;
 import com.etc.entity.Orders;
 import com.etc.entity.OrdersData;
 import com.etc.entity.OrdersLwq;
@@ -27,10 +29,12 @@ import com.etc.entity.Users;
 import com.etc.service.impl.BusiNameLServiceImpl;
 import com.etc.service.impl.BusinessServiceImpl;
 import com.etc.service.impl.CustomersServiceImpl_czd;
+import com.etc.service.impl.DistributorServiceImpl;
 import com.etc.service.impl.FoodsServiceImplf;
 import com.etc.service.impl.OrdersDetailServiceImpl;
 import com.etc.service.impl.OrdersLServiceImpl;
 import com.etc.services.CustomersService_czd;
+import com.etc.services.DistributorService;
 import com.etc.services.FoodServicesf;
 import com.etc.services.OrdersDetailService;
 import com.etc.services.OrdersLService;
@@ -68,7 +72,6 @@ public class OrderHandlerServler extends HttpServlet {
 		}
 		HttpSession session=request.getSession();
 		Users user=(Users) session.getAttribute("users");
-		System.out.println(user);
 		//下单
 		if("add".equals(op)) {
 			if(user==null) {
@@ -113,6 +116,23 @@ public class OrderHandlerServler extends HttpServlet {
 					ods.addOrdersDetail(od, conn);
 				}
 				
+				//创建正在处理订单session
+				session.setAttribute("onOrder", true);
+				
+				//获取配送信息
+				String sName=request.getParameter("sName");
+				String sPhone=request.getParameter("sPhone");
+				String sAddress=request.getParameter("sAddress");
+				String remarks=request.getParameter("remarks");
+				SimpleDateFormat simple1=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				String disTime=simple1.format(new Date());
+				//获取配送员编号
+				DistributorService dis=new DistributorServiceImpl();
+				List<Distributor> disList=dis.queryDis(conn);
+				int ri=disList.size();
+			Distribution distribution=new Distribution(disTime, remarks, disId, orderId, sName, sPhone, sAddress);
+				//创建配送session
+				
 				conn.commit();
 				//获取用户地址列表
 				List<Customers> cusList=new CustomersServiceImpl_czd().queryCustomersByUserId(user.getId());
@@ -151,7 +171,6 @@ public class OrderHandlerServler extends HttpServlet {
 			String custName=request.getParameter("name");
 			String phone=request.getParameter("phone");
 			String address=request.getParameter("address");
-			System.out.println(custName);
 			SimpleDateFormat simple=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String regDate=simple.format(new Date());
 			

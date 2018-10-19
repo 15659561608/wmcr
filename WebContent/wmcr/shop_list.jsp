@@ -253,7 +253,7 @@
                                 class="restaurant-item fl c_japan-korea c_all p_all p_356 p_352 p_42  p_online fee 0"
                                 data-price='150' data-count="1205" data-title="pageData.data.busiName">
                                 <div class="img-box fl">
-                                    <a href="${pageContext.request.contextPath }/Business?op=busiDetail&id=${v.id}">
+                                    <a href="${pageContext.request.contextPath }/Business?op=busiDetail&id=${v.id}" target="_blank"> 
                                         <img src="${pageContext.request.contextPath }/${v.logo}" width="82px" height="82px">
                                     </a>
                                 </div>

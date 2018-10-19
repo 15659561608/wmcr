@@ -108,9 +108,9 @@ public class UsersLoginServlet extends HttpServlet {
 				// //使用response.addCookie
 				// response.addCookie(cookie);
 				// response.addCookie(cookie1);
-				out.print("<script>alert('登录成功');var tempwindow=window.open('_blank');tempwindow.location='wmcr/mainPage.jsp','_blank';</script>");
+				out.print("<script>alert('登录成功');location.href='wmcr/mainPage.jsp';</script>");
 			} else {
-				out.print("<script>alert('登录失败');var tempwindow=window.open('_blank');tempwindow.location='wmcr/login.jsp';</script>");
+				out.print("<script>alert('登录失败');location.href='wmcr/login.jsp';</script>");
 			}
 		}
 		if (op.equals("logout")) {

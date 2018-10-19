@@ -1,6 +1,8 @@
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+   <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html><!--/*技术支持，小庄602842076     验证：商城技术支持*/
 /*技术支持，小庄602842076    验证：商城技术支持*/
 /*技术支持，小庄602842076    验证：商城技术支持*/
@@ -87,26 +89,26 @@
 		<header class="brtrl">送餐信息 (*为必填项)</header>
 		<section class="user-info">
             <ul class="user-address-list clearfix disnone" ng-class="{disblock: userAddressList.length != 0}">
+            
                 <li ng-repeat="item in userAddressList" ng-class="{active:item.active,userAddressHover:mobileAny}" ng-click="changeActiveAddress($index)" class="user-address-item fl">
                     <div class="clearfix">
-                        <h3 class="fl" ng-bind="item.customer_name"></h3>
+                        <h3 id="sName" class="fl" ng-bind="item.customer_name"></h3>
                         <span class="fr"><a href="javascript:;" ng-click="updateUserAddress($index);$event.stopPropagation();" class="link">修改</a></span>
                         <span class="fr"><a href="javascript:;" ng-click="deleteUserAddress($index);$event.stopPropagation();" class="link">删除</a></span>
                     </div>
-                    <p class="user-address" ng-bind="item.delivery_address"></p>
-                    <p class="user-phone" ng-bind="item.customer_phone"></p>
+                    <p id="sAddress" class="user-address" ng-bind="item.delivery_address"></p>
+                    <p id="sPhone" class="user-phone" ng-bind="item.customer_phone"></p>
                 </li>
 
                 <li ng-if="userAddressList.length > 0 && userAddressList.length < 8" class="user-address-item address-add-box fl">
                     <div ng-click="addUserAddress()"><i>+</i>使用新地址</div>
                 </li>
             </ul>
-			<form novalidate="true" name="orderForm" class="order-form inline">
                 <div ng-show="userAddressList.length == 0">
                     <div class="form-group row mb10">
                         <label class="require col-2">收单人：</label>
                         <div class="col-8">
-                            <input id="adsName" type="text" required ng-blur="orderForm.name.blur=true" ng-focus="orderForm.name.blur=false" maxlength="10"
+                            <input  type="text" required ng-blur="orderForm.name.blur=true" ng-focus="orderForm.name.blur=false" maxlength="10"
                                    ng-class="{error:(orderForm.submit || orderForm.name.blur) && orderForm.name.$invalid}" name="name" placeholder="您的称呼" ng-model="name">
                         </div>
                         <div class="col-8 col-offset-2 disnone" ng-class="{disnone : !((orderForm.submit && orderForm.name.$invalid) || (!orderForm.submit && orderForm.name.blur && orderForm.name.$invalid))}">
@@ -116,7 +118,7 @@
                     <div class="form-group row mb10">
                         <label class="require col-2">手机号码：</label>
                         <div  class="col-8">
-                            <input id="adsPhone" type="text" maxlength="11" ng-blur="orderForm.contact.blur=true" ng-focus="orderForm.contact.blur=false" required mobile
+                            <input  type="text" maxlength="11" ng-blur="orderForm.contact.blur=true" ng-focus="orderForm.contact.blur=false" required mobile
                                    ng-class="{error:(orderForm.submit || orderForm.contact.blur) && orderForm.contact.$invalid}" name="contact" placeholder="您的联系方式" ng-model="phone">
                         </div>
                         <div class="col-8 col-offset-2 disnone" ng-class="{disnone: !((orderForm.submit || orderForm.contact.blur) && orderForm.contact.$error.required)}">
@@ -129,7 +131,7 @@
                     <div class="form-group row mb10">
                         <label class="require col-2">送餐地址：</label>
                         <div class="col-8">
-                            <input id="adsAds" type="text" required ng-blur="orderForm.address.blur=true" ng-focus="orderForm.address.blur=false"
+                            <input  type="text" required ng-blur="orderForm.address.blur=true" ng-focus="orderForm.address.blur=false"
                                    ng-class="{error:(orderForm.submit || orderForm.address.blur) && orderForm.address.$invalid}" name="address" placeholder="详细地址，如武定西路1189号606室" ng-model="address">
                         </div>
                         <div class="col-8 col-offset-2 disnone" ng-class="{disnone: !((orderForm.submit && orderForm.address.$invalid) || (!orderForm.submit && orderForm.address.blur && orderForm.address.$invalid))}">
@@ -153,10 +155,9 @@
 				<div class="form-group row mb10">
 					<label class="col-2">备注信息：</label>
 					<div class="col-8">
-						<input type="text" maxlength="150" placeholder="如：多米饭，不吃辣等口味需求" ng-model="comment">
+						<input type="text" id="remarks" maxlength="150" placeholder="如：多米饭，不吃辣等口味需求" ng-model="comment">
 					</div>
 				</div>
-			</form>
 		</section>
 		<header>订单内容</header>
 				<section>
@@ -217,6 +218,10 @@
 								<input type="hidden" name="money" value="${ord.money+busiInfo.disFee }"/>
 								<input type="hidden" id="orderName" name="orderName" value="${busiInfo.busiName }"/>
 								<input type="hidden" name="WIDbody" value=""/>
+								<input type="hidden" id="hSName" name="sName" value=""/>
+								<input type="hidden" id="hSAddress" name="sAddress" value=""/>
+								<input type="hidden" id="hSPhone" name="sPhone" value=""/>
+								<input type="hidden" id="hRemarks" name="remarks" value=""/>
 							</form>
 						<button id="subBtn"
 							 class="btn btn-success fs20">
@@ -550,8 +555,7 @@
 		});
 		</c:forEach>
         //userAddress.push({customer_name:'阿逗',delivery_address:'rrrrr',customer_phone:'13815212121',id:'230896'});userAddress.push({customer_name:'阿逗',delivery_address:'江苏南京',customer_phone:'13851435593',id:'230897'});userAddress.push({customer_name:'阿逗',delivery_address:'q',customer_phone:'13851435593',id:'230898'});userAddress.push({customer_name:'阿逗',delivery_address:'wqwq',customer_phone:'13851423225',id:'230899'});userAddress.push({customer_name:'阿逗',delivery_address:'aaaa',customer_phone:'18005150081',id:'230900'});userAddress.push({customer_name:'阿逗',delivery_address:'我千千万',customer_phone:'13851435593',id:'230901'});
-        selectObj.push({id:'no',text:'即时送出',date:'2015-05-03'});
-        selectObj.push({id:'10:30',text:'10:30',date:'2015-05-03'});selectObj.push({id:'11:00',text:'11:00',date:'2015-05-03'});selectObj.push({id:'11:30',text:'11:30',date:'2015-05-03'});selectObj.push({id:'12:00',text:'12:00',date:'2015-05-03'});selectObj.push({id:'12:30',text:'12:30',date:'2015-05-03'});selectObj.push({id:'13:00',text:'13:00',date:'2015-05-03'});selectObj.push({id:'13:30',text:'13:30',date:'2015-05-03'});selectObj.push({id:'14:00',text:'14:00',date:'2015-05-03'});selectObj.push({id:'14:30',text:'14:30',date:'2015-05-03'});selectObj.push({id:'15:00',text:'15:00',date:'2015-05-03'});selectObj.push({id:'15:30',text:'15:30',date:'2015-05-03'});selectObj.push({id:'16:00',text:'16:00',date:'2015-05-03'});selectObj.push({id:'16:30',text:'16:30',date:'2015-05-03'});selectObj.push({id:'17:00',text:'17:00',date:'2015-05-03'});selectObj.push({id:'17:30',text:'17:30',date:'2015-05-03'});selectObj.push({id:'18:00',text:'18:00',date:'2015-05-03'});selectObj.push({id:'18:30',text:'18:30',date:'2015-05-03'});selectObj.push({id:'19:00',text:'19:00',date:'2015-05-03'});selectObj.push({id:'19:30',text:'19:30',date:'2015-05-03'});selectObj.push({id:'20:00',text:'20:00',date:'2015-05-03'});selectObj.push({id:'20:30',text:'20:30',date:'2015-05-03'});selectObj.push({id:'21:00',text:'21:00',date:'2015-05-03'});
+        selectObj.push({id:'no',text:'即时送出',date:''});
     </script>
     <script src="${pageContext.request.contextPath }/wmcr/js/checkout.js"></script>
     <script>
@@ -570,7 +574,7 @@
 					var name = $("#adsName").val();
 					var phone = $("#adsPhone").val();
 					var address = $("#adsAds").val();
-					$.get("${pageContext.request.contextPath }/ohs.do",
+					 $.get("${pageContext.request.contextPath }/ohs.do",
 							"op=addAddress&address=" + address + "&name="
 									+ name + "&phone=" + phone, function(data) {
 
@@ -581,9 +585,16 @@
 									alert("添加失败");
 									location.reload()
 								}
-							});
+							}); 
 				});
 		$("#subBtn").click(function(){
+			sName=$("[class='user-address-item fl ng-scope userAddressHover active'] #sName").text();
+			sAddress=$("[class='user-address-item fl ng-scope userAddressHover active'] #sAddress").text();
+			sPhone=$("[class='user-address-item fl ng-scope userAddressHover active'] #sPhone").text();
+			$("#hSName").val(sName);
+			$("#hSAddress").val(sAddress);
+			$("#hSPhone").val(sPhone);
+			$("#hRemarks").val($("#remarks").val());
 			$("#paySub").submit();
 		});
 		
