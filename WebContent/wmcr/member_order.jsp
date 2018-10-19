@@ -110,7 +110,7 @@
                      <p><i>${a.money}</i></p>
                  </div>
                  <div class="order-operate fl padding-margin">
-                    <p>${a.state==0?"已支付":"未支付"}</p>
+                    <p>${a.state==0?"未支付":"已支付"}</p>
                     <p>
                         <a href="javascript:" order-number orderId="3788798" class="btn_a see-details">查看详情<i></i></a>
                     </p>

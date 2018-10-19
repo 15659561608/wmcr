@@ -245,7 +245,7 @@
                                        <c:forEach items="${foodList.data}" var="v">      
 	                                     <li title="${ v.foodName}" class="menu-item hasImg" accessorykey="39215-${ v.id}" data-sale="8" data-price="38.00">
                                         <div class="menu-item-img">  
-                                            <img data-src="http://dhcmenuitem.dhero.cn/142615425540822113425540737808?imageView2/1/w/202/h/202/" src="http://dhcmenuitem.dhero.cn/0"  width="202" height="202" /> 
+                                            <img data-src="${pageContext.request.contextPath }${v.logo}" src="http://dhcmenuitem.dhero.cn/0"  width="202" height="202" /> 
                                         </div>
                                         <div class="meun-item-name"><span class="ellipsis">${ v.foodName}</span></div>
                                         <p class="ellipsis meun-item-des"></p>
