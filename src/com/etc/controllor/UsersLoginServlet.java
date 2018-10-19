@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.etc.entity.Users;
 import com.etc.service.impl.ResetPwdServiceImpl;
@@ -47,6 +48,7 @@ public class UsersLoginServlet extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		// 响应类型
 		response.setContentType("text/html;charset=utf-8");
+		HttpSession session=request.getSession();
 		PrintWriter out = response.getWriter();
 		String op = request.getParameter("op");
 		if (op.equals("zh")) {
@@ -89,6 +91,10 @@ public class UsersLoginServlet extends HttpServlet {
 			out.print(msg);
 			out.close();
 		} else if (op.equals("login")) {
+			if(session.getAttribute("users")!=null){
+				out.print("<script>alert('您已经登录过了,请勿重复登录');</script>");
+				return;
+			}
 			String account = request.getParameter("account");
 			String pwd = request.getParameter("pwd");
 			// MD5算法加密
@@ -102,10 +108,14 @@ public class UsersLoginServlet extends HttpServlet {
 				// //使用response.addCookie
 				// response.addCookie(cookie);
 				// response.addCookie(cookie1);
-				out.print("<script>alert('登录成功');location.href='wmcr/mainPage.jsp'</script>");
+				out.print("<script>alert('登录成功');var tempwindow=window.open('_blank');tempwindow.location='wmcr/mainPage.jsp','_blank';</script>");
 			} else {
-				out.print("<script>alert('登录失败');location.href='wmcr/login.jsp'</script>");
+				out.print("<script>alert('登录失败');var tempwindow=window.open('_blank');tempwindow.location='wmcr/login.jsp';</script>");
 			}
+		}
+		if (op.equals("logout")) {
+			session.removeAttribute("users");
+			out.print("<script>alert('您已退出系统');location.href='wmcr/index.jsp';</script>");
 		}
 	}
 
