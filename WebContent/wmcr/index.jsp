@@ -349,7 +349,7 @@
         <div class="form-group">
             <label for="">手机号码</label>
             <div>
-                <input  id  = "account"  name = "account" maxlength="11" type="text" class="form-text" placeholder="输入您的手机号码"/><div id="accountStatus" style="color:#F00"></div></label>
+                <input  id  = "account"  name = "account" maxlength="11" type="text" class="form-text" placeholder="输入您的手机号码"/><div id="accountStatus" style="color:#0c0"></div></label>
                 <span class="vaildate-error" ng-if="user.usernameMessage">
                     <span ng-bind="user.usernameMessage"></span>
                 </span>
@@ -361,7 +361,7 @@
         <div class="form-group mb10">
             <label for="">登录密码</label>
             <div>
-                <input type="password" id = "pwd" name = "pwd" maxlength="10" type="password" class="form-text" onpaste="return false" placeholder="请输入登录密码"/><div id="pwdStatus" style="color:#F00"></div></label>
+                <input type="password" id = "pwd" name = "pwd" maxlength="10" type="password" class="form-text" onpaste="return false" placeholder="请输入登录密码"/><div id="pwdStatus" style="color:#0c0"></div></label>
                 <span class="vaildate-error" ng-if="user.passwordMessage">
                     <span ng-bind="user.passwordMessage"></span>
                 </span>
@@ -481,9 +481,9 @@ style="width: 14.5rem;height: 1rem; margin-left:17px;float: left;" onblur="check
 class="form-text" placeholder="短信验证码"/>
                         
                              <div id = "yzm_prompt" style="color:#F00"></div>
-                           <div class="form-error-message"></div>  
+                             
                         </div>
-                        
+                        <div class="form-error-message"></div>
                 </div>
             
             <div class="form-group row mb10">
@@ -511,7 +511,7 @@ model="merchants3.name"/>
             <div class="form-group row agreement mb20">
                <input type="checkbox" class="checkbox" id="agree" name="agree"><label 
 
-for="male">我同意外卖超人</label>< a href=" " target="_blank">"餐厅入驻协议"</ a>
+for="male">我同意外卖超人</label><a href=" " target="_blank">"餐厅入驻协议"</a>
             </div>
             <div class="tc merchants-btn">
                 <button ng-disabled="!user.remember || registerBtnDisabled" ng-click=""  
@@ -698,6 +698,8 @@ jQuery.validator.addMethod("codesame", function(value, element) {
 }, "验证码错误");
 </script>
 <!--  自定义验证码验证结束-->
+
+<script>
 
 
 

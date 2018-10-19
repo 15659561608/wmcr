@@ -3,6 +3,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	Users users = null;
 	//用户登录的访问控制
@@ -49,11 +50,11 @@
         <div class="common-width posr">
             
                 <div class="member-box fs12" login-box info="loginInfo">
-                    <a href="member_order.jsp">查看订单</a>
+                    <a href="<c:choose><c:when test="${users !=null }">${pageContext.request.contextPath }/wmcr/member_order.jsp</c:when><c:otherwise>${pageContext.request.contextPath }/wmcr/login.jsp</c:otherwise></c:choose>">查看订单</a>
                     <span>/</span>
-                    <a href="index.jsp">退出系统</a>
+                    <a href="${pageContext.request.contextPath }/uls.do?op=logout">退出系统</a>
                     <span>|</span>
-                    <a href="#">欢迎，${sessionScope.users.account} 登陆</a>
+                    <a href="#">欢迎，${sessionScope.users.account} </a>
                 </div>
             
         </div>
@@ -536,7 +537,7 @@ model="merchants3.name"/>
             <div class="form-group row agreement mb20">
                <input type="checkbox" class="checkbox" id="agree" name="agree"><label 
 
-for="male">我同意外卖超人</label>< a href=" " target="_blank">"餐厅入驻协议"</ a>
+for="male">我同意外卖超人</label><a href=" " target="_blank">"餐厅入驻协议"</a>
             </div>
             <div class="tc merchants-btn">
                 <button ng-disabled="!user.remember || registerBtnDisabled" ng-click=""  
