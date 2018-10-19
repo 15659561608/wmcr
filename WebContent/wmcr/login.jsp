@@ -47,7 +47,7 @@
         <div class="form-group">
             <label for="">手机号码</label>
             <div>
-                <input  id  = "account"  name = "account" maxlength="11" type="text" class="form-text" placeholder="输入您的手机号码"/><div id="accountStatus" style="color:#F00"></div></label>
+                <input  id  = "account"  name = "account" maxlength="11" type="text" class="form-text" placeholder="输入您的手机号码"/><div id="accountStatus" style="color:#0c0"></div></label>
                 <span class="vaildate-error" ng-if="user.usernameMessage">
                     <span ng-bind="user.usernameMessage"></span>
                 </span>
@@ -59,7 +59,7 @@
         <div class="form-group mb10">
             <label for="">登录密码</label>
             <div>
-                <input type="password" id = "pwd" name = "pwd" maxlength="10" type="password" class="form-text" onpaste="return false" placeholder="请输入登录密码"/><div id="pwdStatus" style="color:#F00"></div></label>
+                <input type="password" id = "pwd" name = "pwd" maxlength="10" type="password" class="form-text" onpaste="return false" placeholder="请输入登录密码"/><div id="pwdStatus" style="color:#0c0"></div></label>
                 <span class="vaildate-error" ng-if="user.passwordMessage">
                     <span ng-bind="user.passwordMessage"></span>
                 </span>

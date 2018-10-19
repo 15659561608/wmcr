@@ -1,20 +1,21 @@
 package com.etc.entity;
 
 public class Distribution {
+	@Override
+	public String toString() {
+		return "Distribution [dId=" + dId + ", disTime=" + disTime + ", remarks=" + remarks + ", disId=" + disId
+				+ ", ordId=" + ordId + ", name=" + name + ", phone=" + phone + ", address=" + address + "]";
+	}
 	private int dId;
 	private String disTime;
 	private String remarks;
 	private int disId;
-	private int ordId;
+	private String ordId;
+	private String name;
+	private String phone;
+	private String address;
 	public Distribution() {
 		// TODO Auto-generated constructor stub
-	}
-	public Distribution(String disTime, String remarks, int disId, int ordId) {
-		super();
-		this.disTime = disTime;
-		this.remarks = remarks;
-		this.disId = disId;
-		this.ordId = ordId;
 	}
 	public int getdId() {
 		return dId;
@@ -40,10 +41,41 @@ public class Distribution {
 	public void setDisId(int disId) {
 		this.disId = disId;
 	}
-	public int getOrdId() {
+	public String getOrdId() {
 		return ordId;
 	}
-	public void setOrdId(int ordId) {
+	public void setOrdId(String ordId) {
 		this.ordId = ordId;
 	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public Distribution(String disTime, String remarks, int disId, String ordId, String name, String phone,
+			String address) {
+		super();
+		this.disTime = disTime;
+		this.remarks = remarks;
+		this.disId = disId;
+		this.ordId = ordId;
+		this.name = name;
+		this.phone = phone;
+		this.address = address;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	
+	
 }

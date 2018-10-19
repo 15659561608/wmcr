@@ -30,11 +30,11 @@
             <header id="header">
                 <div class="common-width clearfix">
                     <h1 class="fl">
-                        <a class="logo base-logo" href="index.jsp">外卖超人</a>
+                        <a class="logo base-logo" href="${pageContext.request.contextPath }/wmcr/mainPage.jsp">外卖超人</a>
                     </h1>
                     
                         <ul class="member logging" ng-init="loginInfo=true">
-                            <li><a href="index.jsp" class="index">首页</a></li>
+                            <li><a href="${pageContext.request.contextPath }/wmcr/mainPage.jsp" class="index">首页</a></li>
                             <li class="userName">
                                 <a href="member_index.jsp" rel="nofollow" draw-user>${sessionScope.users.account}<em></em></a>
                                 <div>

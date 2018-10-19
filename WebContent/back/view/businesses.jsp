@@ -87,6 +87,13 @@
 						src="${pageContext.request.contextPath}/back/img/jt-right-co.png"
 						alt="">
 					</th>
+						<th class="no-nowrap sort cur" style="width: 20%;">营业执照 <img
+						class="bottom"
+						src="${pageContext.request.contextPath}/back/img/jt-bottom.png"
+						alt=""> <img class="top" style="display: none"
+						src="${pageContext.request.contextPath}/back/img/jt-right-co.png"
+						alt="">
+					</th>
 					<th class="no-nowrap sort cur" style="width: 10%;">操作 <img
 						class="bottom"
 						src="${pageContext.request.contextPath}/back/img/jt-bottom.png"
@@ -108,11 +115,12 @@
 						<td>${businesses.phone}</td>
 						<td>${businesses.address}</td>
 						<td>${businesses.state==0?"未审核":(businesses.state==1?"正常":"销毁")}</td>
+						<td><img src="${pageContext.request.contextPath}${businesses.licence}" width="100px" height="100px"/></td>
 						<td class="col-md-2"><button class="btn btn-link update"
 								href="#modal-container-671859" data-toggle="modal">修改</button></td>
 					</tr>
 				</c:forEach>
-
+ 
 			</tbody>
 		</table>
 	</div>

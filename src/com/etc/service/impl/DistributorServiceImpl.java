@@ -1,6 +1,8 @@
 package com.etc.service.impl;
 
+import java.sql.Connection;
 import java.util.Date;
+import java.util.List;
 
 import com.etc.dao.DistributorDao;
 import com.etc.dao.impl.DistributorDaoImpl;
@@ -27,6 +29,12 @@ public class DistributorServiceImpl implements DistributorService {
 	public boolean updateDis(String phone, int state, int id) {
 		// TODO Auto-generated method stub
 		return dd.updateDis(phone, state, id);
+	}
+
+	@Override
+	public List<Distributor> queryDis(Connection conn) {
+		// TODO Auto-generated method stub
+		return dd.queryDis(conn);
 	}
 
 }

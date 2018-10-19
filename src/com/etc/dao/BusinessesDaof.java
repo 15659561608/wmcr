@@ -6,6 +6,7 @@ import com.etc.entity.Businesses;
 
 public interface BusinessesDaof {
 	List<Businesses> queryBuss();
+	List<Businesses> queryBussById(int id);
 	
 	
 

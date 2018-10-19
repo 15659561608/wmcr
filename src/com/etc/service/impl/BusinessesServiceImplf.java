@@ -16,6 +16,12 @@ public class BusinessesServiceImplf implements BusinessesServicef{
 		return bdf.queryBuss();
 	}
 
+	@Override
+	public List<Businesses> queryBussById(int id) {
+		// TODO Auto-generated method stub
+		return bdf.queryBussById(id);
+	}
+
 	
 
 }

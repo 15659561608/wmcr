@@ -12,8 +12,8 @@ public class DistributionDaoImpl implements DistributionDao {
 	@Override
 	public Boolean addDis(Distribution d,Connection conn) {
 		// TODO Auto-generated method stub
-		String sql="INSERT INTO distribution (disTime, remarks, disId, ordId) VALUES (?,?,?,?)";
-		return BaseDao.execute(sql, conn, d.getDisTime(),d.getRemarks(),d.getDisId(),d.getOrdId())>0;
+		String sql="INSERT INTO distribution (disTime, remarks, disId, ordId,name,phone,address) VALUES (?,?,?,?,?,?,?)";
+		return BaseDao.execute(sql, conn, d.getDisTime(),d.getRemarks(),d.getDisId(),d.getOrdId(),d.getName(),d.getPhone(),d.getAddress())>0;
 	}
 
 	@Override

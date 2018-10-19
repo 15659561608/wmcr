@@ -19,6 +19,8 @@ import javax.servlet.http.HttpSession;
 
 import com.etc.entity.BusinessesCity;
 import com.etc.entity.Customers;
+import com.etc.entity.Distribution;
+import com.etc.entity.Distributor;
 import com.etc.entity.Orders;
 import com.etc.entity.OrdersData;
 import com.etc.entity.OrdersLwq;
@@ -27,10 +29,12 @@ import com.etc.entity.Users;
 import com.etc.service.impl.BusiNameLServiceImpl;
 import com.etc.service.impl.BusinessServiceImpl;
 import com.etc.service.impl.CustomersServiceImpl_czd;
+import com.etc.service.impl.DistributorServiceImpl;
 import com.etc.service.impl.FoodsServiceImplf;
 import com.etc.service.impl.OrdersDetailServiceImpl;
 import com.etc.service.impl.OrdersLServiceImpl;
 import com.etc.services.CustomersService_czd;
+import com.etc.services.DistributorService;
 import com.etc.services.FoodServicesf;
 import com.etc.services.OrdersDetailService;
 import com.etc.services.OrdersLService;
@@ -43,119 +47,127 @@ import com.etc.util.BaseDao;
 @WebServlet("/ohs.do")
 public class OrderHandlerServler extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public OrderHandlerServler() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public OrderHandlerServler() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String op="null";
-		if(request.getParameter("op")!=null) {
-			op=request.getParameter("op");
+		String op = "null";
+		if (request.getParameter("op") != null) {
+			op = request.getParameter("op");
 		}
-		//获取门店编号
-		String busiId="";
-		if(request.getParameter("busiId")!=null) {
-			busiId=request.getParameter("busiId");
+		// 获取门店编号
+		String busiId = "";
+		if (request.getParameter("busiId") != null) {
+			busiId = request.getParameter("busiId");
 		}
-		HttpSession session=request.getSession();
-		Users user=(Users) session.getAttribute("users");
-		System.out.println(user);
-		//下单
-		if("add".equals(op)) {
-			if(user==null) {
+		HttpSession session = request.getSession();
+		Users user = (Users) session.getAttribute("users");
+		// 下单
+		if ("add".equals(op)) {
+			if (user == null) {
 				request.getRequestDispatcher("wmcr/login.jsp").forward(request, response);
 				return;
 			}
-			//获取商品编号
-			String ids=request.getParameter("ids");
-			ids=ids.substring(0,ids.length()-1);
-			String id[]=ids.split(",");
-			//获取订单编号
-			String orderId=getOrderIdByTime();
-			//获取商品数量
-			String nums=request.getParameter("nums");
-			nums=nums.substring(0,nums.length()-1);
-			String num[]=nums.split(",");
-			//获取总价
-			String moneyStr=request.getParameter("totalPrice");
-			moneyStr=moneyStr.replaceAll(",", "");
-			double money=Double.valueOf(moneyStr);
-			FoodServicesf fs=new FoodsServiceImplf();
-			
-			SimpleDateFormat simple=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			String ordDate=simple.format(new Date());
-			
-			
-			
-			Connection conn=BaseDao.getConn();
-			
-			//事务
+			if(session.getAttribute("order")!=null) {
+				response.setCharacterEncoding("utf-8");
+				// 响应类型
+				response.setContentType("text/html;charset=utf-8");
+				PrintWriter out=response.getWriter();
+				out.print("<script>alert('请勿重复提交订单');</script>");
+				return;
+			}
+			// 获取商品编号
+			String ids = request.getParameter("ids");
+			ids = ids.substring(0, ids.length() - 1);
+			String id[] = ids.split(",");
+			// 获取订单编号
+			String orderId = getOrderIdByTime();
+			// 获取商品数量
+			String nums = request.getParameter("nums");
+			nums = nums.substring(0, nums.length() - 1);
+			String num[] = nums.split(",");
+			// 获取总价
+			String moneyStr = request.getParameter("totalPrice");
+			moneyStr = moneyStr.replaceAll(",", "");
+			double money = Double.valueOf(moneyStr);
+			FoodServicesf fs = new FoodsServiceImplf();
+
+			SimpleDateFormat simple = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String ordDate = simple.format(new Date());
+
+			Connection conn = BaseDao.getConn();
+
+			// 事务
 			try {
 				conn.setAutoCommit(false);
-				//插入订单基本表
-				Orders order=new Orders(orderId, user.getId(), Integer.valueOf(busiId), ordDate, money);
-				OrdersLService os=new OrdersLServiceImpl();
+				// 插入订单基本表
+				Orders order = new Orders(orderId, user.getId(), Integer.valueOf(busiId), ordDate, money);
+				OrdersLService os = new OrdersLServiceImpl();
 				os.addOrders(order, conn);
-				
-				//插入订单详细表
-				OrdersDetailService ods=new OrdersDetailServiceImpl();
+
+				// 插入订单详细表
+				OrdersDetailService ods = new OrdersDetailServiceImpl();
 				for (int i = 0; i < id.length; i++) {
-					Ordersdetail od=new Ordersdetail(orderId, Integer.valueOf(id[i]), Integer.valueOf(num[i]));
+					Ordersdetail od = new Ordersdetail(orderId, Integer.valueOf(id[i]), Integer.valueOf(num[i]));
 					ods.addOrdersDetail(od, conn);
 				}
-				
+
+				//创建订单session
+				session.setAttribute("order", order);
+				session.setMaxInactiveInterval(3600);
 				conn.commit();
-				//获取用户地址列表
-				List<Customers> cusList=new CustomersServiceImpl_czd().queryCustomersByUserId(user.getId());
+				// 获取用户地址列表
+				List<Customers> cusList = new CustomersServiceImpl_czd().queryCustomersByUserId(user.getId());
 				request.setAttribute("cusList", cusList);
-				
-				//获取订单列表
-				List<OrdersData> detailsList=(List<OrdersData>) os.queryOrdersByOrderId(orderId);
-				//获取订单信息
-				Orders ord=os.getorders(orderId);
-				//获取门店信息
-				List<BusinessesCity> busiInfo=new BusinessServiceImpl().getBusinessesById(Integer.valueOf(busiId));
+
+				// 获取订单列表
+				List<OrdersData> detailsList = (List<OrdersData>) os.queryOrdersByOrderId(orderId);
+				// 获取订单信息
+				Orders ord = os.getorders(orderId);
+				// 获取门店信息
+				List<BusinessesCity> busiInfo = new BusinessServiceImpl().getBusinessesById(Integer.valueOf(busiId));
 				request.setAttribute("detailsList", detailsList);
 				request.setAttribute("busiInfo", busiInfo.get(0));
+				request.setAttribute("orderId", orderId);
 				request.setAttribute("ord", ord);
 				request.getRequestDispatcher("wmcr/order.jsp").forward(request, response);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				PrintWriter out=response.getWriter();
+				PrintWriter out = response.getWriter();
 				out.println("<script>alert('提交订单失败');</script>");
 			}
-			
-			
-			
-		}else if("addAddress".equals(op)) {
-			//添加联系人地址
-			
+
+		} else if ("addAddress".equals(op)) {
+			// 添加联系人地址
+
 			response.setContentType("text/html");
 			response.setCharacterEncoding("utf-8");
-			PrintWriter out=response.getWriter();
-			if(user==null) {
+			PrintWriter out = response.getWriter();
+			if (user == null) {
 				request.getRequestDispatcher("wmcr/login.jsp").forward(request, response);
 				return;
 			}
-			
-			String custName=request.getParameter("name");
-			String phone=request.getParameter("phone");
-			String address=request.getParameter("address");
-			System.out.println(custName);
-			SimpleDateFormat simple=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			String regDate=simple.format(new Date());
-			
-			//根据地址获取经纬度
+
+			String custName = request.getParameter("name");
+			String phone = request.getParameter("phone");
+			String address = request.getParameter("address");
+			SimpleDateFormat simple = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String regDate = simple.format(new Date());
+
+			// 根据地址获取经纬度
 			double lat = 0.0;
 			double lon = 0.0;
 			HashMap<String, Double> hashmap = (HashMap<String, Double>) BaiduMap.getLatLon(address);
@@ -163,34 +175,37 @@ public class OrderHandlerServler extends HttpServlet {
 				lat = hashmap.get("lat");
 				lon = hashmap.get("lon");
 			}
-			
-			Customers c=new Customers(custName, phone, regDate, address, user.getId(), lat, lon);
-			CustomersService_czd cs=new CustomersServiceImpl_czd();
-			boolean result=cs.addCustomers(c);
-			if(result) {
+
+			Customers c = new Customers(custName, phone, regDate, address, user.getId(), lat, lon);
+			CustomersService_czd cs = new CustomersServiceImpl_czd();
+			boolean result = cs.addCustomers(c);
+			if (result) {
 				out.print("true");
-			}else {
+			} else {
 				out.print("false");
 			}
 		}
-		
+
 	}
 
-	//生成订单号
+	// 生成订单号
 	public static String getOrderIdByTime() {
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddHHmmss");
-		String newDate=sdf.format(new Date());
-		String result="";
-		Random random=new Random();
-		for(int i=0;i<3;i++){
-			result+=random.nextInt(10);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		String newDate = sdf.format(new Date());
+		String result = "";
+		Random random = new Random();
+		for (int i = 0; i < 3; i++) {
+			result += random.nextInt(10);
 		}
-		return newDate+result;
+		return newDate + result;
 	}
+
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

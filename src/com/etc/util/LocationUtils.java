@@ -36,10 +36,10 @@ public class LocationUtils {
 		return s;
 	}
  
-	/*public static void main(String[] args) {
-		double distance = getDistance(34.2675560000, 108.9534750000,
-				34.2464320000, 108.9534750000);
+	public static void main(String[] args) {
+		double distance = getDistance(24.482556, 118.17694,
+				24.4892, 118.183905);
 		System.out.println("距离" + distance / 1000 + "公里");
-	}*/
+	}
 }
 
