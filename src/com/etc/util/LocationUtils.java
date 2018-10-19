@@ -37,7 +37,7 @@ public class LocationUtils {
 	}
  
 	public static void main(String[] args) {
-		double distance = getDistance(24.482556, 118.17694,
+		double distance = getDistance(24.475827, 118.1165,
 				24.4892, 118.183905);
 		System.out.println("距离" + distance / 1000 + "公里");
 	}

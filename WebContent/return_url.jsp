@@ -57,6 +57,8 @@
 		
 		OrdersLService os=new OrdersLServiceImpl();
 		os.updateOrdersByid(out_trade_no, 1);
+		session.removeAttribute("order");
+		session.removeAttribute("distribution");
 		response.sendRedirect("wmcr/order_success.jsp");
 		out.println("trade_no:"+trade_no+"<br/>out_trade_no:"+out_trade_no+"<br/>total_amount:"+total_amount);
 		
