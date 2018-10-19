@@ -16,6 +16,14 @@ public class BusinessesDaoImplf implements BusinessesDaof{
 		return list;
 	}
 
+	@Override
+	public List<Businesses> queryBussById(int id) {
+		// TODO Auto-generated method stub
+		String sql="select * from businesses where bossId=?";
+		List<Businesses> businesses= (List<Businesses>) BaseDao.select(sql, Businesses.class,id);
+		return businesses;
+	}
+
 
 
 	

@@ -9,7 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.etc.entity.Boss;
 import com.etc.entity.Businesses;
 import com.etc.entity.Type;
 import com.etc.service.impl.BusinessesServiceImplf;
@@ -36,16 +38,22 @@ public class BusinessesServletf extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+			HttpSession session=request.getSession();
 		
 			response.setContentType("application/json");
 			PrintWriter out = response.getWriter();
-			List<Businesses> list=bsf.queryBusinesses();		
-		//	request.getSession().setAttribute("list", list);
+			Boss b=(Boss)session.getAttribute("boss");
+			//System.out.println("ID："+b.getId());
+			int bossId=b.getId();
+			List<Businesses> businesses=bsf.queryBussById(bossId);
+			//businesses.forEach(System.out::println);
+			//	List<Businesses> list=bsf.queryBusinesses(bossId);
+		//	List<Businesses> list=bsf.queryBusinesses();		
+		//	request.getSession().setAttribute("list", businesses);
 
 			Gson gson = new Gson();
 
-			String data = gson.toJson(list);
+			String data = gson.toJson(businesses);
 
 			out.print(data);
 		}

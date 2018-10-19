@@ -79,8 +79,8 @@
 						<input type="hidden" value="" id="logo-value" name="logo" />
 						<input type="hidden" class="form-control" id="busid" name="busid" value="${sessionScope.boss.id}"/>
 					<input type="text" class="input-text" placeholder="请输入美食名111"
-						name="foodName" id="foodName" autocomplete="off" value="">
-						
+						name="foodName" id="foodName" autocomplete="off" value="" />
+						<div id="div1"></div>
 				</div>
 			</div>
 			<div class="row cl">
@@ -88,6 +88,7 @@
 				<div class="formControls col-xs-8">
 					<input type="text" class="input-text" placeholder="$$价格。。。"
 						name="price" id="price" autocomplete="off">
+						<div id="div2"></div>
 				</div>
 			</div>
 			<div class="row cl">
@@ -95,6 +96,7 @@
 				<div class="formControls col-xs-8">
 					<input type="text" class="input-text" placeholder="多少折扣呢？"
 						name="discount" id="discount" autocomplete="off">
+						<div id="div3"></div>
 				</div>
 			</div>
 			<div class="row cl">
@@ -102,6 +104,7 @@
 				<div class="formControls col-xs-8">
 					<input type="text" class="input-text" placeholder="输入美食数量.."
 						name="num" id="num" autocomplete="off">
+						<div id="div4"></div>
 				</div>
 			</div>
 			<div class="row cl">
@@ -110,6 +113,7 @@
 				
 					<input type="text" class="input-text" placeholder="销售数量"
 						name="salNum" id="salNum" autocomplete="off">
+						<div id="div5"></div>
 				</div>
 			</div>
 			
@@ -117,6 +121,7 @@
 				<label class="form-label col-xs-3">详细描述</label>
 				<div class="formControls col-xs-8">
 					<script id="editor" name="des" type="text/plain" style="width:1024px;height:500px;"></script>
+					<div id="div6"></div>
 
 				</div>
 			</div>
@@ -177,7 +182,12 @@
 <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script>
 <script src="../layui/layui.all.js"></script>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="jquery.js"></script>
+
 <script type="text/javascript">
+
 
     //实例化编辑器
     //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
@@ -310,7 +320,139 @@ $("#logo").change(function(){
 	
 });
 </script>
+<script type="text/javascript">
 
+$(document).ready(function(){
+	//价格格式
+	 var reg = /(^[1-9]\d*(\.\d{1,2})?$)|(^0(\.\d{1,2})?$)/;
+	//折扣格式
+	 var reg1=/(^0\.[1-9]{1,2}$)|(^0\.[0-9]{1}[1-9]{1}$)|(^1{1}$)|(^1{1}\.0{2}$)|(^1{1}\.0{1}$)/;
+	//数量格式
+	 var reg2=/^[1-9]\d*$/;
+	  $("#foodName").mouseover(function(){
+		  if($("#foodName").val()==""){
+			  $("#div1").text("菜名不为空");
+			  $("#div1").css("color","red");
+		  }else{
+			  $("#div1").text("");
+		  }
+	   
+	  });
+	  $("#foodName").mouseout(function(){
+		  if($("#foodName").val()!=""){
+			  $("#div1").text("");
+		  }else if($("#foodName").val()==""){
+			  $("#div1").text("菜名不为空");
+			  $("#div1").css("color","red");
+		  }
+	  });
+	  $("#price").mouseover(function(){
+		  if($("#price").val()=="" || !reg.test($("#price").val())){
+			  $("#div2").text("请输入正确的价格格式");
+			  $("#div2").css("color","red");
+		  }else{
+			  $("#div2").text("");
+		  }
+	   
+	  });
+	  $("#price").mouseout(function(){
+		  if($("#price").val()!="" && reg.test($("#price").val())){
+			  $("#div2").text("");
+		  }else{
+			  $("#div2").text("请输入正确的价格格式");
+			  $("#div2").css("color","red");
+		  }
+	  });
+	  
+	  $("#discount").mouseover(function(){
+		  if($("#discount").val()=="" || !reg1.test($("#discount").val())){
+			  $("#div3").text("请输入正确的价格格式");
+			  $("#div3").css("color","red");
+		  }else{
+			  $("#div3").text("");
+		  }
+	   
+	  });
+	  $("#discount").mouseout(function(){
+		  if($("#discount").val()!="" && reg1.test($("#discount").val())){
+			  $("#div3").text("");
+		  }else{
+			  $("#div3").text("请输入正确的价格格式");
+			  $("#div3").css("color","red");
+		  }
+	  });
+	  
+	  $("#num").mouseover(function(){
+		  if($("#num").val()=="" || !reg2.test($("#num").val())){
+			  $("#div4").text("请输入正确的数量格式");
+			  $("#div4").css("color","red");
+		  }else{
+			  $("#div4").text("");
+		  }
+	   
+	  });
+	  $("#num").mouseout(function(){
+		  if($("#num").val()!="" && reg2.test($("#num").val())){
+			  $("#div4").text("");
+		  }else{
+			  $("#div4").text("请输入正确的数量格式");
+			  $("#div4").css("color","red");
+		  }
+	  });
+	  $("#salNum").mouseover(function(){
+		  if($("#salNum").val()=="" || !reg2.test($("#salNum").val())){
+			  $("#div5").text("请输入正确的销售数量格式");
+			  $("#div5").css("color","red");
+		  }else{
+			  $("#div5").text("");
+		  }
+	   
+	  });
+	  $("#salNum").mouseout(function(){
+		  if($("#salNum").val()!="" && reg2.test($("#salNum").val())){
+			  $("#div5").text("");
+		  }else{
+			  $("#div5").text("请输入正确的销售数量格式");
+			  $("#div5").css("color","red");
+		  }
+	  });
+	 
+	  
+	});
+
+
+</script>
+<script type="text/javascript">
+$(function() {
+    //鼠标离文本框判断名称是否重复
+    //#buyerName 获取要判断的文本框
+    //绑定propertychange 即刻搜索事件(键盘按下就提示)
+    $("#buyerName").bind("input propertychange",function(){
+        $.ajax({
+            type : "POST",
+            url : "/checkBuyerFigure.htm",
+            data : {
+                //获取文本框的值
+                buyerName : $("#buyerName").val()
+            },
+            dataType : "json",
+            success : function(data) {
+                $('#errorbuyerName').empty(); // 清空resText里面的所有内容
+                $("#errorbuyerName").text(data.msg);
+                //设置获取submit的，设置submit的属性（false禁止提交，true允许提交）
+                if(data.msg=="可以使用此名"){
+                    $(".save-subnit input").attr("disabled",false);
+                }
+                if(data.msg!="可以使用此名"){
+                    $(".save-subnit input").attr("disabled",true);
+                }
+            }
+        });
+    })
+}
+
+
+</script>
 
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
@@ -385,6 +527,8 @@ layui.use('upload', function(){
   
 });
 </script>
+
+
 
 <script type="text/javascript">
 $(function() {
