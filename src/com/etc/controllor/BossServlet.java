@@ -61,8 +61,11 @@ public class BossServlet extends HttpServlet {
 			String account=request.getParameter("account");
 			String pwd=MD5Util.getEncodeByMd5(request.getParameter("pwd"));
 			Boss boss=bs.checkLogin(account, pwd);
+			session.setAttribute("bossId", boss.getId());
 			if(boss!=null) {
 				out.print(true);
+				//传值给MenDianTuShowServlet
+				session.setAttribute("bossId", boss.getId());
 				session.setAttribute("boss", boss);
 			
 				session.setMaxInactiveInterval(3600*6);
