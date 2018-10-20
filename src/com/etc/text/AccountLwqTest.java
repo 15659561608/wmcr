@@ -44,7 +44,7 @@ public class AccountLwqTest {
 		List<BusiNameL> b=bnsi.getBusiName("15659561608");
 		System.out.println(b);*/
 	OrdersLServiceImpl osi=new OrdersLServiceImpl();
-		List<OrdersLwq> list=osi.getOrdersBusi("15659561608","");
+		List<OrdersLwq> list=osi.getOrdersBusi("15260034972","");
 		System.out.println(list);
 		
 	/*	OrdersLServiceImpl osi=new OrdersLServiceImpl();

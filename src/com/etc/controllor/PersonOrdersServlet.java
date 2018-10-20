@@ -41,7 +41,7 @@ public class PersonOrdersServlet extends HttpServlet {
 		//System.out.println(account+","+op);
 		if("queryansByPage".equals(op)) {
 			OrdersLServiceImpl osi=new OrdersLServiceImpl();
-			List<OrdersLwq> list=osi.getOrdersBusi(account,"");
+			List<OrdersLwq> list=osi.getOrdersPerson(account);
 			// System.out.println(list);
 			request.setAttribute("pd", list);
 			//查询到转发到原来的页面

@@ -90,4 +90,13 @@ public class OrderLDaoImpl implements OrdersLDao{
 		return null;
 	}
 
+	@Override
+	public List<OrdersLwq> queryOrdersPerson(String account) {
+		// TODO Auto-generated method stub
+String sql="select  orders.id,users.account,businesses.busiName,orders.ordDate,orders.money,food.foodName,ordersdetail.num,orders.state from orders,businesses,users,ordersdetail,food,boss \r\n" + 
+		"where orders.userId=users.id and orders.busId=businesses.id and ordersdetail.orderId=orders.id and ordersdetail.foodId=food.id and boss.id=businesses.bossId \r\n" + 
+		"and users.account=?";
+		 return (List<OrdersLwq>) BaseDao.select(sql, OrdersLwq.class, account);
+	}
+
 }

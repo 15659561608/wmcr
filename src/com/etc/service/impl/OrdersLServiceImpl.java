@@ -63,5 +63,10 @@ public class OrdersLServiceImpl implements OrdersLService{
 		// TODO Auto-generated method stub
 		return odi.getorders(orderId);
 	}
+	@Override
+	public List<OrdersLwq> getOrdersPerson(String account) {
+		// TODO Auto-generated method stub
+		return odi.queryOrdersPerson(account);
+	}
 
 }

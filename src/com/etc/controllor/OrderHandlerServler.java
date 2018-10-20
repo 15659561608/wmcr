@@ -116,7 +116,6 @@ public class OrderHandlerServler extends HttpServlet {
 				Orders order = new Orders(orderId, user.getId(), Integer.valueOf(busiId), ordDate, money);
 				OrdersLService os = new OrdersLServiceImpl();
 				os.addOrders(order, conn);
-
 				// 插入订单详细表
 				OrdersDetailService ods = new OrdersDetailServiceImpl();
 				for (int i = 0; i < id.length; i++) {

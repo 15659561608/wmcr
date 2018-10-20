@@ -30,4 +30,6 @@ public interface OrdersLDao {
 	public boolean addOrders(Orders o,Connection conn);
 	//根据订单编号获取订单信息
 	public Orders getorders(String orderId);
+	//根据用户账号查找订单
+	List<OrdersLwq> queryOrdersPerson(String account);
 }
