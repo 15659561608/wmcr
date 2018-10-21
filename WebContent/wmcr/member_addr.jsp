@@ -122,7 +122,7 @@
                         <label class="col-2">收单人：</label>
                         <div class="col-6">
                             <input type="text" required maxlength="10"
-                                ng-class="{error:userAddressForm.submit && userAddressForm.name.$invalid}" name="name"
+                                ng-class="{error:userAddressForm.submit && userAddressForm.name.$invalid}" id="adsName"
                                 placeholder="如何称呼" ng-model="userAddress.customer_name">
                         </div>
                         <span ng-if="userAddressForm.submit && userAddressForm.name.$invalid">
@@ -133,7 +133,7 @@
                         <label class="col-2">手机号码：</label>
                         <div class="col-6">
                             <input type="text" maxlength="11" required mobile
-                                ng-class="{error:userAddressForm.submit && userAddressForm.contact.$invalid}" name="contact"
+                                ng-class="{error:userAddressForm.submit && userAddressForm.contact.$invalid}" id="adsPhone"
                                 placeholder="138xxxxxxxx" ng-model="userAddress.customer_phone">
                         </div>
                         <span ng-if="userAddressForm.submit && userAddressForm.contact.$error.required">
@@ -147,7 +147,7 @@
                         <label class="col-2">送餐地址：</label>
                         <div class="col-6">
                             <input type="text" required
-                                ng-class="{error:userAddressForm.submit && userAddressForm.address.$invalid}" name="address"
+                                ng-class="{error:userAddressForm.submit && userAddressForm.address.$invalid}" id="adsAds"
                                 placeholder="详细地址，如武定西路1189号606室" ng-model="userAddress.delivery_address">
                         </div>
                         <span ng-if="(userAddressForm.submit && userAddressForm.address.$invalid)">
@@ -157,7 +157,7 @@
                     <div class="form-group mb30 row">
                         <label class="col-2"></label>
                         <div class="col-8">
-                            <button class="btn btn-success normal-btn" ng-click="addUserAddress()">
+                            <button class="btn btn-success normal-btn" id="doAddressSubmit">
                                 保存送餐地址
                             </button>
                         </div>
@@ -321,4 +321,24 @@
 
 
 </body>
+<script
+		src="${pageContext.request.contextPath }/wmcr/js/jquery-1.8.1.js"></script>
+	<script>
+$("#doAddressSubmit").click(
+				function() {
+					var name = $("#adsName").val();
+					var phone = $("#adsPhone").val();
+					var address = $("#adsAds").val();
+					 $.post("${pageContext.request.contextPath }/ohs.do",
+							"op=addAddress&address=" + address + "&name="
+									+ name + "&phone=" + phone, function(data) {
+
+								if (data == "true") {
+									alert("添加成功");
+								} else {
+									alert("添加失败");
+								}
+							});  
+				});
+</script>
 </html>

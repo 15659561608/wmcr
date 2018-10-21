@@ -45,8 +45,8 @@
                        <ul class="member" login-box>
                      
                             <li><a href="  <c:choose><c:when test="${users !=null }">${pageContext.request.contextPath }/wmcr/mainPage.jsp</c:when><c:otherwise>${pageContext.request.contextPath }/wmcr/index.jsp</c:otherwise></c:choose>" class="index">首页</a></li>
-                            <li class="login-register"><a href="login.html" referer-url  class="login"  rel="nofollow">登录</a><span class="cg">/</span><a href="register.html" referer-url  rel="nofollow" class="register">注册</a></li>
-                            <li><a href="member_order.html" class="order-center"  rel="nofollow">查看订单</a></li>
+                            <li class="login-register"><a href="${pageContext.request.contextPath }/wmcr/login.jsp" referer-url  class="login"  rel="nofollow">登录</a><span class="cg">/</span><a href="${pageContext.request.contextPath }/wmcr/register.jsp" referer-url  rel="nofollow" class="register">注册</a></li>
+                            <li><a href="${pageContext.request.contextPath }/wmcr/member_order.jsp" class="order-center"  rel="nofollow">查看订单</a></li>
           <!--                  <li class=""><a href="gifts.html"  rel="nofollow">氪星礼品站</a></li>-->
                            <!-- <li class="phone-client "><a href="#"  rel="nofollow" target="_blank"><span>手机客户端</span></a></li>-->
                         </ul>

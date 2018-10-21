@@ -52,7 +52,7 @@ public class OrderLDaoImpl implements OrdersLDao{
 	public List<OrdersData> queryOrdersByOrderId(String id) {
 		// TODO Auto-generated method stub
 		String sql="select orders.id,users.account,businesses.busiName,orders.ordDate,orders.money,food.foodName,food.price,ordersdetail.num,orders.state from\r\n" + 
-				"orders,businesses,users,ordersdetail,food where orders.userId=users.id and orders.busId=businesses.id and ordersdetail.orderId=orders.id and ordersdetail.foodId=food.id and orders.id=?";
+				"orders,businesses,users,ordersdetail,food where orders.userId=users.id and orders.busId=businesses.id and ordersdetail.orderId=orders.id and ordersdetail.foodId=food.id and orders.id=? order by orders.ordDate desc";
 		return (List<OrdersData>) BaseDao.select(sql, OrdersData.class, id);
 	}
 	/**
@@ -95,8 +95,9 @@ public class OrderLDaoImpl implements OrdersLDao{
 		// TODO Auto-generated method stub
 String sql="select  orders.id,users.account,businesses.busiName,orders.ordDate,orders.money,food.foodName,ordersdetail.num,orders.state from orders,businesses,users,ordersdetail,food,boss \r\n" + 
 		"where orders.userId=users.id and orders.busId=businesses.id and ordersdetail.orderId=orders.id and ordersdetail.foodId=food.id and boss.id=businesses.bossId \r\n" + 
-		"and users.account=?";
+		"and users.account=? order by orders.ordDate desc";
 		 return (List<OrdersLwq>) BaseDao.select(sql, OrdersLwq.class, account);
 	}
+	
 
 }

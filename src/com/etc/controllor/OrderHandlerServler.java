@@ -85,69 +85,89 @@ public class OrderHandlerServler extends HttpServlet {
 				// 响应类型
 				response.setContentType("text/html;charset=utf-8");
 				PrintWriter out=response.getWriter();
-				out.print("<script>alert('请勿重复提交订单');</script>");
-				return;
-			}
-			// 获取商品编号
-			String ids = request.getParameter("ids");
-			ids = ids.substring(0, ids.length() - 1);
-			String id[] = ids.split(",");
-			// 获取订单编号
-			String orderId = getOrderIdByTime();
-			// 获取商品数量
-			String nums = request.getParameter("nums");
-			nums = nums.substring(0, nums.length() - 1);
-			String num[] = nums.split(",");
-			// 获取总价
-			String moneyStr = request.getParameter("totalPrice");
-			moneyStr = moneyStr.replaceAll(",", "");
-			double money = Double.valueOf(moneyStr);
-			FoodServicesf fs = new FoodsServiceImplf();
-
-			SimpleDateFormat simple = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			String ordDate = simple.format(new Date());
-
-			Connection conn = BaseDao.getConn();
-
-			// 事务
-			try {
-				conn.setAutoCommit(false);
-				// 插入订单基本表
-				Orders order = new Orders(orderId, user.getId(), Integer.valueOf(busiId), ordDate, money);
+				// 获取商品编号
+				List<Orders> orders=(List<Orders>)BaseDao.select("select id from orders ORDER BY ordDate desc limit 0,1",Orders.class);
+				String orderId = orders.get(0).getId();
 				OrdersLService os = new OrdersLServiceImpl();
-				os.addOrders(order, conn);
-				// 插入订单详细表
-				OrdersDetailService ods = new OrdersDetailServiceImpl();
-				for (int i = 0; i < id.length; i++) {
-					Ordersdetail od = new Ordersdetail(orderId, Integer.valueOf(id[i]), Integer.valueOf(num[i]));
-					ods.addOrdersDetail(od, conn);
+				Connection conn = BaseDao.getConn();
+					// 获取用户地址列表
+					List<Customers> cusList = new CustomersServiceImpl_czd().queryCustomersByUserId(user.getId());
+					request.setAttribute("cusList", cusList);
+
+					// 获取订单列表
+					List<OrdersData> detailsList = (List<OrdersData>) os.queryOrdersByOrderId(orderId);
+					// 获取订单信息
+					Orders ord = os.getorders(orderId);
+					// 获取门店信息
+					List<BusinessesCity> busiInfo = new BusinessServiceImpl().getBusinessesById(Integer.valueOf(busiId));
+					request.setAttribute("detailsList", detailsList);
+					request.setAttribute("busiInfo", busiInfo.get(0));
+					request.setAttribute("orderId", orderId);
+					request.setAttribute("ord", ord);
+					request.getRequestDispatcher("wmcr/order.jsp").forward(request, response);
+			}else {
+				// 获取商品编号
+				String ids = request.getParameter("ids");
+				ids = ids.substring(0, ids.length() - 1);
+				String id[] = ids.split(",");
+				// 获取订单编号
+				String orderId = getOrderIdByTime();
+				// 获取商品数量
+				String nums = request.getParameter("nums");
+				nums = nums.substring(0, nums.length() - 1);
+				String num[] = nums.split(",");
+				// 获取总价
+				String moneyStr = request.getParameter("totalPrice");
+				moneyStr = moneyStr.replaceAll(",", "");
+				double money = Double.valueOf(moneyStr);
+				FoodServicesf fs = new FoodsServiceImplf();
+
+				SimpleDateFormat simple = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				String ordDate = simple.format(new Date());
+
+				Connection conn = BaseDao.getConn();
+
+				// 事务
+				try {
+					conn.setAutoCommit(false);
+					// 插入订单基本表
+					Orders order = new Orders(orderId, user.getId(), Integer.valueOf(busiId), ordDate, money);
+					OrdersLService os = new OrdersLServiceImpl();
+					os.addOrders(order, conn);
+					// 插入订单详细表
+					OrdersDetailService ods = new OrdersDetailServiceImpl();
+					for (int i = 0; i < id.length; i++) {
+						Ordersdetail od = new Ordersdetail(orderId, Integer.valueOf(id[i]), Integer.valueOf(num[i]));
+						ods.addOrdersDetail(od, conn);
+					}
+
+					//创建订单session
+					session.setAttribute("order", order);
+					session.setMaxInactiveInterval(3600);
+					conn.commit();
+					// 获取用户地址列表
+					List<Customers> cusList = new CustomersServiceImpl_czd().queryCustomersByUserId(user.getId());
+					request.setAttribute("cusList", cusList);
+
+					// 获取订单列表
+					List<OrdersData> detailsList = (List<OrdersData>) os.queryOrdersByOrderId(orderId);
+					// 获取订单信息
+					Orders ord = os.getorders(orderId);
+					// 获取门店信息
+					List<BusinessesCity> busiInfo = new BusinessServiceImpl().getBusinessesById(Integer.valueOf(busiId));
+					request.setAttribute("detailsList", detailsList);
+					request.setAttribute("busiInfo", busiInfo.get(0));
+					request.setAttribute("orderId", orderId);
+					request.setAttribute("ord", ord);
+					request.getRequestDispatcher("wmcr/order.jsp").forward(request, response);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					PrintWriter out = response.getWriter();
+					out.println("<script>alert('提交订单失败');</script>");
 				}
-
-				//创建订单session
-				session.setAttribute("order", order);
-				session.setMaxInactiveInterval(3600);
-				conn.commit();
-				// 获取用户地址列表
-				List<Customers> cusList = new CustomersServiceImpl_czd().queryCustomersByUserId(user.getId());
-				request.setAttribute("cusList", cusList);
-
-				// 获取订单列表
-				List<OrdersData> detailsList = (List<OrdersData>) os.queryOrdersByOrderId(orderId);
-				// 获取订单信息
-				Orders ord = os.getorders(orderId);
-				// 获取门店信息
-				List<BusinessesCity> busiInfo = new BusinessServiceImpl().getBusinessesById(Integer.valueOf(busiId));
-				request.setAttribute("detailsList", detailsList);
-				request.setAttribute("busiInfo", busiInfo.get(0));
-				request.setAttribute("orderId", orderId);
-				request.setAttribute("ord", ord);
-				request.getRequestDispatcher("wmcr/order.jsp").forward(request, response);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				PrintWriter out = response.getWriter();
-				out.println("<script>alert('提交订单失败');</script>");
 			}
+			
 
 		} else if ("addAddress".equals(op)) {
 			// 添加联系人地址

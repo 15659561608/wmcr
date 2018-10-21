@@ -82,7 +82,7 @@
         <ul class="fs12">
             <li>
                 <label>手机号码：</label>
-                <span>18005151538</span>
+                <span>${users.account }</span>
             </li>
             <li>
                 <label>登录密码：</label>
