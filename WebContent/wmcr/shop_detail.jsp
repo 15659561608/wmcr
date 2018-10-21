@@ -796,7 +796,7 @@
 
 <script src="${pageContext.request.contextPath }/wmcr/js/jquery-1.8.1.js"></script>
 <script>
-	
+
 	//下单操作
 	function xdMethod(){
 		var ids="";
@@ -807,7 +807,7 @@
 		$.each($(".goods-nums"),function(i,v){
 			nums+=$(this).text()+",";
 		});
-		var totalPrice=$(".totalPrice").text();
+		var totalPrice=parseFloat($(".totalPrice").text())+0+${busiInfo.disFee};
 		location.href='${pageContext.request.contextPath }/ohs.do?op=add&nums='+nums+'&totalPrice='+totalPrice+'&busiId='+${busiId}+'&ids='+ids;
 	}
 </script>
