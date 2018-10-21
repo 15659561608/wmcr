@@ -37,10 +37,10 @@
 					type="text" class="pull-left" style="margin-left: 10px;"
 					placeholder="相关店铺" name="keywords" id="keywords"
 					value="${keywords}">
-				<button class="btn delete pramary" type="submit">搜索</button>
+				<button class="btn btn-primary" type="submit">搜索</button>
 			</form>
 	</div>
-	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a class="btn btn-primary radius" onclick="picture_add('添加图片','picture-add.jsp')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加图片</a></span> <span class="r">共有数据：<strong>${requestScope.total}</strong> 条</span> </div>
+	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a class="btn btn-primary radius" onclick="picture_add('添加图片','picture-add.jsp')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加图片</a></span> <span class="r">共有数据：<strong>${requestScope.total}</strong> 条</span> </div>
 	<div class="mt-20">
 		<table class="table table-border table-bordered table-bg table-hover table-sort">
 			<thead>
@@ -66,7 +66,7 @@
 					<td><a href="javascript:;"><img width="210" class="picture-thumb" src="${pageContext.request.contextPath}${tushow.src}" style="height: 150px;width: 150px"></a></td>
 					<td class="text-l">${tushow.des}</td>
 					<td class="td-status"><span class="label label-success radius">已发布</span></td>
-					<td class="td-manage"><a style="text-decoration:none" onClick="picture_stop(this,'10001')" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a><a style="text-decoration:none" class="ml-5" onClick="picture_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+					<td class="td-manage"><a style="text-decoration:none" onClick="picture_stop(this,'10001')" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a><a style="text-decoration:none" class="ml-5 del" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 				</tr>
 				</c:forEach>
 			</tbody>
@@ -129,22 +129,14 @@ function picture_start(obj,id){
 	});
 }
 /*图片-删除*/
-function picture_del(obj,id){
-	layer.confirm('确认要删除吗？',function(index) {
-		$.ajax({
-			type: 'POST',
-			url: '',
-			dataType: 'json',
-			success: function(data){
-				$(obj).parents("tr").remove();
-				layer.msg('已删除!',{icon:1,time:1000});
-			},
-			error:function(data) {
-				console.log(data.msg);
-			},
-		});		
-	});
-}
+$(function () {
+ 	 $(".del").click(function() {
+ 		layer.confirm('确认要删除吗？',function(index) {
+ 			var pId  = $(this).parents("tr").find("td").eq(0).text()
+ 			location.href = "../mdts.do?op=deltu&pId=" + pId;
+ 		});
+ 	 });
+ })
 </script>
 <script  type="text/javascript" >
 layui.use(['laypage', 'layer'], function(){

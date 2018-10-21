@@ -10,7 +10,9 @@ import javax.servlet.http.HttpSession;
 
 import com.etc.entity.MenDianPhotoShow;
 import com.etc.service.impl.MenDianPhotoShowServiceImpl;
+import com.etc.service.impl.PhotosServiceImpl;
 import com.etc.services.MenDianPhotoShowService;
+import com.etc.services.PhotosService;
 import com.etc.util.PageData;
 
 /**
@@ -77,8 +79,19 @@ public class MenDianTuShowServlet extends HttpServlet {
 			request.setAttribute("keywords", keywords);
 			// 从当前控制器跳转到jsp页面,跳转的方法叫做转发
 			request.getRequestDispatcher("bossManage/picture-list.jsp").forward(request, response);
-		
 	  }
+		 else if("deltu".equals(op)) {
+			 String id = request.getParameter("pId");
+			 System.out.println("1111");
+			 PhotosService ps = new PhotosServiceImpl();
+			 boolean flag = ps.delpic(Integer.valueOf(id));
+			 if(flag) {
+				 request.getRequestDispatcher("bossManage/picture-list.jsp").forward(request, response);
+			 }
+			 else {
+				 
+			 }
+		 }
 	}
 
 	/**

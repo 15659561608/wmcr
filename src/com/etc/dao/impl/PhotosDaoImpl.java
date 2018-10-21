@@ -12,5 +12,11 @@ public class PhotosDaoImpl implements PhotosDao {
 		return BaseDao.execute("INSERT into photos VALUES(null,?,?)", p.getSrc(),p.getBusId())>0;
 		
 	}
+	
+	@Override
+	public boolean delPhoto(int id) {
+		// TODO Auto-generated method stub
+		return BaseDao.execute("DELETE FROM  photos  where photos.id = ?",id)>0;
+	}
 
 }
