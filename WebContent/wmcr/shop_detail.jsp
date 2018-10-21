@@ -50,8 +50,8 @@
 
                         <ul class="member" login-box>
                             <li><a href="<c:choose><c:when test="${users !=null }">${pageContext.request.contextPath }/wmcr/mainPage.jsp</c:when><c:otherwise>${pageContext.request.contextPath }/wmcr/index.jsp</c:otherwise></c:choose>" class="index">首页</a></li>
-                            <li class="login-register"><a href="${pageContext.request.contextPath }/wmcr/login.jsp"   class="login"  rel="nofollow">登录</a><span class="cg">/</span><a href="register.html" referer-url  rel="nofollow" class="register">注册</a></li>
-                            <li><a href="member_order.html" class="order-center"  rel="nofollow">查看订单</a></li>
+                            <li class="login-register"><a href="${pageContext.request.contextPath }/wmcr/login.jsp"   class="login"  rel="nofollow">登录</a><span class="cg">/</span><a href="${pageContext.request.contextPath }/wmcr/register.jsp" referer-url  rel="nofollow" class="register">注册</a></li>
+                            <li><a href="${pageContext.request.contextPath }/wmcr/member_order.jsp" class="order-center"  rel="nofollow">查看订单</a></li>
                             <li class=""><a href="gifts.html"  rel="nofollow">氪星礼品站</a></li>
                             <li class="phone-client "><a href="#"  rel="nofollow" target="_blank"><span>手机客户端</span></a></li>
                         </ul>
@@ -109,7 +109,7 @@
     </div>
 </header>
 <ul class="clearfix menu-nav-list" scroll-position-static="160">
-    <li class="no-line "><a href="#">餐厅介绍</a></li>
+    <li class="no-line "><a href="${pageContext.request.contextPath }/wmcr/shop_intro.jsp">餐厅介绍</a></li>
     <li class="active"><a href="#">菜单</a></li>
     <li ><a href="wmcr/shop_comment.jsp">评论</a></li>
 	<li ><a href="#" id='point-tab'>大家都在点</a></li>
@@ -796,7 +796,7 @@
 
 <script src="${pageContext.request.contextPath }/wmcr/js/jquery-1.8.1.js"></script>
 <script>
-	
+
 	//下单操作
 	function xdMethod(){
 		var ids="";
@@ -807,7 +807,7 @@
 		$.each($(".goods-nums"),function(i,v){
 			nums+=$(this).text()+",";
 		});
-		var totalPrice=$(".totalPrice").text();
+		var totalPrice=parseFloat($(".totalPrice").text())+0+${busiInfo.disFee};
 		location.href='${pageContext.request.contextPath }/ohs.do?op=add&nums='+nums+'&totalPrice='+totalPrice+'&busiId='+${busiId}+'&ids='+ids;
 	}
 </script>
