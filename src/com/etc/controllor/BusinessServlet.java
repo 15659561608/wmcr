@@ -84,7 +84,6 @@ public class BusinessServlet extends HttpServlet {
 			String jsonData = gson.toJson(bd);
 			response.setContentType("text/json");
 			PrintWriter out = response.getWriter();
-			System.out.println(jsonData);
 			out.println(jsonData);
 			out.close();
 		}
