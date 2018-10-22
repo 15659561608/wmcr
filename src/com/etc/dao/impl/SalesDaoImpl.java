@@ -26,8 +26,8 @@ public class SalesDaoImpl implements SalesDao {
 	@Override
 	public boolean addSales(Sales s) {
 		// TODO Auto-generated method stub
-		String sql="insert into sales values(null,?,?,?,?,?)";
-		return BaseDao.execute(sql, s.getTitle(),s.getDiscount(),0,s.getBusId(),s.getContent())>0;
+		String sql="insert into sales values(null,?,?,0,?,?,?)";
+		return BaseDao.execute(sql, s.getTitle(),s.getDiscount(),s.getBusId(),s.getContent(),s.getPubDate())>0;
 	}
 
 	@Override
