@@ -38,17 +38,17 @@
 			<ul class="cl">
 				<li>商家管理员</li>
 				<li class="dropDown dropDown_hover">
-					<a href="#" class="dropDown_A">admin<i class="Hui-iconfont">&#xe6d5;</i></a>
+					<a href="#" class="dropDown_A">${boss.account }<i class="Hui-iconfont">&#xe6d5;</i></a>
 					<ul class="dropDown-menu menu radius box-shadow">
 						<li><a href="javascript:;" onClick="myselfinfo()">个人信息</a></li>
-						<li><a href="#">切换账户</a></li>
-						<li><a href="#">退出</a></li>
+						<li><a href="${pageContext.request.contextPath }/bs.do?op=logout">切换账户</a></li>
+						<li><a href="${pageContext.request.contextPath }/bs.do?op=logout">退出</a></li>
 				</ul>
 			</li>
 				<li id="Hui-msg"> <a href="#" title="消息"><span class="badge badge-danger">1</span><i class="Hui-iconfont" style="font-size:18px">&#xe68a;</i></a> </li>
 				<li id="Hui-skin" class="dropDown right dropDown_hover"> <a href="javascript:;" class="dropDown_A" title="换肤"><i class="Hui-iconfont" style="font-size:18px">&#xe62a;</i></a>
 					<ul class="dropDown-menu menu radius box-shadow">
-						<li><a href="javascript:;" data-val="default" title="默认（黑色）">默认（黑色）</a></li>
+						<li><a href="javascript:;" data-val="green" title="默认（黑色）">默认（黑色）</a></li>
 						<li><a href="javascript:;" data-val="blue" title="蓝色">蓝色</a></li>
 						<li><a href="javascript:;" data-val="green" title="绿色">绿色</a></li>
 						<li><a href="javascript:;" data-val="red" title="红色">红色</a></li>
@@ -196,13 +196,13 @@ $(function(){
 /*个人信息*/
 function myselfinfo(){
 	layer.open({
-		type: 1,
-		area: ['300px','200px'],
+		type: 2,
+		area: ['500px','300px'],
 		fix: false, //不固定
 		maxmin: true,
 		shade:0.4,
 		title: '查看信息',
-		content: '<div>管理员信息</div>'
+		content: '${pageContext.request.contextPath }/bossManage/bossInfo.jsp'
 	});
 }
 
