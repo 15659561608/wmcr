@@ -31,7 +31,7 @@ public class UploadHandleServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 得到上传文件的保存目录，将上传的文件存放于WEB-INF目录下，不允许外界直接访问，保证上传文件的安全
-		String savePath ="C:\\Users\\acer\\git\\wmcr\\WebContent\\uploads";//"C:\\Users\\Administrator\\git\\wmcr\\WebContent\\uploads"; //this.getServletContext().getRealPath("/WEB-INF/upload");
+		String savePath ="C:\\Users\\Administrator\\git\\wmcr\\WebContent\\uploads"; //this.getServletContext().getRealPath("/WEB-INF/upload");
 		// 上传时生成的临时文件保存目录
 		String tempPath = this.getServletContext().getRealPath("/WEB-INF/temp");
 		File tmpFile = new File(tempPath);
