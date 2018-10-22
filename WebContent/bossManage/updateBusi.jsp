@@ -511,7 +511,7 @@ layui.use('upload', function(){
     ,before: function(obj){
       //预读本地文件示例，不支持ie8
       obj.preview(function(index, file, result){
-        $('#demo1').attr('src', result); //图片链接（base64）
+        $('#demo2').attr('src', result); //图片链接（base64）
       });
     }
     ,done: function(res){
@@ -542,7 +542,7 @@ layui.use('upload', function(){
     ,before: function(obj){
       //预读本地文件示例，不支持ie8
       obj.preview(function(index, file, result){
-        $('#demo2').attr('src', ('${busiInfo.licence}'=='')?result:'${contextPage.request.contextPath}/${busiInfo.licence}'); //图片链接（base64）
+        $('#demo1').attr('src', ('${busiInfo.licence}'=='')?result:'${contextPage.request.contextPath}/${busiInfo.licence}'); //图片链接（base64）
       });
     }
     ,done: function(res){
