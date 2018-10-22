@@ -16,7 +16,7 @@ public class Distributor {
 
     private String phone;
 
-    private Date birthday;
+    private String birthday;
 
     private String nativeplace;
 
@@ -52,11 +52,11 @@ public class Distributor {
         this.phone = phone == null ? null : phone.trim();
     }
 
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 

@@ -15,15 +15,15 @@
 <script type="text/javascript" src="lib/respond.min.js"></script>
 <![endif]-->
 <link rel="stylesheet" type="text/css"
-	href="bossManage/static/h-ui/css/H-ui.min.css" />
+	href="${pageContext.request.contextPath }/bossManage/static/h-ui/css/H-ui.min.css" />
 <link rel="stylesheet" type="text/css"
-	href="bossManage/static/h-ui.admin/css/H-ui.admin.css" />
+	href="${pageContext.request.contextPath }/bossManage/static/h-ui.admin/css/H-ui.admin.css" />
 <link rel="stylesheet" type="text/css"
-	href="bossManage/lib/Hui-iconfont/1.0.8/iconfont.css" />
+	href="${pageContext.request.contextPath }/bossManage/lib/Hui-iconfont/1.0.8/iconfont.css" />
 <link rel="stylesheet" type="text/css"
-	href="bossManage/static/h-ui.admin/skin/default/skin.css" id="skin" />
+	href="${pageContext.request.contextPath }/bossManage/static/h-ui.admin/skin/default/skin.css" id="skin" />
 <link rel="stylesheet" type="text/css"
-	href="bossManage/static/h-ui.admin/css/style.css" />
+	href="${pageContext.request.contextPath }/bossManage/static/h-ui.admin/css/style.css" />
 	<link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath }/layui/css/layui.css" />
 <!--[if IE 6]>
@@ -32,8 +32,8 @@
 <![endif]-->
 <title>我的桌面</title>
 
- <script type="text/javascript" charset="utf-8" src="Ueditor/ueditor.config.js"></script>
-    <script type="text/javascript" charset="utf-8" src="Ueditor/ueditor.all.min.js"> </script>
+ <script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath }/Ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="${pageContext.request.contextPath }/Ueditor/ueditor.all.min.js"> </script>
     <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
     <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
     <script type="text/javascript" charset="utf-8" src="Ueditor/lang/zh-cn/zh-cn.js"></script>
@@ -506,7 +506,7 @@ layui.use('upload', function(){
   
   //缩略图上传
   var uploadInst = upload.render({
-    elem: '#test1'
+    elem: '#test2'
     ,url: '${pageContext.request.contextPath }/UploadHandleServlet'
     ,before: function(obj){
       //预读本地文件示例，不支持ie8
@@ -537,7 +537,7 @@ layui.use('upload', function(){
   
   //营业执照上传
   var uploadInst = upload.render({
-    elem: '#test2'
+    elem: '#test1'
     ,url: '${pageContext.request.contextPath }/UploadHandleServlet'
     ,before: function(obj){
       //预读本地文件示例，不支持ie8
