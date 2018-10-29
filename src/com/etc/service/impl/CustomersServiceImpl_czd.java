@@ -36,5 +36,10 @@ public class CustomersServiceImpl_czd implements CustomersService_czd {
 		// TODO Auto-generated method stub
 		return cdc.addCustomers(c);
 	}
+	@Override
+	public Customers getCustomersById(int id) {
+		// TODO Auto-generated method stub
+		return cdc.getCustomersById(id);
+	}
 
 }

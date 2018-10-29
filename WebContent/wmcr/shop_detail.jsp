@@ -349,7 +349,7 @@
                                 </div>
                                 <div id="cart-item-list"></div>
                                 <div class="total clearfix disnone" ng-class="{disnone:isEmpty}">
-                                    <div class="fl">配送费：${busiInfo.disFee }￥<span ng-bind="deliveryCost|number:2"></span></div>
+                                    <%-- <div class="fl">配送费：${busiInfo.disFee }￥<span ng-bind="deliveryCost|number:2"></span></div> --%>
                                     <div class="fr" value="">合计：￥<span ng-bind="total|number:2" class="totalPrice"></span></div>
                                 </div>
                                 <div class="checkout">

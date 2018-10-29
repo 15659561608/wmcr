@@ -169,7 +169,18 @@ public class OrderHandlerServler extends HttpServlet {
 			}
 			
 
-		} else if ("addAddress".equals(op)) {
+		}else if("cusAddress".equals(op)) {
+			// 获取用户地址列表
+			List<Customers> cusList = new CustomersServiceImpl_czd().queryCustomersByUserId(user.getId());
+			request.setAttribute("cusList", cusList);
+			request.getRequestDispatcher("wmcr/member_addr.jsp").forward(request, response);
+		}else if("updateAddress".equals(op)) {
+			// 根据id获取用户地址信息
+			int id=Integer.valueOf(request.getParameter("id"));
+			Customers customers = new CustomersServiceImpl_czd().getCustomersById(id);
+			request.setAttribute("customers", customers);
+			request.getRequestDispatcher("wmcr/updateAddress.jsp").forward(request, response);
+		}else if ("addAddress".equals(op)) {
 			// 添加联系人地址
 
 			response.setContentType("text/html");

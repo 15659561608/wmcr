@@ -93,8 +93,8 @@
                 <li ng-repeat="item in userAddressList" ng-class="{active:item.active,userAddressHover:mobileAny}" ng-click="changeActiveAddress($index)" class="user-address-item fl">
                     <div class="clearfix">
                         <h3 id="sName" class="fl" ng-bind="item.customer_name"></h3>
-                        <span class="fr"><a href="javascript:;" ng-click="updateUserAddress($index);$event.stopPropagation();" class="link">修改</a></span>
-                        <span class="fr"><a href="javascript:;" ng-click="deleteUserAddress($index);$event.stopPropagation();" class="link">删除</a></span>
+                       <!--  <span class="fr"><a href="javascript:;" ng-click="updateUserAddress($index);$event.stopPropagation();" class="link">修改</a></span>
+                        <span class="fr"><a href="javascript:;" ng-click="deleteUserAddress($index);$event.stopPropagation();" class="link">删除</a></span> -->
                     </div>
                     <p id="sAddress" class="user-address" ng-bind="item.delivery_address"></p>
                     <p id="sPhone" class="user-phone" ng-bind="item.customer_phone"></p>
@@ -441,7 +441,7 @@
             <p ng-bind="confirmMsg" class="mb10"></p>
         </div>
         <div class="errorBtn">
-                <button class="btn btn-success small-btn" ng-click="submitConfirm()">确认</button>
+                <button class="btn btn-success small-btn" id="delbtn">确认</button>
                 <button class="btn btn-cancel small-btn" ng-click="cancelConfirm()">取消</button>
             </div>
     </dh-dialog>
@@ -549,6 +549,7 @@
         var lastUsedAddressId = '230901';
         <c:forEach items="${cusList}" var="v">
 		userAddress.push({
+			customer_id:'${v.id}',
 			customer_name : '${v.custName}',
 			delivery_address : '${v.address}',
 			customer_phone : '${v.phone}',
@@ -570,6 +571,7 @@
 <script
 		src="${pageContext.request.contextPath }/wmcr/js/jquery-1.8.1.js"></script>
 	<script>
+	//添加地址
 		$("#doAddressSubmit").click(
 				function() {
 					var name = $("#adsName").val();
@@ -603,7 +605,10 @@
 		$("#subBtn").click(function(){
 			$("#paySub").submit();
 		});
-		
+		//删除地址
+		$("#delbtn").click(function(){
+			$("#paySub").submit();
+		});
 	</script>
 </body>
 </html>

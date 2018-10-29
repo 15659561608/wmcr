@@ -54,6 +54,16 @@ public class CustomersDaoImpl_czd implements CustomersDao_czd {
 		String sql="INSERT INTO customers (custName, phone, regDate, address, userId, lat, lon) VALUES (?, ?, ?, ?, ?, ?,?)";
 		return BaseDao.execute(sql,c.getcustName(),c.getPhone(),c.getregDate(),c.getAddress(),c.getuserId(),c.getLat(),c.getLon())>0;
 	}
+	@Override
+	public Customers getCustomersById(int id) {
+		// TODO Auto-generated method stub
+		String sql="SELECT * FROM customers where id=?";
+		List<Customers> list=(List<Customers>)BaseDao.select(sql, Customers.class,id);
+		if(list.size()>0) {
+			return list.get(0);
+		}
+		return null;
+	}
 
 	
 	

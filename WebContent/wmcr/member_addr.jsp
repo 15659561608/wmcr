@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +22,9 @@
     <link rel="stylesheet" href="css/common.css?v=2015-5-20"/>
     
     <link rel="stylesheet" href="css/user_center.css"/>
+    
+    <link rel="stylesheet" href="../layui/css/layui.css" media="all">
+    
     <title>个人中心 - 地址管理</title>
 </head>
 <body class="day " ng-controller="bodyCtrl"  day-or-night>
@@ -101,15 +105,20 @@
                         <th>操作</th>
                     </tr>
                 </thead>
-                <tr ng-repeat="item in userAddressList">
-                    <td ng-bind="item.customer_name"></td>
-                    <td ng-bind="item.customer_phone"></td>
-                    <td ng-bind="item.delivery_address"></td>
+               <c:if test="${cusList==null }">
+               	<jsp:forward page="/ohs.do?op=cusAddress"></jsp:forward>
+               </c:if>
+               <c:forEach items="${cusList }" var="v">
+                <tr>
+                    <td>${v.custName }</td>
+                    <td>${v.phone }</td>
+                    <td>${v.address }</td>
                     <td>
-                        <a href="javascript:;" ng-click="editUserAddress($index)">修改</a>
+                        <a href="javascript:;" onclick="showUpdate(${v.id})">修改</a>
                         <a href="javascript:;" ng-click="deleteUserAddress($index)">删除</a>
                     </td>
                 </tr>
+                </c:forEach>
             </table>
         </article>
         <article ng-show="userAddressList.length < 8">
@@ -321,9 +330,13 @@
 
 
 </body>
+
+<script src="../layui/layui.all.js"></script>
+
 <script
 		src="${pageContext.request.contextPath }/wmcr/js/jquery-1.8.1.js"></script>
 	<script>
+	//添加地址
 $("#doAddressSubmit").click(
 				function() {
 					var name = $("#adsName").val();
@@ -332,7 +345,7 @@ $("#doAddressSubmit").click(
 					 $.post("${pageContext.request.contextPath }/ohs.do",
 							"op=addAddress&address=" + address + "&name="
 									+ name + "&phone=" + phone, function(data) {
-
+								console.log(data);
 								if (data == "true") {
 									alert("添加成功");
 								} else {
@@ -340,5 +353,26 @@ $("#doAddressSubmit").click(
 								}
 							});  
 				});
+//修改地址			
+function showUpdate(id){
+	layer.open({
+ 		type: 2,
+ 		area: ['400px', '350px'],
+ 		fix: false, //不固定
+ 		maxmin: true,
+ 		shade:0.4,
+ 		title: '修改收货信息',
+ 		content: '../ohs.do?op=updateAddress&id='+id,
+ 		success: function(layero, index){
+             var body = layer.getChildFrame('body',index);//建立父子联系
+             var iframeWin = window[layero.find('iframe')[0]['name']];
+
+             var _ename = body.find('#ename');
+            // console.log(_ename+","+arr[1]);
+             //$(_ename).html(arr[1]);
+            
+         }
+ 	});
+	}
 </script>
 </html>

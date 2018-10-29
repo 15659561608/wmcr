@@ -15,7 +15,12 @@ public interface CustomersService_czd {
 	 * @return
 	 */
 	public List<Customers> queryCustomersByUserId(int userId); 
-	
+	/**
+	 * 获取顾客详情
+	 * @param id
+	 * @return
+	 */
+	public Customers getCustomersById(int id);
 	/**
 	 * 添加用户详情表
 	 * @param c
