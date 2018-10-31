@@ -33,4 +33,10 @@ public interface CustomersDao_czd {
 	 */
 	public boolean addCustomers(Customers c);
 	
+	/**
+	 * 修改用户详细表
+	 * @param c
+	 * @return
+	 */
+	public boolean updateCustomers(Customers c);
 }

@@ -41,7 +41,7 @@
 <body>
 
 	<div class="page-container">
-		<form action="${pageContext.request.contextPath }/Business?op=update"
+		<form action="${pageContext.request.contextPath }/ohs.do?op=doUpdateAddress&id=${customers.id}"
 			method="post" class="form form-horizontal responsive"
 			id="commentForm" novalidate="novalidate">
 			<div class="row cl">

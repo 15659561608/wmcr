@@ -180,6 +180,26 @@ public class OrderHandlerServler extends HttpServlet {
 			Customers customers = new CustomersServiceImpl_czd().getCustomersById(id);
 			request.setAttribute("customers", customers);
 			request.getRequestDispatcher("wmcr/updateAddress.jsp").forward(request, response);
+		}else if("doUpdateAddress".equals(op)) {
+			// 根据id修改用户地址信息
+			int id=Integer.valueOf(request.getParameter("id"));
+			String custName=request.getParameter("custName");
+			String phone=request.getParameter("phone");
+			String address=request.getParameter("address");
+			Customers c=new Customers();
+			c.setId(id);
+			c.setcustName(custName);
+			c.setPhone(phone);
+			c.setAddress(address);
+			boolean result = new CustomersServiceImpl_czd().updateCustomers(c);
+			
+			response.setContentType("text/html");
+			PrintWriter out=response.getWriter();
+			if(result) {
+				out.print("<script>alert('修改成功');top.location.href='wmcr/member_addr.jsp';</script>");
+			}else {
+				out.print("<script>alert('修改失败');top.location.href='wmcr/member_addr.jsp';</script>");
+			}
 		}else if ("addAddress".equals(op)) {
 			// 添加联系人地址
 

@@ -64,6 +64,11 @@ public class CustomersDaoImpl_czd implements CustomersDao_czd {
 		}
 		return null;
 	}
+	@Override
+	public boolean updateCustomers(Customers c) {
+		// TODO Auto-generated method stub
+		return BaseDao.execute("update customers set custName=?,phone=?,address=? where id=?", c.getcustName(),c.getPhone(),c.getAddress(),c.getId())>0;
+	}
 
 	
 	
