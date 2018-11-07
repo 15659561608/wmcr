@@ -180,7 +180,17 @@ public class OrderHandlerServler extends HttpServlet {
 			Customers customers = new CustomersServiceImpl_czd().getCustomersById(id);
 			request.setAttribute("customers", customers);
 			request.getRequestDispatcher("wmcr/updateAddress.jsp").forward(request, response);
-		}else if("doUpdateAddress".equals(op)) {
+		}else if("delAddress".equals(op)){
+			int userId=Integer.valueOf(request.getParameter("id"));
+			boolean result=new CustomersServiceImpl_czd().delCustomers(userId);
+			response.setContentType("text/html");
+			PrintWriter out=response.getWriter();
+			if(result) {
+				out.print("<script>alert('删除成功');location.href='wmcr/member_addr.jsp';</script>");
+			}else {
+				out.print("<script>alert('删除失败');location.href='wmcr/member_addr.jsp';</script>");
+			}
+		} else if("doUpdateAddress".equals(op)) {
 			// 根据id修改用户地址信息
 			int id=Integer.valueOf(request.getParameter("id"));
 			String custName=request.getParameter("custName");

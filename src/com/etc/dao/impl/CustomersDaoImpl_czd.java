@@ -69,6 +69,11 @@ public class CustomersDaoImpl_czd implements CustomersDao_czd {
 		// TODO Auto-generated method stub
 		return BaseDao.execute("update customers set custName=?,phone=?,address=? where id=?", c.getcustName(),c.getPhone(),c.getAddress(),c.getId())>0;
 	}
+	@Override
+	public boolean delCustomers(int userId) {
+		// TODO Auto-generated method stub
+		return BaseDao.execute("delete from customers where id=?", userId)>0;
+	}
 
 	
 	

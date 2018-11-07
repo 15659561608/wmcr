@@ -39,4 +39,11 @@ public interface CustomersDao_czd {
 	 * @return
 	 */
 	public boolean updateCustomers(Customers c);
+	
+	/**
+	 * 删除用户详情表
+	 * @param userId
+	 * @return
+	 */
+	public boolean delCustomers(int userId);
 }

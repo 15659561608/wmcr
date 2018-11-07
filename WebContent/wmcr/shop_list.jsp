@@ -39,13 +39,13 @@
             <header id="header">
                 <div class="common-width clearfix">
                     <h1 class="fl">
-                        <a class="logo base-logo" href="  <c:choose><c:when test="${users !=null }">${pageContext.request.contextPath }/wmcr/mainPage.jsp</c:when><c:otherwise>${pageContext.request.contextPath }/wmcr/index.jsp</c:otherwise></c:choose>">外卖超人</a>
+                        <a class="logo base-logo" href="<c:choose><c:when test="${users !=null }">${pageContext.request.contextPath }/wmcr/mainPage.jsp</c:when><c:otherwise>${pageContext.request.contextPath }/wmcr/index.jsp</c:otherwise></c:choose>">外卖超人</a>
                     </h1>
                     
                        <ul class="member" login-box>
                      
                             <li><a href="  <c:choose><c:when test="${users !=null }">${pageContext.request.contextPath }/wmcr/mainPage.jsp</c:when><c:otherwise>${pageContext.request.contextPath }/wmcr/index.jsp</c:otherwise></c:choose>" class="index">首页</a></li>
-                            <li class="login-register"><a href="${pageContext.request.contextPath }/wmcr/login.jsp" referer-url  class="login"  rel="nofollow">登录</a><span class="cg">/</span><a href="${pageContext.request.contextPath }/wmcr/register.jsp" referer-url  rel="nofollow" class="register">注册</a></li>
+                             <c:choose><c:when test="${users !=null }"><a href="#"><li class="login-register">欢迎，${sessionScope.users.account} </a></li></c:when><c:otherwise><li class="login-register"><a href="${pageContext.request.contextPath }/wmcr/login.jsp" referer-url  class="login"  rel="nofollow">登录</a><span class="cg">/</span><a href="${pageContext.request.contextPath }/wmcr/register.jsp" referer-url  rel="nofollow" class="register">注册</a></li></c:otherwise></c:choose>"
                             <li><a href="${pageContext.request.contextPath }/wmcr/member_order.jsp" class="order-center"  rel="nofollow">查看订单</a></li>
           <!--                  <li class=""><a href="gifts.html"  rel="nofollow">氪星礼品站</a></li>-->
                            <!-- <li class="phone-client "><a href="#"  rel="nofollow" target="_blank"><span>手机客户端</span></a></li>-->

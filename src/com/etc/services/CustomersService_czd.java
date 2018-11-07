@@ -33,4 +33,11 @@ public interface CustomersService_czd {
 	 * @return
 	 */
 	public boolean updateCustomers(Customers c);
+	
+	/**
+	 * 删除用户详细表
+	 * @param userId
+	 * @return
+	 */
+	public boolean delCustomers(int userId);
 }

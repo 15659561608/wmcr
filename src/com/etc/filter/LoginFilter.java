@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet Filter implementation class LoginFilter
  */
-@WebFilter("/bossManage/*")
+@WebFilter({"/bossManage/*"})
 public class LoginFilter implements Filter {
 
     /**

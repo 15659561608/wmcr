@@ -115,7 +115,7 @@
                     <td>${v.address }</td>
                     <td>
                         <a href="javascript:;" onclick="showUpdate(${v.id})">修改</a>
-                        <a href="javascript:;" ng-click="deleteUserAddress($index)">删除</a>
+                        <a href="javascript:;" onclick="javascript:location.href='${pageContext.request.contextPath }/ohs.do?op=delAddress&id=${v.id}';">删除</a>
                     </td>
                 </tr>
                 </c:forEach>
