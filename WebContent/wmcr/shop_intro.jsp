@@ -28,9 +28,9 @@
         (function(document, screen) {if (screen.width < 760) {document.location.href="/mobile/";}}(document, screen));
     </script>
     
-    <link rel="stylesheet" href="css/common.css?v=2015-5-20"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/wmcr/css/common.css?v=2015-5-20"/>
     
-    <link rel="stylesheet" href="css/menuPage.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/wmcr/css/menuPage.css"/>
 
     <!--[if lte IE 7]><script>window.onload=function(){location.href="/ie6warning/"}</script><![endif]-->
     <!--[if lt IE 9]>
@@ -80,9 +80,9 @@
         
 <header class="nav clearfix">
     <div class="fl clearfix nav-des">
-        <img src="http://dhcrestaurantlogo.dhero.cn/1592?v=1415630726" alt="[半价菜][送可乐]樱花日本料理" class="fl" />
+        <img src="${pageContext.request.contextPath }${busiInfo.logo }" alt="[半价菜][送可乐]樱花日本料理" class="fl" />
         <div class="fl nav-des-text">
-            <h2 class="ellipsis" title="[半价菜][送可乐]樱花日本料理">[半价菜][送可乐]樱花日本料理</h2>
+            <h2 class="ellipsis" title="${busiInfo.busiName }">${busiInfo.busiName }</h2>
             <div class="clearfix">
                 <div class="fl nav-review">
                     <div style="width:65.00px;"></div>
@@ -94,13 +94,13 @@
     <div class="fr clearfix nav-right">
         
         <div class="fl nav-right-blast line-right">
-            <p>150<span style="font-size:12px;color:#999;">元</span></p>
+            <p>${busiInfo.starPrice }<span style="font-size:12px;color:#999;">元</span></p>
             <span>起送</span>
         </div>
         
         <div class="fl nav-right-blast">
-            <p>37<span style="font-size:12px;color:#999;">分钟</span></p>
-            <span>送餐时间</span>
+            <p>${busiInfo.disFee }<span style="font-size:12px;color:#999;">分钟</span></p>
+            <span>配送费</span>
         </div>
         <div class="fl nav-right-collect line-left">
             
@@ -113,10 +113,7 @@
 </header>
 
 <ul class="clearfix menu-nav-list" scroll-position-static="160">
-    <li class="no-line active"><a href="#">餐厅介绍</a></li>
-       <li class="${pageContext.request.contextPath }/wmcr/shop_detail.jsp"><a href="#">菜单</a></li>
-    <li ><a href="${pageContext.request.contextPath }/wmcr/shop_comment.jsp">评论</a></li>
-	<li ><a href="#" id='point-tab'>大家都在点</a></li>
+    <li class="no-line active"><a href="${pageContext.request.contextPath }/wmcr/shop_intro.jsp"">餐厅介绍</a></li>
     
 </ul>
 
@@ -131,17 +128,10 @@
                         <p class="hours"><label>营业时间 ：</label>[09:00-22:30]</p>
                     
                     
-                        <p><label>送餐时间 ：</label>12-62分钟</p>
+                        <p><label>餐厅电话 ：</label>${busiInfo.phone }</p>
                     
-					<p><label>餐厅地址 ：</label>宋园路地铁站</p>
-					<!-- <div class="last clearfix">
-                        <label class="fl">活动服务 ：</label>
-                        <div class="fl">
-                                                <ul class="clearfix">
-                                                    
-                                                </ul>
-                        </div>
-                    </div> -->
+					<p><label>餐厅地址 ：</label>${busiInfo.address }</p>
+					
 				</div>
 				<div style="width: 298px;height: 244px;" id="iCenter"  class="restaurant-map fr"></div>
 			</div>
@@ -151,7 +141,7 @@
 				</header>
 				<section class="description fs12 lh15">
                     
-                        樱花日本料理采用东北有机大米。精选食材。纯净水运作。进口调料。。樱花日本料理特色布丁。。油淋鸡等等月月有活动。。。如果网络不行下予定订单。。请来电18964778118订餐。电话订餐O2160517883。。。最终解释权归本店所有
+                  ${busiInfo.des }
                     
                 </section>
 			</article>
@@ -409,16 +399,16 @@
             <div>意见反馈</div>
         </li>
         <li class="scroll-wx">
-            <img src="images/scroll_wx.png" alt=""/>
-             <div><img src="images/wx.png" alt=""/></div>
+            <img src="${pageContext.request.contextPath }/wmcr/images/scroll_wx.png" alt=""/>
+             <div><img src="${pageContext.request.contextPath }/wmcr/images/wx.png" alt=""/></div>
         </li>
     </ul>
     
-    <script type="text/javascript" src="js/angular.min.js"></script>
-    <script src="js/common.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/wmcr/js/angular.min.js"></script>
+    <script src="${pageContext.request.contextPath }/wmcr/js/common.js"></script>
     
      
-    <script src="js/service.js"></script>
+    <script src="${pageContext.request.contextPath }/wmcr/js/service.js"></script>
     
     <script>var feedbackUrl = '/ajax/feedback/';var app = angular.module("app", ["dh.dialog", "dh.form", 'dh.service', 'dh.other']);</script>
     <!--[if lt IE 9]><script src="js/fix.js"></script><![endif]-->
@@ -501,7 +491,7 @@
         }
     </script>
     <script src="http://webapi.amap.com/maps?v=1.3&key=5cd6dcb00bc675bf26c9b4ab2af0759a&callback=map_init"></script>
-    <script src="js/favorite.js"></script>
+    <script src="${pageContext.request.contextPath }/wmcr/js/favorite.js"></script>
 
     
     <script>angular.bootstrap(document, ["app"]);</script>

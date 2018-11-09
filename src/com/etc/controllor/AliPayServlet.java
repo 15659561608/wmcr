@@ -23,6 +23,8 @@ import com.alipay.config.AlipayConfig;
 import com.etc.dao.impl.DistributionDaoImpl;
 import com.etc.entity.Distribution;
 import com.etc.entity.Distributor;
+import com.etc.entity.Orders;
+import com.etc.entity.OrdersSession;
 import com.etc.service.impl.DistributionServiceImpl;
 import com.etc.service.impl.DistributorServiceImpl;
 import com.etc.services.DistributionService;
@@ -67,8 +69,43 @@ public class AliPayServlet extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out=response.getWriter();
 		if("pay".equals(op)) {
-			if(session.getAttribute("distribution")!=null) {
+			if(session.getAttribute("ordersSession")!=null) {
+				OrdersSession os=(OrdersSession)session.getAttribute("ordersSession");
 				out.print("<script>alert('请勿重复提交订单');</script>");
+				//生成商户订单号
+				String out_trade_no = new String(os.getOut_trade_no().getBytes("ISO-8859-1"),"UTF-8");
+				//付款金额，必填
+				String total_amount = new String(os.getTotal_amount().getBytes("ISO-8859-1"),"UTF-8");
+				//订单名称，必填
+				String subject = new String(os.getSubject());
+				//商品描述，可空
+				String body = new String(request.getParameter("WIDbody").getBytes("ISO-8859-1"),"UTF-8");
+				alipayRequest.setBizContent("{\"out_trade_no\":\""+ out_trade_no +"\"," 
+						+ "\"total_amount\":\""+ total_amount +"\"," 
+						+ "\"subject\":\""+ subject +"\"," 
+						+ "\"body\":\""+ body +"\"," 
+						+ "\"product_code\":\"FAST_INSTANT_TRADE_PAY\"}");
+				
+				//若想给BizContent增加其他可选请求参数，以增加自定义超时时间参数timeout_express来举例说明
+				//alipayRequest.setBizContent("{\"out_trade_no\":\""+ out_trade_no +"\"," 
+				//		+ "\"total_amount\":\""+ total_amount +"\"," 
+				//		+ "\"subject\":\""+ subject +"\"," 
+				//		+ "\"body\":\""+ body +"\"," 
+				//		+ "\"timeout_express\":\"10m\"," 
+				//		+ "\"product_code\":\"FAST_INSTANT_TRADE_PAY\"}");
+				//请求参数可查阅【电脑网站支付的API文档-alipay.trade.page.pay-请求参数】章节
+				
+				//请求
+				String result="";
+				try {
+					result = alipayClient.pageExecute(alipayRequest).getBody();
+				} catch (AlipayApiException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+//				//输出
+				out.println(result);
 				return;
 			}
 			// 获取配送信息
@@ -86,10 +123,10 @@ public class AliPayServlet extends HttpServlet {
 			int ri = disList.size();
 			int disId = disList.get(new Random().nextInt(ri)).getId();
 			Distribution distribution = new Distribution(disTime, remarks, disId, orderId, sName, sPhone, sAddress);
-			
+			/*
 			// 创建配送session
 			session.setAttribute("distribution", distribution);
-			session.setMaxInactiveInterval(3600);
+			session.setMaxInactiveInterval(3600);*/
 			//将配送信息插入配送表
 			DistributionService ds=new DistributionServiceImpl();
 			ds.addDis(distribution, conn);
@@ -99,6 +136,14 @@ public class AliPayServlet extends HttpServlet {
 			String total_amount = new String(request.getParameter("money").getBytes("ISO-8859-1"),"UTF-8");
 			//订单名称，必填
 			String subject = new String(request.getParameter("orderName"));
+			
+			//生成订单session
+			OrdersSession os=new OrdersSession();
+			os.setOut_trade_no(out_trade_no);
+			os.setSubject(subject);
+			os.setTotal_amount(total_amount);
+			session.setAttribute("ordersSession", os);
+			session.setMaxInactiveInterval(3600);
 			//商品描述，可空
 			String body = new String(request.getParameter("WIDbody").getBytes("ISO-8859-1"),"UTF-8");
 			alipayRequest.setBizContent("{\"out_trade_no\":\""+ out_trade_no +"\"," 

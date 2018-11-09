@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -116,56 +116,46 @@
 		</header>
 
 		<ul class="clearfix menu-nav-list" scroll-position-static="160">
-			<li class="no-line "><a href="#">餐厅介绍</a></li>
-			<li><a href="${pageContext.request.contextPath}/Business?op=busiDetail&id=${requestScope.busId}">菜单</a></li>
-			<li class="active"><a href="#">评论</a></li>
-			<li><a href="#" id='point-tab'>大家都在点</a></li>
+			<li class="no-line active"><a
+				href="${pageContext.request.contextPath }/wmcr/shop_comment.jsp">评论</a></li>
+
 
 		</ul>
 		<section class="main-box"> <section class="review-messages">
-		<header class="review-header-box clearfix"> 全部评论(共${requestScope.total}条评论) </header>
-		
-		 <article class="review-item">
-		 <form method="post" action="${pageContext.request.contextPath}/CommentServlet">
-		 <input type="hidden" name="op" value="addComment">
-		  <input type="text"
-			style="width: 800px; height: auto;" name="content" id="content"/>
-<button type="submit" class="btn btn-warning">发布</button>
-		<div class="wrapper">
-		<input type="hidden" name="praise" id="praise" />
-			<p id="result" name="result"></p>
+		<header class="review-header-box clearfix">
+		全部评论(共${requestScope.total}条评论) </header> <article class="review-item">
+		<form method="post"
+			action="${pageContext.request.contextPath}/CommentServlet">
+			<input type="hidden" name="op" value="addComment"> <input
+				type="text" style="width: 800px; height: auto;" name="content"
+				id="content" />
+			<button type="submit" class="btn btn-warning">发布</button>
+			<div class="wrapper">
+				<input type="hidden" name="praise" id="praise" />
+				<p id="result" name="result"></p>
 
-			<ul id="star">
-				<li>★</li>
-				<li>★</li>
-				<li>★</li>
-				<li>★</li>
-				<li>★</li>
-			</ul>
-<div id="star_word">一般</div>
-		</div>
-</form>
+				<ul id="star">
+					<li>★</li>
+					<li>★</li>
+					<li>★</li>
+					<li>★</li>
+					<li>★</li>
+				</ul>
+				<div id="star_word">一般</div>
+			</div>
+		</form>
 
-		</article>
-		<c:if test="${requestScope.c==null}">
-				<jsp:forward page="../CommentServlet?op=queryComment"></jsp:forward>
-				</c:if>
-				
-				<c:forEach var="co" items="${requestScope.c.data}">
-				
-			   <article class="review-item">
-		
-		<span id="phone">用户编号:${co.userId}</span> <span id="time">发布时间:${co.comDate}</span> <span id="praise">${co.praise==5?"★★★★★":co.praise == 4?"★★★★":co.praise == 3?"★★★":co.praise ==2?"★★":"★"}</span> 
-		<div class="review-content" id="content">
-		${co.content}
-		
-		</div>
+		</article> <c:if test="${requestScope.c==null}">
+			<jsp:forward page="../CommentServlet?op=queryComment"></jsp:forward>
+		</c:if> <c:forEach var="co" items="${requestScope.c.data}">
+
+			<article class="review-item"> <span id="phone">用户编号:${co.userId}</span>
+			<span id="time">发布时间:${co.comDate}</span> <span id="praise">${co.praise==5?"★★★★★":co.praise == 4?"★★★★":co.praise == 3?"★★★":co.praise ==2?"★★":"★"}</span>
+			<div class="review-content" id="content">${co.content}</div>
 
 
-		      </article>
-				</c:forEach>
-		
-	 </section> </section> </section>
+			</article>
+		</c:forEach> </section> </section> </section>
 
 	</div>
 	</section>
@@ -405,7 +395,7 @@
 
 	<script type="text/javascript" src="js/angular.min.js"></script>
 	<script src="js/common.js"></script>
-<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 
 	<script src="js/service.js"></script>
 
@@ -510,7 +500,6 @@
 						scope.showErrorMsg = true;
 					})
 				} ]);
-	
 	</script>
 	<script>
 		var favoriteUrl = "/ajax/restaurant/0/favorite/";
@@ -525,7 +514,7 @@
 	<!-- Baidu Analytics -->
 	<script>
 		window.onload = function() {
-			
+
 			var star = document.getElementById("star");
 			var star_li = star.getElementsByTagName("li");
 			var star_word = document.getElementById("star_word");
@@ -556,10 +545,10 @@
 
 				}
 			}
-			
+
 		}
 	</script>
-<!--  	
+	<!--  	
 <script type="text/javascript">
 			$(function (){
 				

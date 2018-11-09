@@ -85,8 +85,9 @@
      <c:if test="${requestScope.pd == null}">
 								<jsp:forward page="/PersonOrdersServlet?op=queryansByPage"></jsp:forward>
 	</c:if>
+	<div class="order-list">
 								<c:forEach items="${requestScope.pd}" var="a">
-        <div class="order-list ">
+        
              <div class="order-hd">
                 <span><i>订单编号：</i>${a.id}</span><i>创建时间：</i>${a.ordDate}
              </div>
@@ -111,13 +112,14 @@
                  </div>
                  <div class="order-operate fl padding-margin">
                     <p>${a.state==0?"未支付":"已支付"}</p>
-                    <p>
+                    <!-- <p>
                         <a href="javascript:" order-number orderId="3788798" class="btn_a see-details">查看详情<i></i></a>
-                    </p>
+                    </p> -->
                  </div>
              </div>
              </c:forEach>
-             <div class="order-details clearfix">
+             </div>
+            <!--  <div class="order-details clearfix">
                 <div ng-hide="orderStatus['3788798']" class="order-loading">
                     <span ng-show="orderStatus['3788798_error']" class="order-hide">访问出错，请重新加载！</span>
                 </div>
@@ -192,7 +194,7 @@
                     </ul>
                 </div>
              </div>
-         </div>
+         </div> -->
          
         <page show="4" total="1"></page>
     </section>
