@@ -63,7 +63,7 @@
            				   <th>好评</th>
            				    <th>差评</th>
            				   <th>状态</th>
-           				   <th>注册时间</th>
+           				   <th width="150px">注册时间</th>
            				   <th>类别</th>
            				   <th>操作</th>
            				   

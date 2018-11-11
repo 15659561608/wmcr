@@ -67,7 +67,7 @@
             <div class="city-list-box back-yellow">
                 <div class="dropdown-box">
                     <div class="dropdown-select">
-                        <span class="dropdown-text" id="cityName" cityName="Shanghai">上海站</span>
+                        <span class="dropdown-text" id="cityName" cityName="XiaMen">厦门站</span>
                         <span class="caret"></span></div>
                     <ul class="dropdown-menu">
                         
@@ -171,17 +171,16 @@
                             <div class="hot-area clearfix fs12">
                                 
                                     <h3 class="fl">热门区域:</h3>
-                                    <ul class="fl clearfix">
+                                   <ul class="fl clearfix">
                                         
-                                            <li><a href="shop_list.html">五角场</a></li>
+                                            <li><a href="${pageContext.request.contextPath }/MapServlet?op=queryBusi&address=厦门软件园">厦门软件园</a></li>
                                         
-                                            <li><a href="shop_list.html">徐家汇</a></li>
+                                            <li><a href="${pageContext.request.contextPath }/MapServlet?op=queryBusi&address=厦门市软件园(前埔东路)">厦门市软件园(前埔东路)</a></li>
                                         
-                                            <li><a href="shop_list.html">漕河泾开发区</a></li>
+                                            <li><a href="${pageContext.request.contextPath }/MapServlet?op=queryBusi&address=厦门大学">厦门大学</a></li>
                                         
-                                            <li><a href="shop_list.html">静安寺</a></li>
+                                            <li><a href="${pageContext.request.contextPath }/MapServlet?op=queryBusi&address=曾厝垵">曾厝垵</a></li>
                                         
-                                            <li><a href="shop_list.html">浦东软件园</a></li>
                                         
                                     </ul>
                                 

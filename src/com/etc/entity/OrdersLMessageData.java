@@ -9,11 +9,11 @@ import java.util.List;
 */
 
 public class OrdersLMessageData {
-	private List<OrdersLwq> data;
-	public List<OrdersLwq> getData() {
+	private List<OrdersInfo> data;
+	public List<OrdersInfo> getData() {
 		return data;
 	}
-	public void setData(List<OrdersLwq> list) {
+	public void setData(List<OrdersInfo> list) {
 		this.data = list;
 	}
 }

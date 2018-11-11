@@ -50,18 +50,18 @@ public class OrdersLMessageServlet extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		Boss boss = (Boss) session.getAttribute("boss");
-		// 显示门店列表
+		// 显示订单列表
 		if ("null".equals(op)) {
 			Gson gson = new Gson();
 			OrdersLMessageData od=new OrdersLMessageData();
-			od.setData(olsi.getOrdersBusi(boss.getAccount(), ""));
-			
+			od.setData(olsi.getOrdersInfo(boss.getAccount()));
 			String jsonData = gson.toJson(od);
 			response.setContentType("text/json");
 			PrintWriter out = response.getWriter();
 			//System.out.println(jsonData);
 			out.println(jsonData);
 			out.close();
+			
 		}else if("updateInfo".equals(op)) {
 			String id=request.getParameter("id");
 			 //System.out.println(id);
@@ -77,9 +77,9 @@ public class OrdersLMessageServlet extends HttpServlet {
 			boolean flag=olsi.updateOrdersByid(id, Integer.valueOf(status));
 			PrintWriter out=response.getWriter();
 			if(flag) {
-				out.print("<script>alert('提交成功!');location.href='bossManage/index.jsp';</script>");
+				out.print("<script>alert('提交成功!');top.location.href='bossManage/index.jsp';</script>");
 			}else {
-				out.print("<script>alert('提交失败!');location.href='bossManage/index.jsp';</script>");
+				out.print("<script>alert('提交失败!');top.location.href='bossManage/index.jsp';</script>");
 			}
 			out.close();
 			

@@ -6,6 +6,7 @@ import java.util.List;
 import com.etc.dao.OrdersLDao;
 import com.etc.entity.Orders;
 import com.etc.entity.OrdersData;
+import com.etc.entity.OrdersInfo;
 import com.etc.entity.OrdersLwq;
 import com.etc.util.BaseDao;
 import com.etc.util.PageData;
@@ -68,7 +69,7 @@ public class OrderLDaoImpl implements OrdersLDao{
 	@Override
 	public boolean updateOrdersByid(String id, int status) {
 		// TODO Auto-generated method stub
-		String sql="update orders set state=? where id=?";
+		String sql="update orders set payState=? where id=?";
 		return BaseDao.execute(sql, status,id)>0;
 	}
 
@@ -93,11 +94,20 @@ public class OrderLDaoImpl implements OrdersLDao{
 	@Override
 	public List<OrdersLwq> queryOrdersPerson(String account) {
 		// TODO Auto-generated method stub
-String sql="select  orders.id,users.account,businesses.busiName,orders.ordDate,orders.money,food.foodName,ordersdetail.num,orders.state from orders,businesses,users,ordersdetail,food,boss \r\n" + 
+String sql="select  orders.id,users.account,businesses.busiName,orders.ordDate,orders.money,food.foodName,ordersdetail.num,orders.state,orders.payState from orders,businesses,users,ordersdetail,food,boss \r\n" + 
 		"where orders.userId=users.id and orders.busId=businesses.id and ordersdetail.orderId=orders.id and ordersdetail.foodId=food.id and boss.id=businesses.bossId \r\n" + 
 		"and users.account=? order by orders.ordDate desc";
 		 return (List<OrdersLwq>) BaseDao.select(sql, OrdersLwq.class, account);
 	}
+
+	@Override
+	public List<OrdersInfo> getOrdersInfo(String account) {
+		// TODO Auto-generated method stub
+		String sql="select o.id as id,o.ordDate as orderDate,o.state as state,o.payState as payState,o.money as money,u.account as account,b.busiName as busiName  from orders o,users u,businesses b,boss bo where o.userId=u.id and o.busId=b.id and b.bossId=bo.id and bo.account =?";
+		return (List<OrdersInfo>) BaseDao.select(sql, OrdersInfo.class, account);
+	}
+
+	
 	
 
 }

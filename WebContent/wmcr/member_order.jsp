@@ -12,16 +12,16 @@
     <meta name="google-site-verification" content="BstJA3X9z6f9HcvoN9AZTwaKo_9Abj_j7dVBPfy640s" />
     <meta name="baidu-site-verification" content="IYCrtVH0i1" />
     <meta property="wb:webmaster" content="239d3d1dbdde1b2c" />
-    <link rel="icon" type="image/png" href="images/favicon.ico"/>
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/wmcr/images/favicon.ico"/>
     
     <script type="text/javascript">
         
         (function(document, screen) {if (screen.width < 760) {document.location.href="/mobile/";}}(document, screen));
     </script>
     
-    <link rel="stylesheet" href="css/common.css?v=2015-5-20"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/wmcr/css/common.css?v=2015-5-20"/>
     
-    <link rel="stylesheet" href="css/user_center.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/wmcr/css/user_center.css"/>
     <title>个人中心 - 订单管理</title>
 </head>
 <body class="day " ng-controller="bodyCtrl"  day-or-night>
@@ -112,6 +112,10 @@
                  </div>
                  <div class="order-operate fl padding-margin">
                     <p>${a.state==0?"未支付":"已支付"}</p>
+                    <p>${a.payState==0?"待发货":((a.payState==1)?"已发货":"确认收货")}</p>
+                    <p> <c:if test="${a.state==1}">
+                    	<button value="${a.id}" class="btn btn-success normal-btn confirmOrder">确认收货</button>
+                    </c:if></p>
                     <!-- <p>
                         <a href="javascript:" order-number orderId="3788798" class="btn_a see-details">查看详情<i></i></a>
                     </p> -->
@@ -457,14 +461,14 @@
         var orderRefund = "/account/order/0/refund/create/";
         var static = "/static/";
     </script>
-    <script src="js/jquery-1.8.1.js"></script>
-    <script src="js/jquery.uploadify.min.js"></script>
+    <script src="${pageContext.request.contextPath}/wmcr/js/jquery-1.8.1.js"></script>
+    <script src="${pageContext.request.contextPath}/wmcr/js/jquery.uploadify.min.js"></script>
 
-    <script type="text/javascript" src="js/angular.min.js"></script>
-    <script src="js/common.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/wmcr/js/angular.min.js"></script>
+    <script src="${pageContext.request.contextPath}/wmcr/js/common.js"></script>
     
      
-    <script src="js/service.js"></script>
+    <script src="${pageContext.request.contextPath}/wmcr/js/service.js"></script>
     
     <script>var feedbackUrl = '/ajax/feedback/';var app = angular.module("app", ["dh.dialog", "dh.form", 'dh.service', 'dh.other']);</script>
     <!--[if lt IE 9]><script src="js/fix.js"></script><![endif]-->
@@ -481,5 +485,11 @@
     <!-- Baidu Analytics -->
 
 </body>
+<script>
+	$(".confirmOrder").click(function(){
+		
+		location.href="${pageContext.request.contextPath}/PersonOrdersServlet?op=confirmOrder&id="+$(this).val();
+	});
+</script>
 </html>
     

@@ -14,8 +14,15 @@ public class Orders {
     private Double money;
 
     private Integer state;
-
-    public String getId() {
+    
+    private int payState;
+    public int getPayState() {
+		return payState;
+	}
+	public void setPayState(int payState) {
+		this.payState = payState;
+	}
+	public String getId() {
         return id;
     }
 public Orders() {

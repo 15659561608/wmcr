@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.etc.entity.Orders;
 import com.etc.entity.OrdersData;
+import com.etc.entity.OrdersInfo;
 import com.etc.entity.OrdersLwq;
 import com.etc.entity.Ordersdetail;
 import com.etc.util.PageData;
@@ -23,14 +24,14 @@ public interface OrdersLService {
 	List<OrdersLwq> getOrdersBusi(String account, String busiName);
 
 	List<OrdersLwq> getOrdersByid(String id);
-
 	public List<OrdersData> queryOrdersByOrderId(String id);
 
 	boolean updateOrdersByid(String id, int status);
 
 	// 用户下单
 	public boolean addOrders(Orders o, Connection conn);
-
+	
+	public List<OrdersInfo> getOrdersInfo(String account);
 	// 根据订单编号获取订单信息
 	public Orders getorders(String orderId);
 	

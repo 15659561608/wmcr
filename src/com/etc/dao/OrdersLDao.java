@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.etc.entity.Orders;
 import com.etc.entity.OrdersData;
+import com.etc.entity.OrdersInfo;
 import com.etc.entity.OrdersLwq;
 import com.etc.util.PageData;
 
@@ -22,9 +23,10 @@ public interface OrdersLDao {
 	//商家查看门店订单
 	List<OrdersLwq> queryOrdersBusi(String account,String busiName);
 	
-	//根据订单编号修改订单状态
+	
 	List<OrdersLwq> queryOrdersByid(String id);
 	public List<OrdersData> queryOrdersByOrderId(String id);
+	//根据订单编号修改订单支付状态
 	public boolean updateOrdersByid(String id,int status);
 	//用户下单
 	public boolean addOrders(Orders o,Connection conn);
@@ -32,4 +34,6 @@ public interface OrdersLDao {
 	public Orders getorders(String orderId);
 	//根据用户账号查找订单
 	List<OrdersLwq> queryOrdersPerson(String account);
+	
+	public List<OrdersInfo> getOrdersInfo(String account);
 }

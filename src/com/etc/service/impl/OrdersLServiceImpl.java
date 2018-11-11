@@ -6,6 +6,7 @@ import java.util.List;
 import com.etc.dao.impl.OrderLDaoImpl;
 import com.etc.entity.Orders;
 import com.etc.entity.OrdersData;
+import com.etc.entity.OrdersInfo;
 import com.etc.entity.OrdersLwq;
 import com.etc.entity.Ordersdetail;
 import com.etc.services.OrdersDetailService;
@@ -34,6 +35,11 @@ public class OrdersLServiceImpl implements OrdersLService{
 	public List<OrdersLwq> getOrdersBusi(String account, String busiName) {
 		// TODO Auto-generated method stub
 		return odi.queryOrdersBusi(account, busiName);
+	}
+	@Override
+	public List<OrdersInfo> getOrdersInfo(String account) {
+		// TODO Auto-generated method stub
+		return odi.getOrdersInfo(account);
 	}
 	/**
 	 * 根据订单编号查询订单信息

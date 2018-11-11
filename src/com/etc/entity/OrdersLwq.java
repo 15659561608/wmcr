@@ -85,11 +85,14 @@ public class OrdersLwq {
 		this.state = state;
 	}
 
+	
 	@Override
 	public String toString() {
-		return "OrdersLwq [id=" + id + ", account=" + account + ", busiName=" + busiName + ", orddate=" + ordDate
-				+ ", money=" + money + ", foodName=" + foodName + ", num=" + num + ", state=" + state + "]";
+		return "OrdersLwq [id=" + id + ", account=" + account + ", busiName=" + busiName + ", ordDate=" + ordDate
+				+ ", money=" + money + ", foodName=" + foodName + ", num=" + num + ", state=" + state + ", payState="
+				+ payState + "]";
 	}
+
 
 	private String id;
 
@@ -106,7 +109,14 @@ public class OrdersLwq {
     private int num;
 
     private Integer state;
-    
+    private int payState;
+	public int getPayState() {
+		return payState;
+	}
+
+	public void setPayState(int payState) {
+		this.payState = payState;
+	}
 
    
 }

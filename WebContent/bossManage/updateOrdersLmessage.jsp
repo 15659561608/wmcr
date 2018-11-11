@@ -40,15 +40,6 @@
 </head>
 <body>
 
-
-	<nav class="breadcrumb">
-		<i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>
-		订单管理 <span class="c-gray en">&gt;</span> 订单列表 <span class="c-gray en">&gt;</span>
-		修改订单信息<a class="btn btn-success radius r"
-			style="line-height: 1.6em; margin-top: 3px"
-			href="javascript:location.replace(location.href);" title="刷新"><i
-			class="Hui-iconfont">&#xe68f;</i></a>
-	</nav>
 	<div class="page-container">
 		<form action="${pageContext.request.contextPath }/OrdersLMessageServlet?op=update"
 			method="post" class="form form-horizontal responsive"
@@ -62,9 +53,8 @@
 										<div class="col-xs-6">
 											<span class="select-box"> <select class="select"
 												size="1" name="ordersStatus" id="ordersStatus">	
-                                      	<option value="0">成功支付</option>
-                                      	<option value="1">未支付</option>
-                                      	<option value="2">取消支付</option>
+                                      	<option value="0">待发货</option>
+                                      	<option value="1">已发货</option>
 											</select>
 											</span>
 										</div>
@@ -75,7 +65,7 @@
 						<div class="row cl">
 							<div class="col-xs-8 col-xs-offset-3">
 								<input class="btn btn-primary" type="submit"
-									value="&nbsp;&nbsp;提交审核&nbsp;&nbsp;">
+									value="&nbsp;&nbsp;修改订单状态&nbsp;&nbsp;">
 							</div>
 						</div>
 		</form>

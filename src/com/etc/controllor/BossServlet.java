@@ -76,8 +76,7 @@ public class BossServlet extends HttpServlet {
 		if("logout".equals(op)) {
 				session.removeAttribute("bossId");
 				session.removeAttribute("boss");
-				response.sendRedirect("/bossManage/login.jsp");
-			
+				response.sendRedirect("/wmcr/bossManage/login.jsp");
 		}
 		if("updatePwd".equals(op)) {
 			String oldPwd=MD5Util.getEncodeByMd5(request.getParameter("oldPwd"));

@@ -35,22 +35,6 @@
 		 
    
 		   </div>
-			<div class="text-c"> 
-			<form class="navbar-form navbar-right" method="post" ">
-					<c:if test="${requestScope.pd == null}">
-								<jsp:forward page="/BusiNameLServlet?"></jsp:forward>
-							</c:if>
-							    <select name="busiName" id="busiName">
-							<c:forEach items="${requestScope.pd}" var="q">
-			
-				          <option>${q.busiName}</option>
-				     
-				           
-	                     </c:forEach>
-				</select>
-					<button class="btn btn-default" id="search">搜索店面订单</button>
-				</form>
-			</div>
 			<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="r">共有数据：<strong><span id="datarowcount"></span></strong> 条</span> </div>
 			<div class="mt-20">
 				<table id="example" class="table table-border table-bordered table-hover table-bg table-sort">
@@ -63,9 +47,8 @@
 						<th>店面</th>
 						<th>时间</th>
 						<th>订单金额</th>
-						<th>菜单名</th>
-						<th>数量</th>
-						<th>状态</th>
+						<th>支付状态</th>
+						<th>订单状态</th>
            				  <th>操作</th>
 						</tr>
 					</thead>
@@ -344,23 +327,31 @@ function member_del(obj,id){
         {"data": "id"},
         {"data": "account"},
         {"data": "busiName"},
-        {"data": "ordDate"},
+        {"data": "orderDate"},
         {"data": "money"},
-        {"data": "foodName"},
-        {"data": "num"},
-        //订单状态的显示
+        //支付状态的显示
         {"data": "state","createdCell":function(nTd,sData, oData, iRow, iCol)
         	{
-        	if(oData.state==0){
-        		$(nTd).html("<button class='layui-btn layui-btn-warm layui-btn-sm'>成功支付</button>");
-        	}else if(oData.state==1){
+        	if(oData.state==1){
+        		$(nTd).html("<button class='layui-btn layui-btn-warm layui-btn-sm'>已支付</button>");
+        	}else if(oData.state==0){
         		$(nTd).html("<button class='layui-btn layui-btn-sm'>未支付</button>");
         	}else{
         		$(nTd).html("<button class='layui-btn layui-btn-sm'>取消订单</button>");
         	}
     		
     	}},
-       
+    	{"data": "payState","createdCell":function(nTd,sData, oData, iRow, iCol)
+        	{
+        	if(oData.payState==0){
+        		$(nTd).html("<button class='layui-btn layui-btn-warm layui-btn-sm'>待发货</button>");
+        	}else if(oData.payState==1){
+        		$(nTd).html("<button class='layui-btn layui-btn-sm'>已发货</button>");
+        	}else{
+        		$(nTd).html("<button class='layui-btn layui-btn-sm'>确认收货</button>");
+        	}
+    		
+    	}},
        
         {    //创建操作那个列
         	"data":"extn",
@@ -691,7 +682,7 @@ function showUpdate(obj){
 	var id=$(obj).parent().parent().find("input").val();
 	layer.open({
  		type: 2,
- 		area: ['600px', '600px'],
+ 		area: ['350px', '200px'],
  		fix: false, //不固定
  		maxmin: true,
  		shade:0.4,
