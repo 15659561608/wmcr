@@ -21,13 +21,13 @@ import com.etc.util.PageData;
  * Servlet implementation class CustomersServlet_czd
  */
 @WebServlet({ "/CustomersServlet_czd", "/csc.do" })
-public class CustomersServlet_czd extends HttpServlet {
+public class CustomersServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CustomersServlet_czd() {
+    public CustomersServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

@@ -15,14 +15,14 @@ import com.etc.util.PageData;
  * Servlet implementation class OrdersLServlet
  */
 @WebServlet("/OrdersLServlet")
-public class OrdersLServlet extends HttpServlet {
+public class OrdersServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private OrdersLServiceImpl osi=new OrdersLServiceImpl();
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public OrdersLServlet() {
+    public OrdersServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

@@ -25,13 +25,13 @@ import com.google.gson.Gson;
  * Servlet implementation class OrdersLMessageServlet
  */
 @WebServlet("/OrdersLMessageServlet")
-public class OrdersLMessageServlet extends HttpServlet {
+public class OrdersMessageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public OrdersLMessageServlet() {
+    public OrdersMessageServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
