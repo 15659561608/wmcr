@@ -54,6 +54,8 @@ public class UsersLoginServlet extends HttpServlet {
 		if (op.equals("zh")) {
 			String msg = "";
 			String account = request.getParameter("account");
+			//将账号存入
+			session.setAttribute("account", account);
 
 			if (account.isEmpty()) {
 				msg = "账号不能为空";
@@ -71,6 +73,8 @@ public class UsersLoginServlet extends HttpServlet {
 			}
 		} else if (op.equals("chaxun")) {
 			String msg = "";
+			//将账号取出来 
+			String account = (String)session.getAttribute("account");
 			String pwd = request.getParameter("pwd");
 			// MD5算法加密
 			String pwd1 = MD5Util.getEncodeByMd5(pwd);
@@ -78,8 +82,8 @@ public class UsersLoginServlet extends HttpServlet {
 				msg = "密码不为空";
 				// out.print(msg);
 			} else {
-
-				List<Users> u1 = us.getUsersLoginByPwd(pwd1);
+                //System.out.println(account);
+				List<Users> u1 = us.getUsersLogin(account, pwd1);
 				System.out.println(pwd1);
 				if (u1 == null || u1.size() == 0) {
 					msg = "密码不正确";
