@@ -143,7 +143,7 @@ public class AliPayServlet extends HttpServlet {
 			os.setSubject(subject);
 			os.setTotal_amount(total_amount);
 			session.setAttribute("ordersSession", os);
-			session.setMaxInactiveInterval(3600);
+			session.setMaxInactiveInterval(60);
 			//商品描述，可空
 			String body = new String(request.getParameter("WIDbody").getBytes("ISO-8859-1"),"UTF-8");
 			alipayRequest.setBizContent("{\"out_trade_no\":\""+ out_trade_no +"\"," 

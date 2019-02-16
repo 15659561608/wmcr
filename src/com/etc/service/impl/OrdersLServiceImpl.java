@@ -55,6 +55,11 @@ public class OrdersLServiceImpl implements OrdersLService{
 		return odi.updateOrdersByid(id, status);
 	}
 	@Override
+	public boolean updatePayStatusByid(String id, int status) {
+		// TODO Auto-generated method stub
+		return odi.updatePayStatusByid(id, status);
+	}
+	@Override
 	public boolean addOrders(Orders o, Connection conn) {
 		// TODO Auto-generated method stub
 		return odi.addOrders(o, conn);

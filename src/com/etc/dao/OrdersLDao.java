@@ -36,4 +36,5 @@ public interface OrdersLDao {
 	List<OrdersLwq> queryOrdersPerson(String account);
 	
 	public List<OrdersInfo> getOrdersInfo(String account);
+	public boolean updatePayStatusByid(String id, int status);
 }

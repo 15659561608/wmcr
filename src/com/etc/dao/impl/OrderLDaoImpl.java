@@ -69,10 +69,15 @@ public class OrderLDaoImpl implements OrdersLDao{
 	@Override
 	public boolean updateOrdersByid(String id, int status) {
 		// TODO Auto-generated method stub
+		String sql="update orders set state=? where id=?";
+		return BaseDao.execute(sql, status==1?0:1,id)>0;
+	}
+	@Override
+	public boolean updatePayStatusByid(String id, int status) {
+		// TODO Auto-generated method stub
 		String sql="update orders set payState=? where id=?";
 		return BaseDao.execute(sql, status,id)>0;
 	}
-
 	@Override
 	public boolean addOrders(Orders o,Connection conn) {
 		// TODO Auto-generated method stub

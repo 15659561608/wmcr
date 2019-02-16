@@ -27,6 +27,7 @@ public interface OrdersLService {
 	public List<OrdersData> queryOrdersByOrderId(String id);
 
 	boolean updateOrdersByid(String id, int status);
+	boolean updatePayStatusByid(String id, int status);
 
 	// 用户下单
 	public boolean addOrders(Orders o, Connection conn);

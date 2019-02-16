@@ -56,9 +56,10 @@
 		//修改订单状态
 		
 		OrdersLService os=new OrdersLServiceImpl();
-		os.updateOrdersByid(out_trade_no, 1);
+		os.updatePayStatusByid(out_trade_no, 1);
 		session.removeAttribute("order");
-		session.removeAttribute("distribution");
+		
+		session.removeAttribute("ordersSession");
 		response.sendRedirect("wmcr/order_success.jsp");
 		out.println("trade_no:"+trade_no+"<br/>out_trade_no:"+out_trade_no+"<br/>total_amount:"+total_amount);
 		
@@ -70,4 +71,10 @@
 %>
 <body>
 </body>
+<script src="${pageContext.request.contextPath }/wmcr/js/menupage.js"></script>
+<script type="text/javascript">
+$(function({
+	clearCart();
+}));
+</script>
 </html>

@@ -83,7 +83,7 @@ public class CustomersServlet extends HttpServlet {
 		request.setAttribute("keywords", keywords);
 	//	request.setAttribute("pageSize", pageSize);		
 		request.setAttribute("pd", pd);
-		request.getRequestDispatcher("/back/view/userList.jsp").forward(request, response);
+ 		request.getRequestDispatcher("/back/view/userList.jsp").forward(request, response);
 	}
 	
 	protected void doUpdateCustomerState(HttpServletRequest request, HttpServletResponse response)
