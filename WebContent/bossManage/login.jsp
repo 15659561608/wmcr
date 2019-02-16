@@ -80,10 +80,11 @@ $("#login").click(function(){
 		var pwd=$("#pwd").val();
 		$.post("../bs.do?op=login","account="+account+"&pwd="+pwd,function(data,status){
 			console.log(data);
-			if("true"==data){
+			if(data=="noPass"){
+				alert("账号未审核，请耐心等待")
+			}else if("true"==data){
 				location.href="./index.jsp";
 			}else{
-				console.log(data);
 				alert("用户名密码错误")
 			}
 		});

@@ -51,7 +51,7 @@ public class BossServlet extends HttpServlet {
 		BossService bs=new BossServiceImpl();
 		
 		PrintWriter out=response.getWriter();
-		
+		response.setContentType("text/html");
 		if("accountCheck".equals(op)) {
 			
 		}
@@ -61,8 +61,14 @@ public class BossServlet extends HttpServlet {
 			String account=request.getParameter("account");
 			String pwd=MD5Util.getEncodeByMd5(request.getParameter("pwd"));
 			Boss boss=bs.checkLogin(account, pwd);
-			session.setAttribute("bossId", boss.getId());
+			
+			
 			if(boss!=null) {
+				session.setAttribute("bossId", boss.getId());
+				if(boss.getState()==0) {
+					out.print("noPass");
+					return ;
+				}
 				out.print(true);
 				//传值给MenDianTuShowServlet
 				session.setAttribute("bossId", boss.getId());

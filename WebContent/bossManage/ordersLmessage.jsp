@@ -330,22 +330,22 @@ function member_del(obj,id){
         {"data": "orderDate"},
         {"data": "money"},
         //支付状态的显示
-        {"data": "state","createdCell":function(nTd,sData, oData, iRow, iCol)
+        {"data": "payState","createdCell":function(nTd,sData, oData, iRow, iCol)
         	{
-        	if(oData.state==1){
+        	if(oData.payState==1){
         		$(nTd).html("<button class='layui-btn layui-btn-warm layui-btn-sm'>已支付</button>");
-        	}else if(oData.state==0){
+        	}else if(oData.payState==0){
         		$(nTd).html("<button class='layui-btn layui-btn-sm'>未支付</button>");
         	}else{
         		$(nTd).html("<button class='layui-btn layui-btn-sm'>取消订单</button>");
         	}
     		
     	}},
-    	{"data": "payState","createdCell":function(nTd,sData, oData, iRow, iCol)
+    	{"data": "State","createdCell":function(nTd,sData, oData, iRow, iCol)
         	{
-        	if(oData.payState==0){
+        	if(oData.State==0){
         		$(nTd).html("<button class='layui-btn layui-btn-warm layui-btn-sm'>待发货</button>");
-        	}else if(oData.payState==1){
+        	}else if(oData.State==1){
         		$(nTd).html("<button class='layui-btn layui-btn-sm'>已发货</button>");
         	}else{
         		$(nTd).html("<button class='layui-btn layui-btn-sm'>确认收货</button>");

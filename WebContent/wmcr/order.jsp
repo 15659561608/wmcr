@@ -197,7 +197,7 @@
 
 
 					<p class="tr fs14">
-						订单金额： <span>￥${ord.money }</span>
+						订单金额（含配送费）： <span>￥${ord.money }</span>
 					</p>
 					<!-- <p ng-if="isVaildateCouponSuccess" class="tr fs14">
 						优惠券： <span ng-bind="couponMoney|number:2|currency:'￥-'"></span>
@@ -206,7 +206,7 @@
 						配送费用： <span>￥${busiInfo.disFee }</span>
 					</p>
 					<p class="tr fs17 pink" >
-						需要付款： <b>￥${ord.money+busiInfo.disFee }<span
+						需要付款： <b>￥${ord.money }<span
 							></span></b>
 					</p>
 					<p class="tr last">
@@ -215,7 +215,7 @@
 							class="fs15 link"><i class="icon arrows-left"></i> 返回修改订单</a>
 							<form style="display:none;" id="paySub" method="post" action="${pageContext.request.contextPath }/AliPay?op=pay">
 								<input type="hidden" name="ordId" value="${ord.id }"/>
-								<input type="hidden" name="money" value="${ord.money+busiInfo.disFee }"/>
+								<input type="hidden" name="money" value="${ord.money }"/>
 								<input type="hidden" id="orderName" name="orderName" value="${busiInfo.busiName }"/>
 								<input type="hidden" name="WIDbody" value=""/>
 								<input type="hidden" id="hSName" name="sName" value=""/>
