@@ -57,29 +57,17 @@
 					<li><a
 						href="<c:choose><c:when test="${users !=null }">${pageContext.request.contextPath }/wmcr/mainPage.jsp</c:when><c:otherwise>${pageContext.request.contextPath }/wmcr/index.jsp</c:otherwise></c:choose>"
 						class="index">首页</a></li>
-					<li class="login-register"><a
-						href="${pageContext.request.contextPath }/wmcr/login.jsp"
-						class="login" rel="nofollow">登录</a><span class="cg">/</span><a
-						href="${pageContext.request.contextPath }/wmcr/register.jsp"
-						referer-url rel="nofollow" class="register">注册</a></li>
+					<li class="login-register"><c:choose><c:when test="${users !=null }"><a href="#"><li class="login-register">欢迎，${sessionScope.users.account} </a></li></c:when><c:otherwise><li class="login-register"><a href="${pageContext.request.contextPath }/wmcr/login.jsp" referer-url  class="login"  rel="nofollow">登录</a><span class="cg">/</span><a href="${pageContext.request.contextPath }/wmcr/register.jsp" referer-url  rel="nofollow" class="register">注册</a></li></c:otherwise></c:choose></li>
 					<li><a
 						href="${pageContext.request.contextPath }/wmcr/member_order.jsp"
 						class="order-center" rel="nofollow">查看订单</a></li>
-					<li class=""><a href="gifts.html" rel="nofollow">氪星礼品站</a></li>
-					<li class="phone-client "><a href="#" rel="nofollow"
-						target="_blank"><span>手机客户端</span></a></li>
 				</ul>
 
 			</div>
 		</header>
 
 		<div id="main-box">
-			<!--二维码-->
-			<div class="qrCode-frame" ng-hide="qrCodeStatus">
-				<img
-					src="${pageContext.request.contextPath }${busiInfo.logo }/wmcr/images/wx.png"
-					alt="扫描二维码" /> <em ng-click="qrCodeStatus=true">X</em>
-			</div>
+			
 
 			<div ng-controller="colorAction">
 				<div class="dayColor_two"></div>

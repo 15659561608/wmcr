@@ -55,28 +55,20 @@
                         <ul class="member logging" ng-init="loginInfo=true">
                             <li><a href="<c:choose><c:when test="${users !=null }">${pageContext.request.contextPath }/wmcr/mainPage.jsp</c:when><c:otherwise>${pageContext.request.contextPath }/wmcr/index.jsp</c:otherwise></c:choose>" class="index">首页</a></li>
                             <li class="userName">
-                                <a href="/account/center/manage/" rel="nofollow" draw-user><em></em></a>
+                                <a href="#" rel="nofollow" draw-user><c:choose><c:when test="${users !=null }">${sessionScope.users.account}</c:when><c:otherwise><a href="${pageContext.request.contextPath }/wmcr/login.jsp" referer-url  class="login"  rel="nofollow">登录</a><span class="cg">/</span><a href="${pageContext.request.contextPath }/wmcr/register.jsp" referer-url  rel="nofollow" class="register">注册</a></c:otherwise></c:choose><em></em></a>
                                 <div>
-                                    <p><a href="/account/center/manage/"  rel="nofollow">账号管理</a></p>
-                                    <p><a href="/account/center/address/"  rel="nofollow">地址管理</a></p>
-                                    <p class="no-bo"><a id="logout" href="/account/logout/" referer-url rel="nofollow">退出</a></p>
+                                    <p><a href="${pageContext.request.contextPath }/wmcr/member_index.jsp"  rel="nofollow">账号管理</a></p>
+                                    <p><a href="${pageContext.request.contextPath }/wmcr/member_addr.jsp"  rel="nofollow">地址管理</a></p>
                                 </div>
                             </li>
                             <li class=""><a href="/account/center/orders/" class="order-center"  rel="nofollow">我的订单</a></li>
                             <li class=""><a href="/account/center/favorite/"  rel="nofollow">我的收藏</a></li>
-                            <li class=""><a href="/account/gift/center/"  rel="nofollow">氪星礼品站</a></li>
-                            <li class="phone-client "><a href="/app/"  rel="nofollow" target="_blank"><span>手机客户端</span></a></li>
                         </ul>
                     
                 </div>
             </header>
         
         <div id="main-box">
-             <!--二维码-->
-            <div class="qrCode-frame" ng-hide="qrCodeStatus">
-                <img src="images/wx.png" alt="扫描二维码" />
-                <em ng-click="qrCodeStatus=true">X</em>
-            </div>
         
             <div ng-controller="colorAction">
                 <div class="dayColor_two"></div>
@@ -211,7 +203,7 @@
 					</p>
 					<p class="tr last">
 						<a
-							href="/shanghai/ji-xiang-hun-tun-gao-an-lu-dian/menu/?gid=602341"
+							href="#" onclick="javascript:history.back(-1);" 
 							class="fs15 link"><i class="icon arrows-left"></i> 返回修改订单</a>
 							<form style="display:none;" id="paySub" method="post" action="${pageContext.request.contextPath }/AliPay?op=pay">
 								<input type="hidden" name="ordId" value="${ord.id }"/>

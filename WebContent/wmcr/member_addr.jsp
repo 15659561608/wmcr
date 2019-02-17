@@ -37,17 +37,15 @@
                     </h1>
                     
                         <ul class="member logging" ng-init="loginInfo=true">
-                            <li><a href="index.jsp" class="index">首页</a></li>
+                            <li><a href="${pageContext.request.contextPath }/wmcr/mainPage.jsp" class="index">首页</a></li>
                             <li class="userName">
                                 <a href="member_index.jsp" rel="nofollow" draw-user>${sessionScope.users.account}<em></em></a>
                                 <div>
                                     <p><a href="member_index.jsp"  rel="nofollow">账号管理</a></p>
                                     <p><a href="member_addr.jsp"  rel="nofollow">地址管理</a></p>
-                                    <p class="no-bo"><a id="logout" href="#" referer-url rel="nofollow">退出</a></p>
                                 </div>
                             </li>
                             <li class=""><a href="member_order.jsp" class="order-center"  rel="nofollow">我的订单</a></li>
-                            <li class=""><a href="member_collect.jsp"  rel="nofollow">我的收藏</a></li>
                            
                         </ul>
                     
@@ -72,9 +70,6 @@
                     </li>
                     <li>
                         <a href="member_order.jsp" rel="nofollow">我的订单</a>
-                    </li>
-                    <li >
-                        <a href="member_collect.jsp" rel="nofollow">我的收藏</a>
                     </li>
                     <li  class="active">
                         <a href="member_addr.jsp"  rel="nofollow">地址管理</a>
@@ -121,7 +116,7 @@
                 </c:forEach>
             </table>
         </article>
-        <article ng-show="userAddressList.length < 8">
+       <article ng-show="userAddressList.length < 8">
             <header class="mb10">
                 <h2>新增地址</h2><strong>(最多只能保存 8 个有效地址)</strong>
             </header>
@@ -321,7 +316,7 @@
     
     
 
-    <script src="js/user_center_address.js"></script>
+    <script src="${pageContext.request.contextPath }/wmcr/js/user_center_address.js"></script>
 
     
     <script>angular.bootstrap(document, ["app"]);</script>
