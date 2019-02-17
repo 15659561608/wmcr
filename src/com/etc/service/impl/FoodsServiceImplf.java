@@ -59,9 +59,9 @@ public class FoodsServiceImplf implements FoodServicesf{
 	}
 
 	@Override
-	public PageData<Foodf> getFoods(int page, int pageSize, String keyWords) {
+	public PageData<Foodf> getFoodss(int page,int pageSize,String keyWords,int bossId) {
 		// TODO Auto-generated method stub
-		return fdf.queryFoods(page, pageSize, keyWords);
+		return fdf.queryFoodss(page, pageSize, keyWords, bossId);
 	}
 
 	@Override

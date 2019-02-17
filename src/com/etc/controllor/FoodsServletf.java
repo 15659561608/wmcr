@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.etc.entity.Boss;
 import com.etc.entity.Businesses;
@@ -47,6 +48,7 @@ public class FoodsServletf extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("html/text;charset=utf-8");
+		HttpSession session=request.getSession();
 		String op = request.getParameter("op");
 		// PrintWriter out=response.getWriter();	
 		if ("addFoods".equals(op)) {
@@ -96,9 +98,9 @@ public class FoodsServletf extends HttpServlet {
 		//List<Businesses> list=bsf.queryBusinesses();
 		//list.forEach(System.out::println);
 		//int bid=boss.getId();
-		
+		int bossId = (int) session.getAttribute("bossId");
 		// 之前的代码要变
-		PageData<Foodf> pd = new FoodsServiceImplf().getFoods(page, pageSize, "");
+		PageData<Foodf> pd = new FoodsServiceImplf().getFoodss(page, pageSize, "",bossId);
 		//PageData<Foodf> pd = fsf.getFoods(page, pageSize, keywords);
 	//	List<Foodf> list=pd.getData();
 	//	list.forEach(System.out::println);
