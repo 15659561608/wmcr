@@ -13,7 +13,7 @@ import com.etc.util.PageData;
 public interface foodsDaof {
 	boolean addFoods(Food food);
 	PageData<Food> queryFoods(int page,int pageSize);
-	PageData<Foodf> queryFoods(int page,int pageSize,String keyWords);
+	PageData<Foodf> queryFoodss(int page,int pageSize,String keyWords,int bossId);
 	PageData<Foodf> queryFoodfs(int page,int pageSize,String keyWords,int busId);
 	PageData<Food> queryFoods(int page,int pageSize,String keyWords,int busId);
 	List<Food> getFoods();

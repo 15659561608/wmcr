@@ -22,7 +22,7 @@ public interface FoodServicesf {
 	List<Food> allFoods();
 	List<Food> getFoods();
 	//PageData<Food> getFoods(int page,int pageSize,String keyWords);
-	PageData<Foodf> getFoods(int page,int pageSize,String keyWords);
+	PageData<Foodf> getFoodss(int page,int pageSize,String keyWords,int bossId);
 	/**
 	 * 根据编号获取菜品
 	 * @param id
