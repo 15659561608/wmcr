@@ -137,8 +137,8 @@
 					<div class="col-xs-6">
 						<span class="select-box"> <select class="select" size="1"
 							name="state">
-								<option value="0" selected="">有货</option>
-								<option value="1">售罄</option>
+								<option value="0" selected="">售罄</option>
+								<option value="1">有货</option>
 						</select>
 						</span>
 					</div>
