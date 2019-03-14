@@ -9,10 +9,6 @@ import com.etc.entity.Foodf;
 import com.etc.services.FoodServicesf;
 import com.etc.util.PageData;
 
-/**
-*	@author: zmf  
-*	@date: 2018年10月12日 下午3:10:57 
-*/
 public class FoodsServiceImplf implements FoodServicesf{
 	private foodsDaof fdf=new FoodsDaoImplf();
 

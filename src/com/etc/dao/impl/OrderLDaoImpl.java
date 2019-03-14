@@ -11,12 +11,6 @@ import com.etc.entity.OrdersLwq;
 import com.etc.util.BaseDao;
 import com.etc.util.PageData;
 
-/**
-* @author 作者 LinWQ:
-* @version 创建时间：2018年10月10日 下午2:27:39
-* 
-*/
-
 public class OrderLDaoImpl implements OrdersLDao{
 
 	@Override

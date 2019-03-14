@@ -4,12 +4,6 @@ package com.etc.service.impl;
 import com.etc.dao.impl.AccountlwqImpl;
 import com.etc.services.AccountlwqService;
 
-/**
-* @author 作者 LinWQ:
-* @version 创建时间：2018年10月15日 上午9:58:18
-* 
-*/
-
 public class AccountlwqServiceImpl implements AccountlwqService {
 	AccountlwqImpl ai=new AccountlwqImpl();
 	@Override

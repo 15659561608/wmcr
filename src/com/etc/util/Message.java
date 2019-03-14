@@ -17,8 +17,6 @@ import net.sf.json.JSONObject;
 
 /**
  * 短信验证API
- * @author 谢凌鑫
- *2018年10月9日
  */
 
 public class Message {

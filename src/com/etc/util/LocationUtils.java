@@ -1,9 +1,6 @@
 package com.etc.util;
-
 /**
  * 根据经纬度计算两点距离
- * @author 谢凌鑫
- *2018年10月15日
  */
 public class LocationUtils {
 	private static double EARTH_RADIUS = 6378.137;

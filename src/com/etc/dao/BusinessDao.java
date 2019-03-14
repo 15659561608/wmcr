@@ -5,11 +5,6 @@ import java.util.List;
 import com.etc.entity.Businesses;
 import com.etc.entity.BusinessesCity;
 
-/**
- * 
- * @author 谢凌鑫
- *2018年10月10日
- */
 public interface BusinessDao {
 
 	/**

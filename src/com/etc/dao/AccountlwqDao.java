@@ -1,13 +1,5 @@
 package com.etc.dao;
 
-
-
-/**
-* @author 作者 LinWQ:
-* @version 创建时间：2018年10月15日 上午9:31:20
-* 
-*/
-
 public interface AccountlwqDao {
 	//统计用户以及未审核的用户数量
    Long  sumUsers();

@@ -42,24 +42,26 @@
 <title>店铺评论</title>
 </head>
 <body class="day " ng-controller="bodyCtrl" day-or-night>
-	<section class="common-back" id="wrapBackground"> <header
-		id="header">
-	<div class="common-width clearfix">
-		<h1 class="fl">
-			<a class="logo base-logo" href="index.jsp">外卖超人</a>
-		</h1>
+	<section class="common-back" id="wrapBackground"> 
+	<header id="header">
+			<div class="common-width clearfix">
+				<h1 class="fl">
+					<a class="logo base-logo"
+						href="${pageContext.request.contextPath }/wmcr/index.jsp">外卖超人</a>
+				</h1>
 
-		<ul class="member" login-box>
-			<li><a href="index.html" class="index">首页</a></li>
-			<li class="login-register"><a href="login.html" referer-url
-				class="login" rel="nofollow">登录</a><span class="cg">/</span><a
-				href="register.html" referer-url rel="nofollow" class="register">注册</a></li>
-			<li><a href="member_order.html" class="order-center"
-				rel="nofollow">查看订单</a></li>
-		</ul>
+				<ul class="member" login-box>
+					<li><a
+						href="<c:choose><c:when test="${users !=null }">${pageContext.request.contextPath }/wmcr/mainPage.jsp</c:when><c:otherwise>${pageContext.request.contextPath }/wmcr/index.jsp</c:otherwise></c:choose>"
+						class="index">首页</a></li>
+					<li class="login-register"><c:choose><c:when test="${users !=null }"><a href="#"><li class="login-register">欢迎，${sessionScope.users.account} </a></li></c:when><c:otherwise><li class="login-register"><a href="${pageContext.request.contextPath }/wmcr/login.jsp" referer-url  class="login"  rel="nofollow">登录</a><span class="cg">/</span><a href="${pageContext.request.contextPath }/wmcr/register.jsp" referer-url  rel="nofollow" class="register">注册</a></li></c:otherwise></c:choose></li>
+					<li><a
+						href="${pageContext.request.contextPath }/wmcr/member_order.jsp"
+						class="order-center" rel="nofollow">查看订单</a></li>
+				</ul>
 
-	</div>
-	</header>
+			</div>
+		</header>
 
 	<div id="main-box">
 		<!--二维码-->

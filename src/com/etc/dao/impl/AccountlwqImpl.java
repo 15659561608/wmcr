@@ -5,13 +5,6 @@ import com.etc.dao.AccountlwqDao;
 
 import com.etc.util.BaseDao;
 
-
-/**
-* @author 作者 LinWQ:
-* @version 创建时间：2018年10月15日 上午9:36:09
-* 
-*/
-
 public class AccountlwqImpl implements AccountlwqDao {
 
 	@Override

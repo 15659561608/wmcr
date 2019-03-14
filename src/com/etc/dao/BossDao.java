@@ -1,9 +1,4 @@
 package com.etc.dao;
-/**
- * 
- * @author 谢凌鑫
- *2018年10月10日
- */
 
 import com.etc.entity.Boss;
 

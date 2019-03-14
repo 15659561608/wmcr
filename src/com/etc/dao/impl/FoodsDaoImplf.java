@@ -8,10 +8,6 @@ import com.etc.entity.Foodf;
 import com.etc.util.BaseDao;
 import com.etc.util.PageData;
 
-/**
-*	@author: zmf  
-*	@date: 2018年10月12日 下午3:03:12 
-*/
 public class FoodsDaoImplf implements foodsDaof{
 
 	@Override

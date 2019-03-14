@@ -10,12 +10,6 @@ import com.etc.entity.OrdersLwq;
 import com.etc.entity.Ordersdetail;
 import com.etc.util.PageData;
 
-/**
- * @author 作者 LinWQ:
- * @version 创建时间：2018年10月10日 下午2:37:22
- * 
- */
-
 public interface OrdersLService {
 	List<OrdersLwq> getOrders();
 

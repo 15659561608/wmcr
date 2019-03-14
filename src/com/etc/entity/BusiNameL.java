@@ -1,9 +1,4 @@
 package com.etc.entity;
-/**
-* @author 作者 LinWQ:
-* @version 创建时间：2018年10月16日 下午2:24:01
-* 
-*/
 
 public class BusiNameL {
   private String busiName;
