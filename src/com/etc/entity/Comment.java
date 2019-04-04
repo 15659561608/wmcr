@@ -7,7 +7,7 @@ public class Comment {
 
     private String content;
 
-    private Date comDate;
+    private String comDate;
 
     private Integer praise;
 
@@ -15,7 +15,16 @@ public class Comment {
 
     private Integer busId;
 
-    public Integer getId() {
+    private String custName;
+    public String getCustName() {
+		return custName;
+	}
+
+	public void setCustName(String custName) {
+		this.custName = custName;
+	}
+
+	public Integer getId() {
         return id;
     }
 
@@ -31,11 +40,11 @@ public class Comment {
         this.content = content == null ? null : content.trim();
     }
 
-    public Date getComDate() {
+    public String getComDate() {
         return comDate;
     }
 
-    public void setComDate(Date comDate) {
+    public void setComDate(String comDate) {
         this.comDate = comDate;
     }
 

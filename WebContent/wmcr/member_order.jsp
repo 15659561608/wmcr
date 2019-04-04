@@ -108,7 +108,7 @@
                  <div class="order-operate fl padding-margin">
                     <p>${a.payState==0?"未支付":"已支付"}</p>
                     <p>${a.state==0?"待发货":((a.state==1)?"已发货":"确认收货")}</p>
-                    <p> <c:if test="${a.payState==1}">
+                    <p> <c:if test="${a.state!=2}">
                     	<button value="${a.id}" class="btn btn-success normal-btn confirmOrder">确认收货</button>
                     </c:if></p>
                     <!-- <p>

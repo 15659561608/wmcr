@@ -34,28 +34,42 @@ public class PhotosSerlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-//		String op="null";
-//		if(request.getParameter("op")!=null) {
-//			op=request.getParameter("op");
-//		}
-		 HttpSession session=request.getSession();
-		 PrintWriter out = response.getWriter();
-		 //String DbSavePath = request.getParameter("logo");
-		 //System.out.println(DbSavePath);
-		 //System.out.println(session.getAttribute("DbSavePath"));
-		 String busId = request.getParameter("busiName");
-		 //System.out.println(busId);
-		 PhotosService pss = new PhotosServiceImpl();
-		 Photos p = new Photos();
-		 p.setSrc(String.valueOf(session.getAttribute("DbSavePath")));
-		 p.setBusId(Integer.parseInt(busId));
-		 boolean flag = pss.addPic(p);
-		 if(flag) {
-			 out.print("<script>alert('插入成功');location.href='bossManage/picture-list.jsp'</script>");
-		 }
-		 else {
-			 out.print("<script>alert('插入失败');location.href='bossManage/picture-add.jsp'</script>");
-		 } 
+		String op="null";
+		if(request.getParameter("op")!=null) {
+			op=request.getParameter("op");
+		}
+		HttpSession session=request.getSession();
+		PrintWriter out = response.getWriter();
+		if("null".equals(op)) {
+			
+			 //String DbSavePath = request.getParameter("logo");
+			 //System.out.println(DbSavePath);
+			 //System.out.println(session.getAttribute("DbSavePath"));
+			 String busId = request.getParameter("busiName");
+			 //System.out.println(busId);
+			 PhotosService pss = new PhotosServiceImpl();
+			 Photos p = new Photos();
+			 p.setSrc(String.valueOf(session.getAttribute("DbSavePath")));
+			 p.setBusId(Integer.parseInt(busId));
+			 boolean flag = pss.addPic(p);
+			 if(flag) {
+				 out.print("<script>alert('插入成功');location.href='bossManage/picture-list.jsp'</script>");
+			 }
+			 else {
+				 out.print("<script>alert('插入失败');location.href='bossManage/picture-add.jsp'</script>");
+			 } 
+		}else if("del".equals(op)) {
+			 int id = Integer.valueOf(request.getParameter("pId"));
+			 PhotosService pss = new PhotosServiceImpl();
+			 boolean result=pss.delpic(id);
+			 if(result)  {
+				 out.print("<script>alert('删除成功');location.href='bossManage/picture-list.jsp'</script>");
+			 }
+			 else {
+				 out.print("<script>alert('删除失败');location.href='bossManage/picture-add.jsp'</script>");
+			 } 
+		}
+		 
 	}
 
 	/**

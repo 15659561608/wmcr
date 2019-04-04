@@ -121,7 +121,7 @@
 					<li><a
 						href="${pageContext.request.contextPath }/Business?op=busiIntro&id=${busiInfo.id }">餐厅介绍</a></li>
 					<li ><a
-						href="${pageContext.request.contextPath }/wmcr/shop_comment.jsp?id=${busiInfo.id }">评论</a></li>
+						href="${pageContext.request.contextPath }/Business?op=busiComment&id=${busiInfo.id }">评论</a></li>
 					<li class="no-line active"><a
 						href="${pageContext.request.contextPath }/wmcr/shop_detail.jsp?id=${busiInfo.id }">菜单</a></li>
 

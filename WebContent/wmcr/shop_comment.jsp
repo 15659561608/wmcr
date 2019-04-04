@@ -15,7 +15,7 @@
 	content="BstJA3X9z6f9HcvoN9AZTwaKo_9Abj_j7dVBPfy640s" />
 <meta name="baidu-site-verification" content="IYCrtVH0i1" />
 <meta property="wb:webmaster" content="239d3d1dbdde1b2c" />
-<link rel="icon" type="image/png" href="images/favicon.ico" />
+<link rel="icon" type="image/png" href="${pageContext.request.contextPath }/wmcr/images/favicon.ico" />
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/back/bootstrap/css/bootstrap.min.css">
@@ -27,10 +27,10 @@
 	}(document, screen));
 </script>
 
-<link rel="stylesheet" href="css/common.css?v=2015-5-20" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/wmcr/css/common.css?v=2015-5-20" />
 
-<link rel="stylesheet" href="css/menuPage.css" />
-<link rel="stylesheet" href="css/star.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/wmcr/css/menuPage.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/wmcr/css/star.css" />
 <!--[if lte IE 7]><script>window.onload=function(){location.href="/ie6warning/"}</script><![endif]-->
 <!--[if lt IE 9]>
     <script src="js/respond.js"></script>
@@ -66,7 +66,7 @@
 	<div id="main-box">
 		<!--二维码-->
 		<div class="qrCode-frame" ng-hide="qrCodeStatus">
-			<img src="images/wx.png" alt="扫描二维码" /> <em
+			<img src="${pageContext.request.contextPath }/wmcr/images/wx.png" alt="扫描二维码" /> <em
 				ng-click="qrCodeStatus=true">X</em>
 		</div>
 
@@ -80,10 +80,10 @@
 		<section class="menupage-main common-width"> <header
 			class="nav clearfix">
 		<div class="fl clearfix nav-des">
-			<img src="http://dhcrestaurantlogo.dhero.cn/1592?v=1415630726"
-				alt="[半价菜][送可乐]樱花日本料理" class="fl" />
+			<img src="${pageContext.request.contextPath }${busiInfo.logo }"
+				alt="${busiInfo.busiName }" class="fl" />
 			<div class="fl nav-des-text">
-				<h2 class="ellipsis" title="[半价菜][送可乐]樱花日本料理">[半价菜][送可乐]樱花日本料理</h2>
+				<h2 class="ellipsis" title="${busiInfo.busiName }">${busiInfo.busiName }</h2>
 				<div class="clearfix">
 					<div class="fl nav-review">
 						<div style="width: 65.00px;"></div>
@@ -96,14 +96,14 @@
 
 			<div class="fl nav-right-blast line-right">
 				<p>
-					150<span style="font-size: 12px; color: #999;">元</span>
+					${busiInfo.starPrice }<span style="font-size: 12px; color: #999;">元</span>
 				</p>
 				<span>起送</span>
 			</div>
 
 			<div class="fl nav-right-blast">
 				<p>
-					37<span style="font-size: 12px; color: #999;">分钟</span>
+					${busiInfo.disFee }<span style="font-size: 12px; color: #999;">分钟</span>
 				</p>
 				<span>送餐时间</span>
 			</div>
@@ -151,7 +151,7 @@
 			<jsp:forward page="../CommentServlet?op=queryComment"></jsp:forward>
 		</c:if> <c:forEach var="co" items="${requestScope.c.data}">
 
-			<article class="review-item"> <span id="phone">用户编号:${co.userId}</span>
+			<article class="review-item"> <span id="phone">用户:${co.custName}</span>
 			<span id="time">发布时间:${co.comDate}</span> <span id="praise">${co.praise==5?"★★★★★":co.praise == 4?"★★★★":co.praise == 3?"★★★":co.praise ==2?"★★":"★"}</span>
 			<div class="review-content" id="content">${co.content}</div>
 
@@ -395,11 +395,11 @@
 			</div></li>
 	</ul>
 
-	<script type="text/javascript" src="js/angular.min.js"></script>
-	<script src="js/common.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/wmcr/js/angular.min.js"></script>
+	<script src="${pageContext.request.contextPath }/wmcr/js/common.js"></script>
 	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 
-	<script src="js/service.js"></script>
+	<script src="${pageContext.request.contextPath }/wmcr/js/service.js"></script>
 
 	<script>
 		var feedbackUrl = '/ajax/feedback/';
@@ -524,24 +524,36 @@
 			var i = 0;
 			var j = 0;
 			var len = star_li.length;
-			var word = [ '很差', '差', '一般', "好", "很好" ]
+			var word = [ '很差', '差', '一般', "好", "很好" ];
+			var flag=false;
 			for (i = 0; i < len; i++) {
 				star_li[i].index = i;
 				star_li[i].onmouseover = function() {
-					star_word.style.display = "block";
-					star_word.innerHTML = word[this.index];
-					for (i = 0; i <= this.index; i++) {
-						star_li[i].className = "act";
+					if(!flag){
+						star_word.style.display = "block";
+						star_word.innerHTML = word[this.index];
+						for (i = 0; i <= this.index; i++) {
+							star_li[i].className = "act";
+						}
 					}
+					
 				}
 				star_li[i].onmouseout = function() {
-					star_word.style.display = "none";
-					for (i = 0; i < len; i++) {
-						star_li[i].className = "";
+					if(!flag){
+						star_word.style.display = "none";
+						for (i = 0; i < len; i++) {
+							star_li[i].className = "";
+						}
 					}
+					
 				}
 				star_li[i].onclick = function() {
-					result.innerHTML = (this.index + 1);
+					flag=true;
+					star_word.style.display = "block";
+					for (j = 0; j < i; j++) {
+						star_li[j].className = "act";
+					}
+					//result.innerHTML = (this.index + 1);
 					//praise.innerHTML = (this.index + 1);
 					$("#praise").val(this.index + 1);
 

@@ -66,7 +66,7 @@
 					<td><a href="javascript:;"><img width="210" class="picture-thumb" src="${pageContext.request.contextPath}${tushow.src}" style="height: 150px;width: 150px"></a></td>
 					<td class="text-l">${tushow.des}</td>
 					<td class="td-status"><span class="label label-success radius">已发布</span></td>
-					<td class="td-manage"><a style="text-decoration:none" onClick="picture_stop(this,'10001')" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a><a style="text-decoration:none" class="ml-5 del" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+					<td class="td-manage"><a style="text-decoration:none" onClick="picture_stop(this,'10001')" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a><a style="text-decoration:none" onClick="picture_del(this)" class="ml-5 del" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 				</tr>
 				</c:forEach>
 			</tbody>
@@ -129,14 +129,13 @@ function picture_start(obj,id){
 	});
 }
 /*图片-删除*/
-$(function () {
- 	 $(".del").click(function() {
+function picture_del(obj){
  		layer.confirm('确认要删除吗？',function(index) {
- 			var pId  = $(this).parents("tr").find("td").eq(0).text()
- 			location.href = "../mdts.do?op=deltu&pId=" + pId;
+ 			var pId  = $(obj).parents("tr").find("td").eq(1).text();
+ 			console.log(pId);
+ 			location.href = "${pageContext.request.contextPath}/PhotosSerlet?op=del&pId=" + pId;
  		});
- 	 });
- })
+ 	 }
 </script>
 <script  type="text/javascript" >
 layui.use(['laypage', 'layer'], function(){

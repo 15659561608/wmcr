@@ -69,15 +69,15 @@ public class AliPayServlet extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out=response.getWriter();
 		if("pay".equals(op)) {
-			if(session.getAttribute("ordersSession")!=null) {
-				OrdersSession os=(OrdersSession)session.getAttribute("ordersSession");
+			OrdersSession ordersSession=(OrdersSession) session.getAttribute("ordersSession");
+			if(ordersSession!=null && new String(request.getParameter("ordId").getBytes("ISO-8859-1"),"UTF-8").equals(ordersSession.getOut_trade_no())) {
 				out.print("<script>alert('请勿重复提交订单');</script>");
 				//生成商户订单号
-				String out_trade_no = new String(os.getOut_trade_no().getBytes("ISO-8859-1"),"UTF-8");
+				String out_trade_no = new String(ordersSession.getOut_trade_no().getBytes("ISO-8859-1"),"UTF-8");
 				//付款金额，必填
-				String total_amount = new String(os.getTotal_amount().getBytes("ISO-8859-1"),"UTF-8");
+				String total_amount = new String(ordersSession.getTotal_amount().getBytes("ISO-8859-1"),"UTF-8");
 				//订单名称，必填
-				String subject = new String(os.getSubject());
+				String subject = new String(ordersSession.getSubject());
 				//商品描述，可空
 				String body = new String(request.getParameter("WIDbody").getBytes("ISO-8859-1"),"UTF-8");
 				alipayRequest.setBizContent("{\"out_trade_no\":\""+ out_trade_no +"\"," 

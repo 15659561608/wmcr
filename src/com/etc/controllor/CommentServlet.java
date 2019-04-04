@@ -74,15 +74,17 @@ public class CommentServlet extends HttpServlet {
 		if ("addComment".equals(op)) {
 			String content = request.getParameter("content");
 			String praise = request.getParameter("praise");
+			if("".equals(content)) {
+				out.print("<script>alert('请输入评论！');location.href='Business?op=busiComment&id="+busId+"';</script>");
+			}
+			if("".equals(praise)) {
+				out.print("<script>alert('请选择星级！');location.href='Business?op=busiComment&id="+busId+"';</script>");
+			}
 			Date getdate = Calendar.getInstance().getTime();
 			String comDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(getdate);
 			
 			Users u = (Users) request.getSession().getAttribute("users");
-			int userId = u.getId();
 			
-			// 判断用户是否买过这家店的东西
-			boolean flag = cs.queryorder(userId, busId);
-			// System.out.println(userId);
 			// System.out.println(flag);
 			// 判断用户是否登录
 			if (u == null) {
@@ -91,9 +93,11 @@ public class CommentServlet extends HttpServlet {
 				// out.print("<script>alert('请先登录');location.href='wmcr/shop_comment.jsp'</script>");
 
 			}
+			int userId = u.getId();
+			boolean flag = cs.queryorder(userId, busId);
 			// 判断用户是否买过这家店的东西
 			if (flag == false) {
-				out.print("<script>alert('你还没下过单不可评论');location.href='wmcr/shop_comment.jsp'</script>");
+				out.print("<script>alert('你还没下过单不可评论');location.href='Business?op=busiComment&id="+busId+"';</script>");
 				// request.getRequestDispatcher("wmcr/shop_comment.jsp").forward(request,
 				// response);
 			}
@@ -102,7 +106,7 @@ public class CommentServlet extends HttpServlet {
 
 				boolean f = cs.addComment(content, comDate, Integer.valueOf(praise), userId, busId);
 				if (f) {
-					out.print("<script>alert('评论成功');location.href='wmcr/shop_comment.jsp'</script>");
+					out.print("<script>alert('评论成功');location.href='Business?op=busiComment&id="+busId+"';</script>");
 				}
 				
 			}

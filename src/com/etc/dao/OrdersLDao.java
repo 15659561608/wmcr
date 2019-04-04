@@ -19,6 +19,7 @@ public interface OrdersLDao {
 	
 	List<OrdersLwq> queryOrdersByid(String id);
 	public List<OrdersData> queryOrdersByOrderId(String id);
+	public boolean confirmOrders(String id, int status);
 	//根据订单编号修改订单支付状态
 	public boolean updateOrdersByid(String id,int status);
 	//用户下单

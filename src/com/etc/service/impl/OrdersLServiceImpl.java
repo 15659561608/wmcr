@@ -44,6 +44,11 @@ public class OrdersLServiceImpl implements OrdersLService{
 		return odi.queryOrdersByid(id);
 	}
 	@Override
+	public boolean confirmOrdersByid(String id, int status) {
+		// TODO Auto-generated method stub
+		return odi.confirmOrders(id, status);
+	}
+	@Override
 	public boolean updateOrdersByid(String id, int status) {
 		// TODO Auto-generated method stub
 		return odi.updateOrdersByid(id, status);

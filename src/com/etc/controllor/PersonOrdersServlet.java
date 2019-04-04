@@ -50,7 +50,7 @@ public class PersonOrdersServlet extends HttpServlet {
 		}else if("confirmOrder".equals(op)) {
 			String id=request.getParameter("id");
 			OrdersLServiceImpl osi=new OrdersLServiceImpl();
-			boolean result=osi.updateOrdersByid(id, 2);
+			boolean result=osi.confirmOrdersByid(id, 2);
 			response.setContentType("text/html");
 			PrintWriter out=response.getWriter();
 			if(result) {

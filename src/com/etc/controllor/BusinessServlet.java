@@ -149,6 +149,16 @@ public class BusinessServlet extends HttpServlet {
 			request.setAttribute("busiId", id);
 			request.getRequestDispatcher("wmcr/shop_detail.jsp").forward(request, response);
 		}
+		if ("busiComment".equals(op)) {
+			int id = Integer.valueOf(request.getParameter("id"));
+			// 获取门店详细信息
+			List<BusinessesCity> list = bs.getBusinessesById(id);
+
+			request.setAttribute("busiInfo", list.get(0));
+			request.getSession().setAttribute("busss", id);
+			request.setAttribute("busiId", id);
+			request.getRequestDispatcher("wmcr/shop_comment.jsp").forward(request, response);
+		}
 		if ("busiIntro".equals(op)) {
 			int id = Integer.valueOf(request.getParameter("id"));
 			// 获取门店详细信息

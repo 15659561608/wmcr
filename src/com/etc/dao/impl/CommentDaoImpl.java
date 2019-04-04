@@ -13,7 +13,7 @@ public class CommentDaoImpl implements CommentDao {
 	@Override
 	public PageData<Comment> queryComment(int page, int pageSize, int busId) {
 		// TODO Auto-generated method stub
-		String sql = "select * from comment where busId=? order by id desc";
+		String sql = "select t1.id id,t1.content content,t1.comDate comDate,t1.praise praise,t1.userId userId,t1.busId busId,t2.custName custName from comment t1,customers t2 where t1.userId=t2.userId and t1.busId=? order by t1.id desc";
 		PageData<Comment> comment = (PageData<Comment>) BaseDao.getPage(sql, page, pageSize, Comment.class, busId);
 		return comment;
 	}

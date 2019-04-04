@@ -19,7 +19,8 @@ public interface OrdersLService {
 
 	List<OrdersLwq> getOrdersByid(String id);
 	public List<OrdersData> queryOrdersByOrderId(String id);
-
+	
+	public boolean confirmOrdersByid(String id, int status);
 	boolean updateOrdersByid(String id, int status);
 	boolean updatePayStatusByid(String id, int status);
 
