@@ -35,7 +35,7 @@
 				action="${pageContext.request.contextPath}/mdts.do">
 				<input type="hidden" name="op" value="secletPhoto"> <input
 					type="text" class="pull-left" style="margin-left: 10px;"
-					placeholder="相关店铺" name="keywords" id="keywords"
+					placeholder="搜索店铺" name="keywords" id="keywords"
 					value="${keywords}">
 				<button class="btn btn-primary" type="submit">搜索</button>
 			</form>

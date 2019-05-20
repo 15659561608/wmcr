@@ -54,23 +54,22 @@ public class UsersLoginServlet extends HttpServlet {
 		if (op.equals("zh")) {
 			String msg = "";
 			String account = request.getParameter("account");
-			//将账号存入
-			session.setAttribute("account", account);
-
 			if (account.isEmpty()) {
-				msg = "账号不能为空";
+				msg = "手机号不能为空";
 				out.print(msg);
 			} else {
 				Users u = rps.queryUsers(account);
 				if (!account.equals(null) && u == null) {
-					msg = "账号不正常";
+					msg = "手机号未注册";
 				}
 				if (u != null && !account.equals(null)) {
-					msg = "账号正常";
+					msg = "手机号正常";
 				}
 
 				out.print(msg);
 			}
+			//将账号存入
+			session.setAttribute("account", account);
 		} else if (op.equals("chaxun")) {
 			String msg = "";
 			//将账号取出来 
@@ -80,9 +79,7 @@ public class UsersLoginServlet extends HttpServlet {
 			String pwd1 = MD5Util.getEncodeByMd5(pwd);
 			if (pwd.isEmpty()) {
 				msg = "密码不为空";
-				// out.print(msg);
 			} else {
-                //System.out.println(account);
 				List<Users> u1 = us.getUsersLogin(account, pwd1);
 				System.out.println(pwd1);
 				if (u1 == null || u1.size() == 0) {

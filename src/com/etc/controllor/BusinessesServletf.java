@@ -43,13 +43,8 @@ public class BusinessesServletf extends HttpServlet {
 			response.setContentType("application/json");
 			PrintWriter out = response.getWriter();
 			Boss b=(Boss)session.getAttribute("boss");
-			//System.out.println("ID："+b.getId());
 			int bossId=b.getId();
 			List<Businesses> businesses=bsf.queryBussById(bossId);
-			//businesses.forEach(System.out::println);
-			//	List<Businesses> list=bsf.queryBusinesses(bossId);
-		//	List<Businesses> list=bsf.queryBusinesses();		
-		//	request.getSession().setAttribute("list", businesses);
 
 			Gson gson = new Gson();
 
@@ -57,8 +52,7 @@ public class BusinessesServletf extends HttpServlet {
 
 			out.print(data);
 		}
-		
-		
+	
 		
 	
 

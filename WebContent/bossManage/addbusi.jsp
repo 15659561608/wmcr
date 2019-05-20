@@ -106,7 +106,7 @@
 				<div class="row clearfix">
 					<div class="formControls col-xs-8">
 						<script id="editor" name="des" type="text/plain"
-							style="width: 1024px; height: 500px;"></script>
+							style="width: 500px; height: 500px;"></script>
 
 					</div>
 				</div>

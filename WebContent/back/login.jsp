@@ -5,9 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>点菜宝贝，后台管理系统</title>
-    <meta name="keywords" content="点菜宝贝，后台管理系统">
-    <meta name="description" content="点菜宝贝，后台管理系统">
+    <title>外卖超人，后台管理系统</title>
+    <meta name="keywords" content="外卖超人，后台管理系统">
+    <meta name="description" content="外卖超人，后台管理系统">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/frame.css">
     <link rel="stylesheet" href="css/base.css">
@@ -20,7 +20,7 @@
     <![endif]-->
 </head>
 <body>
-    <a href="login.jsp"><img class="login-logo" src="img/logo.png"></a>
+    <a href="login.jsp"><img class="login-logo" src="img/logo2.png"></a>
     <div class="login-title default"></div>
    <div class="login-name">管理员登录</div>
    <form action="Lg.do" method="post">
@@ -42,7 +42,7 @@
 
     </div>
     </form>
-    <div class="login-footer clearfix">Copyright © 2018 点菜宝贝 Diancai Baobei.com  All Rights Reserved. <img class="ybs" style="cursor: pointer;" src="img/login_jj.jpg" width="57" height="42" alt=""></div>
+    <div class="login-footer clearfix">Copyright © 2018 外卖超人 Diancai Baobei.com  All Rights Reserved. <img class="ybs" style="cursor: pointer;" src="img/login_jj.jpg" width="57" height="42" alt=""></div>
 </body>
 <script src="plugin/jquery/jquery.js"></script>
 <script>

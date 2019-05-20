@@ -97,7 +97,7 @@
 									<td>${a.money}</td>
 									<td>${a.foodName}</td>
 									<td>${a.num}</td>
-									<td>${a.state==0?"未支付":"已支付"}</td>
+									<td>${a.payState==0?"未支付":"已支付"}</td>
 								</tr>
 
 							</c:forEach>

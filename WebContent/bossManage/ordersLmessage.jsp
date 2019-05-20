@@ -341,11 +341,11 @@ function member_del(obj,id){
         	}
     		
     	}},
-    	{"data": "State","createdCell":function(nTd,sData, oData, iRow, iCol)
+    	{"data": "state","createdCell":function(nTd,sData, oData, iRow, iCol)
         	{
-        	if(oData.State==0){
+        	if(oData.state==1){
         		$(nTd).html("<button class='layui-btn layui-btn-warm layui-btn-sm'>待发货</button>");
-        	}else if(oData.State==1){
+        	}else if(oData.state==0){
         		$(nTd).html("<button class='layui-btn layui-btn-sm'>已发货</button>");
         	}else{
         		$(nTd).html("<button class='layui-btn layui-btn-sm'>确认收货</button>");
@@ -368,11 +368,7 @@ function member_del(obj,id){
 
      //导航按钮操作
     employee.buttons =
-            '<button class="btn btn-default"  type="button" id="reload" data-toggle="modal" data-target="#employeeModal">刷新表格</button>'+
-            '<button class="btn btn-primary" type="button" id="batchIds" style="margin-left:20px;" data-toggle="modal" >多选</button>'+
-            '<button class="btn btn-success" type="button" id="selection" style="margin-left:20px;" data-toggle="modal" >单选</button>'+
-            '<button class="btn btn-success" type="button" id="search" style="margin-left:20px;" data-toggle="modal" >查询</button>'+
-            '<button class="btn btn-success" type="button" id="clearSearch" style="margin-left:20px;" data-toggle="modal" >重置</button>';
+            '<button class="btn btn-default"  type="button" id="reload" data-toggle="modal" data-target="#employeeModal">刷新表格</button>'
 
 </script>
 

@@ -24,7 +24,7 @@ public class OrderLDaoImpl implements OrdersLDao{
 	@Override
 	public PageData<OrdersLwq> queryOrdersByPage(int page, int pageSize, String keywords) {
 		// TODO Auto-generated method stub
-		String sql="select orders.id,users.account,businesses.busiName,orders.ordDate,orders.money,food.foodName,ordersdetail.num,orders.state from \r\n" + 
+		String sql="select orders.id,users.account,businesses.busiName,orders.ordDate,orders.money,food.foodName,ordersdetail.num,orders.state,orders.payState from \r\n" + 
 				"orders,businesses,users,ordersdetail,food where orders.userId=users.id and orders.busId=businesses.id and ordersdetail.orderId=orders.id and ordersdetail.foodId=food.id and users.account like ?";
 		PageData<OrdersLwq> pd=BaseDao.getPage(sql, page, pageSize, OrdersLwq.class, "%" + keywords + "%");
 		return pd;

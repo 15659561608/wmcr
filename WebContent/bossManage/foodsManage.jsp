@@ -35,7 +35,7 @@
 </head>
 
 <body>
-	<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 菜品管理 <span class="c-gray en">&gt;</span> 查看菜品列表 <a class="btn btn-success radius r" style="line-height:2.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+	<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 菜品管理 <span class="c-gray en">&gt;</span> 查看菜品列表 <a class="btn btn-success radius r" style="line-height:0.8em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 
 	<!--操作	栏-->
 	<div class="operates clearfix"
@@ -52,7 +52,7 @@
 		</div>
 	</div>
 	<!--表格-->
-	<div class="cl pd-5 bg-1 bk-gray mt-20" style="background-color:#f5fafe"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="${pageContext.request.contextPath}/bossManage/addFoodsf.jsp;"  class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加菜品</a></span> <span class="r" style="margin-left:800px">共有数据：<strong><span id="datarowcount">${requestScope.total}</span></strong> 条</span> </div>
+	<div class="cl pd-5 bg-1 bk-gray mt-20" style="background-color:#f5fafe"> <span class="l"> <a href="${pageContext.request.contextPath}/bossManage/addFoodsf.jsp;"  class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加菜品</a></span> <span class="r" style="margin-left:800px">共有数据：<strong><span id="datarowcount">${requestScope.total}</span></strong> 条</span> </div>
 			<div class="mt-20 " style="margin-top:30px">
 				<table id="example" class="table table-border table-bordered table-hover table-bg table-sort">
 					<thead style="background-color:#f5fafe">
@@ -363,14 +363,12 @@
 					function update() {
 						$.get("${pageContext.request.contextPath}/bsf.do", function(data, status) {
 							//	var arr = JSON.parse(data);
-							console.log("11111");
 								$.each(data, function(index, e) {
 									$("#busiName").append("<option value="+e.id+">" + e.busiName +","+e.address +"</option>");
 								});
 
 							});
 						var id = $(this).parents("tr").find("td").eq(0).html();
-						console.log(id);
 						var foodName = $(this).parents("tr").find("td").eq(1).html();
 						var price = $(this).parents("tr").find("td").eq(2).html();
 						var discount = $(this).parents("tr").find("td").eq(3).html();
@@ -380,7 +378,6 @@
 						var logo = $(this).parents("tr").find("td").eq(7).html();
 						var busiName = $(this).parents("tr").find("td").eq(8).html();
 						var state = $(this).parents("tr").find("td").eq(9).html();
-						console.log(id+foodName+price+discount+num+des+logo+state+busiName);
 						$("#id").val(id);
 						$("#foodName").val(foodName);
 						$("#price").val(price);

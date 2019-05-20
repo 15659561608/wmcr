@@ -12,7 +12,6 @@ function checkMobile() {
 	var mobile = document.getElementById("account1").value;
 	var mobileId = divId("mobile_prompt");
 	var regMobile = /^1(3|4|5|7|8)\d{9}$/;
-	// alert(regMobile.test(document.getElementById("account1").value));
 	if (regMobile.test(mobile) == false) {
 		mobileId.innerHTML = "手机号码不正确，请重新输入";
 		return false;
@@ -39,7 +38,6 @@ function checkPwd() {
 	var pwdId = divId("pwd_prompt");
 	pwdId.innerHTML = "";
 	var reg = /^[a-zA-Z0-9]{4,10}$/;
-	//alert(reg.test(document.getElementById("pwd1").value));
 	if (reg.test(document.getElementById("pwd1").value) == false) {
 		pwdId.innerHTML = "密码不能含有非法字符，长度在4-10之间";
 		return false;

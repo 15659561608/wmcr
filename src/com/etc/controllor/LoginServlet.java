@@ -52,7 +52,7 @@ public class LoginServlet extends HttpServlet {
 				out.println("<script>alert('登陆失败');location.href='login.jsp'</script>");
 			} else {
 				request.getSession().setAttribute("administor", a);
-				out.println("<script>location.href='index.jsp'</script>");
+				out.println("<script>alert('登陆成功');location.href='index.jsp'</script>");
 			}
 
 		}

@@ -18,7 +18,7 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>点菜宝贝，后台管理系统</title>
+<title>外卖超人，后台管理系统</title>
 <meta name="keywords" content="">
 <meta name="description" content="">
 <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
@@ -86,7 +86,7 @@
 				</dd>
 			</dl>
 
-			<dl>
+			<!--  <dl>
 				<dt>
 					配送员管理 <img class="b" src="img/jt-right-co.png" alt=""><img
 						class="r" src="img/jt-bottom.png" alt="">
@@ -95,7 +95,7 @@
 					<a href="#view/distributor.jsp">配送员列表 </a> <a
 						href="#view/addDistributor.jsp">新增配送员 </a>
 				</dd>
-			</dl>
+			</dl>-->
 
 			<dl>
 				<dt>

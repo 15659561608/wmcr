@@ -67,13 +67,13 @@
 						src="${pageContext.request.contextPath}/back/img/jt-right-co.png"
 						alt="">
 					</th>
-					<th class="sort cur" style="width: 20%;">商户密码 <img
+					<!--  <th class="sort cur" style="width: 20%;">商户密码 <img
 						class="bottom"
 						src="${pageContext.request.contextPath}/back/img/jt-bottom.png"
 						alt=""> <img class="top" style="display: none"
 						src="${pageContext.request.contextPath}/back/img/jt-right-co.png"
 						alt="">
-					</th>
+					</th>-->
 					<th class="sort cur" style="width: 15%;">注册时间 <img
 						class="bottom"
 						src="${pageContext.request.contextPath}/back/img/jt-bottom.png"
@@ -106,7 +106,7 @@
 
 						<td>${boss.id}</td>
 						<td>${boss.account}</td>
-						<td>${boss.pwd}</td>
+						<!-- <td>${boss.pwd}</td> -->
 						<td>${boss.regDate}</td>
 						<td>${boss.state==0?"未审核":(boss.state==1?"正常":"销毁")}</td>
 						<td class="col-md-2"><button class="btn btn-link update"

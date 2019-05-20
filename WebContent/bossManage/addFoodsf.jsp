@@ -120,7 +120,7 @@
 			<div class="row clearfix">
 				<label class="form-label col-xs-3">详细描述</label>
 				<div class="formControls col-xs-8">
-					<script id="editor" name="des" type="text/plain" style="width:1024px;height:500px;"></script>
+					<script id="editor" name="des" type="text/plain" style="width:800px;height:500px;"></script>
 					<div id="div6"></div>
 
 				</div>
